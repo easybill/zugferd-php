@@ -3,7 +3,7 @@ ZUGFeRD PHP
 
 ZUGFeRD PHP SDK - Convert PHP Objects to XML and back.
 
-[Look @ Tests for more details](Tests/)
+[Look @ Tests for more details](src/Easybill/ZUGFeRD/Tests/)
 
 
 ### Contributing
