@@ -1,0 +1,29 @@
+{
+  "name": "easybill/zugferd-php",
+  "description": "..",
+  "keywords": ["ZUGFeRD"],
+  "type": "library",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Patrick Romowicz",
+      "email": "patrick@romowicz.de"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "jms/serializer": "dev-master"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Easybill\\ZUGFeRD\\": "src/Easybill/ZUGFeRD/"
+    },
+    "exclude-from-classmap": [
+      "**/Tests/"
+    ]
+  }
+}
