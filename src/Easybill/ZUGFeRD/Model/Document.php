@@ -2,6 +2,7 @@
 
 namespace Easybill\ZUGFeRD\Model;
 
+use Easybill\ZUGFeRD\Model\Trade\Trade;
 use JMS\Serializer\Annotation\XmlRoot;
 use JMS\Serializer\Annotation\XmlNamespace;
 use JMS\Serializer\Annotation\XmlElement;
@@ -35,10 +36,19 @@ class Document
      */
     private $header;
 
+    /**
+     * @var Trade
+     * @Type("Easybill\ZUGFeRD\Model\Trade\Trade")
+     * @XmlElement(cdata = false, namespace = "urn:ferd:CrossIndustryDocument:invoice:1p0")
+     * @SerializedName("SpecifiedSupplyChainTradeTransaction")
+     */
+    private $trade;
+
     function __construct($type = self::TYPE_BASIC)
     {
         $this->context = new DocumentContext($type);
         $this->header = new Header();
+        $this->trade = new Trade();
     }
 
     /**
@@ -64,5 +74,23 @@ class Document
     {
         $this->header = $header;
     }
+
+    /**
+     * @return \Easybill\ZUGFeRD\Model\Trade\Trade
+     */
+    public function getTrade()
+    {
+        return $this->trade;
+    }
+
+    /**
+     * @param \Easybill\ZUGFeRD\Model\Trade\Trade $trade
+     *
+     */
+    public function setTrade(Trade $trade)
+    {
+        $this->trade = $trade;
+    }
+
 
 }
