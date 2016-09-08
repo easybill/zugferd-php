@@ -52,6 +52,24 @@ class Address
     private $countryCode = '';
 
     /**
+     * Address constructor.
+     *
+     * @param string $postcode
+     * @param string $lineOne
+     * @param string $lineTwo
+     * @param string $city
+     * @param string $countryCode
+     */
+    public function __construct($postcode = '', $lineOne = '', $lineTwo = '', $city = '', $countryCode = '')
+    {
+        $this->postcode = $postcode;
+        $this->lineOne = $lineOne;
+        $this->lineTwo = $lineTwo;
+        $this->city = $city;
+        $this->countryCode = $countryCode;
+    }
+
+    /**
      * @return string
      */
     public function getPostcode()
