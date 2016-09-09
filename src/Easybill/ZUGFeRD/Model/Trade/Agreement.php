@@ -17,10 +17,10 @@ use JMS\Serializer\Annotation\XmlNamespace;
 class Agreement
 {
 
-    public function __construct()
+    public function __construct(TradeParty $seller, TradeParty $buyer)
     {
-        $this->seller = new TradeParty();
-        $this->buyer = new TradeParty();
+        $this->seller = $seller;
+        $this->buyer = $buyer;
     }
 
     /**
