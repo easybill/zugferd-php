@@ -17,12 +17,6 @@ use JMS\Serializer\Annotation\XmlNamespace;
 class Agreement
 {
 
-    public function __construct(TradeParty $seller, TradeParty $buyer)
-    {
-        $this->seller = $seller;
-        $this->buyer = $buyer;
-    }
-
     /**
      * @var TradeParty
      * @Type("Easybill\ZUGFeRD\Model\Trade\TradeParty")
