@@ -24,6 +24,17 @@ class TaxRegistration
      */
     private $registration;
 
+    /**
+     * TaxRegistration constructor.
+     *
+     * @param string $schemeID
+     * @param string $value
+     */
+    public function __construct($schemeID = '', $value = '')
+    {
+        $this->registration = new Registration($schemeID, $value);
+    }
+
 
     /**
      * @return \Easybill\ZUGFeRD\Model\Trade\Tax\Registration
