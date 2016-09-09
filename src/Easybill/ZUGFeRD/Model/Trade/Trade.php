@@ -27,6 +27,14 @@ class Trade
     private $agreement = '';
 
     /**
+     * @var Delivery
+     * @Type("Easybill\ZUGFeRD\Model\Trade\Delivery")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("ApplicableSupplyChainTradeDelivery")
+     */
+    private $delivery;
+
+    /**
      * @return Agreement
      */
     public function getAgreement()
@@ -44,6 +52,27 @@ class Trade
         $this->agreement = $agreement;
         return $this;
     }
+
+    /**
+     * @return \Easybill\ZUGFeRD\Model\Trade\Delivery
+     */
+    public function getDelivery()
+    {
+        return $this->delivery;
+    }
+
+    /**
+     * @param \Easybill\ZUGFeRD\Model\Trade\Delivery $delivery
+     *
+     * @return self
+     */
+    public function setDelivery($delivery)
+    {
+        $this->delivery = $delivery;
+        return $this;
+    }
+
+
 
 
 }
