@@ -73,6 +73,24 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         </ram:OccurrenceDateTime>
       </ram:ActualDeliverySupplyChainEvent>
     </ram:ApplicableSupplyChainTradeDelivery>
+    <ram:ApplicableSupplyChainTradeSettlement>
+      <ram:PaymentReference>2013-471102</ram:PaymentReference>
+      <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
+      <ram:SpecifiedTradeSettlementPaymentMeans>
+        <ram:TypeCode>31</ram:TypeCode>
+        <ram:Information>Überweisung</ram:Information>
+        <ram:PayeePartyCreditorFinancialAccount>
+          <ram:IBANID>DE08700901001234567890</ram:IBANID>
+          <ram:AccountName></ram:AccountName>
+          <ram:ProprietaryID></ram:ProprietaryID>
+        </ram:PayeePartyCreditorFinancialAccount>
+        <ram:PayeeSpecifiedCreditorFinancialInstitution>
+          <ram:BICID>GENODEF1M04</ram:BICID>
+          <ram:GermanBankleitzahlID></ram:GermanBankleitzahlID>
+          <ram:Name></ram:Name>
+        </ram:PayeeSpecifiedCreditorFinancialInstitution>
+      </ram:SpecifiedTradeSettlementPaymentMeans>
+    </ram:ApplicableSupplyChainTradeSettlement>
   </rsm:SpecifiedSupplyChainTradeTransaction>
 </rsm:CrossIndustryDocument>
 
@@ -86,21 +104,39 @@ XML;
             ->addNote(new \Easybill\ZUGFeRD\Model\Note('Test Node 1'))
             ->addNote(new \Easybill\ZUGFeRD\Model\Note('Test Node 2'));
 
+
         $doc->getTrade()
-            ->setAgreement(new \Easybill\ZUGFeRD\Model\Trade\Agreement(
-                    new \Easybill\ZUGFeRD\Model\Trade\TradeParty('Lieferant GmbH',
-                        new \Easybill\ZUGFeRD\Model\Address('80333', 'Lieferantenstraße 20', null, 'München', 'DE'),
-                        array(
-                            new \Easybill\ZUGFeRD\Model\Trade\Tax\TaxRegistration('FC', '201/113/40209'),
-                            new \Easybill\ZUGFeRD\Model\Trade\Tax\TaxRegistration('VA', 'DE123456789')
-                        )
-                    ),
-                    new \Easybill\ZUGFeRD\Model\Trade\TradeParty('Kunden AG Mitte',
-                        new \Easybill\ZUGFeRD\Model\Address('69876', 'Hans Muster', 'Kundenstraße 15', 'Frankfurt', 'DE'),
-                        array()
+            ->getAgreement()
+            ->setSeller(
+                new \Easybill\ZUGFeRD\Model\Trade\TradeParty('Lieferant GmbH',
+                    new \Easybill\ZUGFeRD\Model\Address('80333', 'Lieferantenstraße 20', null, 'München', 'DE'),
+                    array(
+                        new \Easybill\ZUGFeRD\Model\Trade\Tax\TaxRegistration('FC', '201/113/40209'),
+                        new \Easybill\ZUGFeRD\Model\Trade\Tax\TaxRegistration('VA', 'DE123456789')
                     )
                 )
-            )->setDelivery(new \Easybill\ZUGFeRD\Model\Trade\Delivery('20130305', 102));
+            )->setBuyer(
+                new \Easybill\ZUGFeRD\Model\Trade\TradeParty('Kunden AG Mitte',
+                    new \Easybill\ZUGFeRD\Model\Address('69876', 'Hans Muster', 'Kundenstraße 15', 'Frankfurt', 'DE'),
+                    array()
+                )
+            );
+
+        $doc->getTrade()
+            ->setDelivery(new \Easybill\ZUGFeRD\Model\Trade\Delivery('20130305', 102))
+            ->setSettlement(new \Easybill\ZUGFeRD\Model\Trade\Settlement('2013-471102', 'EUR'));
+
+        $doc->getTrade()
+            ->getSettlement()
+            ->setPaymentMeans(new \Easybill\ZUGFeRD\Model\Trade\PaymentMeans());
+
+        $doc->getTrade()
+            ->getSettlement()
+            ->getPaymentMeans()
+            ->setCode('31')
+            ->setInformation('Überweisung')
+            ->setPayeeAccount(new \Easybill\ZUGFeRD\Model\CreditorFinancialAccount('DE08700901001234567890', '', ''))
+            ->setPayeeInstitution(new \Easybill\ZUGFeRD\Model\CreditorFinancialInstitution('GENODEF1M04', '', ''));
 
 
         $builder = \Easybill\ZUGFeRD\Builder::create();

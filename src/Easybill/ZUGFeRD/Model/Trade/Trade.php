@@ -35,6 +35,22 @@ class Trade
     private $delivery;
 
     /**
+     * @var Settlement
+     * @Type("Easybill\ZUGFeRD\Model\Trade\Settlement")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("ApplicableSupplyChainTradeSettlement")
+     */
+    private $settlement;
+
+
+    public function __construct()
+    {
+        $this->agreement = new Agreement();
+        $this->delivery = new Delivery();
+        $this->settlement = new Settlement();
+    }
+
+    /**
      * @return Agreement
      */
     public function getAgreement()
@@ -72,6 +88,24 @@ class Trade
         return $this;
     }
 
+    /**
+     * @return \Easybill\ZUGFeRD\Model\Trade\Settlement
+     */
+    public function getSettlement()
+    {
+        return $this->settlement;
+    }
+
+    /**
+     * @param \Easybill\ZUGFeRD\Model\Trade\Settlement $settlement
+     *
+     * @return self
+     */
+    public function setSettlement($settlement)
+    {
+        $this->settlement = $settlement;
+        return $this;
+    }
 
 
 
