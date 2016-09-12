@@ -129,6 +129,13 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
       <ram:SpecifiedSupplyChainTradeDelivery>
         <ram:BilledQuantity unitCode="C62">20.00</ram:BilledQuantity>
       </ram:SpecifiedSupplyChainTradeDelivery>
+      <ram:SpecifiedSupplyChainTradeSettlement>
+        <ram:ApplicableTradeTax>
+          <ram:TypeCode>VAT</ram:TypeCode>
+          <ram:ApplicablePercent>19.00</ram:ApplicablePercent>
+          <ram:CategoryCode>S</ram:CategoryCode>
+        </ram:ApplicableTradeTax>
+      </ram:SpecifiedSupplyChainTradeSettlement>
     </ram:IncludedSupplyChainTradeLineItem>
   </rsm:SpecifiedSupplyChainTradeTransaction>
 </rsm:CrossIndustryDocument>
@@ -166,10 +173,19 @@ XML;
         $tradeAgreement->setGrossPrice(new \Easybill\ZUGFeRD\Model\Trade\Item\Price(9.90, 'EUR'));
         $tradeAgreement->setNetPrice(new \Easybill\ZUGFeRD\Model\Trade\Item\Price(9.90, 'EUR'));
 
+        $lineItemTradeTax = new \Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax();
+        $lineItemTradeTax->setCode('VAT');
+        $lineItemTradeTax->setPercent(19.00);
+        $lineItemTradeTax->setCategory('S');
+
+        $lineItemSettlement = new \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeSettlement();
+        $lineItemSettlement->setTradeTax($lineItemTradeTax);
+
         $lineItem = new \Easybill\ZUGFeRD\Model\Trade\Item\LineItem();
         $lineItem
             ->setTradeAgreement($tradeAgreement)
             ->setDelivery(new \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeDelivery(new \Easybill\ZUGFeRD\Model\Trade\Item\Quantity('C62', 20.00)))
+            ->setSettlement($lineItemSettlement)
             ->setLineDocument(new \Easybill\ZUGFeRD\Model\Trade\Item\LineDocument('1'))
             ->getLineDocument()
             ->addNote(new \Easybill\ZUGFeRD\Model\Note('Testcontent in einem LineDocument'));

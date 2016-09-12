@@ -40,6 +40,14 @@ class LineItem
     private $delivery;
 
     /**
+     * @var SpecifiedTradeSettlement
+     * @Type("Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeSettlement")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("SpecifiedSupplyChainTradeSettlement")
+     */
+    private $settlement;
+
+    /**
      * @return \Easybill\ZUGFeRD\Model\Trade\Item\LineDocument
      */
     public function getLineDocument()
@@ -93,6 +101,25 @@ class LineItem
     public function setDelivery($delivery)
     {
         $this->delivery = $delivery;
+        return $this;
+    }
+
+    /**
+     * @return \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeSettlement
+     */
+    public function getSettlement()
+    {
+        return $this->settlement;
+    }
+
+    /**
+     * @param \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeSettlement $settlement
+     *
+     * @return self
+     */
+    public function setSettlement($settlement)
+    {
+        $this->settlement = $settlement;
         return $this;
     }
 
