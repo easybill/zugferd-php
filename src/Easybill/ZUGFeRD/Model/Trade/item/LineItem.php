@@ -32,6 +32,14 @@ class LineItem
     private $tradeAgreement;
 
     /**
+     * @var SpecifiedTradeDelivery
+     * @Type("Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeDelivery")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("SpecifiedSupplyChainTradeDelivery")
+     */
+    private $delivery;
+
+    /**
      * @return \Easybill\ZUGFeRD\Model\Trade\Item\LineDocument
      */
     public function getLineDocument()
@@ -66,6 +74,25 @@ class LineItem
     public function setTradeAgreement($tradeAgreement)
     {
         $this->tradeAgreement = $tradeAgreement;
+        return $this;
+    }
+
+    /**
+     * @return \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeDelivery
+     */
+    public function getDelivery()
+    {
+        return $this->delivery;
+    }
+
+    /**
+     * @param \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeDelivery $delivery
+     *
+     * @return self
+     */
+    public function setDelivery($delivery)
+    {
+        $this->delivery = $delivery;
         return $this;
     }
 
