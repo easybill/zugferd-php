@@ -2,6 +2,7 @@
 
 namespace Easybill\ZUGFeRD\Model\Trade;
 
+use Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
@@ -38,6 +39,13 @@ class Settlement
      * @SerializedName("SpecifiedTradeSettlementPaymentMeans")
      */
     private $paymentMeans;
+
+    /**
+     * @var TradeTax[]
+     * @Type("array<Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax>")
+     * @XmlList(inline = true, entry = "ApplicableTradeTax", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     */
+    private $tradeTaxes = array();
 
     /**
      * Settlement constructor.
@@ -106,6 +114,25 @@ class Settlement
     public function setPaymentMeans(PaymentMeans $paymentMeans)
     {
         $this->paymentMeans = $paymentMeans;
+        return $this;
+    }
+
+    /**
+     * @return \Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax[]
+     */
+    public function getTradeTaxes()
+    {
+        return $this->tradeTaxes;
+    }
+
+    /**
+     * @param \Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax $tradeTax
+     *
+     * @return self
+     */
+    public function addTradeTax(TradeTax $tradeTax)
+    {
+        $this->tradeTaxes[] = $tradeTax;
         return $this;
     }
 

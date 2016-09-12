@@ -90,6 +90,18 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
           <ram:Name></ram:Name>
         </ram:PayeeSpecifiedCreditorFinancialInstitution>
       </ram:SpecifiedTradeSettlementPaymentMeans>
+      <ram:ApplicableTradeTax>
+        <ram:CalculatedAmount currencyID="EUR">19.25</ram:CalculatedAmount>
+        <ram:TypeCode>VAT</ram:TypeCode>
+        <ram:BasisAmount currencyID="EUR">275.00</ram:BasisAmount>
+        <ram:ApplicablePercent>7.00</ram:ApplicablePercent>
+      </ram:ApplicableTradeTax>
+      <ram:ApplicableTradeTax>
+        <ram:CalculatedAmount currencyID="EUR">37.62</ram:CalculatedAmount>
+        <ram:TypeCode>VAT</ram:TypeCode>
+        <ram:BasisAmount currencyID="EUR">198.00</ram:BasisAmount>
+        <ram:ApplicablePercent>19.00</ram:ApplicablePercent>
+      </ram:ApplicableTradeTax>
     </ram:ApplicableSupplyChainTradeSettlement>
   </rsm:SpecifiedSupplyChainTradeTransaction>
 </rsm:CrossIndustryDocument>
@@ -105,8 +117,9 @@ XML;
             ->addNote(new \Easybill\ZUGFeRD\Model\Note('Test Node 2'));
 
 
-        $doc->getTrade()
-            ->getAgreement()
+        $trade = $doc->getTrade();
+
+        $trade->getAgreement()
             ->setSeller(
                 new \Easybill\ZUGFeRD\Model\Trade\TradeParty('Lieferant GmbH',
                     new \Easybill\ZUGFeRD\Model\Address('80333', 'Lieferantenstraße 20', null, 'München', 'DE'),
@@ -122,21 +135,33 @@ XML;
                 )
             );
 
-        $doc->getTrade()
-            ->setDelivery(new \Easybill\ZUGFeRD\Model\Trade\Delivery('20130305', 102))
+        $trade->setDelivery(new \Easybill\ZUGFeRD\Model\Trade\Delivery('20130305', 102))
             ->setSettlement(new \Easybill\ZUGFeRD\Model\Trade\Settlement('2013-471102', 'EUR'));
 
-        $doc->getTrade()
-            ->getSettlement()
-            ->setPaymentMeans(new \Easybill\ZUGFeRD\Model\Trade\PaymentMeans());
+        $settlement = $trade->getSettlement();
 
-        $doc->getTrade()
-            ->getSettlement()
-            ->getPaymentMeans()
+        $settlement->setPaymentMeans(new \Easybill\ZUGFeRD\Model\Trade\PaymentMeans());
+
+        $settlement->getPaymentMeans()
             ->setCode('31')
             ->setInformation('Überweisung')
             ->setPayeeAccount(new \Easybill\ZUGFeRD\Model\CreditorFinancialAccount('DE08700901001234567890', '', ''))
             ->setPayeeInstitution(new \Easybill\ZUGFeRD\Model\CreditorFinancialInstitution('GENODEF1M04', '', ''));
+
+        $tradeTax = new \Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax();
+        $tradeTax->setCode('VAT');
+        $tradeTax->setPercent(7.00);
+        $tradeTax->setBasisAmount(new \Easybill\ZUGFeRD\Model\Trade\Amount(275.00, 'EUR'));
+        $tradeTax->setCalculatedAmount(new \Easybill\ZUGFeRD\Model\Trade\Amount(19.25, 'EUR'));
+
+        $tradeTax2 = new \Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax();
+        $tradeTax2->setCode('VAT');
+        $tradeTax2->setPercent(19.00);
+        $tradeTax2->setBasisAmount(new \Easybill\ZUGFeRD\Model\Trade\Amount(198.00, 'EUR'));
+        $tradeTax2->setCalculatedAmount(new \Easybill\ZUGFeRD\Model\Trade\Amount(37.62, 'EUR'));
+
+        $settlement->addTradeTax($tradeTax);
+        $settlement->addTradeTax($tradeTax2);
 
 
         $builder = \Easybill\ZUGFeRD\Builder::create();
