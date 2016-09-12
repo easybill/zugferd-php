@@ -48,6 +48,14 @@ class TradeTax
     private $percent = 0.0;
 
     /**
+     * @var string
+     * @Type("string")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("CategoryCode")
+     */
+    private $category;
+
+    /**
      * @return \Easybill\ZUGFeRD\Model\Trade\Amount
      */
     public function getCalculatedAmount()
@@ -109,6 +117,22 @@ class TradeTax
     public function setPercent($percent)
     {
         $this->percent = number_format($percent, 2);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param string $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
     }
 
 }
