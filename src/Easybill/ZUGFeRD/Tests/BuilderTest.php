@@ -111,6 +111,25 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         <ram:GrandTotalAmount currencyID="EUR">235.62</ram:GrandTotalAmount>
       </ram:SpecifiedTradeSettlementMonetarySummation>
     </ram:ApplicableSupplyChainTradeSettlement>
+    <ram:IncludedSupplyChainTradeLineItem>
+      <ram:AssociatedDocumentLineDocument>
+        <ram:LineID>1</ram:LineID>
+        <ram:IncludedNote>
+          <ram:Content>Testcontent in einem LineDocument</ram:Content>
+        </ram:IncludedNote>
+      </ram:AssociatedDocumentLineDocument>
+      <ram:SpecifiedSupplyChainTradeAgreement>
+        <ram:GrossPriceProductTradePrice>
+          <ram:ChargeAmount currencyID="EUR">9.90</ram:ChargeAmount>
+        </ram:GrossPriceProductTradePrice>
+        <ram:NetPriceProductTradePrice>
+          <ram:ChargeAmount currencyID="EUR">9.90</ram:ChargeAmount>
+        </ram:NetPriceProductTradePrice>
+      </ram:SpecifiedSupplyChainTradeAgreement>
+      <ram:SpecifiedSupplyChainTradeDelivery>
+        <ram:BilledQuantity unitCode="C62">20.00</ram:BilledQuantity>
+      </ram:SpecifiedSupplyChainTradeDelivery>
+    </ram:IncludedSupplyChainTradeLineItem>
   </rsm:SpecifiedSupplyChainTradeTransaction>
 </rsm:CrossIndustryDocument>
 
@@ -143,8 +162,22 @@ XML;
                 )
             );
 
-        $trade->setDelivery(new \Easybill\ZUGFeRD\Model\Trade\Delivery('20130305', 102))
-            ->setSettlement(new \Easybill\ZUGFeRD\Model\Trade\Settlement('2013-471102', 'EUR'));
+        $tradeAgreement = new \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeAgreement();
+        $tradeAgreement->setGrossPrice(new \Easybill\ZUGFeRD\Model\Trade\Item\Price(9.90, 'EUR'));
+        $tradeAgreement->setNetPrice(new \Easybill\ZUGFeRD\Model\Trade\Item\Price(9.90, 'EUR'));
+
+        $lineItem = new \Easybill\ZUGFeRD\Model\Trade\Item\LineItem();
+        $lineItem
+            ->setTradeAgreement($tradeAgreement)
+            ->setDelivery(new \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeDelivery(new \Easybill\ZUGFeRD\Model\Trade\Item\Quantity('C62', 20.00)))
+            ->setLineDocument(new \Easybill\ZUGFeRD\Model\Trade\Item\LineDocument('1'))
+            ->getLineDocument()
+            ->addNote(new \Easybill\ZUGFeRD\Model\Note('Testcontent in einem LineDocument'));
+
+        $trade
+            ->setDelivery(new \Easybill\ZUGFeRD\Model\Trade\Delivery('20130305', 102))
+            ->setSettlement(new \Easybill\ZUGFeRD\Model\Trade\Settlement('2013-471102', 'EUR'))
+            ->addLineItem($lineItem);
 
         $settlement = $trade->getSettlement();
 
@@ -183,4 +216,5 @@ XML;
         $this->assertSame($zugferdXML, $xml);
 
     }
+
 }

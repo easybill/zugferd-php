@@ -2,10 +2,12 @@
 
 namespace Easybill\ZUGFeRD\Model\Trade;
 
+use Easybill\ZUGFeRD\Model\Trade\Item\LineItem;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlNamespace;
+use JMS\Serializer\Annotation\XmlList;
 
 /**
  * Class Trade
@@ -41,6 +43,13 @@ class Trade
      * @SerializedName("ApplicableSupplyChainTradeSettlement")
      */
     private $settlement;
+
+    /**
+     * @var LineItem[]
+     * @Type("array<Easybill\ZUGFeRD\Model\Trade\Item\LineItem>")
+     * @XmlList(inline = true, entry = "IncludedSupplyChainTradeLineItem", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     */
+    private $lineItems = array();
 
 
     public function __construct()
@@ -107,6 +116,23 @@ class Trade
         return $this;
     }
 
+    /**
+     * @return \Easybill\ZUGFeRD\Model\Trade\Item\LineItem[]
+     */
+    public function getLineItems()
+    {
+        return $this->lineItems;
+    }
 
+    /**
+     * @param \Easybill\ZUGFeRD\Model\Trade\Item\LineItem $lineItem
+     *
+     * @return self
+     */
+    public function addLineItem(LineItem $lineItem)
+    {
+        $this->lineItems[] = $lineItem;
+        return $this;
+    }
 
 }
