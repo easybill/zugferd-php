@@ -48,6 +48,14 @@ class Settlement
     private $tradeTaxes = array();
 
     /**
+     * @var MonetarySummation
+     * @Type("Easybill\ZUGFeRD\Model\Trade\MonetarySummation")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("SpecifiedTradeSettlementMonetarySummation")
+     */
+    private $monetarySummation;
+
+    /**
      * Settlement constructor.
      *
      * @param string $paymentReference
@@ -136,7 +144,24 @@ class Settlement
         return $this;
     }
 
+    /**
+     * @return \Easybill\ZUGFeRD\Model\Trade\MonetarySummation
+     */
+    public function getMonetarySummation()
+    {
+        return $this->monetarySummation;
+    }
 
+    /**
+     * @param \Easybill\ZUGFeRD\Model\Trade\MonetarySummation $monetarySummation
+     *
+     * @return self
+     */
+    public function setMonetarySummation($monetarySummation)
+    {
+        $this->monetarySummation = $monetarySummation;
+        return $this;
+    }
 
 
 }

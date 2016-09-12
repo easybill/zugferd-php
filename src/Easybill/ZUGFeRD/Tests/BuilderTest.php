@@ -102,6 +102,14 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         <ram:BasisAmount currencyID="EUR">198.00</ram:BasisAmount>
         <ram:ApplicablePercent>19.00</ram:ApplicablePercent>
       </ram:ApplicableTradeTax>
+      <ram:SpecifiedTradeSettlementMonetarySummation>
+        <ram:LineTotalAmount currencyID="EUR">198.00</ram:LineTotalAmount>
+        <ram:ChargeTotalAmount currencyID="EUR">0.00</ram:ChargeTotalAmount>
+        <ram:AllowanceTotalAmount currencyID="EUR">0.00</ram:AllowanceTotalAmount>
+        <ram:TaxBasisTotalAmount currencyID="EUR">198.00</ram:TaxBasisTotalAmount>
+        <ram:TaxTotalAmount currencyID="EUR">37.62</ram:TaxTotalAmount>
+        <ram:GrandTotalAmount currencyID="EUR">235.62</ram:GrandTotalAmount>
+      </ram:SpecifiedTradeSettlementMonetarySummation>
     </ram:ApplicableSupplyChainTradeSettlement>
   </rsm:SpecifiedSupplyChainTradeTransaction>
 </rsm:CrossIndustryDocument>
@@ -160,8 +168,12 @@ XML;
         $tradeTax2->setBasisAmount(new \Easybill\ZUGFeRD\Model\Trade\Amount(198.00, 'EUR'));
         $tradeTax2->setCalculatedAmount(new \Easybill\ZUGFeRD\Model\Trade\Amount(37.62, 'EUR'));
 
-        $settlement->addTradeTax($tradeTax);
-        $settlement->addTradeTax($tradeTax2);
+        $settlement
+            ->addTradeTax($tradeTax)
+            ->addTradeTax($tradeTax2)
+            ->setMonetarySummation(
+                new \Easybill\ZUGFeRD\Model\Trade\MonetarySummation(198.00, 0.00, 0.00, 198.00, 37.62, 235.62, 'EUR')
+            );
 
 
         $builder = \Easybill\ZUGFeRD\Builder::create();
