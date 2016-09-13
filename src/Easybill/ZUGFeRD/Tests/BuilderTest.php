@@ -160,6 +160,24 @@ XML;
 
         $trade = $doc->getTrade();
 
+        $trade->setDelivery(new \Easybill\ZUGFeRD\Model\Trade\Delivery('20130305', 102));
+
+        $this->setAgreement($trade);
+        $this->setLineItem($trade);
+        $this->setSettlement($trade);
+
+        $builder = \Easybill\ZUGFeRD\Builder::create();
+        $xml = $builder->getXML($doc);
+
+        var_dump($xml);
+        $this->assertSame($zugferdXML, $xml);
+    }
+
+    /**
+     * @param \Easybill\ZUGFeRD\Model\Trade\Trade $trade
+     */
+    private function setAgreement(\Easybill\ZUGFeRD\Model\Trade\Trade $trade)
+    {
         $trade->getAgreement()
             ->setSeller(
                 new \Easybill\ZUGFeRD\Model\Trade\TradeParty('Lieferant GmbH',
@@ -171,11 +189,16 @@ XML;
                 )
             )->setBuyer(
                 new \Easybill\ZUGFeRD\Model\Trade\TradeParty('Kunden AG Mitte',
-                    new \Easybill\ZUGFeRD\Model\Address('69876', 'Hans Muster', 'Kundenstraße 15', 'Frankfurt', 'DE'),
-                    array()
+                    new \Easybill\ZUGFeRD\Model\Address('69876', 'Hans Muster', 'Kundenstraße 15', 'Frankfurt', 'DE')
                 )
             );
+    }
 
+    /**
+     * @param \Easybill\ZUGFeRD\Model\Trade\Trade $trade
+     */
+    private function setLineItem(\Easybill\ZUGFeRD\Model\Trade\Trade $trade)
+    {
         $tradeAgreement = new \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeAgreement();
         $tradeAgreement->setGrossPrice(new \Easybill\ZUGFeRD\Model\Trade\Item\Price(9.90, 'EUR'));
         $tradeAgreement->setNetPrice(new \Easybill\ZUGFeRD\Model\Trade\Item\Price(9.90, 'EUR'));
@@ -200,15 +223,17 @@ XML;
             ->getLineDocument()
             ->addNote(new \Easybill\ZUGFeRD\Model\Note('Testcontent in einem LineDocument'));
 
-        $trade
-            ->setDelivery(new \Easybill\ZUGFeRD\Model\Trade\Delivery('20130305', 102))
-            ->setSettlement(new \Easybill\ZUGFeRD\Model\Trade\Settlement('2013-471102', 'EUR'))
-            ->addLineItem($lineItem);
+        $trade->addLineItem($lineItem);
+    }
 
-        $settlement = $trade->getSettlement();
+    /**
+     * @param \Easybill\ZUGFeRD\Model\Trade\Trade $trade
+     */
+    private function setSettlement(\Easybill\ZUGFeRD\Model\Trade\Trade $trade)
+    {
+        $settlement = new \Easybill\ZUGFeRD\Model\Trade\Settlement('2013-471102', 'EUR');
 
         $settlement->setPaymentMeans(new \Easybill\ZUGFeRD\Model\Trade\PaymentMeans());
-
         $settlement->getPaymentMeans()
             ->setCode('31')
             ->setInformation('Überweisung')
@@ -234,13 +259,7 @@ XML;
                 new \Easybill\ZUGFeRD\Model\Trade\MonetarySummation(198.00, 0.00, 0.00, 198.00, 37.62, 235.62, 'EUR')
             );
 
-
-        $builder = \Easybill\ZUGFeRD\Builder::create();
-        $xml = $builder->getXML($doc);
-
-        var_dump($xml);
-        $this->assertSame($zugferdXML, $xml);
-
+        $trade->setSettlement($settlement);
     }
 
 }

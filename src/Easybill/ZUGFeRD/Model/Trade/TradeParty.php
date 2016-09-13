@@ -22,7 +22,7 @@ use JMS\Serializer\Annotation\XmlList;
 class TradeParty
 {
 
-    public function __construct($name = '', Address $address, array $taxRegistrations)
+    public function __construct($name = '', Address $address, array $taxRegistrations = array())
     {
         $this->name = $name;
         $this->address = $address;
