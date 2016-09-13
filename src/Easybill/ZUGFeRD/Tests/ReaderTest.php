@@ -10,7 +10,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
     {
         \Doctrine\Common\Annotations\AnnotationRegistry::registerAutoloadNamespace(
             'JMS\Serializer\Annotation',
-            __DIR__ . '/../../../../../../vendor/jms/serializer/src');
+            __DIR__ . '/../../../../vendor/jms/serializer/src');
     }
 
     public function testGetDocument()
@@ -28,6 +28,9 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
     <ram:ID>RE1337</ram:ID>
     <ram:Name>RECHNUNG</ram:Name>
     <ram:TypeCode>380</ram:TypeCode>
+    <ram:IssueDateTime>
+      <udt:DateTimeString format="102">20130305</udt:DateTimeString>
+    </ram:IssueDateTime>
     <ram:IncludedNote>
       <ram:Content>Test Node 1</ram:Content>
     </ram:IncludedNote>
@@ -35,6 +38,113 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
       <ram:Content>Test Node 2</ram:Content>
     </ram:IncludedNote>
   </rsm:HeaderExchangedDocument>
+  <rsm:SpecifiedSupplyChainTradeTransaction>
+    <ram:ApplicableSupplyChainTradeAgreement>
+      <ram:SellerTradeParty>
+        <ram:Name>Lieferant GmbH</ram:Name>
+        <ram:PostalTradeAddress>
+          <ram:PostcodeCode>80333</ram:PostcodeCode>
+          <ram:LineOne>Lieferantenstraße 20</ram:LineOne>
+          <ram:CityName>München</ram:CityName>
+          <ram:CountryID>DE</ram:CountryID>
+        </ram:PostalTradeAddress>
+        <ram:SpecifiedTaxRegistration>
+          <ram:ID schemeID="FC">201/113/40209</ram:ID>
+        </ram:SpecifiedTaxRegistration>
+        <ram:SpecifiedTaxRegistration>
+          <ram:ID schemeID="VA">DE123456789</ram:ID>
+        </ram:SpecifiedTaxRegistration>
+      </ram:SellerTradeParty>
+      <ram:BuyerTradeParty>
+        <ram:Name>Kunden AG Mitte</ram:Name>
+        <ram:PostalTradeAddress>
+          <ram:PostcodeCode>69876</ram:PostcodeCode>
+          <ram:LineOne>Hans Muster</ram:LineOne>
+          <ram:LineTwo>Kundenstraße 15</ram:LineTwo>
+          <ram:CityName>Frankfurt</ram:CityName>
+          <ram:CountryID>DE</ram:CountryID>
+        </ram:PostalTradeAddress>
+      </ram:BuyerTradeParty>
+    </ram:ApplicableSupplyChainTradeAgreement>
+    <ram:ApplicableSupplyChainTradeDelivery>
+      <ram:ActualDeliverySupplyChainEvent>
+        <ram:OccurrenceDateTime>
+          <udt:DateTimeString format="102">20130305</udt:DateTimeString>
+        </ram:OccurrenceDateTime>
+      </ram:ActualDeliverySupplyChainEvent>
+    </ram:ApplicableSupplyChainTradeDelivery>
+    <ram:ApplicableSupplyChainTradeSettlement>
+      <ram:PaymentReference>2013-471102</ram:PaymentReference>
+      <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
+      <ram:SpecifiedTradeSettlementPaymentMeans>
+        <ram:TypeCode>31</ram:TypeCode>
+        <ram:Information>Überweisung</ram:Information>
+        <ram:PayeePartyCreditorFinancialAccount>
+          <ram:IBANID>DE08700901001234567890</ram:IBANID>
+          <ram:AccountName></ram:AccountName>
+          <ram:ProprietaryID></ram:ProprietaryID>
+        </ram:PayeePartyCreditorFinancialAccount>
+        <ram:PayeeSpecifiedCreditorFinancialInstitution>
+          <ram:BICID>GENODEF1M04</ram:BICID>
+          <ram:GermanBankleitzahlID></ram:GermanBankleitzahlID>
+          <ram:Name></ram:Name>
+        </ram:PayeeSpecifiedCreditorFinancialInstitution>
+      </ram:SpecifiedTradeSettlementPaymentMeans>
+      <ram:ApplicableTradeTax>
+        <ram:CalculatedAmount currencyID="EUR">19.25</ram:CalculatedAmount>
+        <ram:TypeCode>VAT</ram:TypeCode>
+        <ram:BasisAmount currencyID="EUR">275.00</ram:BasisAmount>
+        <ram:ApplicablePercent>7.00</ram:ApplicablePercent>
+      </ram:ApplicableTradeTax>
+      <ram:ApplicableTradeTax>
+        <ram:CalculatedAmount currencyID="EUR">37.62</ram:CalculatedAmount>
+        <ram:TypeCode>VAT</ram:TypeCode>
+        <ram:BasisAmount currencyID="EUR">198.00</ram:BasisAmount>
+        <ram:ApplicablePercent>19.00</ram:ApplicablePercent>
+      </ram:ApplicableTradeTax>
+      <ram:SpecifiedTradeSettlementMonetarySummation>
+        <ram:LineTotalAmount currencyID="EUR">198.00</ram:LineTotalAmount>
+        <ram:ChargeTotalAmount currencyID="EUR">0.00</ram:ChargeTotalAmount>
+        <ram:AllowanceTotalAmount currencyID="EUR">0.00</ram:AllowanceTotalAmount>
+        <ram:TaxBasisTotalAmount currencyID="EUR">198.00</ram:TaxBasisTotalAmount>
+        <ram:TaxTotalAmount currencyID="EUR">37.62</ram:TaxTotalAmount>
+        <ram:GrandTotalAmount currencyID="EUR">235.62</ram:GrandTotalAmount>
+      </ram:SpecifiedTradeSettlementMonetarySummation>
+    </ram:ApplicableSupplyChainTradeSettlement>
+    <ram:IncludedSupplyChainTradeLineItem>
+      <ram:AssociatedDocumentLineDocument>
+        <ram:LineID>1</ram:LineID>
+        <ram:IncludedNote>
+          <ram:Content>Testcontent in einem LineDocument</ram:Content>
+        </ram:IncludedNote>
+      </ram:AssociatedDocumentLineDocument>
+      <ram:SpecifiedSupplyChainTradeAgreement>
+        <ram:GrossPriceProductTradePrice>
+          <ram:ChargeAmount currencyID="EUR">9.90</ram:ChargeAmount>
+        </ram:GrossPriceProductTradePrice>
+        <ram:NetPriceProductTradePrice>
+          <ram:ChargeAmount currencyID="EUR">9.90</ram:ChargeAmount>
+        </ram:NetPriceProductTradePrice>
+      </ram:SpecifiedSupplyChainTradeAgreement>
+      <ram:SpecifiedSupplyChainTradeDelivery>
+        <ram:BilledQuantity unitCode="C62">20.00</ram:BilledQuantity>
+      </ram:SpecifiedSupplyChainTradeDelivery>
+      <ram:SpecifiedSupplyChainTradeSettlement>
+        <ram:ApplicableTradeTax>
+          <ram:TypeCode>VAT</ram:TypeCode>
+          <ram:ApplicablePercent>19.00</ram:ApplicablePercent>
+          <ram:CategoryCode>S</ram:CategoryCode>
+        </ram:ApplicableTradeTax>
+        <ram:SpecifiedTradeSettlementMonetarySummation>
+          <ram:LineTotalAmount currencyID="EUR">198.00</ram:LineTotalAmount>
+        </ram:SpecifiedTradeSettlementMonetarySummation>
+      </ram:SpecifiedSupplyChainTradeSettlement>
+      <ram:SpecifiedTradeProduct>
+        <ram:SellerAssignedID>TB100A4</ram:SellerAssignedID>
+        <ram:Name>Trennblätter A4</ram:Name>
+      </ram:SpecifiedTradeProduct>
+    </ram:IncludedSupplyChainTradeLineItem>
+  </rsm:SpecifiedSupplyChainTradeTransaction>
 </rsm:CrossIndustryDocument>
 
 XML;
@@ -43,13 +153,36 @@ XML;
         $reader = \Easybill\ZUGFeRD\Reader::create();
 
         $doc = $reader->getDocument($zugferdXML);
-
         $this->assertInstanceOf('\Easybill\ZUGFeRD\Model\Document', $doc);
-        $this->assertSame('RE1337',$doc->getHeader()->getId());
-        $this->assertSame('RECHNUNG',$doc->getHeader()->getName());
-        $this->assertSame('380',$doc->getHeader()->getTypeCode());
-        $this->assertCount(2,$doc->getHeader()->getNotes());
 
+        $this->checkHeader($doc->getHeader());
+        $this->checkTrade($doc->getTrade());
+    }
+
+    private function checkHeader(\Easybill\ZUGFeRD\Model\Header $header)
+    {
+        $this->assertSame('RE1337', $header->getId());
+        $this->assertSame('RECHNUNG', $header->getName());
+        $this->assertSame('380', $header->getTypeCode());
+
+        $this->assertInstanceOf('\Easybill\ZUGFeRD\Model\Date', $header->getDate());
+        $this->assertSame(102, $header->getDate()->getDate()->getFormat());
+        $this->assertSame('20130305', $header->getDate()->getDate()->getTime());
+
+        $notes = $header->getNotes();
+        $this->assertCount(2, $notes);
+
+        $cnt = 0;
+        foreach ($notes as $note) {
+            $cnt++;
+            $this->assertInstanceOf('\Easybill\ZUGFeRD\Model\Note', $note);
+            $this->assertSame('Test Node ' . $cnt, $note->getContent());
+        }
+    }
+
+    private function checkTrade(\Easybill\ZUGFeRD\Model\Trade\Trade $trade)
+    {
+        $this->assertInstanceOf('\Easybill\ZUGFeRD\Model\Trade\Trade', $trade);
 
     }
 }
