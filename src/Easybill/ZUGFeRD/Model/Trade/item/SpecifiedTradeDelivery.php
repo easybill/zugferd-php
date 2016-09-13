@@ -32,4 +32,20 @@ class SpecifiedTradeDelivery
         $this->billedQuantity = $billedQuantity;
     }
 
+    /**
+     * @return \Easybill\ZUGFeRD\Model\Trade\Item\Quantity
+     */
+    public function getBilledQuantity()
+    {
+        return $this->billedQuantity;
+    }
+
+    /**
+     * @param \Easybill\ZUGFeRD\Model\Trade\Item\Quantity $billedQuantity
+     */
+    public function setBilledQuantity($billedQuantity)
+    {
+        $this->billedQuantity = $billedQuantity;
+    }
+
 }
