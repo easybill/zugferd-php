@@ -6,6 +6,7 @@ use Easybill\ZUGFeRD\Model\Note;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlList;
 
 /**
  * Class LineItem
@@ -46,6 +47,14 @@ class LineItem
      * @SerializedName("SpecifiedSupplyChainTradeSettlement")
      */
     private $settlement;
+
+    /**
+     * @var Product
+     * @Type("Easybill\ZUGFeRD\Model\Trade\Item\Product")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("SpecifiedTradeProduct")
+     */
+    private $product;
 
     /**
      * @return \Easybill\ZUGFeRD\Model\Trade\Item\LineDocument
@@ -120,6 +129,25 @@ class LineItem
     public function setSettlement($settlement)
     {
         $this->settlement = $settlement;
+        return $this;
+    }
+
+    /**
+     * @return \Easybill\ZUGFeRD\Model\Trade\Item\Product
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    /**
+     * @param \Easybill\ZUGFeRD\Model\Trade\Item\Product $product
+     *
+     * @return self
+     */
+    public function setProduct(Product $product)
+    {
+        $this->product = $product;
         return $this;
     }
 

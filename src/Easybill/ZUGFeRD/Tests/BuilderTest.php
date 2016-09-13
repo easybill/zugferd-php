@@ -139,6 +139,10 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
           <ram:LineTotalAmount currencyID="EUR">198.00</ram:LineTotalAmount>
         </ram:SpecifiedTradeSettlementMonetarySummation>
       </ram:SpecifiedSupplyChainTradeSettlement>
+      <ram:SpecifiedTradeProduct>
+        <ram:SellerAssignedID>TB100A4</ram:SellerAssignedID>
+        <ram:Name>Trennblätter A4</ram:Name>
+      </ram:SpecifiedTradeProduct>
     </ram:IncludedSupplyChainTradeLineItem>
   </rsm:SpecifiedSupplyChainTradeTransaction>
 </rsm:CrossIndustryDocument>
@@ -191,6 +195,7 @@ XML;
             ->setTradeAgreement($tradeAgreement)
             ->setDelivery(new \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeDelivery(new \Easybill\ZUGFeRD\Model\Trade\Item\Quantity('C62', 20.00)))
             ->setSettlement($lineItemSettlement)
+            ->setProduct(new \Easybill\ZUGFeRD\Model\Trade\Item\Product('TB100A4', 'Trennblätter A4'))
             ->setLineDocument(new \Easybill\ZUGFeRD\Model\Trade\Item\LineDocument('1'))
             ->getLineDocument()
             ->addNote(new \Easybill\ZUGFeRD\Model\Note('Testcontent in einem LineDocument'));
