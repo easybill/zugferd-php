@@ -185,6 +185,11 @@ XML;
         $this->assertInstanceOf('\Easybill\ZUGFeRD\Model\Trade\Trade', $trade);
 
         $this->checkAgreement($trade->getAgreement());
+        $this->checkTradeSettlement($trade->getSettlement());
+
+        $delivery = $trade->getDelivery();
+        $this->assertSame(102, $delivery->getChainEvent()->getDate()->getDate()->getFormat());
+        $this->assertSame('20130305', $delivery->getChainEvent()->getDate()->getDate()->getTime());
     }
 
     private function checkAgreement(\Easybill\ZUGFeRD\Model\Trade\Agreement $agreement)
@@ -224,6 +229,64 @@ XML;
         $this->assertSame('Kundenstraße 15', $buyerAddress->getLineTwo());
         $this->assertSame('DE', $buyerAddress->getCountryCode());
         $this->assertEmpty($buyer->getTaxRegistrations());
+    }
+
+    private function checkTradeSettlement(\Easybill\ZUGFeRD\Model\Trade\Settlement $settlement)
+    {
+        $this->assertSame('2013-471102', $settlement->getPaymentReference());
+        $this->assertSame('EUR', $settlement->getCurrency());
+
+        $paymentMeans = $settlement->getPaymentMeans();
+        $this->assertSame('31', $paymentMeans->getCode());
+        $this->assertSame('Überweisung', $paymentMeans->getInformation());
+
+        $payeeAccount = $paymentMeans->getPayeeAccount();
+        $this->assertSame('DE08700901001234567890', $payeeAccount->getIban());
+        $this->assertEmpty($payeeAccount->getAccountName());
+        $this->assertEmpty($payeeAccount->getProprietary());
+
+        $payeeInstitution = $paymentMeans->getPayeeInstitution();
+        $this->assertSame('GENODEF1M04', $payeeInstitution->getBic());
+        $this->assertEmpty($payeeInstitution->getGermanBLZ());
+        $this->assertEmpty($payeeInstitution->getName());
+
+        $tradeTaxes = $settlement->getTradeTaxes();
+        $this->assertCount(2, $tradeTaxes);
+
+        $tradeTax1 = $tradeTaxes[0];
+        $tradeTax2 = $tradeTaxes[1];
+        $this->assertSame('EUR', $tradeTax1->getCalculatedAmount()->getCurrency());
+        $this->assertSame(19.25, $tradeTax1->getCalculatedAmount()->getValue());
+        $this->assertSame('VAT', $tradeTax1->getCode());
+        $this->assertSame('EUR', $tradeTax1->getBasisAmount()->getCurrency());
+        $this->assertSame(275.00, $tradeTax1->getBasisAmount()->getValue());
+        $this->assertSame(7.00, $tradeTax1->getPercent());
+
+        $this->assertSame('EUR', $tradeTax2->getCalculatedAmount()->getCurrency());
+        $this->assertSame(37.62, $tradeTax2->getCalculatedAmount()->getValue());
+        $this->assertSame('VAT', $tradeTax2->getCode());
+        $this->assertSame('EUR', $tradeTax2->getBasisAmount()->getCurrency());
+        $this->assertSame(198.00, $tradeTax2->getBasisAmount()->getValue());
+        $this->assertSame(19.00, $tradeTax2->getPercent());
+
+        $monetarySummation = $settlement->getMonetarySummation();
+        $this->assertSame(198.00, $monetarySummation->getLineTotal()->getValue());
+        $this->assertSame('EUR', $monetarySummation->getLineTotal()->getCurrency());
+
+        $this->assertSame(0.00, $monetarySummation->getChargeTotal()->getValue());
+        $this->assertSame('EUR', $monetarySummation->getChargeTotal()->getCurrency());
+
+        $this->assertSame(0.00, $monetarySummation->getAllowanceTotal()->getValue());
+        $this->assertSame('EUR', $monetarySummation->getAllowanceTotal()->getCurrency());
+
+        $this->assertSame(198.00, $monetarySummation->getTaxBasisTotal()->getValue());
+        $this->assertSame('EUR', $monetarySummation->getTaxBasisTotal()->getCurrency());
+
+        $this->assertSame(37.62, $monetarySummation->getTaxTotal()->getValue());
+        $this->assertSame('EUR', $monetarySummation->getTaxTotal()->getCurrency());
+
+        $this->assertSame(235.62, $monetarySummation->getGrandTotal()->getValue());
+        $this->assertSame('EUR', $monetarySummation->getGrandTotal()->getCurrency());
     }
 
 }
