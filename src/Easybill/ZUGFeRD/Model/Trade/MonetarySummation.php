@@ -103,7 +103,7 @@ class MonetarySummation
     }
 
     /**
-     * @return mixed
+     * @return Amount
      */
     public function getLineTotal()
     {
@@ -111,7 +111,7 @@ class MonetarySummation
     }
 
     /**
-     * @param mixed $lineTotal
+     * @param Amount $lineTotal
      */
     public function setLineTotal($lineTotal)
     {
@@ -119,7 +119,7 @@ class MonetarySummation
     }
 
     /**
-     * @return mixed
+     * @return Amount
      */
     public function getChargeTotal()
     {
@@ -127,7 +127,7 @@ class MonetarySummation
     }
 
     /**
-     * @param mixed $chargeTotal
+     * @param Amount $chargeTotal
      */
     public function setChargeTotal($chargeTotal)
     {
@@ -135,7 +135,7 @@ class MonetarySummation
     }
 
     /**
-     * @return mixed
+     * @return Amount
      */
     public function getAllowanceTotal()
     {
@@ -143,7 +143,7 @@ class MonetarySummation
     }
 
     /**
-     * @param mixed $allowanceTotal
+     * @param Amount $allowanceTotal
      */
     public function setAllowanceTotal($allowanceTotal)
     {
@@ -151,7 +151,7 @@ class MonetarySummation
     }
 
     /**
-     * @return mixed
+     * @return Amount
      */
     public function getTaxBasisTotal()
     {
@@ -159,7 +159,7 @@ class MonetarySummation
     }
 
     /**
-     * @param mixed $taxBasisTotal
+     * @param Amount $taxBasisTotal
      */
     public function setTaxBasisTotal($taxBasisTotal)
     {
@@ -167,7 +167,7 @@ class MonetarySummation
     }
 
     /**
-     * @return mixed
+     * @return Amount
      */
     public function getTaxTotal()
     {
@@ -175,7 +175,7 @@ class MonetarySummation
     }
 
     /**
-     * @param mixed $taxTotal
+     * @param Amount $taxTotal
      */
     public function setTaxTotal($taxTotal)
     {
@@ -183,7 +183,7 @@ class MonetarySummation
     }
 
     /**
-     * @return mixed
+     * @return Amount
      */
     public function getGrandTotal()
     {
@@ -191,7 +191,7 @@ class MonetarySummation
     }
 
     /**
-     * @param mixed $grandTotal
+     * @param Amount $grandTotal
      */
     public function setGrandTotal($grandTotal)
     {

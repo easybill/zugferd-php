@@ -110,7 +110,7 @@ class PaymentMeans
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\CreditorFinancialInstitution
+     * @return \Easybill\ZUGFeRD\Model\Trade\CreditorFinancialInstitution
      */
     public function getPayeeInstitution()
     {
@@ -118,7 +118,7 @@ class PaymentMeans
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\CreditorFinancialInstitution $payeeInstitution
+     * @param \Easybill\ZUGFeRD\Model\Trade\CreditorFinancialInstitution $payeeInstitution
      *
      * @return self
      */
