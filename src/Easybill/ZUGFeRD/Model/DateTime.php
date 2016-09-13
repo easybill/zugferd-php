@@ -5,6 +5,8 @@ namespace Easybill\ZUGFeRD\Model;
 
 use JMS\Serializer\Annotation\XmlAttribute;
 use JMS\Serializer\Annotation\XmlValue;
+use JMS\Serializer\Annotation\Type;
+
 /**
  * Class DateTime
  *
@@ -12,19 +14,28 @@ use JMS\Serializer\Annotation\XmlValue;
  */
 class DateTime
 {
-    public function __construct($time, $format = 102){
+    /**
+     * DateTime constructor.
+     *
+     * @param string $time
+     * @param int    $format
+     */
+    public function __construct($time, $format = 102)
+    {
         $this->time = $time;
         $this->format = $format;
     }
 
     /**
      * @var int
+     * @Type("integer")
      * @XmlAttribute
      */
     private $format;
 
     /**
      * @var string
+     * @Type("string")
      * @XmlValue(cdata=false)
      */
     private $time;
@@ -40,7 +51,7 @@ class DateTime
     /**
      * @param int $format
      *
-     *  @return self
+     * @return self
      */
     public function setFormat($format)
     {
