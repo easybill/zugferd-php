@@ -153,7 +153,7 @@ XML;
         $doc->getHeader()
             ->setId('RE1337')
             ->setName('RECHNUNG')
-            ->addDate(new \Easybill\ZUGFeRD\Model\Date('20130305', 102))
+            ->setDate(new \Easybill\ZUGFeRD\Model\Date('20130305', 102))
             ->addNote(new \Easybill\ZUGFeRD\Model\Note('Test Node 1'))
             ->addNote(new \Easybill\ZUGFeRD\Model\Note('Test Node 2'));
 
