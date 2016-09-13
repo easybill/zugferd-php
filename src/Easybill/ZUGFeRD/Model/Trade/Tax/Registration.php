@@ -6,7 +6,7 @@ use JMS\Serializer\Annotation\XmlNamespace;
 use JMS\Serializer\Annotation\XmlAttribute;
 use JMS\Serializer\Annotation\XmlValue;
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\XmlRoot;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * Class Registration
@@ -18,6 +18,7 @@ class Registration
 
     /**
      * @var string
+     * @Type("string")
      * @XmlAttribute
      * @SerializedName("schemeID")
      */
@@ -25,6 +26,7 @@ class Registration
 
     /**
      * @var string
+     * @Type("string")
      * @XmlValue(cdata = false)
      */
     private $value = '';

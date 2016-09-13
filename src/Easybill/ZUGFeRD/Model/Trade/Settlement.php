@@ -19,6 +19,7 @@ class Settlement
 
     /**
      * @var string
+     * @Type("string")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("PaymentReference")
      */
@@ -26,6 +27,7 @@ class Settlement
 
     /**
      * @var string
+     * @Type("string")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("InvoiceCurrencyCode")
      */

@@ -133,7 +133,7 @@ class Header
     }
 
     /**
-     * @return string
+     * @return Date
      */
     public function getDate()
     {
@@ -145,7 +145,7 @@ class Header
      *
      * @return self
      */
-    public function addDate(Date $date)
+    public function setDate(Date $date)
     {
         $this->date = $date;
 

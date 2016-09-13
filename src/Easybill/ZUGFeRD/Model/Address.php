@@ -5,6 +5,7 @@ namespace Easybill\ZUGFeRD\Model;
 use JMS\Serializer\Annotation\XmlNamespace;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * Class Address
@@ -18,6 +19,7 @@ class Address
 
     /**
      * @var string
+     * @Type("string")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("PostcodeCode")
      */
@@ -25,6 +27,7 @@ class Address
 
     /**
      * @var string
+     * @Type("string")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("LineOne")
      */
@@ -32,6 +35,7 @@ class Address
 
     /**
      * @var string
+     * @Type("string")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("LineTwo")
      */
@@ -39,6 +43,7 @@ class Address
 
     /**
      * @var string
+     * @Type("string")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("CityName")
      */
@@ -46,6 +51,7 @@ class Address
 
     /**
      * @var string
+     * @Type("string")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("CountryID")
      */

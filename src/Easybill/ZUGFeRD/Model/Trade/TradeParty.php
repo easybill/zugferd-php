@@ -31,6 +31,7 @@ class TradeParty
 
     /**
      * @var string
+     * @Type("string")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("Name")
      */
