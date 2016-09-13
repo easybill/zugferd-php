@@ -3,9 +3,7 @@
 
 namespace Easybill\ZUGFeRD\Model;
 
-use JMS\Serializer\Annotation\XmlAttribute;
-use JMS\Serializer\Annotation\XmlValue;
-use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class DateTime
@@ -28,15 +26,15 @@ class DateTime
 
     /**
      * @var int
-     * @Type("integer")
-     * @XmlAttribute
+     * @JMS\Type("integer")
+     * @JMS\XmlAttribute
      */
     private $format;
 
     /**
      * @var string
-     * @Type("string")
-     * @XmlValue(cdata=false)
+     * @JMS\Type("string")
+     * @JMS\XmlValue(cdata=false)
      */
     private $time;
 
