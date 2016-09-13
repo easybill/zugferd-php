@@ -135,6 +135,9 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
           <ram:ApplicablePercent>19.00</ram:ApplicablePercent>
           <ram:CategoryCode>S</ram:CategoryCode>
         </ram:ApplicableTradeTax>
+        <ram:SpecifiedTradeSettlementMonetarySummation>
+          <ram:LineTotalAmount currencyID="EUR">198.00</ram:LineTotalAmount>
+        </ram:SpecifiedTradeSettlementMonetarySummation>
       </ram:SpecifiedSupplyChainTradeSettlement>
     </ram:IncludedSupplyChainTradeLineItem>
   </rsm:SpecifiedSupplyChainTradeTransaction>
@@ -179,7 +182,9 @@ XML;
         $lineItemTradeTax->setCategory('S');
 
         $lineItemSettlement = new \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeSettlement();
-        $lineItemSettlement->setTradeTax($lineItemTradeTax);
+        $lineItemSettlement
+            ->setTradeTax($lineItemTradeTax)
+            ->setMonetarySummation(new \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeMonetarySummation(198.00));
 
         $lineItem = new \Easybill\ZUGFeRD\Model\Trade\Item\LineItem();
         $lineItem
