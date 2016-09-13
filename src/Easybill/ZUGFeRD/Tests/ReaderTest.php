@@ -190,6 +190,10 @@ XML;
         $delivery = $trade->getDelivery();
         $this->assertSame(102, $delivery->getChainEvent()->getDate()->getDate()->getFormat());
         $this->assertSame('20130305', $delivery->getChainEvent()->getDate()->getDate()->getTime());
+
+        $lineItems = $trade->getLineItems();
+        $this->assertCount(1, $lineItems);
+        $this->checkLineItem($lineItems[0]);
     }
 
     private function checkAgreement(\Easybill\ZUGFeRD\Model\Trade\Agreement $agreement)
@@ -210,9 +214,9 @@ XML;
         $sellerRegistrations = $seller->getTaxRegistrations();
         $this->assertCount(2, $sellerRegistrations);
 
-        for($cnt = 0; $cnt < 2; $cnt++) {
+        for ($cnt = 0; $cnt < 2; $cnt++) {
             $taxRegistration = $sellerRegistrations[$cnt];
-            if($cnt == 0) {
+            if ($cnt == 0) {
                 $this->assertSame('FC', $taxRegistration->getRegistration()->getSchemeID());
                 $this->assertSame('201/113/40209', $taxRegistration->getRegistration()->getValue());
             } else {
@@ -287,6 +291,38 @@ XML;
 
         $this->assertSame(235.62, $monetarySummation->getGrandTotal()->getValue());
         $this->assertSame('EUR', $monetarySummation->getGrandTotal()->getCurrency());
+    }
+
+    private function checkLineItem(\Easybill\ZUGFeRD\Model\Trade\Item\LineItem $lineItem)
+    {
+        $lineDocument = $lineItem->getLineDocument();
+        $lineDocumentNotes = $lineDocument->getNotes();
+        $this->assertSame('1', $lineDocument->getLineId());
+        $this->assertCount(1, $lineDocumentNotes);
+        $this->assertSame('Testcontent in einem LineDocument', $lineDocumentNotes[0]->getContent());
+
+        $agreement = $lineItem->getTradeAgreement();
+        $this->assertSame(9.90, $agreement->getGrossPrice()->getAmount()->getValue());
+        $this->assertSame('EUR', $agreement->getGrossPrice()->getAmount()->getCurrency());
+        $this->assertSame(9.90, $agreement->getNetPrice()->getAmount()->getValue());
+        $this->assertSame('EUR', $agreement->getNetPrice()->getAmount()->getCurrency());
+
+        $this->assertSame('C62', $lineItem->getDelivery()->getBilledQuantity()->getUnitCode());
+        $this->assertSame(20.00, $lineItem->getDelivery()->getBilledQuantity()->getValue());
+
+        $settlement = $lineItem->getSettlement();
+        $tradeTax = $settlement->getTradeTax();
+        $this->assertSame('VAT', $tradeTax->getCode());
+        $this->assertSame(19.00, $tradeTax->getPercent());
+        $this->assertSame('S', $tradeTax->getCategory());
+
+        $monetarySummationTotal = $settlement->getMonetarySummation()->getTotalAmount();
+        $this->assertSame(198.00,$monetarySummationTotal->getValue());
+        $this->assertSame('EUR',$monetarySummationTotal->getCurrency());
+
+        $product = $lineItem->getProduct();
+        $this->assertSame('TB100A4', $product->getSellerAssignedID());
+        $this->assertSame('Trennblätter A4', $product->getName());
     }
 
 }
