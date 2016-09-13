@@ -93,7 +93,7 @@ class TradeParty
     /**
      * @return \Easybill\ZUGFeRD\Model\Trade\Tax\TaxRegistration[]
      */
-    public function getTaxRegistration()
+    public function getTaxRegistrations()
     {
         return $this->taxRegistrations;
     }

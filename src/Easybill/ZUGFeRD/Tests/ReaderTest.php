@@ -184,5 +184,46 @@ XML;
     {
         $this->assertInstanceOf('\Easybill\ZUGFeRD\Model\Trade\Trade', $trade);
 
+        $this->checkAgreement($trade->getAgreement());
     }
+
+    private function checkAgreement(\Easybill\ZUGFeRD\Model\Trade\Agreement $agreement)
+    {
+        $seller = $agreement->getSeller();
+        $buyer = $agreement->getBuyer();
+        $this->assertInstanceOf('\Easybill\ZUGFeRD\Model\Trade\Agreement', $agreement);
+        $this->assertInstanceOf('\Easybill\ZUGFeRD\Model\Trade\TradeParty', $seller);
+        $this->assertInstanceOf('\Easybill\ZUGFeRD\Model\Trade\TradeParty', $buyer);
+
+        $sellerAddress = $seller->getAddress();
+        $this->assertSame('Lieferant GmbH', $seller->getName());
+        $this->assertSame('80333', $sellerAddress->getPostcode());
+        $this->assertSame('München', $sellerAddress->getCity());
+        $this->assertSame('Lieferantenstraße 20', $sellerAddress->getLineOne());
+        $this->assertSame('DE', $sellerAddress->getCountryCode());
+
+        $sellerRegistrations = $seller->getTaxRegistrations();
+        $this->assertCount(2, $sellerRegistrations);
+
+        for($cnt = 0; $cnt < 2; $cnt++) {
+            $taxRegistration = $sellerRegistrations[$cnt];
+            if($cnt == 0) {
+                $this->assertSame('FC', $taxRegistration->getRegistration()->getSchemeID());
+                $this->assertSame('201/113/40209', $taxRegistration->getRegistration()->getValue());
+            } else {
+                $this->assertSame('VA', $taxRegistration->getRegistration()->getSchemeID());
+                $this->assertSame('DE123456789', $taxRegistration->getRegistration()->getValue());
+            }
+        }
+
+        $buyerAddress = $buyer->getAddress();
+        $this->assertSame('Kunden AG Mitte', $buyer->getName());
+        $this->assertSame('69876', $buyerAddress->getPostcode());
+        $this->assertSame('Frankfurt', $buyerAddress->getCity());
+        $this->assertSame('Hans Muster', $buyerAddress->getLineOne());
+        $this->assertSame('Kundenstraße 15', $buyerAddress->getLineTwo());
+        $this->assertSame('DE', $buyerAddress->getCountryCode());
+        $this->assertEmpty($buyer->getTaxRegistrations());
+    }
+
 }
