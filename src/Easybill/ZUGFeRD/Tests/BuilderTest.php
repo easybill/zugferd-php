@@ -237,8 +237,8 @@ XML;
         $settlement->getPaymentMeans()
             ->setCode('31')
             ->setInformation('Überweisung')
-            ->setPayeeAccount(new \Easybill\ZUGFeRD\Model\CreditorFinancialAccount('DE08700901001234567890', '', ''))
-            ->setPayeeInstitution(new \Easybill\ZUGFeRD\Model\CreditorFinancialInstitution('GENODEF1M04', '', ''));
+            ->setPayeeAccount(new \Easybill\ZUGFeRD\Model\Trade\CreditorFinancialAccount('DE08700901001234567890', '', ''))
+            ->setPayeeInstitution(new \Easybill\ZUGFeRD\Model\Trade\CreditorFinancialInstitution('GENODEF1M04', '', ''));
 
         $tradeTax = new \Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax();
         $tradeTax->setCode('VAT');

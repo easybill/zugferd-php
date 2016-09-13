@@ -3,9 +3,7 @@
 namespace Easybill\ZUGFeRD\Model\Trade;
 
 
-use Easybill\ZUGFeRD\Model\CreditorFinancialAccount;
 
-use Easybill\ZUGFeRD\Model\CreditorFinancialInstitution;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
@@ -38,7 +36,7 @@ class PaymentMeans
     /**
      *
      * @var CreditorFinancialAccount
-     * @Type("Easybill\ZUGFeRD\Model\CreditorFinancialAccount")
+     * @Type("Easybill\ZUGFeRD\Model\Trade\CreditorFinancialAccount")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("PayeePartyCreditorFinancialAccount")
      */
@@ -48,7 +46,7 @@ class PaymentMeans
     /**
      *
      * @var CreditorFinancialInstitution
-     * @Type("Easybill\ZUGFeRD\Model\CreditorFinancialInstitution")
+     * @Type("Easybill\ZUGFeRD\Model\Trade\CreditorFinancialInstitution")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("PayeeSpecifiedCreditorFinancialInstitution")
      */
@@ -93,7 +91,7 @@ class PaymentMeans
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\CreditorFinancialAccount
+     * @return CreditorFinancialAccount
      */
     public function getPayeeAccount()
     {
@@ -101,7 +99,7 @@ class PaymentMeans
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\CreditorFinancialAccount $payeeAccount
+     * @param CreditorFinancialAccount $payeeAccount
      *
      * @return self
      */
