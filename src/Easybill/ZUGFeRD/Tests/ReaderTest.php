@@ -166,8 +166,8 @@ XML;
         $this->assertSame('380', $header->getTypeCode());
 
         $this->assertInstanceOf('\Easybill\ZUGFeRD\Model\Date', $header->getDate());
-        $this->assertSame(102, $header->getDate()->getDate()->getFormat());
-        $this->assertSame('20130305', $header->getDate()->getDate()->getTime());
+        $this->assertSame(102, $header->getDate()->getFormat());
+        $this->assertSame('20130305', $header->getDate()->getDate());
 
         $notes = $header->getNotes();
         $this->assertCount(2, $notes);
@@ -188,8 +188,8 @@ XML;
         $this->checkTradeSettlement($trade->getSettlement());
 
         $delivery = $trade->getDelivery();
-        $this->assertSame(102, $delivery->getChainEvent()->getDate()->getDate()->getFormat());
-        $this->assertSame('20130305', $delivery->getChainEvent()->getDate()->getDate()->getTime());
+        $this->assertSame(102, $delivery->getChainEvent()->getDate()->getFormat());
+        $this->assertSame('20130305', $delivery->getChainEvent()->getDate()->getDate());
 
         $lineItems = $trade->getLineItems();
         $this->assertCount(1, $lineItems);

@@ -132,8 +132,8 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
       <ram:SpecifiedSupplyChainTradeSettlement>
         <ram:ApplicableTradeTax>
           <ram:TypeCode>VAT</ram:TypeCode>
-          <ram:ApplicablePercent>19.00</ram:ApplicablePercent>
           <ram:CategoryCode>S</ram:CategoryCode>
+          <ram:ApplicablePercent>19.00</ram:ApplicablePercent>
         </ram:ApplicableTradeTax>
         <ram:SpecifiedTradeSettlementMonetarySummation>
           <ram:LineTotalAmount currencyID="EUR">198.00</ram:LineTotalAmount>
@@ -148,12 +148,11 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 </rsm:CrossIndustryDocument>
 
 XML;
-
         $doc = new \Easybill\ZUGFeRD\Model\Document();
         $doc->getHeader()
             ->setId('RE1337')
             ->setName('RECHNUNG')
-            ->setDate(new \Easybill\ZUGFeRD\Model\Date('20130305', 102))
+            ->setDate(new \Easybill\ZUGFeRD\Model\Date(new \DateTime('20130305'), 102))
             ->addNote(new \Easybill\ZUGFeRD\Model\Note('Test Node 1'))
             ->addNote(new \Easybill\ZUGFeRD\Model\Note('Test Node 2'));
 
@@ -169,8 +168,11 @@ XML;
         $builder = \Easybill\ZUGFeRD\Builder::create();
         $xml = $builder->getXML($doc);
 
-        var_dump($xml);
         $this->assertSame($zugferdXML, $xml);
+
+        $xmlValidate = new DOMDocument();
+        $xmlValidate->loadXML($xml);
+        $xmlValidate->schemaValidate(__DIR__ . '/../../../../zugferd10/Schema/ZUGFeRD1p0.xsd');
     }
 
     /**
