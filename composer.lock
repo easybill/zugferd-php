@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "51ac6b431b00da57cefc13af56d9912d",
-    "content-hash": "69a8d1034a4beda737d9a5436e82b0e1",
+    "hash": "5d9d0c591a239ac252e91c4f9e747f4b",
+    "content-hash": "244477fc2828921d7dcf70bd2043f402",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -272,20 +272,20 @@
         },
         {
             "name": "jms/serializer",
-            "version": "dev-master",
+            "version": "1.3.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/T-R3x/serializer.git",
-                "reference": "bde965f7b43d04a06d94a4403c377e8395d052fc"
+                "url": "https://github.com/schmittjoh/serializer.git",
+                "reference": "705d0b4633b9c44e6253aa18306b3972282cd3a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/T-R3x/serializer/zipball/bde965f7b43d04a06d94a4403c377e8395d052fc",
-                "reference": "bde965f7b43d04a06d94a4403c377e8395d052fc",
+                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/705d0b4633b9c44e6253aa18306b3972282cd3a3",
+                "reference": "705d0b4633b9c44e6253aa18306b3972282cd3a3",
                 "shasum": ""
             },
             "require": {
-                "doctrine/annotations": "~1.2",
+                "doctrine/annotations": "^1.0",
                 "doctrine/instantiator": "^1.0.3",
                 "jms/metadata": "~1.1",
                 "jms/parser-lib": "1.*",
@@ -323,6 +323,7 @@
                     "JMS\\Serializer": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "Apache2"
             ],
@@ -341,10 +342,7 @@
                 "serialization",
                 "xml"
             ],
-            "support": {
-                "source": "https://github.com/T-R3x/serializer/tree/master"
-            },
-            "time": "2016-09-14 09:24:25"
+            "time": "2016-08-23 17:20:24"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -1499,9 +1497,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "jms/serializer": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
