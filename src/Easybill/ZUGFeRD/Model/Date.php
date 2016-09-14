@@ -18,6 +18,12 @@ use JMS\Serializer\Annotation\SerializedName;
 class Date
 {
 
+    /**
+     * Date constructor.
+     *
+     * @param \DateTime|string $date
+     * @param int              $format
+     */
     public function __construct($date, $format = 102)
     {
         $this->date = new DateTime($date, $format);
@@ -32,20 +38,18 @@ class Date
     private $date;
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\DateTime
+     * @return string
      */
     public function getDate()
     {
-        return $this->date;
+        return $this->date->getTime();
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\DateTime $date
+     * @return int
      */
-    public function setDate($date)
-    {
-        $this->date = $date;
+    public function getFormat() {
+        return $this->date->getFormat();
     }
-
 
 }
