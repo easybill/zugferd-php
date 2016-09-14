@@ -5,6 +5,9 @@
   "type": "library",
   "minimum-stability": "stable",
   "license": "MIT",
+  "repositories": [
+    {"type": "vcs", "url": "git@github.com:t-r3x/serializer.git"}
+  ],
   "authors": [
     {
       "name": "Patrick Romowicz",
