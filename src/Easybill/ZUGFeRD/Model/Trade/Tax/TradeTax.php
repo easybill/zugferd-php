@@ -4,54 +4,55 @@
 namespace Easybill\ZUGFeRD\Model\Trade\Tax;
 
 use Easybill\ZUGFeRD\Model\Trade\Amount;
-use JMS\Serializer\Annotation\XmlElement;
-use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
+
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class TradeTax
- *
+ * 
+ * @JMS\AccessorOrder("custom", custom = {"calculatedAmount", "code", "basisAmount", "category", "percent"})
+ * 
  * @package Easybill\ZUGFeRD\Model\Trade
  */
 class TradeTax
 {
     /**
      * @var Amount
-     * @Type("Easybill\ZUGFeRD\Model\Trade\Amount")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("CalculatedAmount")
+     * @JMS\Type("Easybill\ZUGFeRD\Model\Trade\Amount")
+     * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @JMS\SerializedName("CalculatedAmount")
      */
     private $calculatedAmount;
 
     /**
      * @var string
-     * @Type("string")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("TypeCode")
+     * @JMS\Type("string")
+     * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @JMS\SerializedName("TypeCode")
      */
     private $code = '';
 
     /**
      * @var Amount
-     * @Type("Easybill\ZUGFeRD\Model\Trade\Amount")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("BasisAmount")
+     * @JMS\Type("Easybill\ZUGFeRD\Model\Trade\Amount")
+     * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @JMS\SerializedName("BasisAmount")
      */
     private $basisAmount;
 
     /**
      * @var double
-     * @Type("double")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("ApplicablePercent")
+     * @JMS\Type("double")
+     * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @JMS\SerializedName("ApplicablePercent")
      */
     private $percent = 0.0;
 
     /**
      * @var string
-     * @Type("string")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("CategoryCode")
+     * @JMS\Type("string")
+     * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @JMS\SerializedName("CategoryCode")
      */
     private $category;
 
