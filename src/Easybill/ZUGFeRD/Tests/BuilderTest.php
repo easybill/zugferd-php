@@ -170,9 +170,7 @@ XML;
 
         $this->assertSame($zugferdXML, $xml);
 
-        $xmlValidate = new DOMDocument();
-        $xmlValidate->loadXML($xml);
-        $xmlValidate->schemaValidate(__DIR__ . '/../../../../zugferd10/Schema/ZUGFeRD1p0.xsd');
+        \Easybill\ZUGFeRD\SchemaValidator::isValid($xml);
     }
 
     /**
