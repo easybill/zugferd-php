@@ -93,20 +93,20 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
       <ram:ApplicableTradeTax>
         <ram:CalculatedAmount currencyID="EUR">19.25</ram:CalculatedAmount>
         <ram:TypeCode>VAT</ram:TypeCode>
-        <ram:BasisAmount currencyID="EUR">275.00</ram:BasisAmount>
-        <ram:ApplicablePercent>7.00</ram:ApplicablePercent>
+        <ram:BasisAmount currencyID="EUR">275</ram:BasisAmount>
+        <ram:ApplicablePercent>7</ram:ApplicablePercent>
       </ram:ApplicableTradeTax>
       <ram:ApplicableTradeTax>
         <ram:CalculatedAmount currencyID="EUR">37.62</ram:CalculatedAmount>
         <ram:TypeCode>VAT</ram:TypeCode>
-        <ram:BasisAmount currencyID="EUR">198.00</ram:BasisAmount>
-        <ram:ApplicablePercent>19.00</ram:ApplicablePercent>
+        <ram:BasisAmount currencyID="EUR">198</ram:BasisAmount>
+        <ram:ApplicablePercent>19</ram:ApplicablePercent>
       </ram:ApplicableTradeTax>
       <ram:SpecifiedTradeSettlementMonetarySummation>
-        <ram:LineTotalAmount currencyID="EUR">198.00</ram:LineTotalAmount>
-        <ram:ChargeTotalAmount currencyID="EUR">0.00</ram:ChargeTotalAmount>
-        <ram:AllowanceTotalAmount currencyID="EUR">0.00</ram:AllowanceTotalAmount>
-        <ram:TaxBasisTotalAmount currencyID="EUR">198.00</ram:TaxBasisTotalAmount>
+        <ram:LineTotalAmount currencyID="EUR">198</ram:LineTotalAmount>
+        <ram:ChargeTotalAmount currencyID="EUR">0</ram:ChargeTotalAmount>
+        <ram:AllowanceTotalAmount currencyID="EUR">0</ram:AllowanceTotalAmount>
+        <ram:TaxBasisTotalAmount currencyID="EUR">198</ram:TaxBasisTotalAmount>
         <ram:TaxTotalAmount currencyID="EUR">37.62</ram:TaxTotalAmount>
         <ram:GrandTotalAmount currencyID="EUR">235.62</ram:GrandTotalAmount>
       </ram:SpecifiedTradeSettlementMonetarySummation>
@@ -120,23 +120,23 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
       </ram:AssociatedDocumentLineDocument>
       <ram:SpecifiedSupplyChainTradeAgreement>
         <ram:GrossPriceProductTradePrice>
-          <ram:ChargeAmount currencyID="EUR">9.90</ram:ChargeAmount>
+          <ram:ChargeAmount currencyID="EUR">9.9</ram:ChargeAmount>
         </ram:GrossPriceProductTradePrice>
         <ram:NetPriceProductTradePrice>
-          <ram:ChargeAmount currencyID="EUR">9.90</ram:ChargeAmount>
+          <ram:ChargeAmount currencyID="EUR">9.9</ram:ChargeAmount>
         </ram:NetPriceProductTradePrice>
       </ram:SpecifiedSupplyChainTradeAgreement>
       <ram:SpecifiedSupplyChainTradeDelivery>
-        <ram:BilledQuantity unitCode="C62">20.00</ram:BilledQuantity>
+        <ram:BilledQuantity unitCode="C62">20</ram:BilledQuantity>
       </ram:SpecifiedSupplyChainTradeDelivery>
       <ram:SpecifiedSupplyChainTradeSettlement>
         <ram:ApplicableTradeTax>
           <ram:TypeCode>VAT</ram:TypeCode>
           <ram:CategoryCode>S</ram:CategoryCode>
-          <ram:ApplicablePercent>19.00</ram:ApplicablePercent>
+          <ram:ApplicablePercent>19</ram:ApplicablePercent>
         </ram:ApplicableTradeTax>
         <ram:SpecifiedTradeSettlementMonetarySummation>
-          <ram:LineTotalAmount currencyID="EUR">198.00</ram:LineTotalAmount>
+          <ram:LineTotalAmount currencyID="EUR">198</ram:LineTotalAmount>
         </ram:SpecifiedTradeSettlementMonetarySummation>
       </ram:SpecifiedSupplyChainTradeSettlement>
       <ram:SpecifiedTradeProduct>
@@ -168,6 +168,7 @@ XML;
         $builder = \Easybill\ZUGFeRD\Builder::create();
         $xml = $builder->getXML($doc);
 
+        var_dump($xml);
         $this->assertSame($zugferdXML, $xml);
 
         \Easybill\ZUGFeRD\SchemaValidator::isValid($xml);
