@@ -117,7 +117,7 @@ class TradeTax
      */
     public function setPercent($percent)
     {
-        $this->percent = number_format($percent, 2);
+        $this->percent = doubleval($percent);
     }
 
     /**

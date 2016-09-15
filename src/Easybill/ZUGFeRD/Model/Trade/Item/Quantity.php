@@ -40,7 +40,7 @@ class Quantity
     public function __construct($unitCode, $value)
     {
         $this->unitCode = $unitCode;
-        $this->value = number_format($value, 2);
+        $this->value = doubleval($value);
     }
 
     /**
@@ -72,7 +72,7 @@ class Quantity
      */
     public function setValue($value)
     {
-        $this->value = number_format($value, 2);
+        $this->value = doubleval($value);
     }
 
 }

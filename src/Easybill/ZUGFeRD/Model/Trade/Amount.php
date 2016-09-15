@@ -33,7 +33,7 @@ class Amount
      */
     public function __construct($value, $currency)
     {
-        $this->value = number_format($value, 2);
+        $this->value = doubleval($value);
         $this->currency = $currency;
     }
 
@@ -51,7 +51,7 @@ class Amount
      */
     public function setValue($value)
     {
-        $this->value = number_format($value, 2);
+        $this->value = doubleval($value);
     }
 
     /**
