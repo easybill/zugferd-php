@@ -30,7 +30,7 @@ class TaxRegistration
      * @param string $schemeID
      * @param string $value
      */
-    public function __construct($schemeID = '', $value = '')
+    public function __construct($schemeID, $value = '')
     {
         $this->registration = new Registration($schemeID, $value);
     }

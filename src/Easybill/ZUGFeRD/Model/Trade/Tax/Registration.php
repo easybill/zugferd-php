@@ -22,14 +22,14 @@ class Registration
      * @XmlAttribute
      * @SerializedName("schemeID")
      */
-    private $schemeID = '';
+    private $schemeID;
 
     /**
      * @var string
      * @Type("string")
      * @XmlValue(cdata = false)
      */
-    private $value = '';
+    private $value;
 
     /**
      * TaxRegistration constructor.
@@ -37,7 +37,7 @@ class Registration
      * @param string $schemeID
      * @param string $value
      */
-    public function __construct($schemeID = '', $value = '')
+    public function __construct($schemeID, $value = '')
     {
         $this->schemeID = $schemeID;
         $this->value = $value;
