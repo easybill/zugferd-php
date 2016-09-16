@@ -21,7 +21,7 @@ use JMS\Serializer\Annotation\SerializedName;
 class Document
 {
     const TYPE_BASIC = 'BASIC';
-    const TYPE_COMOFORT = 'COMFORT';
+    const TYPE_COMFORT = 'COMFORT';
     const TYPE_EXTENDED = 'EXTENDED';
 
     /**
