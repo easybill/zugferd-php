@@ -102,6 +102,12 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
         <ram:BasisAmount currencyID="EUR">198.00</ram:BasisAmount>
         <ram:ApplicablePercent>19.00</ram:ApplicablePercent>
       </ram:ApplicableTradeTax>
+      <ram:SpecifiedTradePaymentTerms>
+        <ram:Description>Zahlbar innerhalb 30 Tagen netto bis 04.04.2013, 3% Skonto innerhalb 10 Tagen bis 15.03.2013</ram:Description>
+        <ram:DueDateDateTime>
+          <udt:DateTimeString format="102">20130404</udt:DateTimeString>
+        </ram:DueDateDateTime>
+      </ram:SpecifiedTradePaymentTerms>
       <ram:SpecifiedTradeSettlementMonetarySummation>
         <ram:LineTotalAmount currencyID="EUR">198.00</ram:LineTotalAmount>
         <ram:ChargeTotalAmount currencyID="EUR">0.00</ram:ChargeTotalAmount>
@@ -291,6 +297,11 @@ XML;
 
         $this->assertSame(235.62, $monetarySummation->getGrandTotal()->getValue());
         $this->assertSame('EUR', $monetarySummation->getGrandTotal()->getCurrency());
+
+        $paymentTerms = $settlement->getPaymentTerms();
+        $this->assertSame('Zahlbar innerhalb 30 Tagen netto bis 04.04.2013, 3% Skonto innerhalb 10 Tagen bis 15.03.2013', $paymentTerms->getDescription());
+        $this->assertSame('20130404', $paymentTerms->getDueDate()->getDate());
+        $this->assertSame(102, $paymentTerms->getDueDate()->getFormat());
     }
 
     private function checkLineItem(\Easybill\ZUGFeRD\Model\Trade\Item\LineItem $lineItem)

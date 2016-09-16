@@ -102,6 +102,12 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         <ram:BasisAmount currencyID="EUR">198</ram:BasisAmount>
         <ram:ApplicablePercent>19</ram:ApplicablePercent>
       </ram:ApplicableTradeTax>
+      <ram:SpecifiedTradePaymentTerms>
+        <ram:Description>Zahlbar innerhalb 30 Tagen netto bis 04.04.2013, 3% Skonto innerhalb 10 Tagen bis 15.03.2013</ram:Description>
+        <ram:DueDateDateTime>
+          <udt:DateTimeString format="102">20130404</udt:DateTimeString>
+        </ram:DueDateDateTime>
+      </ram:SpecifiedTradePaymentTerms>
       <ram:SpecifiedTradeSettlementMonetarySummation>
         <ram:LineTotalAmount currencyID="EUR">198</ram:LineTotalAmount>
         <ram:ChargeTotalAmount currencyID="EUR">0</ram:ChargeTotalAmount>
@@ -168,7 +174,7 @@ XML;
         $builder = \Easybill\ZUGFeRD\Builder::create();
         $xml = $builder->getXML($doc);
 
-        var_dump($xml);
+        #var_dump($xml);
         $this->assertSame($zugferdXML, $xml);
 
         \Easybill\ZUGFeRD\SchemaValidator::isValid($xml);
@@ -233,6 +239,7 @@ XML;
     private function setSettlement(\Easybill\ZUGFeRD\Model\Trade\Trade $trade)
     {
         $settlement = new \Easybill\ZUGFeRD\Model\Trade\Settlement('2013-471102', 'EUR');
+        $settlement->setPaymentTerms(new \Easybill\ZUGFeRD\Model\Trade\PaymentTerms('Zahlbar innerhalb 30 Tagen netto bis 04.04.2013, 3% Skonto innerhalb 10 Tagen bis 15.03.2013', new \Easybill\ZUGFeRD\Model\Date('20130404')));
 
         $settlement->setPaymentMeans(new \Easybill\ZUGFeRD\Model\Trade\PaymentMeans());
         $settlement->getPaymentMeans()

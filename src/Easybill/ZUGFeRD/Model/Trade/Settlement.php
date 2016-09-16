@@ -8,10 +8,14 @@ use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlNamespace;
 use JMS\Serializer\Annotation\XmlList;
+use JMS\Serializer\Annotation\AccessorOrder;
 
 /**
  * Class Settlement
  *
+ * @AccessorOrder("custom", custom = {"paymentReference", "currency", "paymentMeans", "tradeTaxes", "paymentTerms", "monetarySummation"})
+ * @XmlNamespace(uri="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12", prefix="ram")
+ * @XmlNamespace(uri="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15", prefix="udt")
  * @package Easybill\ZUGFeRD\Model\Trade
  */
 class Settlement
@@ -32,7 +36,6 @@ class Settlement
      * @SerializedName("InvoiceCurrencyCode")
      */
     private $currency = 'EUR';
-
 
     /**
      * @var PaymentMeans
@@ -56,6 +59,14 @@ class Settlement
      * @SerializedName("SpecifiedTradeSettlementMonetarySummation")
      */
     private $monetarySummation;
+
+    /**
+     * @var PaymentTerms
+     * @Type("Easybill\ZUGFeRD\Model\Trade\PaymentTerms")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("SpecifiedTradePaymentTerms")
+     */
+    private $paymentTerms;
 
     /**
      * Settlement constructor.
@@ -165,5 +176,23 @@ class Settlement
         return $this;
     }
 
+    /**
+     * @return \Easybill\ZUGFeRD\Model\Trade\PaymentTerms
+     */
+    public function getPaymentTerms()
+    {
+        return $this->paymentTerms;
+    }
+
+    /**
+     * @param \Easybill\ZUGFeRD\Model\Trade\PaymentTerms $paymentTerms
+     *
+     * @return self
+     */
+    public function setPaymentTerms($paymentTerms)
+    {
+        $this->paymentTerms = $paymentTerms;
+        return $this;
+    }
 
 }
