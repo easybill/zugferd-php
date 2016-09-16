@@ -21,6 +21,8 @@ use JMS\Serializer\Annotation\SerializedName;
 class Document
 {
     const TYPE_BASIC = 'BASIC';
+    const TYPE_COMOFORT = 'COMFORT';
+    const TYPE_EXTENDED = 'EXTENDED';
 
     /**
      * @Type("Easybill\ZUGFeRD\Model\DocumentContext")

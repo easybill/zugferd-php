@@ -21,7 +21,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 <rsm:CrossIndustryDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rsm="urn:ferd:CrossIndustryDocument:invoice:1p0" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15">
   <rsm:SpecifiedExchangedDocumentContext>
     <ram:GuidelineSpecifiedDocumentContextParameter>
-      <ram:ID>urn:ferd:CrossIndustryDocument:invoice:1p0:basic</ram:ID>
+      <ram:ID>urn:ferd:CrossIndustryDocument:invoice:1p0:comfort</ram:ID>
     </ram:GuidelineSpecifiedDocumentContextParameter>
   </rsm:SpecifiedExchangedDocumentContext>
   <rsm:HeaderExchangedDocument>
@@ -103,7 +103,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         <ram:ApplicablePercent>19</ram:ApplicablePercent>
       </ram:ApplicableTradeTax>
       <ram:SpecifiedTradePaymentTerms>
-        <ram:Description>Zahlbar innerhalb 30 Tagen netto bis 04.04.2013, 3% Skonto innerhalb 10 Tagen bis 15.03.2013</ram:Description>
+        <ram:Description>Zahlbar innerhalb von 20 Tagen (bis zum 05.10.2016) unter Abzug von 3% Skonto (Zahlungsbetrag = 1.766,03 €). Bis zum 29.09.2016 ohne Abzug.</ram:Description>
         <ram:DueDateDateTime>
           <udt:DateTimeString format="102">20130404</udt:DateTimeString>
         </ram:DueDateDateTime>
@@ -154,7 +154,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 </rsm:CrossIndustryDocument>
 
 XML;
-        $doc = new \Easybill\ZUGFeRD\Model\Document();
+        $doc = new \Easybill\ZUGFeRD\Model\Document(\Easybill\ZUGFeRD\Model\Document::TYPE_COMOFORT);
         $doc->getHeader()
             ->setId('RE1337')
             ->setName('RECHNUNG')
@@ -239,7 +239,7 @@ XML;
     private function setSettlement(\Easybill\ZUGFeRD\Model\Trade\Trade $trade)
     {
         $settlement = new \Easybill\ZUGFeRD\Model\Trade\Settlement('2013-471102', 'EUR');
-        $settlement->setPaymentTerms(new \Easybill\ZUGFeRD\Model\Trade\PaymentTerms('Zahlbar innerhalb 30 Tagen netto bis 04.04.2013, 3% Skonto innerhalb 10 Tagen bis 15.03.2013', new \Easybill\ZUGFeRD\Model\Date('20130404')));
+        $settlement->setPaymentTerms(new \Easybill\ZUGFeRD\Model\Trade\PaymentTerms('Zahlbar innerhalb von 20 Tagen (bis zum 05.10.2016) unter Abzug von 3% Skonto (Zahlungsbetrag = 1.766,03 €). Bis zum 29.09.2016 ohne Abzug.', new \Easybill\ZUGFeRD\Model\Date('20130404')));
 
         $settlement->setPaymentMeans(new \Easybill\ZUGFeRD\Model\Trade\PaymentMeans());
         $settlement->getPaymentMeans()
