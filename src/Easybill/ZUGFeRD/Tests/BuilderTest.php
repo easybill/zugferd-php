@@ -45,7 +45,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
             Geschäftsführer:
             Christian Szardenings
             Ronny Keyser</ram:Content>
-      <ram:Content>REG</ram:Content>
+      <ram:SubjectCode>REG</ram:SubjectCode>
     </ram:IncludedNote>
   </rsm:HeaderExchangedDocument>
   <rsm:SpecifiedSupplyChainTradeTransaction>

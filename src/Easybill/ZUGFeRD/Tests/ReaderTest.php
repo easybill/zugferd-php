@@ -45,7 +45,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
             Geschäftsführer:
             Christian Szardenings
             Ronny Keyser</ram:Content>
-      <ram:Content>REG</ram:Content>
+      <ram:SubjectCode>REG</ram:SubjectCode>
     </ram:IncludedNote>
   </rsm:HeaderExchangedDocument>
   <rsm:SpecifiedSupplyChainTradeTransaction>
@@ -193,14 +193,16 @@ XML;
             $cnt++;
             $this->assertInstanceOf('\Easybill\ZUGFeRD\Model\Note', $note);
 
-            if($cnt === 3) {
+            if ($cnt === 3) {
                 $this->assertSame('easybill GmbH
             Düsselstr. 21
             41564 Kaarst
             
             Geschäftsführer:
             Christian Szardenings
-            Ronny Keyser' , $note->getContent());
+            Ronny Keyser', $note->getContent());
+                $this->assertSame('REG', $note->getSubjectCode());
+
             } else {
                 $this->assertSame('Test Node ' . $cnt, $note->getContent());
             }
@@ -349,8 +351,8 @@ XML;
         $this->assertSame('S', $tradeTax->getCategory());
 
         $monetarySummationTotal = $settlement->getMonetarySummation()->getTotalAmount();
-        $this->assertSame(198.00,$monetarySummationTotal->getValue());
-        $this->assertSame('EUR',$monetarySummationTotal->getCurrency());
+        $this->assertSame(198.00, $monetarySummationTotal->getValue());
+        $this->assertSame('EUR', $monetarySummationTotal->getCurrency());
 
         $product = $lineItem->getProduct();
         $this->assertSame('TB100A4', $product->getSellerAssignedID());
