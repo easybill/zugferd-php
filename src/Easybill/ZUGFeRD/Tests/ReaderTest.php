@@ -37,6 +37,16 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
     <ram:IncludedNote>
       <ram:Content>Test Node 2</ram:Content>
     </ram:IncludedNote>
+    <ram:IncludedNote>
+      <ram:Content>easybill GmbH
+            Düsselstr. 21
+            41564 Kaarst
+            
+            Geschäftsführer:
+            Christian Szardenings
+            Ronny Keyser</ram:Content>
+      <ram:Content>REG</ram:Content>
+    </ram:IncludedNote>
   </rsm:HeaderExchangedDocument>
   <rsm:SpecifiedSupplyChainTradeTransaction>
     <ram:ApplicableSupplyChainTradeAgreement>
@@ -176,13 +186,24 @@ XML;
         $this->assertSame('20130305', $header->getDate()->getDate());
 
         $notes = $header->getNotes();
-        $this->assertCount(2, $notes);
+        $this->assertCount(3, $notes);
 
         $cnt = 0;
         foreach ($notes as $note) {
             $cnt++;
             $this->assertInstanceOf('\Easybill\ZUGFeRD\Model\Note', $note);
-            $this->assertSame('Test Node ' . $cnt, $note->getContent());
+
+            if($cnt === 3) {
+                $this->assertSame('easybill GmbH
+            Düsselstr. 21
+            41564 Kaarst
+            
+            Geschäftsführer:
+            Christian Szardenings
+            Ronny Keyser' , $note->getContent());
+            } else {
+                $this->assertSame('Test Node ' . $cnt, $note->getContent());
+            }
         }
     }
 

@@ -37,6 +37,16 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     <ram:IncludedNote>
       <ram:Content>Test Node 2</ram:Content>
     </ram:IncludedNote>
+    <ram:IncludedNote>
+      <ram:Content>easybill GmbH
+            Düsselstr. 21
+            41564 Kaarst
+            
+            Geschäftsführer:
+            Christian Szardenings
+            Ronny Keyser</ram:Content>
+      <ram:Content>REG</ram:Content>
+    </ram:IncludedNote>
   </rsm:HeaderExchangedDocument>
   <rsm:SpecifiedSupplyChainTradeTransaction>
     <ram:ApplicableSupplyChainTradeAgreement>
@@ -160,7 +170,14 @@ XML;
             ->setName('RECHNUNG')
             ->setDate(new \Easybill\ZUGFeRD\Model\Date(new \DateTime('20130305'), 102))
             ->addNote(new \Easybill\ZUGFeRD\Model\Note('Test Node 1'))
-            ->addNote(new \Easybill\ZUGFeRD\Model\Note('Test Node 2'));
+            ->addNote(new \Easybill\ZUGFeRD\Model\Note('Test Node 2'))
+            ->addNote(new \Easybill\ZUGFeRD\Model\Note('easybill GmbH
+            Düsselstr. 21
+            41564 Kaarst
+            
+            Geschäftsführer:
+            Christian Szardenings
+            Ronny Keyser', 'REG'));
 
 
         $trade = $doc->getTrade();
