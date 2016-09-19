@@ -35,10 +35,11 @@ class Amount
      *
      * @param double $value
      * @param string $currency
+     * @param bool   $isSum
      */
-    public function __construct($value, $currency, $isDiscount = false)
+    public function __construct($value, $currency, $isSum = true)
     {
-        $this->setValue($value, $isDiscount);
+        $this->setValue($value, $isSum);
         $this->currency = $currency;
     }
 
@@ -53,10 +54,11 @@ class Amount
 
     /**
      * @param string $value
+     * @param bool   $isSum
      */
-    public function setValue($value, $isDiscount = false)
+    public function setValue($value, $isSum = true)
     {
-        $this->value = str_replace(',', '', number_format($value, ($isDiscount === false) ? 2 : 4));
+        $this->value = str_replace(',', '', number_format($value, ($isSum === true) ? 2 : 4));
     }
 
     /**
@@ -74,7 +76,6 @@ class Amount
     {
         $this->currency = $currency;
     }
-
 
 
 }
