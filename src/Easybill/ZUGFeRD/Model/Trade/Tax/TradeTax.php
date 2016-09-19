@@ -46,7 +46,7 @@ class TradeTax
      * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @JMS\SerializedName("ApplicablePercent")
      */
-    private $percent = 0.0;
+    private $percent;
 
     /**
      * @var string
@@ -105,7 +105,7 @@ class TradeTax
     }
 
     /**
-     * @return float
+     * @return string
      */
     public function getPercent()
     {
@@ -113,11 +113,11 @@ class TradeTax
     }
 
     /**
-     * @param float $percent
+     * @param string $percent
      */
     public function setPercent($percent)
     {
-        $this->percent = doubleval($percent);
+        $this->percent = str_replace(',', '', number_format($percent, 2));
     }
 
     /**

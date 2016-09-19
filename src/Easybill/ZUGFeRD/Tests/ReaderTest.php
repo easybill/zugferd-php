@@ -133,7 +133,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
         </ram:NetPriceProductTradePrice>
       </ram:SpecifiedSupplyChainTradeAgreement>
       <ram:SpecifiedSupplyChainTradeDelivery>
-        <ram:BilledQuantity unitCode="C62">20.00</ram:BilledQuantity>
+        <ram:BilledQuantity unitCode="C62">20.0000</ram:BilledQuantity>
       </ram:SpecifiedSupplyChainTradeDelivery>
       <ram:SpecifiedSupplyChainTradeSettlement>
         <ram:ApplicableTradeTax>
@@ -319,7 +319,7 @@ XML;
         $this->assertSame('EUR', $agreement->getNetPrice()->getAmount()->getCurrency());
 
         $this->assertSame('C62', $lineItem->getDelivery()->getBilledQuantity()->getUnitCode());
-        $this->assertSame(20.00, $lineItem->getDelivery()->getBilledQuantity()->getValue());
+        $this->assertSame(20.0000, $lineItem->getDelivery()->getBilledQuantity()->getValue());
 
         $settlement = $lineItem->getSettlement();
         $tradeTax = $settlement->getTradeTax();

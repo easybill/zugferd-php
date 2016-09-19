@@ -7,6 +7,11 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlAttribute;
 use JMS\Serializer\Annotation\XmlValue;
 
+/**
+ * Class Amount
+ *
+ * @package Easybill\ZUGFeRD\Model\Trade
+ */
 class Amount
 {
 
@@ -31,27 +36,27 @@ class Amount
      * @param double $value
      * @param string $currency
      */
-    public function __construct($value, $currency)
+    public function __construct($value, $currency, $isDiscount = false)
     {
-        $this->value = doubleval($value);
+        $this->setValue($value, $isDiscount);
         $this->currency = $currency;
     }
 
 
     /**
-     * @return string
+     * @return double
      */
     public function getValue()
     {
-        return $this->value;
+        return doubleval($this->value);
     }
 
     /**
      * @param string $value
      */
-    public function setValue($value)
+    public function setValue($value, $isDiscount = false)
     {
-        $this->value = doubleval($value);
+        $this->value = str_replace(',', '', number_format($value, ($isDiscount === false) ? 2 : 4));
     }
 
     /**
