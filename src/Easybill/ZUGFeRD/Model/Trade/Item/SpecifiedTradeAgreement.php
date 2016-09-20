@@ -6,9 +6,12 @@ use Easybill\ZUGFeRD\Model\Trade\Amount;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlNamespace;
 
 /**
  * Class SpecifiedTradeAgreement
+ *
+ * @XmlNamespace(uri="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15", prefix="udt")
  *
  * @package Easybill\ZUGFeRD\Model\Trade\Item
  */

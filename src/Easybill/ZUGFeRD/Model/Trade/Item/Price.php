@@ -2,21 +2,33 @@
 
 namespace Easybill\ZUGFeRD\Model\Trade\Item;
 
+use Easybill\ZUGFeRD\Model\AllowanceCharge;
 use Easybill\ZUGFeRD\Model\Trade\Amount;
-use JMS\Serializer\Annotation\XmlElement;
-use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation as JMS;
 
+/**
+ * Class Price
+ *
+ *
+ * @package Easybill\ZUGFeRD\Model\Trade\Item
+ */
 class Price
 {
 
     /**
      * @var Amount
-     * @Type("Easybill\ZUGFeRD\Model\Trade\Amount")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("ChargeAmount")
+     * @JMS\Type("Easybill\ZUGFeRD\Model\Trade\Amount")
+     * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @JMS\SerializedName("ChargeAmount")
      */
     private $amount;
+
+    /**
+     * @var AllowanceCharge[]
+     * @JMS\Type("array<Easybill\ZUGFeRD\Model\AllowanceCharge>")
+     * @JMS\XmlList(inline = true, entry = "AppliedTradeAllowanceCharge", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     */
+    private $allowanceCharges = array();
 
     /**
      * GrossPrice constructor.
@@ -45,5 +57,25 @@ class Price
     {
         $this->amount = $amount;
     }
+
+    /**
+     * @return \Easybill\ZUGFeRD\Model\AllowanceCharge[]
+     */
+    public function getAllowanceCharges()
+    {
+        return $this->allowanceCharges;
+    }
+
+    /**
+     * @param \Easybill\ZUGFeRD\Model\AllowanceCharge $allowanceCharge
+     *
+     * @return self
+     */
+    public function addAllowanceCharge(AllowanceCharge $allowanceCharge)
+    {
+        $this->allowanceCharges[] = $allowanceCharge;
+        return $this;
+    }
+
 
 }
