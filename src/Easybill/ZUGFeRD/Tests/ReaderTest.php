@@ -137,6 +137,12 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
       <ram:SpecifiedSupplyChainTradeAgreement>
         <ram:GrossPriceProductTradePrice>
           <ram:ChargeAmount currencyID="EUR">9.90</ram:ChargeAmount>
+          <ram:AppliedTradeAllowanceCharge>
+            <ram:ChargeIndicator>
+              <udt:Indicator>false</udt:Indicator>
+            </ram:ChargeIndicator>
+            <ram:ActualAmount currencyID="EUR">1.8000</ram:ActualAmount>
+          </ram:AppliedTradeAllowanceCharge>
         </ram:GrossPriceProductTradePrice>
         <ram:NetPriceProductTradePrice>
           <ram:ChargeAmount currencyID="EUR">9.90</ram:ChargeAmount>
@@ -336,8 +342,19 @@ XML;
         $this->assertSame('Testcontent in einem LineDocument', $lineDocumentNotes[0]->getContent());
 
         $agreement = $lineItem->getTradeAgreement();
-        $this->assertSame(9.90, $agreement->getGrossPrice()->getAmount()->getValue());
-        $this->assertSame('EUR', $agreement->getGrossPrice()->getAmount()->getCurrency());
+        $grossPrice = $agreement->getGrossPrice();
+
+        $this->assertSame(9.90, $grossPrice->getAmount()->getValue());
+        $this->assertSame('EUR', $grossPrice->getAmount()->getCurrency());
+
+        $grossPriceAllowanceCharges = $grossPrice->getAllowanceCharges();
+        $this->assertCount(1, $grossPriceAllowanceCharges);
+
+        $allowanceCharge = $grossPriceAllowanceCharges[0];
+        $this->assertFalse($allowanceCharge->getIndicator());
+        $this->assertSame('EUR', $allowanceCharge->getActualAmount()->getCurrency());
+        $this->assertSame(1.80, $allowanceCharge->getActualAmount()->getValue());
+
         $this->assertSame(9.90, $agreement->getNetPrice()->getAmount()->getValue());
         $this->assertSame('EUR', $agreement->getNetPrice()->getAmount()->getCurrency());
 

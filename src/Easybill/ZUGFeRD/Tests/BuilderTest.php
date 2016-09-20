@@ -136,10 +136,16 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
       </ram:AssociatedDocumentLineDocument>
       <ram:SpecifiedSupplyChainTradeAgreement>
         <ram:GrossPriceProductTradePrice>
-          <ram:ChargeAmount currencyID="EUR">9.90</ram:ChargeAmount>
+          <ram:ChargeAmount currencyID="EUR">9.9000</ram:ChargeAmount>
+          <ram:AppliedTradeAllowanceCharge>
+            <ram:ChargeIndicator>
+              <udt:Indicator>false</udt:Indicator>
+            </ram:ChargeIndicator>
+            <ram:ActualAmount currencyID="EUR">1.8000</ram:ActualAmount>
+          </ram:AppliedTradeAllowanceCharge>
         </ram:GrossPriceProductTradePrice>
         <ram:NetPriceProductTradePrice>
-          <ram:ChargeAmount currencyID="EUR">9.90</ram:ChargeAmount>
+          <ram:ChargeAmount currencyID="EUR">9.9000</ram:ChargeAmount>
         </ram:NetPriceProductTradePrice>
       </ram:SpecifiedSupplyChainTradeAgreement>
       <ram:SpecifiedSupplyChainTradeDelivery>
@@ -191,7 +197,7 @@ XML;
         $builder = \Easybill\ZUGFeRD\Builder::create();
         $xml = $builder->getXML($doc);
 
-        #var_dump($xml);
+        var_dump($xml);
         $this->assertSame($zugferdXML, $xml);
 
         \Easybill\ZUGFeRD\SchemaValidator::isValid($xml);
@@ -224,8 +230,13 @@ XML;
     private function setLineItem(\Easybill\ZUGFeRD\Model\Trade\Trade $trade)
     {
         $tradeAgreement = new \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeAgreement();
-        $tradeAgreement->setGrossPrice(new \Easybill\ZUGFeRD\Model\Trade\Item\Price(9.90, 'EUR'));
-        $tradeAgreement->setNetPrice(new \Easybill\ZUGFeRD\Model\Trade\Item\Price(9.90, 'EUR'));
+
+        $grossPrice = new \Easybill\ZUGFeRD\Model\Trade\Item\Price(9.90, 'EUR', false);
+        $grossPrice
+            ->addAllowanceCharge(new \Easybill\ZUGFeRD\Model\AllowanceCharge(false, 1.80));
+
+        $tradeAgreement->setGrossPrice($grossPrice);
+        $tradeAgreement->setNetPrice(new \Easybill\ZUGFeRD\Model\Trade\Item\Price(9.90, 'EUR', false));
 
         $lineItemTradeTax = new \Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax();
         $lineItemTradeTax->setCode('VAT');
