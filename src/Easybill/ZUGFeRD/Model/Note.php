@@ -20,9 +20,24 @@ class Note
      */
     private $content = '';
 
-    function __construct($content)
+    /**
+     * @var string
+     * @Type("string")
+     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("SubjectCode")
+     */
+    private $subjectCode;
+
+    /**
+     * Note constructor.
+     *
+     * @param             $content
+     * @param null|string $subjectCode
+     */
+    function __construct($content, $subjectCode = null)
     {
         $this->setContent($content);
+        $this->setSubjectCode($subjectCode);
     }
 
 
@@ -44,4 +59,32 @@ class Note
         $this->content = (string)$content;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getSubjectCode()
+    {
+        return $this->subjectCode;
+    }
+
+    /**
+     * @param string|null $subjectCode
+     */
+    public function setSubjectCode($subjectCode)
+    {
+        if ($subjectCode !== null &&
+            strlen($subjectCode) > 0 &&
+            $subjectCode !== 'REG' &&
+            $subjectCode !== 'AAK' &&
+            $subjectCode !== 'AAJ' &&
+            $subjectCode !== 'PMT'
+        ) {
+            throw new \RuntimeException('Invalid subject code! Please set it to null or to an empty string, REG, AAK, AAJ, PMT or ');
+        }
+
+        $this->subjectCode = $subjectCode;
+
+    }
+
 }

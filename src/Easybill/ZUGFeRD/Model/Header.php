@@ -12,6 +12,7 @@ use JMS\Serializer\Annotation\XmlList;
  * Class Header
  *
  * @XmlNamespace(uri="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12", prefix="ram")
+ * @XmlNamespace(uri="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15", prefix="udt")
  */
 class Header
 {
@@ -38,6 +39,14 @@ class Header
      * @SerializedName("TypeCode")
      */
     private $typeCode = '380';
+
+    /**
+     * @var Date
+     * @Type("Easybill\ZUGFeRD\Model\Date")
+     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("IssueDateTime")
+     */
+    private $date;
 
     /**
      * @var Note[]
@@ -122,4 +131,25 @@ class Header
     {
         return $this->notes;
     }
+
+    /**
+     * @return Date
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param Date $date
+     *
+     * @return self
+     */
+    public function setDate(Date $date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
 }
