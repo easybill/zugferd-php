@@ -197,7 +197,6 @@ XML;
         $builder = \Easybill\ZUGFeRD\Builder::create();
         $xml = $builder->getXML($doc);
 
-        var_dump($xml);
         $this->assertSame($zugferdXML, $xml);
 
         \Easybill\ZUGFeRD\SchemaValidator::isValid($xml);
