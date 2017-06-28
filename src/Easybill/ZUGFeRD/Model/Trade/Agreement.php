@@ -1,19 +1,9 @@
-<?php
+<?php namespace Easybill\ZUGFeRD\Model\Trade;
 
-namespace Easybill\ZUGFeRD\Model\Trade;
-
-use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
-use JMS\Serializer\Annotation\XmlNamespace;
+use JMS\Serializer\Annotation\XmlElement;
 
-/**
- * Class Agreement
- *
- * @XmlNamespace(uri="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12", prefix="ram")
- *
- * @package Easybill\ZUGFeRD\Model\Trade
- */
 class Agreement
 {
 
@@ -70,7 +60,6 @@ class Agreement
         $this->buyer = $buyer;
         return $this;
     }
-
 
 
 }

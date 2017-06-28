@@ -1,19 +1,10 @@
-<?php
+<?php namespace Easybill\ZUGFeRD\Model;
 
-namespace Easybill\ZUGFeRD\Model;
-
-use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
-use JMS\Serializer\Annotation\XmlNamespace;
+use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
-/**
- * Class Header
- *
- * @XmlNamespace(uri="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12", prefix="ram")
- * @XmlNamespace(uri="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15", prefix="udt")
- */
 class Header
 {
     /**

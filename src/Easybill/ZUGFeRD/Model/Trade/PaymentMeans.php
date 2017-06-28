@@ -1,18 +1,9 @@
-<?php
+<?php namespace Easybill\ZUGFeRD\Model\Trade;
 
-namespace Easybill\ZUGFeRD\Model\Trade;
-
-
-
-use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
 
-/**
- * Class PaymentMeans
- *
- * @package Easybill\ZUGFeRD\Model\Trade
- */
 class PaymentMeans
 {
     /**

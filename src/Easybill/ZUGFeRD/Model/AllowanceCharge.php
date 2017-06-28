@@ -1,7 +1,4 @@
-<?php
-
-
-namespace Easybill\ZUGFeRD\Model;
+<?php namespace Easybill\ZUGFeRD\Model;
 
 use Easybill\ZUGFeRD\Model\Trade\Amount;
 use JMS\Serializer\Annotation as JMS;

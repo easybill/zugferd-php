@@ -1,13 +1,9 @@
-<?php
-
-
-namespace Easybill\ZUGFeRD\Model\Trade\Item;
-
+<?php namespace Easybill\ZUGFeRD\Model\Trade\Item;
 
 use Easybill\ZUGFeRD\Model\Trade\Amount;
-use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
 
 class SpecifiedTradeMonetarySummation
 {

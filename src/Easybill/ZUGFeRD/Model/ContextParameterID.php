@@ -1,10 +1,8 @@
-<?php
+<?php namespace Easybill\ZUGFeRD\Model;
 
-namespace Easybill\ZUGFeRD\Model;
-
-use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
 
 /**
  * Class ContextParameterID
@@ -19,7 +17,7 @@ class ContextParameterID
      */
     private $id;
 
-    function __construct($value)
+    public function __construct($value)
     {
         $this->id = $value;
     }

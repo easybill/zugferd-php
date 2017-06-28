@@ -1,21 +1,9 @@
-<?php
+<?php namespace Easybill\ZUGFeRD\Model\Trade;
 
-namespace Easybill\ZUGFeRD\Model\Trade;
-
-use Easybill\ZUGFeRD\Model\Trade\DeliveryChainEvent;
-
-use JMS\Serializer\Annotation\XmlNamespace;
-use JMS\Serializer\Annotation\XmlElement;
-use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\SerializedName;
-/**
- * Class Delivery
- *
- * @XmlNamespace(uri="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12", prefix="ram")
- * @XmlNamespace(uri="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15", prefix="udt")
- *
- * @package Easybill\ZUGFeRD\Model\Trade
- */
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
+
 class Delivery
 {
 

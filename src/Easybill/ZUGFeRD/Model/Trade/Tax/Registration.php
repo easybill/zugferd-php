@@ -1,18 +1,11 @@
-<?php
+<?php namespace Easybill\ZUGFeRD\Model\Trade\Tax;
 
-namespace Easybill\ZUGFeRD\Model\Trade\Tax;
-
-use JMS\Serializer\Annotation\XmlNamespace;
-use JMS\Serializer\Annotation\XmlAttribute;
-use JMS\Serializer\Annotation\XmlValue;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlAttribute;
+use JMS\Serializer\Annotation\XmlValue;
 
-/**
- * Class Registration
- *
- * @package Easybill\ZUGFeRD\Model\Trade
- */
+
 class Registration
 {
 

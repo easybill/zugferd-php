@@ -1,6 +1,4 @@
-<?php
-
-namespace Easybill\ZUGFeRD\Model\Trade;
+<?php namespace Easybill\ZUGFeRD\Model\Trade;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
@@ -20,7 +18,7 @@ class Amount
      * @Type("double")
      * @XmlValue(cdata = false)
      */
-    private $value = '';
+    private $value;
 
     /**
      * @var string
@@ -28,7 +26,7 @@ class Amount
      * @XmlAttribute
      * @SerializedName("currencyID")
      */
-    private $currency = '';
+    private $currency;
 
     /**
      * Amount constructor.

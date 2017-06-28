@@ -1,17 +1,9 @@
-<?php
+<?php namespace Easybill\ZUGFeRD\Model;
 
-namespace Easybill\ZUGFeRD\Model;
-
-use JMS\Serializer\Annotation\XmlElement;
-use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\XmlNamespace;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
 
-/**
- * Class DocumentContext
- *
- * @XmlNamespace(uri="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12", prefix="ram")
- */
 class DocumentContext
 {
     /**
@@ -22,7 +14,7 @@ class DocumentContext
      */
     private $type;
 
-    function __construct($type)
+    public function __construct($type)
     {
         $this->type = new ContextParameterID('urn:ferd:CrossIndustryDocument:invoice:1p0:' . strtolower($type));
     }

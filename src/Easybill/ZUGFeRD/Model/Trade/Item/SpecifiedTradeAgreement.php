@@ -1,20 +1,9 @@
-<?php
+<?php namespace Easybill\ZUGFeRD\Model\Trade\Item;
 
-namespace Easybill\ZUGFeRD\Model\Trade\Item;
-
-use Easybill\ZUGFeRD\Model\Trade\Amount;
-use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
-use JMS\Serializer\Annotation\XmlNamespace;
+use JMS\Serializer\Annotation\XmlElement;
 
-/**
- * Class SpecifiedTradeAgreement
- *
- * @XmlNamespace(uri="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15", prefix="udt")
- *
- * @package Easybill\ZUGFeRD\Model\Trade\Item
- */
 class SpecifiedTradeAgreement
 {
 

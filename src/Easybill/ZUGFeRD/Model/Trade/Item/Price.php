@@ -1,17 +1,9 @@
-<?php
-
-namespace Easybill\ZUGFeRD\Model\Trade\Item;
+<?php namespace Easybill\ZUGFeRD\Model\Trade\Item;
 
 use Easybill\ZUGFeRD\Model\AllowanceCharge;
 use Easybill\ZUGFeRD\Model\Trade\Amount;
 use JMS\Serializer\Annotation as JMS;
 
-/**
- * Class Price
- *
- *
- * @package Easybill\ZUGFeRD\Model\Trade\Item
- */
 class Price
 {
 

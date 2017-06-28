@@ -1,22 +1,19 @@
-<?php
+<?php namespace Easybill\ZUGFeRD\Model;
 
-namespace Easybill\ZUGFeRD\Model;
-
-use JMS\Serializer\Annotation\XmlNamespace;
-use JMS\Serializer\Annotation\XmlElement;
-use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
 
-/**
- * Class IssueDate
- *
- * @XmlNamespace(uri="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12", prefix="ram")
- * @XmlNamespace(uri="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15", prefix="udt")
- *
- * @package Easybill\ZUGFeRD\Model
- */
 class Date
 {
+
+    /**
+     * @var DateTime
+     * @Type("Easybill\ZUGFeRD\Model\DateTime")
+     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15")
+     * @SerializedName("DateTimeString")
+     */
+    private $date;
 
     /**
      * Date constructor.
@@ -28,14 +25,6 @@ class Date
     {
         $this->date = new DateTime($date, $format);
     }
-
-    /**
-     * @var DateTime
-     * @Type("Easybill\ZUGFeRD\Model\DateTime")
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15")
-     * @SerializedName("DateTimeString")
-     */
-    private $date;
 
     /**
      * @return string

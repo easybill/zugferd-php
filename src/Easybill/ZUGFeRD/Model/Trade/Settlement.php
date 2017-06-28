@@ -1,22 +1,14 @@
-<?php
-
-namespace Easybill\ZUGFeRD\Model\Trade;
+<?php namespace Easybill\ZUGFeRD\Model\Trade;
 
 use Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax;
-use JMS\Serializer\Annotation\XmlElement;
+use JMS\Serializer\Annotation\AccessorOrder;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
-use JMS\Serializer\Annotation\XmlNamespace;
+use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
-use JMS\Serializer\Annotation\AccessorOrder;
 
 /**
- * Class Settlement
- *
  * @AccessorOrder("custom", custom = {"paymentReference", "currency", "paymentMeans", "tradeTaxes", "paymentTerms", "monetarySummation"})
- * @XmlNamespace(uri="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12", prefix="ram")
- * @XmlNamespace(uri="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15", prefix="udt")
- * @package Easybill\ZUGFeRD\Model\Trade
  */
 class Settlement
 {
@@ -27,7 +19,7 @@ class Settlement
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("PaymentReference")
      */
-    private $paymentReference = '';
+    private $paymentReference;
 
     /**
      * @var string
@@ -35,7 +27,7 @@ class Settlement
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("InvoiceCurrencyCode")
      */
-    private $currency = 'EUR';
+    private $currency;
 
     /**
      * @var PaymentMeans

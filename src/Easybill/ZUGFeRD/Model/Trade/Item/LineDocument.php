@@ -1,13 +1,10 @@
-<?php
-
-
-namespace Easybill\ZUGFeRD\Model\Trade\Item;
+<?php namespace Easybill\ZUGFeRD\Model\Trade\Item;
 
 use Easybill\ZUGFeRD\Model\Note;
-use JMS\Serializer\Annotation\XmlElement;
-use JMS\Serializer\Annotation\XmlList;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
+use JMS\Serializer\Annotation\XmlList;
 
 class LineDocument
 {
@@ -18,7 +15,7 @@ class LineDocument
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("LineID")
      */
-    private $lineId = '';
+    private $lineId;
 
     /**
      * @var Note[]

@@ -1,16 +1,9 @@
-<?php
+<?php namespace Easybill\ZUGFeRD\Model\Trade\Item;
 
-namespace Easybill\ZUGFeRD\Model\Trade\Item;
-
-use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
 
-/**
- * Class SpecifiedTradeDelivery
- *
- * @package Easybill\ZUGFeRD\Model\Trade\Item
- */
 class SpecifiedTradeDelivery
 {
 

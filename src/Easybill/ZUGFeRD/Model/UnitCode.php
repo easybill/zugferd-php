@@ -1,12 +1,5 @@
-<?php
+<?php namespace Easybill\ZUGFeRD\Model;
 
-namespace Easybill\ZUGFeRD\Model;
-
-/**
- * Class UnitCode
- *
- * @package Easybill\ZUGFeRD\Model
- */
 class UnitCode
 {
 

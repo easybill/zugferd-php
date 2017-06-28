@@ -1,22 +1,11 @@
-<?php
-
-namespace Easybill\ZUGFeRD\Model\Trade;
+<?php namespace Easybill\ZUGFeRD\Model\Trade;
 
 use Easybill\ZUGFeRD\Model\Trade\Item\LineItem;
-use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
-use JMS\Serializer\Annotation\XmlNamespace;
+use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
-/**
- * Class Trade
- *
- * @XmlNamespace(uri="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12", prefix="ram")
- * @XmlNamespace(uri="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15", prefix="udt")
- *
- * @package Easybill\ZUGFeRD\Model\Trade
- */
 class Trade
 {
 
@@ -26,7 +15,7 @@ class Trade
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("ApplicableSupplyChainTradeAgreement")
      */
-    private $agreement = '';
+    private $agreement;
 
     /**
      * @var Delivery

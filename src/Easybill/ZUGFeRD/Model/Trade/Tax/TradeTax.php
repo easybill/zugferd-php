@@ -1,18 +1,10 @@
-<?php
-
-
-namespace Easybill\ZUGFeRD\Model\Trade\Tax;
+<?php namespace Easybill\ZUGFeRD\Model\Trade\Tax;
 
 use Easybill\ZUGFeRD\Model\Trade\Amount;
-
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class TradeTax
- * 
  * @JMS\AccessorOrder("custom", custom = {"calculatedAmount", "code", "basisAmount", "category", "percent"})
- * 
- * @package Easybill\ZUGFeRD\Model\Trade
  */
 class TradeTax
 {

@@ -1,18 +1,10 @@
-<?php
+<?php namespace Easybill\ZUGFeRD\Model\Trade\Item;
 
-
-namespace Easybill\ZUGFeRD\Model\Trade\Item;
-
-use JMS\Serializer\Annotation\XmlAttribute;
-use JMS\Serializer\Annotation\XmlValue;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlAttribute;
+use JMS\Serializer\Annotation\XmlValue;
 
-/**
- * Class BilledQuantity
- *
- * @package Easybill\ZUGFeRD\Model\Trade\Item
- */
 class Quantity
 {
 
@@ -22,14 +14,14 @@ class Quantity
      * @XmlAttribute
      * @SerializedName("unitCode")
      */
-    private $unitCode = '';
+    private $unitCode;
 
     /**
      * @var double
      * @Type("double")
      * @XmlValue(cdata = false)
      */
-    private $value = '';
+    private $value;
 
     /**
      * Quantity constructor.

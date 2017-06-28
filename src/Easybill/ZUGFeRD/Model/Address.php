@@ -1,19 +1,9 @@
-<?php
+<?php namespace Easybill\ZUGFeRD\Model;
 
-
-namespace Easybill\ZUGFeRD\Model;
-use JMS\Serializer\Annotation\XmlNamespace;
-use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
 
-/**
- * Class Address
- *
- * @XmlNamespace(uri="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12", prefix="ram")
- *
- * @package Easybill\ZUGFeRD\Model
- */
 class Address
 {
 
@@ -23,7 +13,7 @@ class Address
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("PostcodeCode")
      */
-    private $postcode = '';
+    private $postcode;
 
     /**
      * @var string
@@ -31,7 +21,7 @@ class Address
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("LineOne")
      */
-    private $lineOne = '';
+    private $lineOne;
 
     /**
      * @var string
@@ -39,7 +29,7 @@ class Address
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("LineTwo")
      */
-    private $lineTwo = '';
+    private $lineTwo;
 
     /**
      * @var string
@@ -47,7 +37,7 @@ class Address
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("CityName")
      */
-    private $city = '';
+    private $city;
 
     /**
      * @var string
@@ -55,7 +45,7 @@ class Address
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("CountryID")
      */
-    private $countryCode = '';
+    private $countryCode;
 
     /**
      * Address constructor.
@@ -154,7 +144,6 @@ class Address
     {
         $this->countryCode = $countryCode;
     }
-
 
 
 }

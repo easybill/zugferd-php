@@ -1,13 +1,11 @@
-<?php
-
-namespace Easybill\ZUGFeRD\Model;
+<?php namespace Easybill\ZUGFeRD\Model;
 
 use Easybill\ZUGFeRD\Model\Trade\Trade;
-use JMS\Serializer\Annotation\XmlRoot;
-use JMS\Serializer\Annotation\XmlNamespace;
-use JMS\Serializer\Annotation\XmlElement;
-use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
+use JMS\Serializer\Annotation\XmlNamespace;
+use JMS\Serializer\Annotation\XmlRoot;
 
 /**
  * Class Document
@@ -46,7 +44,7 @@ class Document
      */
     private $trade;
 
-    function __construct($type = self::TYPE_BASIC)
+    public function __construct($type = self::TYPE_BASIC)
     {
         $this->context = new DocumentContext($type);
         $this->header = new Header();

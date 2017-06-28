@@ -1,33 +1,14 @@
-<?php
-
-
-namespace Easybill\ZUGFeRD\Model\Trade;
+<?php namespace Easybill\ZUGFeRD\Model\Trade;
 
 use Easybill\ZUGFeRD\Model\Address;
-use Easybill\ZUGFeRD\Model\Trade\Tax\Registration;
 use Easybill\ZUGFeRD\Model\Trade\Tax\TaxRegistration;
-use JMS\Serializer\Annotation\XmlNamespace;
-use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
-/**
- * Class TradeParty
- *
- * @XmlNamespace(uri="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12", prefix="ram")
- *
- * @package Easybill\ZUGFeRD\Model\Trade
- */
 class TradeParty
 {
-
-    public function __construct($name = '', Address $address, array $taxRegistrations = array())
-    {
-        $this->name = $name;
-        $this->address = $address;
-        $this->taxRegistrations = $taxRegistrations;
-    }
 
     /**
      * @var string
@@ -35,8 +16,7 @@ class TradeParty
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("Name")
      */
-    private $name = '';
-
+    private $name;
     /**
      * @var Address
      * @Type("Easybill\ZUGFeRD\Model\Address")
@@ -44,13 +24,19 @@ class TradeParty
      * @SerializedName("PostalTradeAddress")
      */
     private $address;
-
     /**
      * @var TaxRegistration[]
      * @Type("array<Easybill\ZUGFeRD\Model\Trade\Tax\TaxRegistration>")
      * @XmlList(inline = true, entry = "SpecifiedTaxRegistration", namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      */
-    private $taxRegistrations = array();
+    private $taxRegistrations;
+
+    public function __construct($name = '', Address $address, array $taxRegistrations = array())
+    {
+        $this->name = $name;
+        $this->address = $address;
+        $this->taxRegistrations = $taxRegistrations;
+    }
 
     /**
      * @return string
@@ -108,8 +94,6 @@ class TradeParty
         $this->taxRegistrations[] = $taxRegistration;
         return $this;
     }
-
-
 
 
 }

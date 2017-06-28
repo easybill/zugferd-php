@@ -1,16 +1,9 @@
-<?php
+<?php namespace Easybill\ZUGFeRD\Model\Trade;
 
-namespace Easybill\ZUGFeRD\Model\Trade;
-
-use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
 
-/**
- * Class CreditorFinancialInstitution
- *
- * @package Easybill\ZUGFeRD\Model
- */
 class CreditorFinancialInstitution
 {
 
@@ -22,7 +15,7 @@ class CreditorFinancialInstitution
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("BICID")
      */
-    private $bic = '';
+    private $bic;
 
     /**
      * The german 'Bankleitzahl'.
@@ -32,7 +25,7 @@ class CreditorFinancialInstitution
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("GermanBankleitzahlID")
      */
-    private $germanBLZ = '';
+    private $germanBLZ;
 
     /**
      * Name of the credit institution.
@@ -42,7 +35,7 @@ class CreditorFinancialInstitution
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("Name")
      */
-    private $name = '';
+    private $name;
 
     /**
      * CreditorFinancialInstitution constructor.
