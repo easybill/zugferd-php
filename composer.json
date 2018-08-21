@@ -1,5 +1,5 @@
 {
-  "name": "easybill/zugferd-php",
+  "name": "pyrexx/zugferd-php",
   "description": "..",
   "keywords": [
     "ZUGFeRD"
@@ -14,7 +14,7 @@
     }
   ],
   "require": {
-    "php": ">=5.4.0",
+    "php": ">=7.0",
     "jms/serializer": "^1.7"
   },
   "require-dev": {
@@ -22,7 +22,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Easybill\\ZUGFeRD\\": "src/Easybill/ZUGFeRD/"
+      "Pyrexx\\ZUGFeRD\\": "src/Pyrexx/ZUGFeRD/"
     },
     "exclude-from-classmap": [
       "**/Tests/"
