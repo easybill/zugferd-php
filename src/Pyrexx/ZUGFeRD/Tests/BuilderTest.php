@@ -38,7 +38,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
       <ram:Content>Test Node 2</ram:Content>
     </ram:IncludedNote>
     <ram:IncludedNote>
-      <ram:Content>Pyrexx GmbH
+      <ram:Content>Easybill GmbH
             Düsselstr. 21
             41564 Kaarst
             
@@ -178,7 +178,7 @@ XML;
             ->setDate(new \Pyrexx\ZUGFeRD\Model\Date(new \DateTime('20130305'), 102))
             ->addNote(new \Pyrexx\ZUGFeRD\Model\Note('Test Node 1'))
             ->addNote(new \Pyrexx\ZUGFeRD\Model\Note('Test Node 2'))
-            ->addNote(new \Pyrexx\ZUGFeRD\Model\Note('Pyrexx GmbH
+            ->addNote(new \Pyrexx\ZUGFeRD\Model\Note('Easybill GmbH
             Düsselstr. 21
             41564 Kaarst
             

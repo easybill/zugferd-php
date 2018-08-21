@@ -38,7 +38,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
       <ram:Content>Test Node 2</ram:Content>
     </ram:IncludedNote>
     <ram:IncludedNote>
-      <ram:Content>Pyrexx GmbH
+      <ram:Content>Easybill GmbH
             Düsselstr. 21
             41564 Kaarst
             
@@ -200,7 +200,7 @@ XML;
             $this->assertInstanceOf('\Pyrexx\ZUGFeRD\Model\Note', $note);
 
             if ($cnt === 3) {
-                $this->assertSame('Pyrexx GmbH
+                $this->assertSame('Easybill GmbH
             Düsselstr. 21
             41564 Kaarst
             
