@@ -12,7 +12,7 @@
         >
     <testsuites>
         <testsuite name="Test Suite">
-            <directory>./src/Easybill/ZUGFeRD/Tests</directory>
+            <directory>./src/Pyrexx/ZUGFeRD/Tests</directory>
         </testsuite>
     </testsuites>
 
