@@ -8,7 +8,7 @@ use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
 /**
- * @AccessorOrder("custom", custom = {"paymentReference", "currency", "paymentMeans", "tradeTaxes", "paymentTerms", "monetarySummation"})
+ * @AccessorOrder("custom", custom = {"paymentReference", "currency", "paymentMeans", "tradeTaxes", "billingPeriod", "paymentTerms", "monetarySummation"})
  */
 class Settlement
 {
@@ -43,6 +43,14 @@ class Settlement
      * @XmlList(inline = true, entry = "ApplicableTradeTax", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      */
     private $tradeTaxes = array();
+
+    /**
+     * @var BillingPeriod
+     * @Type("Easybill\ZUGFeRD\Model\Trade\BillingPeriod")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("BillingSpecifiedPeriod")
+     */
+    private $billingPeriod;
 
     /**
      * @var MonetarySummation
@@ -184,6 +192,24 @@ class Settlement
     public function setPaymentTerms($paymentTerms)
     {
         $this->paymentTerms = $paymentTerms;
+        return $this;
+    }
+
+    /**
+     * @return \Easybill\ZUGFeRD\Model\Trade\BillingPeriod
+     */
+    public function getBillingPeriod()
+    {
+        return $this->billingPeriod;
+    }
+
+    /**
+     * @param \Easybill\ZUGFeRD\Model\Trade\BillingPeriod $billingPeriod
+     * @return self
+     */
+    public function setBillingPeriod($billingPeriod)
+    {
+        $this->billingPeriod = $billingPeriod;
         return $this;
     }
 
