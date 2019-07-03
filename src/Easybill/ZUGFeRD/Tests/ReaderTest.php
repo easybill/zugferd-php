@@ -112,6 +112,14 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
         <ram:BasisAmount currencyID="EUR">198.00</ram:BasisAmount>
         <ram:ApplicablePercent>19.00</ram:ApplicablePercent>
       </ram:ApplicableTradeTax>
+      <ram:BillingSpecifiedPeriod>
+        <ram:StartDateTime>
+          <udt:DateTimeString format="102">20130104</udt:DateTimeString>
+        </ram:StartDateTime>
+        <ram:EndDateTime>
+          <udt:DateTimeString format="102">20130204</udt:DateTimeString>
+        </ram:EndDateTime>
+      </ram:BillingSpecifiedPeriod>
       <ram:SpecifiedTradePaymentTerms>
         <ram:Description>Zahlbar innerhalb 30 Tagen netto bis 04.04.2013, 3% Skonto innerhalb 10 Tagen bis 15.03.2013</ram:Description>
         <ram:DueDateDateTime>
@@ -307,6 +315,10 @@ XML;
         $this->assertSame('EUR', $tradeTax2->getBasisAmount()->getCurrency());
         $this->assertSame(198.00, $tradeTax2->getBasisAmount()->getValue());
         $this->assertSame(19.00, $tradeTax2->getPercent());
+
+        $billingPeriod = $settlement->getBillingPeriod();
+        $this->assertSame('20130104', $billingPeriod->getStart()->getDate());
+        $this->assertSame('20130204', $billingPeriod->getEnd()->getDate());
 
         $monetarySummation = $settlement->getMonetarySummation();
         $this->assertSame(198.00, $monetarySummation->getLineTotal()->getValue());

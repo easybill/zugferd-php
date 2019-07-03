@@ -112,6 +112,14 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         <ram:BasisAmount currencyID="EUR">198.00</ram:BasisAmount>
         <ram:ApplicablePercent>19.00</ram:ApplicablePercent>
       </ram:ApplicableTradeTax>
+      <ram:BillingSpecifiedPeriod>
+        <ram:StartDateTime>
+          <udt:DateTimeString format="102">20130104</udt:DateTimeString>
+        </ram:StartDateTime>
+        <ram:EndDateTime>
+          <udt:DateTimeString format="102">20130204</udt:DateTimeString>
+        </ram:EndDateTime>
+      </ram:BillingSpecifiedPeriod>
       <ram:SpecifiedTradePaymentTerms>
         <ram:Description>Zahlbar innerhalb von 20 Tagen (bis zum 05.10.2016) unter Abzug von 3% Skonto (Zahlungsbetrag = 1.766,03 €). Bis zum 29.09.2016 ohne Abzug.</ram:Description>
         <ram:DueDateDateTime>
@@ -293,6 +301,12 @@ XML;
             ->setMonetarySummation(
                 new \Easybill\ZUGFeRD\Model\Trade\MonetarySummation(198.00, 0.00, 0.00, 198.00, 37.62, 235.62, 'EUR')
             );
+
+        $billingPeriod = new \Easybill\ZUGFeRD\Model\Trade\BillingPeriod(
+            new \Easybill\ZUGFeRD\Model\Date('20130104'),
+            new \Easybill\ZUGFeRD\Model\Date('20130204')
+        );
+        $settlement->setBillingPeriod($billingPeriod);
 
         $trade->setSettlement($settlement);
     }
