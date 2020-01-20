@@ -50,6 +50,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
   </rsm:HeaderExchangedDocument>
   <rsm:SpecifiedSupplyChainTradeTransaction>
     <ram:ApplicableSupplyChainTradeAgreement>
+      <ram:BuyerReference>AB-312</ram:BuyerReference>
       <ram:SellerTradeParty>
         <ram:Name>Lieferant GmbH</ram:Name>
         <ram:PostalTradeAddress>
@@ -216,6 +217,7 @@ XML;
     private function setAgreement(\Easybill\ZUGFeRD\Model\Trade\Trade $trade)
     {
         $trade->getAgreement()
+            ->setBuyerReference('AB-312')
             ->setSeller(
                 new \Easybill\ZUGFeRD\Model\Trade\TradeParty('Lieferant GmbH',
                     new \Easybill\ZUGFeRD\Model\Address('80333', 'Lieferantenstraße 20', null, 'München', 'DE'),
