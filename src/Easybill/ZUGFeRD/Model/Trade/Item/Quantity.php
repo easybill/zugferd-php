@@ -17,8 +17,8 @@ class Quantity
     private $unitCode;
 
     /**
-     * @var double
-     * @Type("double")
+     * @var string
+     * @Type("string")
      * @XmlValue(cdata = false)
      */
     private $value;
@@ -64,7 +64,7 @@ class Quantity
      */
     public function setValue($value)
     {
-        $this->value = str_replace(',', '', number_format($value, 4));
+        $this->value = number_format($value, 4, '.', '');
     }
 
 }

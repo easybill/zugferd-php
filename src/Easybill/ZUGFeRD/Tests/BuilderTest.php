@@ -10,9 +10,7 @@ class BuilderTest extends TestCase
      */
     public function setupAnnotationRegistry()
     {
-        \Doctrine\Common\Annotations\AnnotationRegistry::registerAutoloadNamespace(
-            'JMS\Serializer\Annotation',
-            __DIR__ . '/../../../../vendor/jms/serializer/src');
+        Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
     }
 
     public function testGetXML()

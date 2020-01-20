@@ -14,8 +14,8 @@ class Amount
 {
 
     /**
-     * @var double
-     * @Type("double")
+     * @var string
+     * @Type("string")
      * @XmlValue(cdata = false)
      */
     private $value;
@@ -33,7 +33,7 @@ class Amount
      *
      * @param double $value
      * @param string $currency
-     * @param bool   $isSum
+     * @param bool $isSum
      */
     public function __construct($value, $currency, $isSum = true)
     {
@@ -43,20 +43,20 @@ class Amount
 
 
     /**
-     * @return double
+     * @return string
      */
     public function getValue()
     {
-        return doubleval($this->value);
+        return $this->value;
     }
 
     /**
      * @param string $value
-     * @param bool   $isSum
+     * @param bool $isSum
      */
     public function setValue($value, $isSum = true)
     {
-        $this->value = str_replace(',', '', number_format($value, ($isSum === true) ? 2 : 4));
+        $this->value = number_format($value, ($isSum === true) ? 2 : 4, '.', '');
     }
 
     /**

@@ -10,9 +10,7 @@ class ReaderTest extends TestCase
      */
     public function setupAnnotationRegistry()
     {
-        \Doctrine\Common\Annotations\AnnotationRegistry::registerAutoloadNamespace(
-            'JMS\Serializer\Annotation',
-            __DIR__ . '/../../../../vendor/jms/serializer/src');
+        Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
     }
 
     public function testGetDocument()
@@ -305,40 +303,40 @@ XML;
         $tradeTax1 = $tradeTaxes[0];
         $tradeTax2 = $tradeTaxes[1];
         $this->assertSame('EUR', $tradeTax1->getCalculatedAmount()->getCurrency());
-        $this->assertSame(19.25, $tradeTax1->getCalculatedAmount()->getValue());
+        $this->assertSame('19.25', $tradeTax1->getCalculatedAmount()->getValue());
         $this->assertSame('VAT', $tradeTax1->getCode());
         $this->assertSame('EUR', $tradeTax1->getBasisAmount()->getCurrency());
-        $this->assertSame(275.00, $tradeTax1->getBasisAmount()->getValue());
-        $this->assertSame(7.00, $tradeTax1->getPercent());
+        $this->assertSame('275.00', $tradeTax1->getBasisAmount()->getValue());
+        $this->assertSame('7.00', $tradeTax1->getPercent());
 
         $this->assertSame('EUR', $tradeTax2->getCalculatedAmount()->getCurrency());
-        $this->assertSame(37.62, $tradeTax2->getCalculatedAmount()->getValue());
+        $this->assertSame('37.62', $tradeTax2->getCalculatedAmount()->getValue());
         $this->assertSame('VAT', $tradeTax2->getCode());
         $this->assertSame('EUR', $tradeTax2->getBasisAmount()->getCurrency());
-        $this->assertSame(198.00, $tradeTax2->getBasisAmount()->getValue());
-        $this->assertSame(19.00, $tradeTax2->getPercent());
+        $this->assertSame('198.00', $tradeTax2->getBasisAmount()->getValue());
+        $this->assertSame('19.00', $tradeTax2->getPercent());
 
         $billingPeriod = $settlement->getBillingPeriod();
         $this->assertSame('20130104', $billingPeriod->getStart()->getDate());
         $this->assertSame('20130204', $billingPeriod->getEnd()->getDate());
 
         $monetarySummation = $settlement->getMonetarySummation();
-        $this->assertSame(198.00, $monetarySummation->getLineTotal()->getValue());
+        $this->assertSame('198.00', $monetarySummation->getLineTotal()->getValue());
         $this->assertSame('EUR', $monetarySummation->getLineTotal()->getCurrency());
 
-        $this->assertSame(0.00, $monetarySummation->getChargeTotal()->getValue());
+        $this->assertSame('0.00', $monetarySummation->getChargeTotal()->getValue());
         $this->assertSame('EUR', $monetarySummation->getChargeTotal()->getCurrency());
 
-        $this->assertSame(0.00, $monetarySummation->getAllowanceTotal()->getValue());
+        $this->assertSame('0.00', $monetarySummation->getAllowanceTotal()->getValue());
         $this->assertSame('EUR', $monetarySummation->getAllowanceTotal()->getCurrency());
 
-        $this->assertSame(198.00, $monetarySummation->getTaxBasisTotal()->getValue());
+        $this->assertSame('198.00', $monetarySummation->getTaxBasisTotal()->getValue());
         $this->assertSame('EUR', $monetarySummation->getTaxBasisTotal()->getCurrency());
 
-        $this->assertSame(37.62, $monetarySummation->getTaxTotal()->getValue());
+        $this->assertSame('37.62', $monetarySummation->getTaxTotal()->getValue());
         $this->assertSame('EUR', $monetarySummation->getTaxTotal()->getCurrency());
 
-        $this->assertSame(235.62, $monetarySummation->getGrandTotal()->getValue());
+        $this->assertSame('235.62', $monetarySummation->getGrandTotal()->getValue());
         $this->assertSame('EUR', $monetarySummation->getGrandTotal()->getCurrency());
 
         $paymentTerms = $settlement->getPaymentTerms();
@@ -358,7 +356,7 @@ XML;
         $agreement = $lineItem->getTradeAgreement();
         $grossPrice = $agreement->getGrossPrice();
 
-        $this->assertSame(9.90, $grossPrice->getAmount()->getValue());
+        $this->assertSame('9.90', $grossPrice->getAmount()->getValue());
         $this->assertSame('EUR', $grossPrice->getAmount()->getCurrency());
 
         $grossPriceAllowanceCharges = $grossPrice->getAllowanceCharges();
@@ -367,22 +365,22 @@ XML;
         $allowanceCharge = $grossPriceAllowanceCharges[0];
         $this->assertFalse($allowanceCharge->getIndicator());
         $this->assertSame('EUR', $allowanceCharge->getActualAmount()->getCurrency());
-        $this->assertSame(1.80, $allowanceCharge->getActualAmount()->getValue());
+        $this->assertSame('1.8000', $allowanceCharge->getActualAmount()->getValue());
 
-        $this->assertSame(9.90, $agreement->getNetPrice()->getAmount()->getValue());
+        $this->assertSame('9.90', $agreement->getNetPrice()->getAmount()->getValue());
         $this->assertSame('EUR', $agreement->getNetPrice()->getAmount()->getCurrency());
 
         $this->assertSame('C62', $lineItem->getDelivery()->getBilledQuantity()->getUnitCode());
-        $this->assertSame(20.0000, $lineItem->getDelivery()->getBilledQuantity()->getValue());
+        $this->assertSame('20.0000', $lineItem->getDelivery()->getBilledQuantity()->getValue());
 
         $settlement = $lineItem->getSettlement();
         $tradeTax = $settlement->getTradeTax();
         $this->assertSame('VAT', $tradeTax->getCode());
-        $this->assertSame(19.00, $tradeTax->getPercent());
+        $this->assertSame('19.00', $tradeTax->getPercent());
         $this->assertSame('S', $tradeTax->getCategory());
 
         $monetarySummationTotal = $settlement->getMonetarySummation()->getTotalAmount();
-        $this->assertSame(198.00, $monetarySummationTotal->getValue());
+        $this->assertSame('198.00', $monetarySummationTotal->getValue());
         $this->assertSame('EUR', $monetarySummationTotal->getCurrency());
 
         $product = $lineItem->getProduct();
