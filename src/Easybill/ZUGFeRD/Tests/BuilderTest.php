@@ -1,6 +1,8 @@
 <?php
 
-class BuilderTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class BuilderTest extends TestCase
 {
 
     /**
