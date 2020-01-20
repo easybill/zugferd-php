@@ -33,8 +33,8 @@ class TradeTax
     private $basisAmount;
 
     /**
-     * @var double
-     * @JMS\Type("double")
+     * @var string
+     * @JMS\Type("string")
      * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @JMS\SerializedName("ApplicablePercent")
      */
@@ -109,7 +109,7 @@ class TradeTax
      */
     public function setPercent($percent)
     {
-        $this->percent = str_replace(',', '', number_format($percent, 2));
+        $this->percent = number_format($percent, 2, '.', '');
     }
 
     /**

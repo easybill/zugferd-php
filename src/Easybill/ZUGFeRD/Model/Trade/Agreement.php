@@ -8,6 +8,14 @@ class Agreement
 {
 
     /**
+     * @var string
+     * @Type("string")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("BuyerReference")
+     */
+    private $buyerReference;
+
+    /**
      * @var TradeParty
      * @Type("Easybill\ZUGFeRD\Model\Trade\TradeParty")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
@@ -22,6 +30,25 @@ class Agreement
      * @SerializedName("BuyerTradeParty")
      */
     private $buyer;
+
+    /**
+     * @return string
+     */
+    public function getBuyerReference()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $buyerReference
+     *
+     * @return self
+     */
+    public function setBuyerReference($buyerReference)
+    {
+        $this->buyerReference = $buyerReference;
+        return $this;
+    }
 
     /**
      * @return \Easybill\ZUGFeRD\Model\Trade\TradeParty
