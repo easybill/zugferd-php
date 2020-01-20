@@ -2,3 +2,4 @@ vendor
 .idea
 .DS_Store
 zugferd10
+.phpunit.result.cache
