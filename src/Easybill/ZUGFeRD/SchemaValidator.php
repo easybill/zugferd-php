@@ -8,12 +8,8 @@ class SchemaValidator
 
     /**
      * Validates the given XML-string against the ZUGFeRD XSD-files.
-     *
-     * @param string $xml
-     *
-     * @return bool
      */
-    public static function isValid($xml)
+    public static function isValid(string $xml): bool
     {
         $xmlValidate = new \DOMDocument();
         $xmlValidate->loadXML($xml);

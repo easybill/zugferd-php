@@ -1,5 +1,7 @@
 <?php
 
+namespace Easybill\ZUGFeRD\Tests;
+
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Easybill\ZUGFeRD\Builder;
 use Easybill\ZUGFeRD\Model\Address;
@@ -38,194 +40,18 @@ class BuilderTest extends TestCase
     /**
      * @before
      */
-    public function setupAnnotationRegistry()
+    public function setupAnnotationRegistry(): void
     {
         AnnotationRegistry::registerLoader('class_exists');
     }
 
-    public function testGetXML()
+    public function testGetXML(): void
     {
-
-        $zugferdXML = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<rsm:CrossIndustryDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rsm="urn:ferd:CrossIndustryDocument:invoice:1p0" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15">
-  <rsm:SpecifiedExchangedDocumentContext>
-    <ram:GuidelineSpecifiedDocumentContextParameter>
-      <ram:ID>urn:ferd:CrossIndustryDocument:invoice:1p0:comfort</ram:ID>
-    </ram:GuidelineSpecifiedDocumentContextParameter>
-  </rsm:SpecifiedExchangedDocumentContext>
-  <rsm:HeaderExchangedDocument>
-    <ram:ID>RE1337</ram:ID>
-    <ram:Name>RECHNUNG</ram:Name>
-    <ram:TypeCode>380</ram:TypeCode>
-    <ram:IssueDateTime>
-      <udt:DateTimeString format="102">20130305</udt:DateTimeString>
-    </ram:IssueDateTime>
-    <ram:IncludedNote>
-      <ram:Content>Test Node 1</ram:Content>
-    </ram:IncludedNote>
-    <ram:IncludedNote>
-      <ram:Content>Test Node 2</ram:Content>
-    </ram:IncludedNote>
-    <ram:IncludedNote>
-      <ram:Content>easybill GmbH
-            Düsselstr. 21
-            41564 Kaarst
-            
-            Geschäftsführer:
-            Christian Szardenings
-            Ronny Keyser</ram:Content>
-      <ram:SubjectCode>REG</ram:SubjectCode>
-    </ram:IncludedNote>
-  </rsm:HeaderExchangedDocument>
-  <rsm:SpecifiedSupplyChainTradeTransaction>
-    <ram:ApplicableSupplyChainTradeAgreement>
-      <ram:BuyerReference>AB-312</ram:BuyerReference>
-      <ram:SellerTradeParty>
-        <ram:Name>Lieferant GmbH</ram:Name>
-        <ram:PostalTradeAddress>
-          <ram:PostcodeCode>80333</ram:PostcodeCode>
-          <ram:LineOne>Lieferantenstraße 20</ram:LineOne>
-          <ram:CityName>München</ram:CityName>
-          <ram:CountryID>DE</ram:CountryID>
-        </ram:PostalTradeAddress>
-        <ram:SpecifiedTaxRegistration>
-          <ram:ID schemeID="FC">201/113/40209</ram:ID>
-        </ram:SpecifiedTaxRegistration>
-        <ram:SpecifiedTaxRegistration>
-          <ram:ID schemeID="VA">DE123456789</ram:ID>
-        </ram:SpecifiedTaxRegistration>
-      </ram:SellerTradeParty>
-      <ram:BuyerTradeParty>
-        <ram:Name>Kunden AG Mitte</ram:Name>
-        <ram:PostalTradeAddress>
-          <ram:PostcodeCode>69876</ram:PostcodeCode>
-          <ram:LineOne>Hans Muster</ram:LineOne>
-          <ram:LineTwo>Kundenstraße 15</ram:LineTwo>
-          <ram:CityName>Frankfurt</ram:CityName>
-          <ram:CountryID>DE</ram:CountryID>
-        </ram:PostalTradeAddress>
-      </ram:BuyerTradeParty>
-    </ram:ApplicableSupplyChainTradeAgreement>
-    <ram:ApplicableSupplyChainTradeDelivery>
-      <ram:ActualDeliverySupplyChainEvent>
-        <ram:OccurrenceDateTime>
-          <udt:DateTimeString format="102">20130305</udt:DateTimeString>
-        </ram:OccurrenceDateTime>
-      </ram:ActualDeliverySupplyChainEvent>
-    </ram:ApplicableSupplyChainTradeDelivery>
-    <ram:ApplicableSupplyChainTradeSettlement>
-      <ram:PaymentReference>2013-471102</ram:PaymentReference>
-      <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
-      <ram:SpecifiedTradeSettlementPaymentMeans>
-        <ram:TypeCode>31</ram:TypeCode>
-        <ram:Information>Überweisung</ram:Information>
-        <ram:PayeePartyCreditorFinancialAccount>
-          <ram:IBANID>DE08700901001234567890</ram:IBANID>
-          <ram:AccountName></ram:AccountName>
-          <ram:ProprietaryID></ram:ProprietaryID>
-        </ram:PayeePartyCreditorFinancialAccount>
-        <ram:PayeeSpecifiedCreditorFinancialInstitution>
-          <ram:BICID>GENODEF1M04</ram:BICID>
-          <ram:GermanBankleitzahlID></ram:GermanBankleitzahlID>
-          <ram:Name></ram:Name>
-        </ram:PayeeSpecifiedCreditorFinancialInstitution>
-      </ram:SpecifiedTradeSettlementPaymentMeans>
-      <ram:ApplicableTradeTax>
-        <ram:CalculatedAmount currencyID="EUR">19.25</ram:CalculatedAmount>
-        <ram:TypeCode>VAT</ram:TypeCode>
-        <ram:BasisAmount currencyID="EUR">275.00</ram:BasisAmount>
-        <ram:ApplicablePercent>7.00</ram:ApplicablePercent>
-      </ram:ApplicableTradeTax>
-      <ram:ApplicableTradeTax>
-        <ram:CalculatedAmount currencyID="EUR">37.62</ram:CalculatedAmount>
-        <ram:TypeCode>VAT</ram:TypeCode>
-        <ram:BasisAmount currencyID="EUR">198.00</ram:BasisAmount>
-        <ram:ApplicablePercent>19.00</ram:ApplicablePercent>
-      </ram:ApplicableTradeTax>
-      <ram:BillingSpecifiedPeriod>
-        <ram:StartDateTime>
-          <udt:DateTimeString format="102">20130104</udt:DateTimeString>
-        </ram:StartDateTime>
-        <ram:EndDateTime>
-          <udt:DateTimeString format="102">20130204</udt:DateTimeString>
-        </ram:EndDateTime>
-      </ram:BillingSpecifiedPeriod>
-      <ram:SpecifiedTradeAllowanceCharge>
-        <ram:ChargeIndicator>
-          <udt:Indicator>false</udt:Indicator>
-        </ram:ChargeIndicator>
-        <ram:ActualAmount currencyID="EUR">1.00</ram:ActualAmount>
-        <ram:Reason>Sondernachlass</ram:Reason>
-        <ram:CategoryTradeTax>
-          <ram:TypeCode>VAT</ram:TypeCode>
-          <ram:CategoryCode>S</ram:CategoryCode>
-          <ram:ApplicablePercent>19.00</ram:ApplicablePercent>
-        </ram:CategoryTradeTax>
-      </ram:SpecifiedTradeAllowanceCharge>
-      <ram:SpecifiedTradePaymentTerms>
-        <ram:Description>Zahlbar innerhalb von 20 Tagen (bis zum 05.10.2016) unter Abzug von 3% Skonto (Zahlungsbetrag = 1.766,03 €). Bis zum 29.09.2016 ohne Abzug.</ram:Description>
-        <ram:DueDateDateTime>
-          <udt:DateTimeString format="102">20130404</udt:DateTimeString>
-        </ram:DueDateDateTime>
-      </ram:SpecifiedTradePaymentTerms>
-      <ram:SpecifiedTradeSettlementMonetarySummation>
-        <ram:LineTotalAmount currencyID="EUR">198.00</ram:LineTotalAmount>
-        <ram:ChargeTotalAmount currencyID="EUR">0.00</ram:ChargeTotalAmount>
-        <ram:AllowanceTotalAmount currencyID="EUR">0.00</ram:AllowanceTotalAmount>
-        <ram:TaxBasisTotalAmount currencyID="EUR">198.00</ram:TaxBasisTotalAmount>
-        <ram:TaxTotalAmount currencyID="EUR">37.62</ram:TaxTotalAmount>
-        <ram:GrandTotalAmount currencyID="EUR">235.62</ram:GrandTotalAmount>
-      </ram:SpecifiedTradeSettlementMonetarySummation>
-    </ram:ApplicableSupplyChainTradeSettlement>
-    <ram:IncludedSupplyChainTradeLineItem>
-      <ram:AssociatedDocumentLineDocument>
-        <ram:LineID>1</ram:LineID>
-        <ram:IncludedNote>
-          <ram:Content>Testcontent in einem LineDocument</ram:Content>
-        </ram:IncludedNote>
-      </ram:AssociatedDocumentLineDocument>
-      <ram:SpecifiedSupplyChainTradeAgreement>
-        <ram:GrossPriceProductTradePrice>
-          <ram:ChargeAmount currencyID="EUR">9.9000</ram:ChargeAmount>
-          <ram:AppliedTradeAllowanceCharge>
-            <ram:ChargeIndicator>
-              <udt:Indicator>false</udt:Indicator>
-            </ram:ChargeIndicator>
-            <ram:ActualAmount currencyID="EUR">1.8000</ram:ActualAmount>
-          </ram:AppliedTradeAllowanceCharge>
-        </ram:GrossPriceProductTradePrice>
-        <ram:NetPriceProductTradePrice>
-          <ram:ChargeAmount currencyID="EUR">9.9000</ram:ChargeAmount>
-        </ram:NetPriceProductTradePrice>
-      </ram:SpecifiedSupplyChainTradeAgreement>
-      <ram:SpecifiedSupplyChainTradeDelivery>
-        <ram:BilledQuantity unitCode="C62">20.0000</ram:BilledQuantity>
-      </ram:SpecifiedSupplyChainTradeDelivery>
-      <ram:SpecifiedSupplyChainTradeSettlement>
-        <ram:ApplicableTradeTax>
-          <ram:TypeCode>VAT</ram:TypeCode>
-          <ram:CategoryCode>S</ram:CategoryCode>
-          <ram:ApplicablePercent>19.00</ram:ApplicablePercent>
-        </ram:ApplicableTradeTax>
-        <ram:SpecifiedTradeSettlementMonetarySummation>
-          <ram:LineTotalAmount currencyID="EUR">198.00</ram:LineTotalAmount>
-        </ram:SpecifiedTradeSettlementMonetarySummation>
-      </ram:SpecifiedSupplyChainTradeSettlement>
-      <ram:SpecifiedTradeProduct>
-        <ram:SellerAssignedID>TB100A4</ram:SellerAssignedID>
-        <ram:Name>Trennblätter A4</ram:Name>
-      </ram:SpecifiedTradeProduct>
-    </ram:IncludedSupplyChainTradeLineItem>
-  </rsm:SpecifiedSupplyChainTradeTransaction>
-</rsm:CrossIndustryDocument>
-
-XML;
         $doc = new Document(Document::TYPE_COMFORT);
         $doc->getHeader()
             ->setId('RE1337')
             ->setName('RECHNUNG')
-            ->setDate(new Date(new DateTime('20130305'), 102))
+            ->setDate(new Date(new \DateTime('20130305'), 102))
             ->addNote(new Note('Test Node 1'))
             ->addNote(new Note('Test Node 2'))
             ->addNote(new Note('easybill GmbH
@@ -248,25 +74,23 @@ XML;
         $builder = Builder::create();
         $xml = $builder->getXML($doc);
 
-        $this->assertSame($zugferdXML, $xml);
+        #file_put_contents(__DIR__ . '/builder.zugferd.xml', $xml);
+        $this->assertStringEqualsFile(__DIR__ . '/builder.zugferd.xml', $xml);
 
         SchemaValidator::isValid($xml);
     }
 
-    /**
-     * @param Trade $trade
-     */
-    private function setAgreement(Trade $trade)
+    private function setAgreement(Trade $trade): void
     {
         $trade->getAgreement()
             ->setBuyerReference('AB-312')
             ->setSeller(
                 new TradeParty('Lieferant GmbH',
                     new Address('80333', 'Lieferantenstraße 20', null, 'München', 'DE'),
-                    array(
+                    [
                         new TaxRegistration('FC', '201/113/40209'),
-                        new TaxRegistration('VA', 'DE123456789')
-                    )
+                        new TaxRegistration('VA', 'DE123456789'),
+                    ]
                 )
             )->setBuyer(
                 new TradeParty('Kunden AG Mitte',
@@ -275,10 +99,7 @@ XML;
             );
     }
 
-    /**
-     * @param Trade $trade
-     */
-    private function setLineItem(Trade $trade)
+    private function setLineItem(Trade $trade): void
     {
         $tradeAgreement = new SpecifiedTradeAgreement();
 
@@ -312,10 +133,7 @@ XML;
         $trade->addLineItem($lineItem);
     }
 
-    /**
-     * @param Trade $trade
-     */
-    private function setSettlement(Trade $trade)
+    private function setSettlement(Trade $trade): void
     {
         $settlement = new Settlement('2013-471102', 'EUR');
         $settlement->setPaymentTerms(new PaymentTerms('Zahlbar innerhalb von 20 Tagen (bis zum 05.10.2016) unter Abzug von 3% Skonto (Zahlungsbetrag = 1.766,03 €). Bis zum 29.09.2016 ohne Abzug.', new Date('20130404')));
@@ -344,13 +162,13 @@ XML;
             ->addTradeTax($tradeTax2)
             ->addAllowanceCharge(
                 (new AllowanceCharge(false, 1, 'EUR', true))
-                ->setReason('Sondernachlass')
-                ->addCategoryTradeTax(
-                    (new TradeTax())
-                    ->setCode('VAT')
-                    ->setCategory('S')
-                    ->setPercent(19)
-                )
+                    ->setReason('Sondernachlass')
+                    ->addCategoryTradeTax(
+                        (new TradeTax())
+                            ->setCode('VAT')
+                            ->setCategory('S')
+                            ->setPercent(19)
+                    )
             )
             ->setMonetarySummation(
                 new MonetarySummation(198.00, 0.00, 0.00, 198.00, 37.62, 235.62, 'EUR')
