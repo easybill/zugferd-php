@@ -1,22 +1,14 @@
 <?php
 
 namespace Easybill\ZUGFeRD\Helper;
+
 use Easybill\ZUGFeRD\Model\UnitCode;
 
-/**
- * Class UnitCodeHelper
- */
 class UnitCodeHelper
 {
-
-    /**
-     * @param string $rawString
-     *
-     * @return string
-     */
-    public static function getUnitCode($rawString = '')
+    public static function getUnitCode(string $rawString = ''): string
     {
-        switch(strtolower($rawString)) {
+        switch (strtolower($rawString)) {
             case 'box':
             case 'kiste':
                 $unit = UnitCode::BOX;

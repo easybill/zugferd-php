@@ -3,25 +3,25 @@
 namespace Easybill\ZUGFeRD;
 
 use Easybill\ZUGFeRD\Model\Document;
-use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
+use JMS\Serializer\SerializerInterface;
 
 class Builder
 {
 
     private $serializer;
 
-    function __construct(Serializer $serializer)
+    public function __construct(SerializerInterface $serializer)
     {
         $this->serializer = $serializer;
     }
 
-    public function getXML(Document $document)
+    public function getXML(Document $document): string
     {
         return $this->serializer->serialize($document, 'xml');
     }
 
-    public static function create()
+    public static function create(): Builder
     {
         $serializer = SerializerBuilder::create()
             ->setDebug(true)

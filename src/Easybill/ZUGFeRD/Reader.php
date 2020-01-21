@@ -3,29 +3,24 @@
 namespace Easybill\ZUGFeRD;
 
 use Easybill\ZUGFeRD\Model\Document;
-use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
+use JMS\Serializer\SerializerInterface;
 
 class Reader
 {
     private $serializer;
 
-    function __construct(Serializer $serializer)
+    public function __construct(SerializerInterface $serializer)
     {
         $this->serializer = $serializer;
     }
 
-    /**
-     * @param $xml
-     *
-     * @return mixed|Document
-     */
-    public function getDocument($xml)
+    public function getDocument(string $xml): Document
     {
-        return $this->serializer->deserialize($xml, 'Easybill\ZUGFeRD\Model\Document', 'xml');
+        return $this->serializer->deserialize($xml, Document::class, 'xml');
     }
 
-    public static function create()
+    public static function create(): Reader
     {
         $serializer = SerializerBuilder::create()
             ->setDebug(true)
