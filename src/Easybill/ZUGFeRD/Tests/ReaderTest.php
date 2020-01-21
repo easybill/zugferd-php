@@ -1,5 +1,14 @@
 <?php
 
+use Doctrine\Common\Annotations\AnnotationRegistry;
+use Easybill\ZUGFeRD\Model\Trade\Agreement;
+use Easybill\ZUGFeRD\Model\Trade\Item\LineItem;
+use Easybill\ZUGFeRD\Model\Trade\Settlement;
+use Easybill\ZUGFeRD\Model\Trade\TradeParty;
+use Easybill\ZUGFeRD\Model\Trade\Trade;
+use Easybill\ZUGFeRD\Model\Note;
+use Easybill\ZUGFeRD\Model\Date;
+use Easybill\ZUGFeRD\Model\Document;
 use PHPUnit\Framework\TestCase;
 
 class ReaderTest extends TestCase
@@ -10,7 +19,7 @@ class ReaderTest extends TestCase
      */
     public function setupAnnotationRegistry()
     {
-        Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
+        AnnotationRegistry::registerLoader('class_exists');
     }
 
     public function testGetDocument()
@@ -183,7 +192,7 @@ XML;
         $reader = \Easybill\ZUGFeRD\Reader::create();
 
         $doc = $reader->getDocument($zugferdXML);
-        $this->assertInstanceOf('\Easybill\ZUGFeRD\Model\Document', $doc);
+        $this->assertInstanceOf(Document::class, $doc);
 
         $this->checkHeader($doc->getHeader());
         $this->checkTrade($doc->getTrade());
@@ -195,7 +204,7 @@ XML;
         $this->assertSame('RECHNUNG', $header->getName());
         $this->assertSame('380', $header->getTypeCode());
 
-        $this->assertInstanceOf('\Easybill\ZUGFeRD\Model\Date', $header->getDate());
+        $this->assertInstanceOf(Date::class, $header->getDate());
         $this->assertSame(102, $header->getDate()->getFormat());
         $this->assertSame('20130305', $header->getDate()->getDate());
 
@@ -205,7 +214,7 @@ XML;
         $cnt = 0;
         foreach ($notes as $note) {
             $cnt++;
-            $this->assertInstanceOf('\Easybill\ZUGFeRD\Model\Note', $note);
+            $this->assertInstanceOf(Note::class, $note);
 
             if ($cnt === 3) {
                 $this->assertSame('easybill GmbH
@@ -223,9 +232,9 @@ XML;
         }
     }
 
-    private function checkTrade(\Easybill\ZUGFeRD\Model\Trade\Trade $trade)
+    private function checkTrade(Trade $trade)
     {
-        $this->assertInstanceOf('\Easybill\ZUGFeRD\Model\Trade\Trade', $trade);
+        $this->assertInstanceOf(Trade::class, $trade);
 
         $this->checkAgreement($trade->getAgreement());
         $this->checkTradeSettlement($trade->getSettlement());
@@ -239,13 +248,13 @@ XML;
         $this->checkLineItem($lineItems[0]);
     }
 
-    private function checkAgreement(\Easybill\ZUGFeRD\Model\Trade\Agreement $agreement)
+    private function checkAgreement(Agreement $agreement)
     {
         $seller = $agreement->getSeller();
         $buyer = $agreement->getBuyer();
-        $this->assertInstanceOf('\Easybill\ZUGFeRD\Model\Trade\Agreement', $agreement);
-        $this->assertInstanceOf('\Easybill\ZUGFeRD\Model\Trade\TradeParty', $seller);
-        $this->assertInstanceOf('\Easybill\ZUGFeRD\Model\Trade\TradeParty', $buyer);
+        $this->assertInstanceOf(Agreement::class, $agreement);
+        $this->assertInstanceOf(TradeParty::class, $seller);
+        $this->assertInstanceOf(TradeParty::class, $buyer);
 
         $sellerAddress = $seller->getAddress();
         $this->assertSame('Lieferant GmbH', $seller->getName());
@@ -278,7 +287,7 @@ XML;
         $this->assertEmpty($buyer->getTaxRegistrations());
     }
 
-    private function checkTradeSettlement(\Easybill\ZUGFeRD\Model\Trade\Settlement $settlement)
+    private function checkTradeSettlement(Settlement $settlement)
     {
         $this->assertSame('2013-471102', $settlement->getPaymentReference());
         $this->assertSame('EUR', $settlement->getCurrency());
@@ -345,7 +354,7 @@ XML;
         $this->assertSame(102, $paymentTerms->getDueDate()->getFormat());
     }
 
-    private function checkLineItem(\Easybill\ZUGFeRD\Model\Trade\Item\LineItem $lineItem)
+    private function checkLineItem(LineItem $lineItem)
     {
         $lineDocument = $lineItem->getLineDocument();
         $lineDocumentNotes = $lineDocument->getNotes();
