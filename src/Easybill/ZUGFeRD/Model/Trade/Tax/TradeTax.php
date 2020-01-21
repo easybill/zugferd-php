@@ -49,7 +49,7 @@ class TradeTax
     private $category;
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\Amount
+     * @return Amount
      */
     public function getCalculatedAmount()
     {
@@ -57,11 +57,13 @@ class TradeTax
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\Amount $calculatedAmount
+     * @param Amount $calculatedAmount
+     * @return self
      */
     public function setCalculatedAmount($calculatedAmount)
     {
         $this->calculatedAmount = $calculatedAmount;
+        return $this;
     }
 
     /**
@@ -74,14 +76,16 @@ class TradeTax
 
     /**
      * @param string $code
+     * @return self
      */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\Amount
+     * @return null|Amount
      */
     public function getBasisAmount()
     {
@@ -89,11 +93,15 @@ class TradeTax
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\Amount $basisAmount
+     * @param Amount $basisAmount
+     *
+     * @return self
      */
     public function setBasisAmount($basisAmount)
     {
         $this->basisAmount = $basisAmount;
+
+        return $this;
     }
 
     /**
@@ -106,10 +114,13 @@ class TradeTax
 
     /**
      * @param string $percent
+     * @return self
      */
     public function setPercent($percent)
     {
         $this->percent = number_format($percent, 2, '.', '');
+
+        return $this;
     }
 
     /**
@@ -122,10 +133,12 @@ class TradeTax
 
     /**
      * @param string $category
+     * @return self
      */
     public function setCategory($category)
     {
         $this->category = $category;
+        return $this;
     }
 
 }

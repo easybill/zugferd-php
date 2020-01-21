@@ -35,7 +35,7 @@ class Amount
      * @param string $currency
      * @param bool $isSum
      */
-    public function __construct($value, $currency, $isSum = true)
+    public function __construct($value, $currency, bool $isSum = true)
     {
         $this->setValue($value, $isSum);
         $this->currency = $currency;
@@ -53,10 +53,12 @@ class Amount
     /**
      * @param string $value
      * @param bool $isSum
+     * @return self
      */
-    public function setValue($value, $isSum = true)
+    public function setValue($value, bool $isSum = true)
     {
-        $this->value = number_format($value, ($isSum === true) ? 2 : 4, '.', '');
+        $this->value = number_format($value, $isSum ? 2 : 4, '.', '');
+        return $this;
     }
 
     /**
@@ -69,11 +71,12 @@ class Amount
 
     /**
      * @param string $currency
+     * @return self
      */
     public function setCurrency($currency)
     {
         $this->currency = $currency;
+        return $this;
     }
-
 
 }
