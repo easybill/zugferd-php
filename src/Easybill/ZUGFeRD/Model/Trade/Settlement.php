@@ -1,5 +1,6 @@
 <?php namespace Easybill\ZUGFeRD\Model\Trade;
 
+use Easybill\ZUGFeRD\Model\AllowanceCharge;
 use Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax;
 use JMS\Serializer\Annotation\AccessorOrder;
 use JMS\Serializer\Annotation\SerializedName;
@@ -8,7 +9,7 @@ use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
 /**
- * @AccessorOrder("custom", custom = {"paymentReference", "currency", "paymentMeans", "tradeTaxes", "billingPeriod", "paymentTerms", "monetarySummation"})
+ * @AccessorOrder("custom", custom = {"paymentReference", "currency", "paymentMeans", "tradeTaxes", "billingPeriod", "allowanceCharges", "paymentTerms", "monetarySummation"})
  */
 class Settlement
 {
@@ -42,8 +43,15 @@ class Settlement
      * @Type("array<Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax>")
      * @XmlList(inline = true, entry = "ApplicableTradeTax", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      */
-    private $tradeTaxes = array();
+    private $tradeTaxes = [];
 
+    /**
+     * @var AllowanceCharge[]
+     * @Type("array<Easybill\ZUGFeRD\Model\AllowanceCharge>")
+     * @XmlList(inline = true, entry = "SpecifiedTradeAllowanceCharge", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     */
+    private $allowanceCharges = [];
+    
     /**
      * @var BillingPeriod
      * @Type("Easybill\ZUGFeRD\Model\Trade\BillingPeriod")
@@ -91,7 +99,6 @@ class Settlement
 
     /**
      * @param string $paymentReference
-     *
      * @return self
      */
     public function setPaymentReference($paymentReference)
@@ -110,7 +117,6 @@ class Settlement
 
     /**
      * @param string $currency
-     *
      * @return self
      */
     public function setCurrency($currency)
@@ -120,7 +126,7 @@ class Settlement
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\PaymentMeans
+     * @return PaymentMeans
      */
     public function getPaymentMeans()
     {
@@ -128,9 +134,8 @@ class Settlement
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\PaymentMeans $paymentMeans
-     *
-     * @return self;
+     * @param PaymentMeans $paymentMeans
+     * @return self
      */
     public function setPaymentMeans(PaymentMeans $paymentMeans)
     {
@@ -139,7 +144,7 @@ class Settlement
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax[]
+     * @return TradeTax[]
      */
     public function getTradeTaxes()
     {
@@ -147,7 +152,7 @@ class Settlement
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax $tradeTax
+     * @param TradeTax $tradeTax
      *
      * @return self
      */
@@ -158,7 +163,25 @@ class Settlement
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\MonetarySummation
+     * @return AllowanceCharge[]
+     */
+    public function getAllowanceCharges(): array
+    {
+        return $this->allowanceCharges;
+    }
+
+    /**
+     * @param AllowanceCharge $allowanceCharge
+     * @return self
+     */
+    public function addAllowanceCharge(AllowanceCharge $allowanceCharge)
+    {
+        $this->allowanceCharges[] = $allowanceCharge;
+        return $this;
+    }
+
+    /**
+     * @return MonetarySummation
      */
     public function getMonetarySummation()
     {
@@ -166,8 +189,7 @@ class Settlement
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\MonetarySummation $monetarySummation
-     *
+     * @param MonetarySummation $monetarySummation
      * @return self
      */
     public function setMonetarySummation($monetarySummation)
@@ -177,7 +199,7 @@ class Settlement
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\PaymentTerms
+     * @return PaymentTerms
      */
     public function getPaymentTerms()
     {
@@ -185,8 +207,7 @@ class Settlement
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\PaymentTerms $paymentTerms
-     *
+     * @param PaymentTerms $paymentTerms
      * @return self
      */
     public function setPaymentTerms($paymentTerms)
@@ -196,7 +217,7 @@ class Settlement
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\BillingPeriod
+     * @return BillingPeriod
      */
     public function getBillingPeriod()
     {
@@ -204,7 +225,7 @@ class Settlement
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\BillingPeriod $billingPeriod
+     * @param BillingPeriod $billingPeriod
      * @return self
      */
     public function setBillingPeriod($billingPeriod)

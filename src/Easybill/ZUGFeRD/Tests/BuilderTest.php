@@ -1,5 +1,35 @@
 <?php
 
+use Doctrine\Common\Annotations\AnnotationRegistry;
+use Easybill\ZUGFeRD\Builder;
+use Easybill\ZUGFeRD\Model\Address;
+use Easybill\ZUGFeRD\Model\AllowanceCharge;
+use Easybill\ZUGFeRD\Model\Date;
+use Easybill\ZUGFeRD\Model\Document;
+use Easybill\ZUGFeRD\Model\Note;
+use Easybill\ZUGFeRD\Model\Trade\Amount;
+use Easybill\ZUGFeRD\Model\Trade\BillingPeriod;
+use Easybill\ZUGFeRD\Model\Trade\CreditorFinancialAccount;
+use Easybill\ZUGFeRD\Model\Trade\CreditorFinancialInstitution;
+use Easybill\ZUGFeRD\Model\Trade\Delivery;
+use Easybill\ZUGFeRD\Model\Trade\Item\LineDocument;
+use Easybill\ZUGFeRD\Model\Trade\Item\LineItem;
+use Easybill\ZUGFeRD\Model\Trade\Item\Price;
+use Easybill\ZUGFeRD\Model\Trade\Item\Product;
+use Easybill\ZUGFeRD\Model\Trade\Item\Quantity;
+use Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeAgreement;
+use Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeDelivery;
+use Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeMonetarySummation;
+use Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeSettlement;
+use Easybill\ZUGFeRD\Model\Trade\MonetarySummation;
+use Easybill\ZUGFeRD\Model\Trade\PaymentMeans;
+use Easybill\ZUGFeRD\Model\Trade\PaymentTerms;
+use Easybill\ZUGFeRD\Model\Trade\Settlement;
+use Easybill\ZUGFeRD\Model\Trade\Tax\TaxRegistration;
+use Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax;
+use Easybill\ZUGFeRD\Model\Trade\Trade;
+use Easybill\ZUGFeRD\Model\Trade\TradeParty;
+use Easybill\ZUGFeRD\SchemaValidator;
 use PHPUnit\Framework\TestCase;
 
 class BuilderTest extends TestCase
@@ -10,7 +40,7 @@ class BuilderTest extends TestCase
      */
     public function setupAnnotationRegistry()
     {
-        Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
+        AnnotationRegistry::registerLoader('class_exists');
     }
 
     public function testGetXML()
@@ -121,6 +151,18 @@ class BuilderTest extends TestCase
           <udt:DateTimeString format="102">20130204</udt:DateTimeString>
         </ram:EndDateTime>
       </ram:BillingSpecifiedPeriod>
+      <ram:SpecifiedTradeAllowanceCharge>
+        <ram:ChargeIndicator>
+          <udt:Indicator>false</udt:Indicator>
+        </ram:ChargeIndicator>
+        <ram:ActualAmount currencyID="EUR">1.00</ram:ActualAmount>
+        <ram:Reason>Sondernachlass</ram:Reason>
+        <ram:CategoryTradeTax>
+          <ram:TypeCode>VAT</ram:TypeCode>
+          <ram:CategoryCode>S</ram:CategoryCode>
+          <ram:ApplicablePercent>19.00</ram:ApplicablePercent>
+        </ram:CategoryTradeTax>
+      </ram:SpecifiedTradeAllowanceCharge>
       <ram:SpecifiedTradePaymentTerms>
         <ram:Description>Zahlbar innerhalb von 20 Tagen (bis zum 05.10.2016) unter Abzug von 3% Skonto (Zahlungsbetrag = 1.766,03 €). Bis zum 29.09.2016 ohne Abzug.</ram:Description>
         <ram:DueDateDateTime>
@@ -179,14 +221,14 @@ class BuilderTest extends TestCase
 </rsm:CrossIndustryDocument>
 
 XML;
-        $doc = new \Easybill\ZUGFeRD\Model\Document(\Easybill\ZUGFeRD\Model\Document::TYPE_COMFORT);
+        $doc = new Document(Document::TYPE_COMFORT);
         $doc->getHeader()
             ->setId('RE1337')
             ->setName('RECHNUNG')
-            ->setDate(new \Easybill\ZUGFeRD\Model\Date(new \DateTime('20130305'), 102))
-            ->addNote(new \Easybill\ZUGFeRD\Model\Note('Test Node 1'))
-            ->addNote(new \Easybill\ZUGFeRD\Model\Note('Test Node 2'))
-            ->addNote(new \Easybill\ZUGFeRD\Model\Note('easybill GmbH
+            ->setDate(new Date(new DateTime('20130305'), 102))
+            ->addNote(new Note('Test Node 1'))
+            ->addNote(new Note('Test Node 2'))
+            ->addNote(new Note('easybill GmbH
             Düsselstr. 21
             41564 Kaarst
             
@@ -197,116 +239,126 @@ XML;
 
         $trade = $doc->getTrade();
 
-        $trade->setDelivery(new \Easybill\ZUGFeRD\Model\Trade\Delivery('20130305', 102));
+        $trade->setDelivery(new Delivery('20130305', 102));
 
         $this->setAgreement($trade);
         $this->setLineItem($trade);
         $this->setSettlement($trade);
 
-        $builder = \Easybill\ZUGFeRD\Builder::create();
+        $builder = Builder::create();
         $xml = $builder->getXML($doc);
 
         $this->assertSame($zugferdXML, $xml);
 
-        \Easybill\ZUGFeRD\SchemaValidator::isValid($xml);
+        SchemaValidator::isValid($xml);
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\Trade $trade
+     * @param Trade $trade
      */
-    private function setAgreement(\Easybill\ZUGFeRD\Model\Trade\Trade $trade)
+    private function setAgreement(Trade $trade)
     {
         $trade->getAgreement()
             ->setBuyerReference('AB-312')
             ->setSeller(
-                new \Easybill\ZUGFeRD\Model\Trade\TradeParty('Lieferant GmbH',
-                    new \Easybill\ZUGFeRD\Model\Address('80333', 'Lieferantenstraße 20', null, 'München', 'DE'),
+                new TradeParty('Lieferant GmbH',
+                    new Address('80333', 'Lieferantenstraße 20', null, 'München', 'DE'),
                     array(
-                        new \Easybill\ZUGFeRD\Model\Trade\Tax\TaxRegistration('FC', '201/113/40209'),
-                        new \Easybill\ZUGFeRD\Model\Trade\Tax\TaxRegistration('VA', 'DE123456789')
+                        new TaxRegistration('FC', '201/113/40209'),
+                        new TaxRegistration('VA', 'DE123456789')
                     )
                 )
             )->setBuyer(
-                new \Easybill\ZUGFeRD\Model\Trade\TradeParty('Kunden AG Mitte',
-                    new \Easybill\ZUGFeRD\Model\Address('69876', 'Hans Muster', 'Kundenstraße 15', 'Frankfurt', 'DE')
+                new TradeParty('Kunden AG Mitte',
+                    new Address('69876', 'Hans Muster', 'Kundenstraße 15', 'Frankfurt', 'DE')
                 )
             );
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\Trade $trade
+     * @param Trade $trade
      */
-    private function setLineItem(\Easybill\ZUGFeRD\Model\Trade\Trade $trade)
+    private function setLineItem(Trade $trade)
     {
-        $tradeAgreement = new \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeAgreement();
+        $tradeAgreement = new SpecifiedTradeAgreement();
 
-        $grossPrice = new \Easybill\ZUGFeRD\Model\Trade\Item\Price(9.90, 'EUR', false);
+        $grossPrice = new Price(9.90, 'EUR', false);
         $grossPrice
-            ->addAllowanceCharge(new \Easybill\ZUGFeRD\Model\AllowanceCharge(false, 1.80));
+            ->addAllowanceCharge(new AllowanceCharge(false, 1.80));
 
         $tradeAgreement->setGrossPrice($grossPrice);
-        $tradeAgreement->setNetPrice(new \Easybill\ZUGFeRD\Model\Trade\Item\Price(9.90, 'EUR', false));
+        $tradeAgreement->setNetPrice(new Price(9.90, 'EUR', false));
 
-        $lineItemTradeTax = new \Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax();
+        $lineItemTradeTax = new TradeTax();
         $lineItemTradeTax->setCode('VAT');
         $lineItemTradeTax->setPercent(19.00);
         $lineItemTradeTax->setCategory('S');
 
-        $lineItemSettlement = new \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeSettlement();
+        $lineItemSettlement = new SpecifiedTradeSettlement();
         $lineItemSettlement
             ->setTradeTax($lineItemTradeTax)
-            ->setMonetarySummation(new \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeMonetarySummation(198.00));
+            ->setMonetarySummation(new SpecifiedTradeMonetarySummation(198.00));
 
-        $lineItem = new \Easybill\ZUGFeRD\Model\Trade\Item\LineItem();
+        $lineItem = new LineItem();
         $lineItem
             ->setTradeAgreement($tradeAgreement)
-            ->setDelivery(new \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeDelivery(new \Easybill\ZUGFeRD\Model\Trade\Item\Quantity('C62', 20.00)))
+            ->setDelivery(new SpecifiedTradeDelivery(new Quantity('C62', 20.00)))
             ->setSettlement($lineItemSettlement)
-            ->setProduct(new \Easybill\ZUGFeRD\Model\Trade\Item\Product('TB100A4', 'Trennblätter A4'))
-            ->setLineDocument(new \Easybill\ZUGFeRD\Model\Trade\Item\LineDocument('1'))
+            ->setProduct(new Product('TB100A4', 'Trennblätter A4'))
+            ->setLineDocument(new LineDocument('1'))
             ->getLineDocument()
-            ->addNote(new \Easybill\ZUGFeRD\Model\Note('Testcontent in einem LineDocument'));
+            ->addNote(new Note('Testcontent in einem LineDocument'));
 
         $trade->addLineItem($lineItem);
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\Trade $trade
+     * @param Trade $trade
      */
-    private function setSettlement(\Easybill\ZUGFeRD\Model\Trade\Trade $trade)
+    private function setSettlement(Trade $trade)
     {
-        $settlement = new \Easybill\ZUGFeRD\Model\Trade\Settlement('2013-471102', 'EUR');
-        $settlement->setPaymentTerms(new \Easybill\ZUGFeRD\Model\Trade\PaymentTerms('Zahlbar innerhalb von 20 Tagen (bis zum 05.10.2016) unter Abzug von 3% Skonto (Zahlungsbetrag = 1.766,03 €). Bis zum 29.09.2016 ohne Abzug.', new \Easybill\ZUGFeRD\Model\Date('20130404')));
+        $settlement = new Settlement('2013-471102', 'EUR');
+        $settlement->setPaymentTerms(new PaymentTerms('Zahlbar innerhalb von 20 Tagen (bis zum 05.10.2016) unter Abzug von 3% Skonto (Zahlungsbetrag = 1.766,03 €). Bis zum 29.09.2016 ohne Abzug.', new Date('20130404')));
 
-        $settlement->setPaymentMeans(new \Easybill\ZUGFeRD\Model\Trade\PaymentMeans());
+        $settlement->setPaymentMeans(new PaymentMeans());
         $settlement->getPaymentMeans()
             ->setCode('31')
             ->setInformation('Überweisung')
-            ->setPayeeAccount(new \Easybill\ZUGFeRD\Model\Trade\CreditorFinancialAccount('DE08700901001234567890', '', ''))
-            ->setPayeeInstitution(new \Easybill\ZUGFeRD\Model\Trade\CreditorFinancialInstitution('GENODEF1M04', '', ''));
+            ->setPayeeAccount(new CreditorFinancialAccount('DE08700901001234567890', '', ''))
+            ->setPayeeInstitution(new CreditorFinancialInstitution('GENODEF1M04', '', ''));
 
-        $tradeTax = new \Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax();
+        $tradeTax = new TradeTax();
         $tradeTax->setCode('VAT');
         $tradeTax->setPercent(7.00);
-        $tradeTax->setBasisAmount(new \Easybill\ZUGFeRD\Model\Trade\Amount(275.00, 'EUR'));
-        $tradeTax->setCalculatedAmount(new \Easybill\ZUGFeRD\Model\Trade\Amount(19.25, 'EUR'));
+        $tradeTax->setBasisAmount(new Amount(275.00, 'EUR'));
+        $tradeTax->setCalculatedAmount(new Amount(19.25, 'EUR'));
 
-        $tradeTax2 = new \Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax();
+        $tradeTax2 = new TradeTax();
         $tradeTax2->setCode('VAT');
         $tradeTax2->setPercent(19.00);
-        $tradeTax2->setBasisAmount(new \Easybill\ZUGFeRD\Model\Trade\Amount(198.00, 'EUR'));
-        $tradeTax2->setCalculatedAmount(new \Easybill\ZUGFeRD\Model\Trade\Amount(37.62, 'EUR'));
+        $tradeTax2->setBasisAmount(new Amount(198.00, 'EUR'));
+        $tradeTax2->setCalculatedAmount(new Amount(37.62, 'EUR'));
 
         $settlement
             ->addTradeTax($tradeTax)
             ->addTradeTax($tradeTax2)
+            ->addAllowanceCharge(
+                (new AllowanceCharge(false, 1, 'EUR', true))
+                ->setReason('Sondernachlass')
+                ->addCategoryTradeTax(
+                    (new TradeTax())
+                    ->setCode('VAT')
+                    ->setCategory('S')
+                    ->setPercent(19)
+                )
+            )
             ->setMonetarySummation(
-                new \Easybill\ZUGFeRD\Model\Trade\MonetarySummation(198.00, 0.00, 0.00, 198.00, 37.62, 235.62, 'EUR')
+                new MonetarySummation(198.00, 0.00, 0.00, 198.00, 37.62, 235.62, 'EUR')
             );
 
-        $billingPeriod = new \Easybill\ZUGFeRD\Model\Trade\BillingPeriod(
-            new \Easybill\ZUGFeRD\Model\Date('20130104'),
-            new \Easybill\ZUGFeRD\Model\Date('20130204')
+        $billingPeriod = new BillingPeriod(
+            new Date('20130104'),
+            new Date('20130204')
         );
         $settlement->setBillingPeriod($billingPeriod);
 
