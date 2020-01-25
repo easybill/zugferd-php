@@ -1,4 +1,6 @@
-<?php namespace Easybill\ZUGFeRD\Model\Trade;
+<?php
+
+namespace Easybill\ZUGFeRD\Model\Trade;
 
 use Easybill\ZUGFeRD\Model\Address;
 use Easybill\ZUGFeRD\Model\Trade\Tax\TaxRegistration;
@@ -9,6 +11,21 @@ use JMS\Serializer\Annotation\XmlList;
 
 class TradeParty
 {
+    /**
+    * @var string
+    * @Type("string")
+    * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+    * @SerializedName("ID")
+    */
+    private $id;
+
+    /**
+     * @var TradePartyGlobalId
+     * @Type("Easybill\ZUGFeRD\Model\Trade\TradePartyGlobalId")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("GlobalID")
+     */
+    private $globalId;
 
     /**
      * @var string
@@ -31,7 +48,7 @@ class TradeParty
      */
     private $taxRegistrations;
 
-    public function __construct($name = '', Address $address, array $taxRegistrations = array())
+    public function __construct($name = '', Address $address, array $taxRegistrations = [])
     {
         $this->name = $name;
         $this->address = $address;
@@ -54,6 +71,7 @@ class TradeParty
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -73,6 +91,7 @@ class TradeParty
     public function setAddress(Address $address)
     {
         $this->address = $address;
+
         return $this;
     }
 
@@ -92,8 +111,47 @@ class TradeParty
     public function addTaxRegistration(TaxRegistration $taxRegistration)
     {
         $this->taxRegistrations[] = $taxRegistration;
+
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
+    /**
+     * @param string $id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * @return \Easybill\ZUGFeRD\Model\Trade\TradePartyGlobalId
+     */
+    public function getGlobalId()
+    {
+        return $this->globalId;
+    }
+
+    /**
+     * @param \Easybill\ZUGFeRD\Model\Trade\TradePartyGlobalId $globalId
+     *
+     * @return self
+     */
+    public function setGlobalId(TradePartyGlobalId $globalId)
+    {
+        $this->globalId = $globalId;
+
+        return $this;
+    }
 }
