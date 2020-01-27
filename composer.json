@@ -1,6 +1,6 @@
 {
   "name": "easybill/zugferd-php",
-  "description": "..",
+  "description": "ZUGFeRD PHP SDK - Convert PHP Objects to XML and back.",
   "keywords": [
     "ZUGFeRD"
   ],
@@ -23,10 +23,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Easybill\\ZUGFeRD\\": "src/Easybill/ZUGFeRD/"
-    },
-    "exclude-from-classmap": [
-      "**/Tests/"
-    ]
+      "Easybill\\ZUGFeRD\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Easybill\\ZUGFeRD\\": "tests/"
+    }
   }
 }
