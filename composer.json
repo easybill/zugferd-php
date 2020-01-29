@@ -23,12 +23,12 @@
   },
   "autoload": {
     "psr-4": {
-      "LubeyAG\\ZUGFeRD\\": "src/"
+      "Easybill\\ZUGFeRD\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "LubeyAG\\ZUGFeRD\\": "tests/"
+      "Easybill\\ZUGFeRD\\": "tests/"
     }
   }
 }
