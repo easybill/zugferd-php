@@ -22,36 +22,37 @@ class Invoice
     const TYPE_EXTENDED = 'EXTENDED';
 
     /**
-     * @Type("Easybill\ZUGFeRD\ModelV2\ExchangedDocumentContext")
+     * @Type("Easybill\ZUGFeRD\ModelV2\DocumentContext")
      * @XmlElement(namespace="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100")
      * @SerializedName("ExchangedDocumentContext")
      */
     private $context;
 
     /**
-     * @Type("Easybill\ZUGFeRD\ModelV2\ExchangedDocument")
+     * @Type("Easybill\ZUGFeRD\ModelV2\Document")
      * @XmlElement(namespace="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100")
      * @SerializedName("ExchangedDocument")
      */
     private $document;
 
-    /**
-     * @var Trade
+   /**
+     * @var Trade\Trade
      * @Type("Easybill\ZUGFeRD\ModelV2\Trade\Trade")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100")
      * @SerializedName("SupplyChainTradeTransaction")
      */
     private $trade;
 
+
     public function __construct($type = self::TYPE_BASIC)
     {
-        $this->context = new ExchangedDocumentContext($type);
-        $this->document = new ExchangedDocument();
-        $this->trade = new Trade();
+        $this->context = new DocumentContext($type);
+        $this->document = new Document();
+    //    $this->trade = new Trade();
     }
 
     /**
-     * @return ExchangedDocumentContext
+     * @return DocumentContext
      */
     public function getContext()
     {
@@ -59,7 +60,7 @@ class Invoice
     }
 
     /**
-     * @return ExchangedDocument
+     * @return Document
      */
     public function getDocument()
     {
@@ -67,7 +68,7 @@ class Invoice
     }
 
     /**
-     * @param ExchangedDocument $document
+     * @param Document $document
      */
     public function setHeader($document)
     {
@@ -75,7 +76,7 @@ class Invoice
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\Trade
+     * @return \Easybill\ZUGFeRD\ModelV2\Trade\Trade
      */
     public function getTrade()
     {
@@ -83,13 +84,14 @@ class Invoice
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\Trade $trade
+     * @param \Easybill\ZUGFeRD\ModelV2\Trade\Trade $trade
      *
      */
     public function setTrade(Trade $trade)
     {
         $this->trade = $trade;
     }
+
 
 
 }

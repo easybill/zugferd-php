@@ -9,8 +9,8 @@ class Date
 
     /**
      * @var DateTime
-     * @Type("Easybill\ZUGFeRD\Model\DateTime")
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15")
+     * @Type("Easybill\ZUGFeRD\ModelV2\DateTime")
+     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100")
      * @SerializedName("DateTimeString")
      */
     private $date;

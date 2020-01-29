@@ -5,28 +5,21 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
-class ExchangedDocument
+class Document
 {
     /**
      * @var string
      * @Type("string")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("ID")
      */
     private $id = '';
 
-    /**
-     * @var string
-     * @Type("string")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("Name")
-     */
-    private $name = '';
 
     /**
      * @var string
      * @Type("string")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("TypeCode")
      */
     private $typeCode = '380';
@@ -34,7 +27,7 @@ class ExchangedDocument
     /**
      * @var DateTime
      * @Type("Easybill\ZUGFeRD\ModelV2\Date")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("IssueDateTime")
      */
     private $date;
@@ -42,7 +35,7 @@ class ExchangedDocument
     /**
      * @var Note[]
      * @Type("array<Easybill\ZUGFeRD\ModelV2\Note>")
-     * @XmlList(inline = true, entry = "IncludedNote", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @XmlList(inline = true, entry = "IncludedNote", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
     private $notes = array();
 
@@ -65,24 +58,6 @@ class ExchangedDocument
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     *
-     * @return self
-     */
-    public function setName($name)
-    {
-        $this->name = (string)$name;
-        return $this;
-    }
 
     /**
      * @return string
