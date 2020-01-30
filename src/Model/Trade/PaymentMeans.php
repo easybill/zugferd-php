@@ -13,7 +13,7 @@ class PaymentMeans
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("TypeCode")
      */
-    private $code = '';
+    private $code;
 
     /**
      *
@@ -22,7 +22,7 @@ class PaymentMeans
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("Information")
      */
-    private $information = '';
+    private $information;
 
     /**
      *
@@ -33,7 +33,6 @@ class PaymentMeans
      */
     private $payeeAccount;
 
-
     /**
      *
      * @var CreditorFinancialInstitution
@@ -43,39 +42,23 @@ class PaymentMeans
      */
     private $payeeInstitution;
 
-    /**
-     * @return string
-     */
-    public function getCode()
+    public function getCode(): ?string
     {
         return $this->code;
     }
 
-    /**
-     * @param string $code
-     *
-     * @return self
-     */
-    public function setCode($code)
+    public function setCode(?string $code): self
     {
         $this->code = $code;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getInformation()
+    public function getInformation(): ?string
     {
         return $this->information;
     }
 
-    /**
-     * @param string $information
-     *
-     * @return self
-     */
-    public function setInformation($information)
+    public function setInformation(?string $information): self
     {
         $this->information = $information;
         return $this;
