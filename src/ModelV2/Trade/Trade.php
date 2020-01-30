@@ -10,6 +10,13 @@ class Trade
 {
 
     /**
+     * @var Trade/LineItem[]
+     * @Type("array<Easybill\ZUGFeRD\ModelV2\Trade\Item\LineItem>")
+     * @XmlList(inline = true, entry = "IncludedSupplyChainTradeLineItem", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     */
+    private $lineItems = array();
+
+    /**
      * @var Trade/Agreement
      * @Type("Easybill\ZUGFeRD\ModelV2\Trade\Agreement")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
@@ -33,12 +40,7 @@ class Trade
      */
     private $settlement;
 
-    /**
-     * @var Trade/LineItem[]
-     * @Type("array<Easybill\ZUGFeRD\ModelV2\Trade\Item\LineItem>")
-     * @XmlList(inline = true, entry = "IncludedSupplyChainTradeLineItem", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     */
-    private $lineItems = array();
+
 
 
     public function __construct()
@@ -118,7 +120,7 @@ class Trade
      *
      * @return self
      */
-    public function addLineItem(LineItem $lineItem)
+    public function addLineItem(Item\LineItem $lineItem)
     {
         $this->lineItems[] = $lineItem;
         return $this;

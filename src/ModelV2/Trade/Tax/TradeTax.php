@@ -36,17 +36,19 @@ class TradeTax
      * @var string
      * @JMS\Type("string")
      * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     * @JMS\SerializedName("ApplicablePercent")
+     * @JMS\SerializedName("CategoryCode")
      */
-    private $percent;
+    private $category;
 
     /**
      * @var string
      * @JMS\Type("string")
      * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     * @JMS\SerializedName("CategoryCode")
+     * @JMS\SerializedName("RateApplicablePercent")
      */
-    private $category;
+    private $percent;
+
+
 
     /**
      * @return Amount

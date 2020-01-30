@@ -20,7 +20,7 @@ class SpecifiedTradeSettlement
      * @var SpecifiedTradeMonetarySummation
      * @Type("Easybill\ZUGFeRD\ModelV2\Trade\Item\SpecifiedTradeMonetarySummation")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     * @SerializedName("SpecifiedTradeSettlementMonetarySummation")
+     * @SerializedName("SpecifiedTradeSettlementLineMonetarySummation")
      */
     private $monetarySummation;
 

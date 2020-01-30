@@ -16,6 +16,14 @@ class LineItem
     private $lineDocument;
 
     /**
+     * @var Product
+     * @Type("Easybill\ZUGFeRD\ModelV2\Trade\Item\Product")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("SpecifiedTradeProduct")
+     */
+
+    private $product;
+    /**
      * @var SpecifiedTradeAgreement
      * @Type("Easybill\ZUGFeRD\ModelV2\Trade\Item\SpecifiedTradeAgreement")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
@@ -39,13 +47,7 @@ class LineItem
      */
     private $settlement;
 
-    /**
-     * @var Product
-     * @Type("Easybill\ZUGFeRD\ModelV2\Trade\Item\Product")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     * @SerializedName("SpecifiedTradeProduct")
-     */
-    private $product;
+
 
     /**
      * @return \Easybill\ZUGFeRD\ModelV2\Trade\Item\LineDocument

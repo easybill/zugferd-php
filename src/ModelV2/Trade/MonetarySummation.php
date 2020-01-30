@@ -68,6 +68,17 @@ class MonetarySummation
     private $grandTotal;
 
     /**
+     * DuePayableAmount.
+     *
+     * @var Amount
+     * @Type("Easybill\ZUGFeRD\ModelV2\Trade\Amount")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("DuePayableAmount")
+     */
+    private $duePayableAmount;
+
+
+    /**
      * MonetarySummation constructor.
      *
      * @param double $lineTotal
@@ -76,6 +87,7 @@ class MonetarySummation
      * @param double $taxBasisTotal
      * @param double $taxTotal
      * @param double $grandTotal
+     * @param double $duePayableAmount
      * @param string $currency
      */
     public function __construct($lineTotal,
@@ -84,6 +96,7 @@ class MonetarySummation
                                 $taxBasisTotal,
                                 $taxTotal,
                                 $grandTotal,
+                                $duePayableAmount,
                                 $currency = 'EUR')
     {
         $this->lineTotal = new Amount($lineTotal, $currency);
@@ -92,6 +105,7 @@ class MonetarySummation
         $this->taxBasisTotal = new Amount($taxBasisTotal, $currency);
         $this->taxTotal = new Amount($taxTotal, $currency);
         $this->grandTotal = new Amount($grandTotal, $currency);
+        $this->duePayableAmount = new Amount($duePayableAmount,$currency);
     }
 
     /**
@@ -188,6 +202,22 @@ class MonetarySummation
     public function setGrandTotal($grandTotal)
     {
         $this->grandTotal = $grandTotal;
+    }
+
+    /**
+     * @return Amount
+     */
+    public function getDuePayableAmount()
+    {
+        return $this->grandTotal;
+    }
+
+    /**
+     * @param Amount $duePayableAmount
+     */
+    public function setDuePayableAmount($duePayableAmount)
+    {
+        $this->duePayableAmount = $duePayableAmount;
     }
 
 }

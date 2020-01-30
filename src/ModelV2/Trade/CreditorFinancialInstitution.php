@@ -17,38 +17,11 @@ class CreditorFinancialInstitution
      */
     private $bic;
 
-    /**
-     * The german 'Bankleitzahl'.
-     *
-     * @var string
-     * @Type("string")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     * @SerializedName("GermanBankleitzahlID")
-     */
-    private $germanBLZ;
 
-    /**
-     * Name of the credit institution.
-     *
-     * @var string
-     * @Type("string")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     * @SerializedName("Name")
-     */
-    private $name;
-
-    /**
-     * CreditorFinancialInstitution constructor.
-     *
-     * @param string $bic
-     * @param string $germanBLZ
-     * @param string $name
-     */
-    public function __construct($bic, $germanBLZ, $name)
+    public function __construct($bic)
     {
         $this->bic = $bic;
-        $this->germanBLZ = $germanBLZ;
-        $this->name = $name;
+
     }
 
     /**
@@ -72,7 +45,7 @@ class CreditorFinancialInstitution
      */
     public function getGermanBLZ()
     {
-        return $this->germanBLZ;
+        // deprecated in v2
     }
 
     /**
@@ -80,7 +53,7 @@ class CreditorFinancialInstitution
      */
     public function setGermanBLZ($germanBLZ)
     {
-        $this->germanBLZ = $germanBLZ;
+        // deprecated in v2
     }
 
     /**
@@ -88,7 +61,7 @@ class CreditorFinancialInstitution
      */
     public function getName()
     {
-        return $this->name;
+        // deprecated in v2
     }
 
     /**
@@ -96,7 +69,7 @@ class CreditorFinancialInstitution
      */
     public function setName($name)
     {
-        $this->name = $name;
+        // deprecated in v2
     }
 
 }
