@@ -1,5 +1,6 @@
 <?php namespace Easybill\ZUGFeRD\ModelV2\Trade;
 
+use Easybill\ZUGFeRD\ModelV2\Date;
 use Easybill\ZUGFeRD\ModelV2\DateTime;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
