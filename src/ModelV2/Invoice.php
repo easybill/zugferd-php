@@ -1,5 +1,6 @@
 <?php namespace Easybill\ZUGFeRD\ModelV2;
 
+use Easybill\ZUGFeRD\ModelV2\Trade\Trade;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
@@ -36,7 +37,7 @@ class Invoice
     private $document;
 
    /**
-     * @var Trade\Trade
+     * @var Trade
      * @Type("Easybill\ZUGFeRD\ModelV2\Trade\Trade")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100")
      * @SerializedName("SupplyChainTradeTransaction")
@@ -48,7 +49,7 @@ class Invoice
     {
         $this->context = new DocumentContext($type);
         $this->document = new Document();
-    //    $this->trade = new Trade();
+        $this->trade = new Trade();
     }
 
     /**
