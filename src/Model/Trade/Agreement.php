@@ -36,7 +36,7 @@ class Agreement
      */
     public function getBuyerReference()
     {
-        return $this->name;
+        return $this->buyerReference;
     }
 
     /**
