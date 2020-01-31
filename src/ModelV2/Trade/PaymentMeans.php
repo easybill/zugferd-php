@@ -3,7 +3,7 @@
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
-
+use JMS\Serializer\Annotation\SkipWhenEmpty;
 
 class PaymentMeans
 {
