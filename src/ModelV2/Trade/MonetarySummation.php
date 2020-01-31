@@ -68,6 +68,15 @@ class MonetarySummation
     private $grandTotal;
 
     /**
+     * TotalPrepaidAmount.
+     *
+     * @var Amount
+     * @Type("Easybill\ZUGFeRD\ModelV2\Trade\Amount")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("TotalPrepaidAmount")
+     */
+    private $totalPrepaidAmount;
+    /**
      * DuePayableAmount.
      *
      * @var Amount

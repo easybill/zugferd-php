@@ -9,7 +9,13 @@ use JMS\Serializer\Annotation\XmlList;
 
 class TradeParty
 {
-
+    /**
+     * @var string
+     * @Type("string")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("ID")
+     */
+    private $id;
     /**
      * @var string
      * @Type("string")
@@ -17,6 +23,13 @@ class TradeParty
      * @SerializedName("Name")
      */
     private $name;
+    /**
+     * @var string
+     * @Type("string")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("Description")
+     */
+    private $description;
     /**
      * @var Address
      * @Type("Easybill\ZUGFeRD\ModelV2\Address")

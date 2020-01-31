@@ -77,6 +77,14 @@ class Settlement
     private $paymentTerms;
 
     /**
+     * @var AccountID
+     * @Type("Easybill\ZUGFeRD\ModelV2\Trade\AccountID")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("ReceivableSpecifiedTradeAccountingAccount")
+     */
+    private $receivableAccount;
+
+    /**
      * Settlement constructor.
      *
      * @param string $paymentReference

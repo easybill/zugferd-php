@@ -4,6 +4,7 @@ use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 
+
 class PaymentMeans
 {
     /**
@@ -19,10 +20,11 @@ class PaymentMeans
      *
      * @var string
      * @Type("string")
+     * @SkipWhenEmpty
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("Information")
      */
-    private $information = '';
+    private $information ;
 
     /**
      *

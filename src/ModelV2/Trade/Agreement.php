@@ -3,6 +3,7 @@
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
+use JMS\Serializer\Annotation\XmlList;
 
 class Agreement
 {
@@ -30,6 +31,28 @@ class Agreement
      * @SerializedName("BuyerTradeParty")
      */
     private $buyer;
+
+    /**
+     * @var ReferencedDocument
+     * @Type("Easybill\ZUGFeRD\ModelV2\Trade\ReferencedDocument")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("SellerOrderReferencedDocument")
+     */
+    private $sellerOrderReferencedDocument;
+
+    /**
+     * @var ReferencedDocument[]
+     * @Type("array<Easybill\ZUGFeRD\ModelV2\Trade\ReferencedDocument>")
+     * @XmlList(inline = true, entry = "AdditionalReferencedDocument", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     */
+    private $additionalReferencedDocuments = array();
+    /**
+     * @var ProcuringProject
+     * @Type("Easybill\ZUGFeRD\ModelV2\Trade\ProcuringProject")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("SpecifiedProcuringProject")
+     */
+    private $procuringProject;
 
     /**
      * @return string
