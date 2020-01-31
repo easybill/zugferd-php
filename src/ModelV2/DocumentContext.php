@@ -25,6 +25,6 @@ class DocumentContext
 
     public function __construct($type)
     {
-        $this->type = new ContextParameterID('urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100:' . strtolower($type));
+        $this->type = new ContextParameterID('urn:cen.eu:en16931:2017');
     }
 }
