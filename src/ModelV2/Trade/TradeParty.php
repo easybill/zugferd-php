@@ -7,8 +7,7 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
-class TradeParty
-{
+class TradeParty {
     /**
      * @var string
      * @Type("string")
@@ -16,6 +15,14 @@ class TradeParty
      * @SerializedName("ID")
      */
     private $id;
+
+    /**
+     * @var string
+     * @Type("string")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("GlobalID")
+     */
+    private $global_id;
     /**
      * @var string
      * @Type("string")
@@ -44,8 +51,7 @@ class TradeParty
      */
     private $taxRegistrations;
 
-    public function __construct($name = '', Address $address, array $taxRegistrations = array())
-    {
+    public function __construct($name = '', Address $address, array $taxRegistrations = array()) {
         $this->name = $name;
         $this->address = $address;
         $this->taxRegistrations = $taxRegistrations;
@@ -54,8 +60,7 @@ class TradeParty
     /**
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -64,17 +69,32 @@ class TradeParty
      *
      * @return self
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGlobalID() {
+        return $this->global_id;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return self
+     */
+    public function setGlobalID($global_id) {
+        $this->global_id = $global_id;
         return $this;
     }
 
     /**
      * @return \Easybill\ZUGFeRD\ModelV2\Address
      */
-    public function getAddress()
-    {
+    public function getAddress() {
         return $this->address;
     }
 
@@ -83,8 +103,7 @@ class TradeParty
      *
      * @return self
      */
-    public function setAddress(Address $address)
-    {
+    public function setAddress(Address $address) {
         $this->address = $address;
         return $this;
     }
@@ -92,8 +111,7 @@ class TradeParty
     /**
      * @return \Easybill\ZUGFeRD\ModelV2\Trade\Tax\TaxRegistration[]
      */
-    public function getTaxRegistrations()
-    {
+    public function getTaxRegistrations() {
         return $this->taxRegistrations;
     }
 
@@ -102,8 +120,7 @@ class TradeParty
      *
      * @return self
      */
-    public function addTaxRegistration(TaxRegistration $taxRegistration)
-    {
+    public function addTaxRegistration(TaxRegistration $taxRegistration) {
         $this->taxRegistrations[] = $taxRegistration;
         return $this;
     }
