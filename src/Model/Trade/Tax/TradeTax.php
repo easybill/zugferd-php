@@ -25,14 +25,6 @@ class TradeTax
     private $code = '';
 
     /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @JMS\SerializedName("ExemptionReason")
-     */
-    private $exemptionReason = '';
-
-    /**
      * @var Amount
      * @JMS\Type("Easybill\ZUGFeRD\Model\Trade\Amount")
      * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
@@ -89,23 +81,6 @@ class TradeTax
     public function setCode($code)
     {
         $this->code = $code;
-        return $this;
-    }
-    /**
-     * @return string
-     */
-    public function getExemptionReason()
-    {
-        return $this->exemptionReason;
-    }
-
-    /**
-     * @param $exemptionReason
-     * @return self
-     */
-    public function setExemptionReason($exemptionReason)
-    {
-        $this->exemptionReason = $exemptionReason;
         return $this;
     }
 
