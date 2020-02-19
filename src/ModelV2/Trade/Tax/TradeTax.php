@@ -30,7 +30,7 @@ class TradeTax
      * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @JMS\SerializedName("ExemptionReason")
      */
-    private $exemptionReason = '';
+    private $exemptionReason ;
 
     /**
      * @var Amount
