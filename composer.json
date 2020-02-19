@@ -1,5 +1,5 @@
 {
-  "name": "lubeyag/zugferd-php",
+  "name": "easybill/zugferd-php",
   "description": "ZUGFeRD PHP SDK - Convert PHP Objects to XML and back.",
   "keywords": [
     "ZUGFeRD"
