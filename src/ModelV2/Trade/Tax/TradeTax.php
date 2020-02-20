@@ -4,7 +4,7 @@ use Easybill\ZUGFeRD\ModelV2\Trade\Amount;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * @JMS\AccessorOrder("custom", custom = {"calculatedAmount", "code", "basisAmount", "category", "percent"})
+ * @JMS\AccessorOrder("custom", custom = {"calculatedAmount", "code", "exemptionReason", "basisAmount", "category", "percent"})
  */
 class TradeTax
 {
