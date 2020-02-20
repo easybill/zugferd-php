@@ -98,6 +98,7 @@ class MonetarySummation
      * @param double $grandTotal
      * @param double $duePayableAmount
      * @param string $currency
+     * @param bool $currency_only_on_tax
      */
     public function __construct($lineTotal,
                                 $chargeTotal,
@@ -106,15 +107,20 @@ class MonetarySummation
                                 $taxTotal,
                                 $grandTotal,
                                 $duePayableAmount,
-                                $currency = 'EUR')
+                                $currency = 'EUR',
+                                $currency_only_on_tax = true)
     {
+        $this->taxTotal = new Amount($taxTotal, $currency);
+        if($currency_only_on_tax) {
+            $currency = null;
+        }
         $this->lineTotal = new Amount($lineTotal, $currency);
         $this->chargeTotal = new Amount($chargeTotal, $currency);
         $this->allowanceTotal = new Amount($allowanceTotal, $currency);
         $this->taxBasisTotal = new Amount($taxBasisTotal, $currency);
-        $this->taxTotal = new Amount($taxTotal, $currency);
         $this->grandTotal = new Amount($grandTotal, $currency);
-        $this->duePayableAmount = new Amount($duePayableAmount,$currency);
+        $this->duePayableAmount = new Amount($duePayableAmount, $currency);
+
     }
 
     /**
