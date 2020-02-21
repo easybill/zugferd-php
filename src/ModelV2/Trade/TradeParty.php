@@ -23,6 +23,7 @@ class TradeParty {
      * @SerializedName("GlobalID")
      */
     private $global_id;
+
     /**
      * @var string
      * @Type("string")
@@ -30,6 +31,7 @@ class TradeParty {
      * @SerializedName("Name")
      */
     private $name;
+
     /**
      * @var string
      * @Type("string")

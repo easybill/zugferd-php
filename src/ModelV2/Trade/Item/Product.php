@@ -48,11 +48,13 @@ class Product
      *
      * @param string $sellerAssignedID
      * @param string $name
+     * @param string $buyerAssignedID
      */
-    public function __construct($sellerAssignedID, $name)
+    public function __construct($sellerAssignedID, $name ,$buyerAssignedID = null)
     {
         $this->sellerAssignedID = $sellerAssignedID;
         $this->name = $name;
+        $this->buyerAssignedID = $buyerAssignedID;
     }
 
     /**

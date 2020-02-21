@@ -23,20 +23,38 @@ class Product
      * @var string
      * @Type("string")
      * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("BuyerAssignedID")
+     */
+    private $buyerAssignedID;
+
+    /**
+     * @var string
+     * @Type("string")
+     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("Name")
      */
     private $name;
+
+    /**
+     * @var string
+     * @Type("string")
+     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("Description")
+     */
+    private $description;
 
     /**
      * Product constructor.
      *
      * @param string $sellerAssignedID
      * @param string $name
+     * @param string $buyerAssignedID
      */
-    public function __construct($sellerAssignedID, $name)
+    public function __construct($sellerAssignedID, $name ,$buyerAssignedID = null)
     {
         $this->sellerAssignedID = $sellerAssignedID;
         $this->name = $name;
+        $this->buyerAssignedID = $buyerAssignedID;
     }
 
     /**

@@ -8,6 +8,14 @@ class Delivery
 {
 
     /**
+     * @var TradeParty
+     * @Type("Easybill\ZUGFeRD\Model\Trade\TradeParty")
+     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("ShipToTradeParty")
+     */
+    private $shipToTradeParty;
+
+    /**
      * @var DeliveryChainEvent
      * @Type("Easybill\ZUGFeRD\Model\Trade\DeliveryChainEvent")
      * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")

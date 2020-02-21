@@ -68,6 +68,26 @@ class MonetarySummation
     private $grandTotal;
 
     /**
+     * TotalPrepaidAmount.
+     *
+     * @var Amount
+     * @Type("Easybill\ZUGFeRD\Model\Trade\Amount")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("TotalPrepaidAmount")
+     */
+    private $totalPrepaidAmount;
+    /**
+     * DuePayableAmount.
+     *
+     * @var Amount
+     * @Type("Easybill\ZUGFeRD\Model\Trade\Amount")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("DuePayableAmount")
+     */
+    private $duePayableAmount;
+
+
+    /**
      * MonetarySummation constructor.
      *
      * @param double $lineTotal
@@ -76,7 +96,9 @@ class MonetarySummation
      * @param double $taxBasisTotal
      * @param double $taxTotal
      * @param double $grandTotal
+     * @param double $duePayableAmount
      * @param string $currency
+     * @param bool $currency_only_on_tax
      */
     public function __construct($lineTotal,
                                 $chargeTotal,
@@ -84,14 +106,21 @@ class MonetarySummation
                                 $taxBasisTotal,
                                 $taxTotal,
                                 $grandTotal,
-                                $currency = 'EUR')
+                                $duePayableAmount,
+                                $currency = 'EUR',
+                                $currency_only_on_tax = true)
     {
+        $this->taxTotal = new Amount($taxTotal, $currency);
+        if($currency_only_on_tax) {
+            $currency = null;
+        }
         $this->lineTotal = new Amount($lineTotal, $currency);
         $this->chargeTotal = new Amount($chargeTotal, $currency);
         $this->allowanceTotal = new Amount($allowanceTotal, $currency);
         $this->taxBasisTotal = new Amount($taxBasisTotal, $currency);
-        $this->taxTotal = new Amount($taxTotal, $currency);
         $this->grandTotal = new Amount($grandTotal, $currency);
+        $this->duePayableAmount = new Amount($duePayableAmount, $currency);
+
     }
 
     /**
@@ -188,6 +217,22 @@ class MonetarySummation
     public function setGrandTotal($grandTotal)
     {
         $this->grandTotal = $grandTotal;
+    }
+
+    /**
+     * @return Amount
+     */
+    public function getDuePayableAmount()
+    {
+        return $this->grandTotal;
+    }
+
+    /**
+     * @param Amount $duePayableAmount
+     */
+    public function setDuePayableAmount($duePayableAmount)
+    {
+        $this->duePayableAmount = $duePayableAmount;
     }
 
 }

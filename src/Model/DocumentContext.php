@@ -10,6 +10,13 @@ class DocumentContext
      * @var \Easybill\ZUGFeRD\Model\ContextParameterID
      * @Type("Easybill\ZUGFeRD\Model\ContextParameterID")
      * @XmlElement(namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("BusinessProcessSpecifiedDocumentContextParameter")
+     */
+
+    private $bp_type;/**
+     * @var \Easybill\ZUGFeRD\Model\ContextParameterID
+     * @Type("Easybill\ZUGFeRD\Model\ContextParameterID")
+     * @XmlElement(namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("GuidelineSpecifiedDocumentContextParameter")
      */
     private $type;
