@@ -1,5 +1,8 @@
-<?php namespace Easybill\ZUGFeRD\Model;
+<?php
 
+namespace Easybill\ZUGFeRD\Model;
+
+use Easybill\ZUGFeRD\Model\Indicator;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
@@ -24,7 +27,19 @@ class DocumentContext
 
     public function __construct($type, $testIndicator = false)
     {
-        $this->type = new ContextParameterID('urn:ferd:CrossIndustryDocument:invoice:1p0:' . strtolower($type));
+        $this->type = new ContextParameterID('urn:ferd:CrossIndustryDocument:invoice:1p0:'.strtolower($type));
         $this->testIndicator = new Indicator($testIndicator);
+    }
+
+    public function getTestIndicator(): Indicator
+    {
+        return $this->testIndicator;
+    }
+
+    public function setTestIndicator($indicator)
+    {
+        $this->testIndicator = $indicator;
+
+        return $this;
     }
 }
