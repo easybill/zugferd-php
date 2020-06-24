@@ -26,6 +26,7 @@ use Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeSettlement;
 use Easybill\ZUGFeRD\Model\Trade\MonetarySummation;
 use Easybill\ZUGFeRD\Model\Trade\PaymentMeans;
 use Easybill\ZUGFeRD\Model\Trade\PaymentTerms;
+use Easybill\ZUGFeRD\Model\Trade\ReferencedDocument;
 use Easybill\ZUGFeRD\Model\Trade\Settlement;
 use Easybill\ZUGFeRD\Model\Trade\Tax\TaxRegistration;
 use Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax;
@@ -74,7 +75,7 @@ class BuilderTest extends TestCase
         $builder = Builder::create();
         $xml = $builder->getXML($doc);
 
-        #file_put_contents(__DIR__ . '/builder.zugferd.xml', $xml);
+        // file_put_contents(__DIR__ . '/builder.zugferd.xml', $xml);
         $this->assertStringEqualsFile(__DIR__ . '/builder.zugferd.xml', $xml);
 
         SchemaValidator::isValid($xml);
@@ -96,7 +97,7 @@ class BuilderTest extends TestCase
                 new TradeParty('Kunden AG Mitte',
                     new Address('69876', 'Hans Muster', 'Kundenstraße 15', 'Frankfurt', 'DE')
                 )
-            );
+            )->setBuyerOrder(new ReferencedDocument('0234587234'));
     }
 
     private function setLineItem(Trade $trade): void
