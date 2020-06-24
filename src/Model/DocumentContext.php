@@ -25,6 +25,8 @@ class DocumentContext
     public function __construct($type, bool $testIndicator = false)
     {
         $this->type = new ContextParameterID('urn:ferd:CrossIndustryDocument:invoice:1p0:' . strtolower($type));
-        $this->testIndicator = new Indicator($testIndicator);
+        if ($testIndicator) {
+            $this->testIndicator = new Indicator($testIndicator);
+        }
     }
 }
