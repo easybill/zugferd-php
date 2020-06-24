@@ -57,6 +57,9 @@
                     <ram:CountryID>DE</ram:CountryID>
                 </ram:PostalTradeAddress>
             </ram:BuyerTradeParty>
+            <ram:BuyerOrderReferencedDocument>
+                <ram:ID>0234587234</ram:ID>
+            </ram:BuyerOrderReferencedDocument>
         </ram:ApplicableSupplyChainTradeAgreement>
         <ram:ApplicableSupplyChainTradeDelivery>
             <ram:ActualDeliverySupplyChainEvent>

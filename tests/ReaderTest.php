@@ -123,6 +123,8 @@ class ReaderTest extends TestCase
         $this->assertSame('Kundenstraße 15', $buyerAddress->getLineTwo());
         $this->assertSame('DE', $buyerAddress->getCountryCode());
         $this->assertEmpty($buyer->getTaxRegistrations());
+
+        $this->assertSame('0234587234', $agreement->getBuyerOrder()->getId());
     }
 
     private function checkTradeSettlement(Settlement $settlement): void

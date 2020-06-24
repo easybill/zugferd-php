@@ -32,6 +32,14 @@ class Agreement
     private $buyer;
 
     /**
+     * @var ReferencedDocument
+     * @Type("Easybill\ZUGFeRD\Model\Trade\ReferencedDocument")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("BuyerOrderReferencedDocument")
+     */
+    private $buyerOrder;
+
+    /**
      * @return string
      */
     public function getBuyerReference()
@@ -88,5 +96,22 @@ class Agreement
         return $this;
     }
 
+    /**
+     * @return \Easybill\ZUGFeRD\Model\Trade\ReferencedDocument
+     */
+    public function getBuyerOrder()
+    {
+        return $this->buyerOrder;
+    }
+
+    /**
+     * @param \Easybill\ZUGFeRD\Model\Trade\ReferencedDocument $buyerOrder
+     * @return Agreement
+     */
+    public function setBuyerOrder(ReferencedDocument $buyerOrder)
+    {
+        $this->buyerOrder = $buyerOrder;
+        return $this;
+    }
 
 }
