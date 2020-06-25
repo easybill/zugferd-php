@@ -1,0 +1,43 @@
+﻿<!--?xml version="1.0" encoding="UTF-8"?-->
+<validation filename="builder.created.zugferd2.1-BASIC.xml" datetime="2020-06-06 09:28:15">
+    <xml>
+        <info>
+            <version>2</version>
+            <profile>urn:cen.eu:en16931:2017#compliant#urn:factur-x.eu:1p0:basic</profile>
+            <validator version="0.9.1-SNAPSHOT"></validator>
+            <rules>
+                <fired>127</fired>
+                <failed>4</failed>
+            </rules>
+            <duration unit="ms">6621</duration>
+        </info>
+        <messages>
+            <error type="4"
+                   location="/*[local-name()='CrossIndustryInvoice' and namespace-uri()='urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100']/*[local-name()='SupplyChainTradeTransaction' and namespace-uri()='urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100']/*[local-name()='ApplicableHeaderTradeSettlement' and namespace-uri()='urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100']/*[local-name()='SpecifiedTradeSettlementHeaderMonetarySummation' and namespace-uri()='urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100']"
+                   criterion="(ram:GrandTotalAmount = round(ram:TaxBasisTotalAmount*100 + ram:TaxTotalAmount[@currencyID=/rsm:CrossIndustryInvoice/rsm:SupplyChainTradeTransaction/ram:ApplicableHeaderTradeSettlement/ram:InvoiceCurrencyCode]*100 +0) div 100) or ((ram:GrandTotalAmount = ram:TaxBasisTotalAmount) and not (ram:TaxTotalAmount[@currencyID=/rsm:CrossIndustryInvoice/rsm:SupplyChainTradeTransaction/ram:ApplicableHeaderTradeSettlement/ram:InvoiceCurrencyCode]))">
+                Invoice total amount with VAT (BT-112) = Invoice total amount without VAT (BT-109) + Invoice total VAT
+                amount (BT-110).
+            </error>
+            <error type="24"
+                   location="/*:CrossIndustryInvoice[namespace-uri()='urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100'][1]/*:SupplyChainTradeTransaction[namespace-uri()='urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100'][1]/*:ApplicableHeaderTradeSettlement[namespace-uri()='urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100'][1]/*:SpecifiedTradeSettlementHeaderMonetarySummation[namespace-uri()='urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100'][1]"
+                   criterion="(ram:GrandTotalAmount = round( ram:TaxBasisTotalAmount*100 + ram:TaxTotalAmount[@currencyID=/rsm:CrossIndustryInvoice/rsm:SupplyChainTradeTransaction/ram:ApplicableHeaderTradeSettlement/ram:InvoiceCurrencyCode]*100 +0) div 100) or ((ram:GrandTotalAmount = ram:TaxBasisTotalAmount) and not (ram:TaxTotalAmount[@currencyID=/rsm:CrossIndustryInvoice/rsm:SupplyChainTradeTransaction/ram:ApplicableHeaderTradeSettlement/ram:InvoiceCurrencyCode]))">
+                [BR-CO-15]-Invoice total amount with VAT (BT-112) = Invoice total amount without VAT (BT-109) + Invoice
+                total VAT amount (BT-110).
+            </error>
+            <notice type="27"
+                    location="/*:CrossIndustryInvoice[namespace-uri()='urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100'][1]/*:ExchangedDocumentContext[namespace-uri()='urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100'][1]"
+                    criterion="ram:GuidelineSpecifiedDocumentContextParameter/ram:ID = 'urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_1.2'">
+                [BR-DE-21] Das Element "Specification identifier" (BT-24) soll syntaktisch der Kennung des Standards
+                XRechnung entsprechen.
+            </notice>
+            <notice type="27"
+                    location="/*:CrossIndustryInvoice[namespace-uri()='urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100'][1]/*:SupplyChainTradeTransaction[namespace-uri()='urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100'][1]/*:ApplicableHeaderTradeAgreement[namespace-uri()='urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100'][1]/*:SellerTradeParty[namespace-uri()='urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100'][1]"
+                    criterion="ram:DefinedTradeContact">[BR-DE-2] Die Gruppe "SELLER CONTACT" (BG-6) muss übermittelt
+                werden.
+            </notice>
+        </messages>
+        <summary status="invalid"></summary>
+    </xml>
+    <messages></messages>
+    <summary status="invalid"></summary>
+</validation>

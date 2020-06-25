@@ -3,3 +3,4 @@ vendor
 .DS_Store
 zugferd10
 .phpunit.result.cache
+/composer.lock
