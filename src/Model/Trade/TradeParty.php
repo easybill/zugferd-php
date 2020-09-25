@@ -6,10 +6,24 @@ use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
+use Easybill\ZUGFeRD\Model\Schema;
 
 class TradeParty
 {
-
+    /**
+     * @var string
+     * @Type("string")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("ID")
+     */
+    private $id;
+    /**
+     * @var TradePartyGlobalId
+     * @Type("Easybill\ZUGFeRD\Model\Schema")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("GlobalID")
+     */
+    private $globalId;
     /**
      * @var string
      * @Type("string")
@@ -36,6 +50,44 @@ class TradeParty
         $this->name = $name;
         $this->address = $address;
         $this->taxRegistrations = $taxRegistrations;
+    }
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param string $id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+    /**
+     * @return \Easybill\ZUGFeRD\Model\Schema
+     */
+    public function getGlobalId()
+    {
+        return $this->globalId;
+    }
+
+    /**
+     * @param string $globalId
+     *
+     * @return self
+     */
+    public function setGlobalId($globalId)
+    {
+        $this->globalId = new Schema("0088", $globalId);
+        return $this;
     }
 
     /**
@@ -94,6 +146,4 @@ class TradeParty
         $this->taxRegistrations[] = $taxRegistration;
         return $this;
     }
-
-
 }

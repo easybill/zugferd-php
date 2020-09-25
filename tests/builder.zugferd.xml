@@ -33,6 +33,8 @@
     <ram:ApplicableSupplyChainTradeAgreement>
       <ram:BuyerReference>AB-312</ram:BuyerReference>
       <ram:SellerTradeParty>
+        <ram:ID>ID576</ram:ID>
+        <ram:GlobalID schemeID="0088">AZ327</ram:GlobalID>
         <ram:Name>Lieferant GmbH</ram:Name>
         <ram:PostalTradeAddress>
           <ram:PostcodeCode>80333</ram:PostcodeCode>
