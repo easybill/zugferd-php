@@ -14,7 +14,7 @@
     }
   ],
   "require": {
-    "php": "^7.2",
+    "php": "^7.3",
     "jms/serializer": "^3.4",
     "ext-dom": "*"
   },
@@ -23,12 +23,14 @@
   },
   "autoload": {
     "psr-4": {
-      "Easybill\\ZUGFeRD\\": "src/"
+      "Easybill\\ZUGFeRD\\": "src/zugferd10",
+      "Easybill\\ZUGFeRD211\\": "src/zugferd211"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Easybill\\ZUGFeRD\\": "tests/"
+      "Easybill\\ZUGFeRD\\": "tests/zugferd10",
+      "Easybill\\ZUGFeRD211\\": "tests/zugferd211"
     }
   }
 }
