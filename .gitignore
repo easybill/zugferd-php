@@ -5,3 +5,4 @@ vendor
 /zugferd20
 /zugferd211de
 .phpunit.result.cache
+.php_cs.cache

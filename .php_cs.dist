@@ -1,0 +1,35 @@
+<?php
+
+return PhpCsFixer\Config::create()
+    ->setRiskyAllowed(false)
+    ->setRules([
+        '@PSR2' => true,
+        '@Symfony' => true,
+        '@PhpCsFixer' => true,
+        'array_syntax' => ['syntax' => 'short'],
+        'cast_spaces' => ['space' => 'none'],
+        'concat_space' => ['spacing' => 'one'],
+        'yoda_style' => null,
+        'ordered_class_elements' => null,
+        'ordered_imports' => null,
+        //'method_argument_space' => null,
+        //'no_whitespace_in_blank_line' => null,
+        //'no_extra_blank_lines' => null,
+        //'braces' => null,
+        'blank_line_before_statement' => null,
+        'phpdoc_align' => ['align' => 'left'],
+        'phpdoc_var_without_name' => null,
+        'phpdoc_types_order' => null,
+        'phpdoc_order' => null,
+        'phpdoc_separation' => null,
+        //'no_superfluous_elseif' => null,
+        'class_definition' => null,
+        'ternary_to_null_coalescing' => true,
+        'php_unit_test_class_requires_covers' => false,
+        'php_unit_internal_class' => false,
+    ])
+    ->setFinder(
+        PhpCsFixer\Finder::create()
+            ->in(__DIR__ . '/src')
+    )
+;
