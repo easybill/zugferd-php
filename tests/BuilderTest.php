@@ -32,6 +32,7 @@ use Easybill\ZUGFeRD\Model\Trade\Tax\TaxRegistration;
 use Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax;
 use Easybill\ZUGFeRD\Model\Trade\Trade;
 use Easybill\ZUGFeRD\Model\Trade\TradeParty;
+use Easybill\ZUGFeRD\Model\Schema;
 use Easybill\ZUGFeRD\SchemaValidator;
 use PHPUnit\Framework\TestCase;
 
@@ -83,21 +84,28 @@ class BuilderTest extends TestCase
 
     private function setAgreement(Trade $trade): void
     {
-        $trade->getAgreement()
-            ->setBuyerReference('AB-312')
-            ->setSeller(
-                new TradeParty('Lieferant GmbH',
-                    new Address('80333', 'Lieferantenstraße 20', null, 'München', 'DE'),
-                    [
+        $seller = new TradeParty(
+            'Lieferant GmbH',
+            new Address('80333', 'Lieferantenstraße 20', null, 'München', 'DE'),
+            [
                         new TaxRegistration('FC', '201/113/40209'),
                         new TaxRegistration('VA', 'DE123456789'),
                     ]
-                )
-            )->setBuyer(
-                new TradeParty('Kunden AG Mitte',
-                    new Address('69876', 'Hans Muster', 'Kundenstraße 15', 'Frankfurt', 'DE')
-                )
-            )->setBuyerOrder(new ReferencedDocument('0234587234'));
+        );
+        $seller->setId("ID576");
+        $seller->setGlobalId("AZ327");
+
+
+        $buyer = new TradeParty(
+            'Kunden AG Mitte',
+            new Address('69876', 'Hans Muster', 'Kundenstraße 15', 'Frankfurt', 'DE')
+        );
+        
+        $trade->getAgreement()
+            ->setBuyerReference('AB-312')
+            ->setSeller($seller)
+            ->setBuyer($buyer)
+        ->setBuyerOrder(new ReferencedDocument('0234587234'));
     }
 
     private function setLineItem(Trade $trade): void
@@ -183,5 +191,4 @@ class BuilderTest extends TestCase
 
         $trade->setSettlement($settlement);
     }
-
 }
