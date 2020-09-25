@@ -26,7 +26,23 @@ class DocumentContext
     {
         $this->type = new ContextParameterID('urn:ferd:CrossIndustryDocument:invoice:1p0:' . strtolower($type));
         if ($testIndicator) {
-            $this->testIndicator = new Indicator($testIndicator);
+            $this->setTestIndicator($testIndicator);
         }
+    }
+
+    /**
+    * @return null|Indicator
+    */
+    public function getTestIndicator()
+    {
+        return $this->testIndicator;
+    }
+
+    /**
+     * @param bool $bool
+     */
+    public function setTestIndicator(bool $bool)
+    {
+        $this->testIndicator = new Indicator($bool);
     }
 }

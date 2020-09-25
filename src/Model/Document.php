@@ -44,9 +44,9 @@ class Document
      */
     private $trade;
 
-    public function __construct($type = self::TYPE_BASIC)
+    public function __construct($type = self::TYPE_BASIC, $testIndicator = false)
     {
-        $this->context = new DocumentContext($type);
+        $this->context = new DocumentContext($type, $testIndicator);
         $this->header = new Header();
         $this->trade = new Trade();
     }
@@ -91,6 +91,4 @@ class Document
     {
         $this->trade = $trade;
     }
-
-
 }
