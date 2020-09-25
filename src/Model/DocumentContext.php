@@ -31,7 +31,7 @@ class DocumentContext
     }
 
     /**
-    * @return Indicator
+    * @return null|Indicator
     */
     public function getTestIndicator()
     {
