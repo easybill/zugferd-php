@@ -93,7 +93,7 @@ class BuilderTest extends TestCase
                     ]
         );
         $seller->setId("ID576");
-        $seller->setGlobalId("AZ327");
+        $seller->setGlobalId(new Schema("0088", "AZ327"));
 
 
         $buyer = new TradeParty(
