@@ -80,13 +80,13 @@ class TradeParty
     }
 
     /**
-     * @param string $globalId
+     * @param Schema $schema
      *
      * @return self
      */
-    public function setGlobalId($globalId)
+    public function setGlobalId(Schema $schema)
     {
-        $this->globalId = new Schema("0088", $globalId);
+        $this->globalId = $schema;
         return $this;
     }
 
