@@ -9,3 +9,9 @@ test:
 
 test73:
 	docker run --rm -v $(current_dir):/app -w /app php:7.3 vendor/bin/phpunit
+
+test74:
+	docker run --rm -v $(current_dir):/app -w /app php:7.4 vendor/bin/phpunit
+
+cs-fix:
+	./vendor/bin/php-cs-fixer fix ./src --config .php_cs.dist
