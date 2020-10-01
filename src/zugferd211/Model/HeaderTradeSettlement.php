@@ -18,6 +18,14 @@ class HeaderTradeSettlement
     public $currency;
 
     /**
+     * @var TradeSettlementPaymentMeans
+     * @Type("Easybill\ZUGFeRD211\Model\TradeSettlementPaymentMeans")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("SpecifiedTradeSettlementPaymentMeans")
+     */
+    public $specifiedTradeSettlementPaymentMeans;
+
+    /**
      * @var TradeTax[]
      * @Type("array<Easybill\ZUGFeRD211\Model\TradeTax>")
      * @XmlList(inline = true, entry = "ApplicableTradeTax", namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
@@ -39,5 +47,4 @@ class HeaderTradeSettlement
      * @SerializedName("SpecifiedTradeSettlementHeaderMonetarySummation")
      */
     public $specifiedTradeSettlementHeaderMonetarySummation;
-
 }

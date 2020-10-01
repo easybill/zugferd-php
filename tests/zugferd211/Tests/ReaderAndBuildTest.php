@@ -29,9 +29,10 @@ class ReaderAndBuildTest extends TestCase
         AnnotationRegistry::registerLoader('class_exists');
     }
 
-    public function testGetDocument(): void
+    /** @dataProvider dataProvider */
+    public function testGetDocument(string $filename): void
     {
-        $xml = file_get_contents(__DIR__ . '/zugferd_2p1_BASIC-WL_Einfach.xml');
+        $xml = file_get_contents(__DIR__ . '/official_example_xml/' . $filename);
         $obj = Reader::create()->transform($xml);
         $str = Builder::create()->transform($obj);
 
@@ -41,5 +42,14 @@ class ReaderAndBuildTest extends TestCase
         );
 
         self::assertTrue(true);
+    }
+
+    public function dataProvider()
+    {
+        return [
+            ['zugferd_2p1_BASIC-WL_Einfach.xml'],
+            ['zugferd_2p1_EN16931_Einfach.xml'],
+            ['zugferd_2p1_XRECHNUNG_Einfach.xml'],
+        ];
     }
 }
