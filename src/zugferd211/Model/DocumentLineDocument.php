@@ -14,5 +14,5 @@ class DocumentLineDocument
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("LineID")
      */
-    private $lineId;
+    public $lineId;
 }

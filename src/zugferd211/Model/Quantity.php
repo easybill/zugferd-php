@@ -15,12 +15,12 @@ class Quantity
      * @XmlAttribute
      * @SerializedName("unitCode")
      */
-    private $unitCode;
+    public $unitCode;
 
     /**
      * @var string
      * @Type("string")
      * @XmlValue(cdata = false)
      */
-    private $value;
+    public $value;
 }
