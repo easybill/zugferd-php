@@ -2,26 +2,24 @@
 
 namespace Easybill\ZUGFeRD211\Model;
 
-use Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
+use JMS\Serializer\Annotation\XmlList;
 
 class LineTradeSettlement
 {
     /**
-     * @var TradeTax
-     * @Type("Easybill\ZUGFeRD211\Model\TradeTax")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     * @SerializedName("ApplicableTradeTax")
+     * @var TradeTax[]
+     * @Type("array<Easybill\ZUGFeRD211\Model\TradeTax>")
+     * @XmlList(inline = true, entry = "ApplicableTradeTax", namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
-    public $tradeTax;
+    public array $tradeTax = [];
 
     /**
-     * @var TradeSettlementLineMonetarySummation
      * @Type("Easybill\ZUGFeRD211\Model\TradeSettlementLineMonetarySummation")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("SpecifiedTradeSettlementLineMonetarySummation")
      */
-    public $monetarySummation;
+    public TradeSettlementLineMonetarySummation $monetarySummation;
 }

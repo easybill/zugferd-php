@@ -9,43 +9,38 @@ use JMS\Serializer\Annotation\XmlElement;
 class Address
 {
     /**
-     * @var string
      * @Type("string")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("PostcodeCode")
      */
-    public $postcode;
+    public ?string $postcode = null;
 
     /**
-     * @var string
      * @Type("string")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("LineOne")
      */
-    public $lineOne;
+    public ?string $lineOne = null;
 
     /**
-     * @var string
      * @Type("string")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("LineTwo")
      */
-    public $lineTwo;
+    public ?string $lineTwo = null;
 
     /**
-     * @var string
      * @Type("string")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("CityName")
      */
-    public $city;
+    public ?string $city = null;
 
     /**
-     * @var string
      * @Type("string")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("CountryID")
      */
-    public $countryCode;
+    public ?string $countryCode = null;
 
 }

@@ -9,19 +9,17 @@ use JMS\Serializer\Annotation\XmlElement;
 class LineTradeAgreement
 {
     /**
-     * @var TradePrice
      * @Type("Easybill\ZUGFeRD211\Model\TradePrice")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("GrossPriceProductTradePrice")
      */
-    public $grossPrice;
+    public ?TradePrice $grossPrice = null;
 
     /**
-     * @var TradePrice
      * @Type("Easybill\ZUGFeRD211\Model\TradePrice")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("NetPriceProductTradePrice")
      */
-    public $netPrice;
+    public TradePrice $netPrice;
 
 }

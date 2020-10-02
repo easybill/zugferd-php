@@ -8,50 +8,45 @@ use JMS\Serializer\Annotation\XmlList;
 class TradeParty
 {
     /**
-     * @var Id
      * @Type("Easybill\ZUGFeRD211\Model\Id")
      * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("ID")
      */
-    public $id = null;
+    public ?Id $id = null;
 
     /**
-     * @var Id
-     * @Type("Easybill\ZUGFeRD211\Model\Id")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     * @SerializedName("GlobalID")
+     * @var Id[]
+     * @Type("array<Easybill\ZUGFeRD211\Model\Id>")
+     * @XmlList(inline = true, entry = "GlobalID", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
-    public $globalID = null;
+    public array $globalID = [];
 
     /**
-     * @var string
      * @Type("string")
      * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("Name")
      */
-    public $name;
+    public string $name;
 
     /**
-     * @var TradeContact
      * @Type("Easybill\ZUGFeRD211\Model\TradeContact")
      * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("DefinedTradeContact")
      */
-    public $definedTradeContact;
+    public ?TradeContact $definedTradeContact = null;
 
     /**
-     * @var Address
      * @Type("Easybill\ZUGFeRD211\Model\Address")
      * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("PostalTradeAddress")
      */
-    public $postalTradeAddress;
+    public ?Address $postalTradeAddress = null;
 
     /**
      * @var TaxRegistration[]
      * @Type("array<Easybill\ZUGFeRD211\Model\TaxRegistration>")
      * @XmlList(inline=true, entry="SpecifiedTaxRegistration", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
-    public $taxRegistrations;
+    public $taxRegistrations = [];
 
 }

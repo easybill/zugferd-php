@@ -9,10 +9,16 @@ use JMS\Serializer\Annotation\XmlElement;
 class DocumentContextParameter
 {
     /**
-     * @var string
      * @Type("string")
      * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("ID")
      */
-    public $id;
+    public string $id;
+
+    public static function create(string $id): self
+    {
+        $self = new self();
+        $self->id = $id;
+        return $self;
+    }
 }

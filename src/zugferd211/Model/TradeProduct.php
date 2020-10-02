@@ -9,26 +9,23 @@ use JMS\Serializer\Annotation\XmlElement;
 class TradeProduct
 {
     /**
-     * @var string
      * @Type("Easybill\ZUGFeRD211\Model\Id")
      * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("GlobalID")
      */
-    public $globalID = null;
+    public ?Id $globalID = null;
 
     /**
-     * @var string
      * @Type("string")
      * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("SellerAssignedID")
      */
-    public $sellerAssignedID = null;
+    public ?string $sellerAssignedID = null;
 
     /**
-     * @var string
      * @Type("string")
      * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("Name")
      */
-    public $name;
+    public string $name;
 }

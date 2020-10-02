@@ -9,34 +9,30 @@ use JMS\Serializer\Annotation\XmlElement;
 class TradeContact
 {
     /**
-     * @var string
      * @Type("string")
      * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("PersonName")
      */
-    public $personName;
+    public ?string $personName = null;
 
     /**
-     * @var string
      * @Type("string")
      * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("DepartmentName")
      */
-    public $departmentName;
+    public ?string $departmentName = null;
 
     /**
-     * @var UniversalCommunication
      * @Type("Easybill\ZUGFeRD211\Model\UniversalCommunication")
      * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("TelephoneUniversalCommunication")
      */
-    public $telephoneUniversalCommunication;
+    public ?UniversalCommunication $telephoneUniversalCommunication = null;
 
     /**
-     * @var UniversalCommunication
      * @Type("Easybill\ZUGFeRD211\Model\UniversalCommunication")
      * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("EmailURIUniversalCommunication")
      */
-    public $emailURIUniversalCommunication;
+    public ?UniversalCommunication $emailURIUniversalCommunication = null;
 }

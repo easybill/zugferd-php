@@ -9,34 +9,30 @@ use JMS\Serializer\Annotation\XmlElement;
 class TradeSettlementPaymentMeans
 {
     /**
-     * @var string
      * @Type("string")
      * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("TypeCode")
      */
-    public $typeCode;
+    public string $typeCode;
 
     /**
-     * @var string
      * @Type("string")
      * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("Information")
      */
-    public $information;
+    public ?string $information = null;
 
     /**
-     * @var CreditorFinancialAccountType
-     * @Type("Easybill\ZUGFeRD211\Model\CreditorFinancialAccountType")
+     * @Type("Easybill\ZUGFeRD211\Model\CreditorFinancialAccount")
      * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("PayeePartyCreditorFinancialAccount")
      */
-    public $payeePartyCreditorFinancialAccount;
+    public ?CreditorFinancialAccount $payeePartyCreditorFinancialAccount = null;
 
     /**
-     * @var CreditorFinancialInstitution
      * @Type("Easybill\ZUGFeRD211\Model\CreditorFinancialInstitution")
      * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("PayeeSpecifiedCreditorFinancialInstitution")
      */
-    public $payeeSpecifiedCreditorFinancialInstitution;
+    public ?CreditorFinancialInstitution $payeeSpecifiedCreditorFinancialInstitution = null;
 }

@@ -9,26 +9,23 @@ use JMS\Serializer\Annotation\XmlElement;
 class HeaderTradeAgreement
 {
     /**
-     * @var string
      * @Type("string")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("BuyerReference")
      */
-    public $buyerReference;
+    public ?string $buyerReference = null;
 
     /**
-     * @var TradeParty
      * @Type("Easybill\ZUGFeRD211\Model\TradeParty")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("SellerTradeParty")
      */
-    public $sellerTradeParty;
+    public TradeParty $sellerTradeParty;
 
     /**
-     * @var TradeParty
      * @Type("Easybill\ZUGFeRD211\Model\TradeParty")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("BuyerTradeParty")
      */
-    public $buyerTradeParty;
+    public TradeParty $buyerTradeParty;
 }

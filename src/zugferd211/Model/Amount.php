@@ -10,19 +10,23 @@ use JMS\Serializer\Annotation\XmlValue;
 class Amount
 {
     /**
-     * @var string
      * @Type("string")
      * @XmlValue(cdata = false)
      */
-    public $value;
+    public string $value;
 
     /**
-     * @var string
      * @Type("string")
      * @XmlAttribute
      * @SerializedName("currencyID")
      */
-    public $currency;
+    public ?string $currency = null;
 
-
+    public static function create(string $amount, string $currency): self
+    {
+        $self = new self();
+        $self->value = $amount;
+        $self->currency = $currency;
+        return $self;
+    }
 }

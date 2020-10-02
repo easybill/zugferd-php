@@ -23,4 +23,12 @@ class Id
      * @XmlValue(cdata = false)
      */
     public $value;
+
+    public static function create(string $id, ?string $schemeID = null): self
+    {
+        $self = new self();
+        $self->value = $id;
+        $self->schemeID = $schemeID;
+        return $self;
+    }
 }
