@@ -52,22 +52,18 @@ class BuilderTest extends TestCase
         $invoice->exchangedDocument->id = '471102';
         $invoice->exchangedDocument->issueDateTime = DateTime::create(102, '20180305');
         $invoice->exchangedDocument->typeCode = '380';
-        $invoice->exchangedDocument->notes[] = $documentNote1 = new Note();
-        $documentNote1->content = 'Rechnung gemäß Bestellung vom 01.03.2018.';
-        $invoice->exchangedDocument->notes[] = $documentNote2 = new Note();
-        $documentNote2->content = 'Lieferant GmbH				
+        $invoice->exchangedDocument->notes[] = Note::create('Rechnung gemäß Bestellung vom 01.03.2018.');
+        $invoice->exchangedDocument->notes[] = Note::create('Lieferant GmbH				
 Lieferantenstraße 20				
 80333 München				
 Deutschland				
 Geschäftsführer: Hans Muster
 Handelsregisternummer: H A 123
-      ';
-        $documentNote2->subjectCode = 'REG';
+      ', 'REG');
 
         $invoice->supplyChainTradeTransaction = new SupplyChainTradeTransaction();
         $invoice->supplyChainTradeTransaction->lineItems[] = $item1 = new SupplyChainTradeLineItem();
-        $item1->associatedDocumentLineDocument = new DocumentLineDocument();
-        $item1->associatedDocumentLineDocument->lineId = '1';
+        $item1->associatedDocumentLineDocument = DocumentLineDocument::create('1');
 
         $item1->specifiedTradeProduct = new TradeProduct();
         $item1->specifiedTradeProduct->name = 'Trennblätter A4';
@@ -75,10 +71,8 @@ Handelsregisternummer: H A 123
         $item1->specifiedTradeProduct->globalID = Id::create('4012345001235', '0160');
 
         $item1->tradeAgreement = new LineTradeAgreement();
-        $item1->tradeAgreement->netPrice = new TradePrice();
-        $item1->tradeAgreement->netPrice->chargeAmount = Amount::create('9.9000');
-        $item1->tradeAgreement->grossPrice = new TradePrice();
-        $item1->tradeAgreement->grossPrice->chargeAmount = Amount::create('9.9000');
+        $item1->tradeAgreement->netPrice = TradePrice::create('9.9000');
+        $item1->tradeAgreement->grossPrice = TradePrice::create('9.9000');
 
         $item1->delivery = new LineTradeDelivery();
         $item1->delivery->billedQuantity = Quantity::create('20.0000', 'H87');
@@ -89,12 +83,10 @@ Handelsregisternummer: H A 123
         $item1tax->categoryCode = 'S';
         $item1tax->rateApplicablePercent = '19.00';
 
-        $item1->specifiedLineTradeSettlement->monetarySummation = new TradeSettlementLineMonetarySummation();
-        $item1->specifiedLineTradeSettlement->monetarySummation->totalAmount = Amount::create('198.00');
+        $item1->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('198.00');
 
         $invoice->supplyChainTradeTransaction->lineItems[] = $item2 = new SupplyChainTradeLineItem();
-        $item2->associatedDocumentLineDocument = new DocumentLineDocument();
-        $item2->associatedDocumentLineDocument->lineId = '2';
+        $item2->associatedDocumentLineDocument = DocumentLineDocument::create('2');
 
         $item2->specifiedTradeProduct = new TradeProduct();
         $item2->specifiedTradeProduct->name = 'Joghurt Banane';
@@ -102,10 +94,8 @@ Handelsregisternummer: H A 123
         $item2->specifiedTradeProduct->globalID = Id::create('4000050986428', '0160');
 
         $item2->tradeAgreement = new LineTradeAgreement();
-        $item2->tradeAgreement->netPrice = new TradePrice();
-        $item2->tradeAgreement->netPrice->chargeAmount = Amount::create('5.5000');
-        $item2->tradeAgreement->grossPrice = new TradePrice();
-        $item2->tradeAgreement->grossPrice->chargeAmount = Amount::create('5.5000');
+        $item2->tradeAgreement->netPrice = TradePrice::create('5.5000');
+        $item2->tradeAgreement->grossPrice = TradePrice::create('5.5000');
 
         $item2->delivery = new LineTradeDelivery();
         $item2->delivery->billedQuantity = Quantity::create('50.0000', 'H87');
@@ -116,8 +106,7 @@ Handelsregisternummer: H A 123
         $item2tax->categoryCode = 'S';
         $item2tax->rateApplicablePercent = '7.00';
 
-        $item2->specifiedLineTradeSettlement->monetarySummation = new TradeSettlementLineMonetarySummation();
-        $item2->specifiedLineTradeSettlement->monetarySummation->totalAmount = Amount::create('275.00');
+        $item2->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('275.00');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement = new HeaderTradeAgreement();
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerReference = '04011000-12345-34';
@@ -143,10 +132,8 @@ Handelsregisternummer: H A 123
         $sellerTradeParty->postalTradeAddress->city = 'München';
         $sellerTradeParty->postalTradeAddress->countryCode = 'DE';
 
-        $sellerTradeParty->taxRegistrations[] = $taxRegistration1 = new TaxRegistration();
-        $taxRegistration1->registration = Id::create('201/113/40209', 'FC');
-        $sellerTradeParty->taxRegistrations[] = $taxRegistration2 = new TaxRegistration();
-        $taxRegistration2->registration = Id::create('DE123456789', 'VA');
+        $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('201/113/40209', 'FC');
+        $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('DE123456789', 'VA');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
         $buyerTradeParty->id = Id::create('GE2020211');

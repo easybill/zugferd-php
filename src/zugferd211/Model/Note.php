@@ -21,4 +21,12 @@ class Note
      * @SerializedName("SubjectCode")
      */
     public ?string $subjectCode = null;
+
+    public static function create(string $content, ?string $subjectCode = null): self
+    {
+        $self = new self();
+        $self->content = $content;
+        $self->subjectCode = $subjectCode;
+        return $self;
+    }
 }

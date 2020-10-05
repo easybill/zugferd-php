@@ -14,5 +14,11 @@ class TradeSettlementLineMonetarySummation
      * @SerializedName("LineTotalAmount")
      */
     public Amount $totalAmount;
-    
+
+    public static function create(string $totalAmount): self
+    {
+        $self = new self();
+        $self->totalAmount = Amount::create($totalAmount);
+        return $self;
+    }
 }

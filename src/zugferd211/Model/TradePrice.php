@@ -12,4 +12,11 @@ class TradePrice
      * @JMS\SerializedName("ChargeAmount")
      */
     public Amount $chargeAmount;
+
+    public static function create(string $amount): self
+    {
+        $self = new self();
+        $self->chargeAmount = Amount::create($amount);
+        return $self;
+    }
 }

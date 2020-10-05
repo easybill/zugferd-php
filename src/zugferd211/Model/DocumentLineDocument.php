@@ -14,4 +14,11 @@ class DocumentLineDocument
      * @SerializedName("LineID")
      */
     public string $lineId;
+
+    public static function create(string $lineId): self
+    {
+        $self = new self();
+        $self->lineId = $lineId;
+        return $self;
+    }
 }

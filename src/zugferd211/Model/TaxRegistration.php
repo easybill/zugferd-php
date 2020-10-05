@@ -14,4 +14,11 @@ class TaxRegistration
      * @SerializedName("ID")
      */
     public Id $registration;
+
+    public static function create(string $id, ?string $schemeID = null): self
+    {
+        $self = new self();
+        $self->registration = Id::create($id, $schemeID);
+        return $self;
+    }
 }
