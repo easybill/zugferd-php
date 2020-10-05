@@ -22,7 +22,7 @@ class Amount
      */
     public ?string $currency = null;
 
-    public static function create(string $amount, string $currency): self
+    public static function create(string $amount, ?string $currency = null): self
     {
         $self = new self();
         $self->value = $amount;

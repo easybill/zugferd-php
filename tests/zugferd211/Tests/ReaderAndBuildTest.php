@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class ReaderAndBuildTest extends TestCase
 {
-    private function reformatXml(string $xml): string
+    public static function reformatXml(string $xml): string
     {
         $xml = preg_replace('/<!--(.|\s)*?-->/', '', $xml);
 
@@ -37,8 +37,8 @@ class ReaderAndBuildTest extends TestCase
         $str = Builder::create()->transform($obj);
 
         self::assertSame(
-            $this->reformatXml($xml),
-            $this->reformatXml($str),
+            self::reformatXml($xml),
+            self::reformatXml($str),
         );
 
         self::assertTrue(true);
