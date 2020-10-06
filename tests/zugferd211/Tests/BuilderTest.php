@@ -194,7 +194,7 @@ Handelsregisternummer: H A 123
         $xml = ReaderAndBuildTest::reformatXml($xml);
         self::assertEquals($referenceFile, $xml);
 
-        $result = (new Validator())->validateAgainstXsd($xml, __DIR__ . '/../../../src/zugferd211/Schema/EN16931/FACTUR-X_EN16931.xsd');
+        $result = (new Validator())->validateAgainstXsd($xml, Validator::SCHEMA_EN16931);
         self::assertNull($result, $result ?? '');
     }
 }
