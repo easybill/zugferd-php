@@ -17,6 +17,13 @@ class LineTradeSettlement
     public array $tradeTax = [];
 
     /**
+     * @Type("Easybill\ZUGFeRD211\Model\Period")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("BillingSpecifiedPeriod")
+     */
+    public ?Period $billingSpecifiedPeriod = null;
+
+    /**
      * @Type("Easybill\ZUGFeRD211\Model\TradeSettlementLineMonetarySummation")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("SpecifiedTradeSettlementLineMonetarySummation")
