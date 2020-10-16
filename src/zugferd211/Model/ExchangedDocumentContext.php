@@ -7,10 +7,9 @@ use JMS\Serializer\Annotation\XmlElement;
 class ExchangedDocumentContext
 {
     /**
-     * @var DocumentContextParameter
      * @Type("Easybill\ZUGFeRD211\Model\DocumentContextParameter")
      * @XmlElement(namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("GuidelineSpecifiedDocumentContextParameter")
      */
-    public $documentContextParameter;
+    public DocumentContextParameter $documentContextParameter;
 }

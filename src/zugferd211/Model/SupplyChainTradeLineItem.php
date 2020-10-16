@@ -9,44 +9,39 @@ use JMS\Serializer\Annotation\XmlElement;
 class SupplyChainTradeLineItem
 {
     /**
-     * @var DocumentLineDocument
      * @Type("Easybill\ZUGFeRD211\Model\DocumentLineDocument")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("AssociatedDocumentLineDocument")
      */
-    public $associatedDocumentLineDocument;
+    public DocumentLineDocument $associatedDocumentLineDocument;
 
     /**
-     * @var TradeProduct
      * @Type("Easybill\ZUGFeRD211\Model\TradeProduct")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("SpecifiedTradeProduct")
      */
-    public $specifiedTradeProduct;
+    public TradeProduct $specifiedTradeProduct;
 
     /**
-     * @var LineTradeAgreement
      * @Type("Easybill\ZUGFeRD211\Model\LineTradeAgreement")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("SpecifiedLineTradeAgreement")
      */
-    public $tradeAgreement;
+    public LineTradeAgreement $tradeAgreement;
 
     /**
-     * @var LineTradeDelivery
      * @Type("Easybill\ZUGFeRD211\Model\LineTradeDelivery")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("SpecifiedLineTradeDelivery")
      */
-    public $delivery;
+    public ?LineTradeDelivery $delivery = null;
 
     /**
-     * @var LineTradeSettlement
      * @Type("Easybill\ZUGFeRD211\Model\LineTradeSettlement")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("SpecifiedLineTradeSettlement")
      */
-    public $specifiedLineTradeSettlement;
+    public LineTradeSettlement $specifiedLineTradeSettlement;
 
 
 

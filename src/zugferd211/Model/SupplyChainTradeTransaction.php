@@ -14,31 +14,28 @@ class SupplyChainTradeTransaction
      * @Type("array<Easybill\ZUGFeRD211\Model\SupplyChainTradeLineItem>")
      * @XmlList(inline=true, entry="IncludedSupplyChainTradeLineItem", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
-    public $lineItems;
+    public array $lineItems = [];
 
     /**
-     * @var HeaderTradeAgreement
      * @Type("Easybill\ZUGFeRD211\Model\HeaderTradeAgreement")
      * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("ApplicableHeaderTradeAgreement")
      */
-    public $applicableHeaderTradeAgreement;
+    public HeaderTradeAgreement $applicableHeaderTradeAgreement;
 
     /**
-     * @var HeaderTradeDelivery
      * @Type("Easybill\ZUGFeRD211\Model\HeaderTradeDelivery")
      * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("ApplicableHeaderTradeDelivery")
      */
-    public $applicableHeaderTradeDelivery;
+    public HeaderTradeDelivery $applicableHeaderTradeDelivery;
 
     /**
-     * @var HeaderTradeSettlement
      * @Type("Easybill\ZUGFeRD211\Model\HeaderTradeSettlement")
      * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("ApplicableHeaderTradeSettlement")
      */
-    public $applicableHeaderTradeSettlement;
+    public HeaderTradeSettlement $applicableHeaderTradeSettlement;
 
 
 }

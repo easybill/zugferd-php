@@ -9,10 +9,16 @@ use JMS\Serializer\Annotation\XmlElement;
 class DocumentLineDocument
 {
     /**
-     * @var string
      * @Type("string")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("LineID")
      */
-    private $lineId;
+    public string $lineId;
+
+    public static function create(string $lineId): self
+    {
+        $self = new self();
+        $self->lineId = $lineId;
+        return $self;
+    }
 }

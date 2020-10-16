@@ -10,34 +10,31 @@ use JMS\Serializer\Annotation\XmlList;
 class ExchangedDocument
 {
     /**
-     * @var string
      * @Type("string")
      * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("ID")
      */
-    public $id;
+    public string $id;
 
     /**
-     * @var string
      * @Type("string")
      * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("TypeCode")
      */
-    public $typeCode;
+    public string $typeCode;
 
     /**
-     * @var DateTime
      * @Type("Easybill\ZUGFeRD211\Model\DateTime")
      * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("IssueDateTime")
      */
-    public $issueDateTime;
+    public DateTime $issueDateTime;
 
     /**
      * @var Note[]
      * @Type("array<Easybill\ZUGFeRD211\Model\Note>")
      * @XmlList(inline = true, entry = "IncludedNote", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
-    public $notes = [];
+    public array $notes = [];
 
 }

@@ -10,17 +10,23 @@ use JMS\Serializer\Annotation\XmlValue;
 class Quantity
 {
     /**
-     * @var string
      * @Type("string")
      * @XmlAttribute
      * @SerializedName("unitCode")
      */
-    private $unitCode;
+    public string $unitCode;
 
     /**
-     * @var string
      * @Type("string")
      * @XmlValue(cdata = false)
      */
-    private $value;
+    public string $value;
+
+    public static function create(string $value, string $unitCode): self
+    {
+        $self = new self();
+        $self->value = $value;
+        $self->unitCode = $unitCode;
+        return $self;
+    }
 }

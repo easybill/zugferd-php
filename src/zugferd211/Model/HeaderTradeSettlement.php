@@ -10,34 +10,37 @@ use JMS\Serializer\Annotation\XmlList;
 class HeaderTradeSettlement
 {
     /**
-     * @var string
      * @Type("string")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("InvoiceCurrencyCode")
      */
-    public $currency;
+    public string $currency;
+
+    /**
+     * @var TradeSettlementPaymentMeans[]
+     * @Type("array<Easybill\ZUGFeRD211\Model\TradeSettlementPaymentMeans>")
+     * @XmlList(inline = true, entry = "SpecifiedTradeSettlementPaymentMeans", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     */
+    public array $specifiedTradeSettlementPaymentMeans = [];
 
     /**
      * @var TradeTax[]
      * @Type("array<Easybill\ZUGFeRD211\Model\TradeTax>")
      * @XmlList(inline = true, entry = "ApplicableTradeTax", namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
-    public $tradeTaxes;
+    public array $tradeTaxes = [];
 
     /**
-     * @var TradePaymentTerms
-     * @Type("Easybill\ZUGFeRD211\Model\TradePaymentTerms")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     * @SerializedName("SpecifiedTradePaymentTerms")
+     * @var TradePaymentTerms[]
+     * @Type("array<Easybill\ZUGFeRD211\Model\TradePaymentTerms>")
+     * @XmlList(inline = true, entry = "SpecifiedTradePaymentTerms", namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
-    public $specifiedTradePaymentTerms;
+    public array $specifiedTradePaymentTerms = [];
 
     /**
-     * @var TradeSettlementHeaderMonetarySummation
      * @Type("Easybill\ZUGFeRD211\Model\TradeSettlementHeaderMonetarySummation")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("SpecifiedTradeSettlementHeaderMonetarySummation")
      */
-    public $specifiedTradeSettlementHeaderMonetarySummation;
-
+    public TradeSettlementHeaderMonetarySummation $specifiedTradeSettlementHeaderMonetarySummation;
 }

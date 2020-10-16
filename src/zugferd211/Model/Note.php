@@ -9,18 +9,24 @@ use JMS\Serializer\Annotation\XmlElement;
 class Note
 {
     /**
-     * @var string
      * @Type("string")
      * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("Content")
      */
-    public $content;
+    public string $content;
 
     /**
-     * @var string
      * @Type("string")
      * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("SubjectCode")
      */
-    public $subjectCode;
+    public ?string $subjectCode = null;
+
+    public static function create(string $content, ?string $subjectCode = null): self
+    {
+        $self = new self();
+        $self->content = $content;
+        $self->subjectCode = $subjectCode;
+        return $self;
+    }
 }

@@ -18,27 +18,24 @@ use JMS\Serializer\Annotation\XmlRoot;
 class CrossIndustryInvoice
 {
     /**
-     * @var ExchangedDocumentContext
      * @Type("Easybill\ZUGFeRD211\Model\ExchangedDocumentContext")
      * @XmlElement(namespace="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100")
      * @SerializedName("ExchangedDocumentContext")
      */
-    public $exchangedDocumentContext;
+    public ExchangedDocumentContext $exchangedDocumentContext;
 
     /**
-     * @var ExchangedDocument
      * @Type("Easybill\ZUGFeRD211\Model\ExchangedDocument")
      * @XmlElement(namespace="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100")
      * @SerializedName("ExchangedDocument")
      */
-    public $exchangedDocument;
+    public ExchangedDocument $exchangedDocument;
 
     /**
-     * @var SupplyChainTradeTransaction
      * @Type("Easybill\ZUGFeRD211\Model\SupplyChainTradeTransaction")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100")
      * @SerializedName("SupplyChainTradeTransaction")
      */
-    public $supplyChainTradeTransaction;
+    public SupplyChainTradeTransaction $supplyChainTradeTransaction;
 
 }
