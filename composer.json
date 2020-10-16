@@ -14,13 +14,17 @@
     }
   ],
   "require": {
-    "php": "^7.3",
+    "php": "^7.4",
     "jms/serializer": "^3.4",
     "ext-dom": "*"
   },
+  "suggest": {
+    "ext-libxml": "Needed for XSD validation"
+  },
   "require-dev": {
     "phpunit/phpunit": "^9.3",
-    "friendsofphp/php-cs-fixer": "^2.16"
+    "friendsofphp/php-cs-fixer": "^2.16",
+    "ext-libxml": "*"
   },
   "autoload": {
     "psr-4": {
