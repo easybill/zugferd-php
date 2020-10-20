@@ -35,4 +35,17 @@ class TradeSettlementPaymentMeans
      * @SerializedName("PayeeSpecifiedCreditorFinancialInstitution")
      */
     public ?CreditorFinancialInstitution $payeeSpecifiedCreditorFinancialInstitution = null;
+
+    /**
+     * @Type("Easybill\ZUGFeRD211\Model\DebtorFinancialAccount")
+     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("PayerPartyDebtorFinancialAccount")
+     */
+    public ?DebtorFinancialAccount $payerPartyDebtorFinancialAccount = null;
+    /**
+     * @Type("Easybill\ZUGFeRD211\Model\TradeSettlementFinancialCard")
+     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("ApplicableTradeSettlementFinancialCard")
+     */
+    public ?TradeSettlementFinancialCard $applicableTradeSettlementFinancialCard = null;
 }
