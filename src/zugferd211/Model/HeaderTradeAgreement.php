@@ -28,4 +28,11 @@ class HeaderTradeAgreement
      * @SerializedName("BuyerTradeParty")
      */
     public TradeParty $buyerTradeParty;
+
+    /**
+     * @Type("Easybill\ZUGFeRD211\Model\ReferencedDocument")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("BuyerOrderReferencedDocument")
+     */
+    public ?ReferencedDocument $buyerOrderReferencedDocument = null;
 }
