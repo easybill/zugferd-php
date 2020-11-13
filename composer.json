@@ -1,8 +1,8 @@
 {
   "name": "easybill/zugferd-php",
-  "description": "ZUGFeRD PHP SDK - Convert PHP Objects to XML and back.",
+  "description": "ZUGFeRD PHP SDK (Factur-X, XRechnung) - Convert PHP Objects to XML and back.",
   "keywords": [
-    "ZUGFeRD"
+    "ZUGFeRD", "Factur-X", "XRechnung"
   ],
   "type": "library",
   "minimum-stability": "stable",
