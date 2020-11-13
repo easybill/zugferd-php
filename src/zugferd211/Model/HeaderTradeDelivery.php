@@ -14,5 +14,4 @@ class HeaderTradeDelivery
      * @SerializedName("ActualDeliverySupplyChainEvent")
      */
     public ?SupplyChainEvent $chainEvent = null;
-
 }

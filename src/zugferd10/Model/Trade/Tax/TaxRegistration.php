@@ -1,4 +1,6 @@
-<?php namespace Easybill\ZUGFeRD\Model\Trade\Tax;
+<?php
+
+namespace Easybill\ZUGFeRD\Model\Trade\Tax;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
@@ -6,7 +8,6 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class TaxRegistration
 {
-
     /**
      * @var Registration
      * @Type("Easybill\ZUGFeRD\Model\Trade\Tax\Registration")
@@ -26,7 +27,6 @@ class TaxRegistration
         $this->registration = new Registration($schemeID, $value);
     }
 
-
     /**
      * @return \Easybill\ZUGFeRD\Model\Trade\Tax\Registration
      */
@@ -42,8 +42,4 @@ class TaxRegistration
     {
         $this->registration = $registration;
     }
-
-
-
-
 }

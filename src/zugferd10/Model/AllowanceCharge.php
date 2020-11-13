@@ -1,17 +1,16 @@
-<?php namespace Easybill\ZUGFeRD\Model;
+<?php
+
+namespace Easybill\ZUGFeRD\Model;
 
 use Easybill\ZUGFeRD\Model\Trade\Amount;
 use Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class AllowanceCharge
- *
- * @package Easybill\ZUGFeRD\Model
+ * Class AllowanceCharge.
  */
 class AllowanceCharge
 {
-
     /**
      * @var Indicator
      * @JMS\Type("Easybill\ZUGFeRD\Model\Indicator")
@@ -45,11 +44,6 @@ class AllowanceCharge
 
     /**
      * AllowanceCharge constructor.
-     *
-     * @param bool $indicator
-     * @param double $actualAmount
-     * @param string $currency
-     * @param bool $isSum
      */
     public function __construct(bool $indicator, float $actualAmount, string $currency = 'EUR', bool $isSum = false)
     {
@@ -103,28 +97,18 @@ class AllowanceCharge
         return $this->reason;
     }
 
-    /**
-     * @param string $reason
-     *
-     * @return AllowanceCharge
-     */
     public function setReason(string $reason): AllowanceCharge
     {
         $this->reason = $reason;
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function getCategoryTradeTaxes(): array
     {
         return $this->categoryTradeTaxes;
     }
 
     /**
-     * @param TradeTax $tradeTax
-     *
      * @return self
      */
     public function addCategoryTradeTax(TradeTax $tradeTax)
@@ -132,5 +116,4 @@ class AllowanceCharge
         $this->categoryTradeTaxes[] = $tradeTax;
         return $this;
     }
-
 }

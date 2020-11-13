@@ -24,7 +24,8 @@ class Reader
     {
         $serializer = SerializerBuilder::create()
             ->setDebug(true)
-            ->build();
+            ->build()
+        ;
         return new self($serializer);
     }
 }

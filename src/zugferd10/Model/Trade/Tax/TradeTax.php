@@ -1,4 +1,6 @@
-<?php namespace Easybill\ZUGFeRD\Model\Trade\Tax;
+<?php
+
+namespace Easybill\ZUGFeRD\Model\Trade\Tax;
 
 use Easybill\ZUGFeRD\Model\Trade\Amount;
 use JMS\Serializer\Annotation as JMS;
@@ -140,5 +142,4 @@ class TradeTax
         $this->category = $category;
         return $this;
     }
-
 }

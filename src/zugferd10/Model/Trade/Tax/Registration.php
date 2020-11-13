@@ -1,14 +1,14 @@
-<?php namespace Easybill\ZUGFeRD\Model\Trade\Tax;
+<?php
+
+namespace Easybill\ZUGFeRD\Model\Trade\Tax;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlAttribute;
 use JMS\Serializer\Annotation\XmlValue;
 
-
 class Registration
 {
-
     /**
      * @var string
      * @Type("string")
@@ -67,5 +67,4 @@ class Registration
     {
         $this->value = $value;
     }
-
 }

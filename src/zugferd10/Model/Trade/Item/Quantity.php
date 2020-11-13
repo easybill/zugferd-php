@@ -1,4 +1,6 @@
-<?php namespace Easybill\ZUGFeRD\Model\Trade\Item;
+<?php
+
+namespace Easybill\ZUGFeRD\Model\Trade\Item;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
@@ -7,7 +9,6 @@ use JMS\Serializer\Annotation\XmlValue;
 
 class Quantity
 {
-
     /**
      * @var string
      * @Type("string")
@@ -27,7 +28,7 @@ class Quantity
      * Quantity constructor.
      *
      * @param string $unitCode
-     * @param double $value
+     * @param float $value
      */
     public function __construct($unitCode, $value)
     {
@@ -60,11 +61,10 @@ class Quantity
     }
 
     /**
-     * @param double $value
+     * @param float $value
      */
     public function setValue($value)
     {
         $this->value = number_format($value, 4, '.', '');
     }
-
 }

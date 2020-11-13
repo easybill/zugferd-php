@@ -1,4 +1,6 @@
-<?php namespace Easybill\ZUGFeRD\Model;
+<?php
+
+namespace Easybill\ZUGFeRD\Model;
 
 use Easybill\ZUGFeRD\Model\Trade\Trade;
 use JMS\Serializer\Annotation\SerializedName;
@@ -8,7 +10,7 @@ use JMS\Serializer\Annotation\XmlNamespace;
 use JMS\Serializer\Annotation\XmlRoot;
 
 /**
- * Class Document
+ * Class Document.
  *
  * @XmlRoot("rsm:CrossIndustryDocument")
  * @XmlNamespace(uri="http://www.w3.org/2001/XMLSchema-instance", prefix="xsi")
@@ -83,10 +85,6 @@ class Document
         return $this->trade;
     }
 
-    /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\Trade $trade
-     *
-     */
     public function setTrade(Trade $trade)
     {
         $this->trade = $trade;

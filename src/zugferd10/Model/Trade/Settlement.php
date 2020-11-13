@@ -1,4 +1,6 @@
-<?php namespace Easybill\ZUGFeRD\Model\Trade;
+<?php
+
+namespace Easybill\ZUGFeRD\Model\Trade;
 
 use Easybill\ZUGFeRD\Model\AllowanceCharge;
 use Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax;
@@ -13,7 +15,6 @@ use JMS\Serializer\Annotation\XmlList;
  */
 class Settlement
 {
-
     /**
      * @var string
      * @Type("string")
@@ -51,7 +52,7 @@ class Settlement
      * @XmlList(inline = true, entry = "SpecifiedTradeAllowanceCharge", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      */
     private $allowanceCharges = [];
-    
+
     /**
      * @var BillingPeriod
      * @Type("Easybill\ZUGFeRD\Model\Trade\BillingPeriod")
@@ -134,7 +135,6 @@ class Settlement
     }
 
     /**
-     * @param PaymentMeans $paymentMeans
      * @return self
      */
     public function setPaymentMeans(PaymentMeans $paymentMeans)
@@ -152,8 +152,6 @@ class Settlement
     }
 
     /**
-     * @param TradeTax $tradeTax
-     *
      * @return self
      */
     public function addTradeTax(TradeTax $tradeTax)
@@ -171,7 +169,6 @@ class Settlement
     }
 
     /**
-     * @param AllowanceCharge $allowanceCharge
      * @return self
      */
     public function addAllowanceCharge(AllowanceCharge $allowanceCharge)
@@ -233,5 +230,4 @@ class Settlement
         $this->billingPeriod = $billingPeriod;
         return $this;
     }
-
 }

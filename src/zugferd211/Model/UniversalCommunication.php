@@ -21,5 +21,4 @@ class UniversalCommunication
      * @SerializedName("URIID")
      */
     public ?Id $uriid = null;
-
 }

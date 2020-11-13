@@ -1,4 +1,6 @@
-<?php namespace Easybill\ZUGFeRD\Model\Trade\Item;
+<?php
+
+namespace Easybill\ZUGFeRD\Model\Trade\Item;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
@@ -6,7 +8,6 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class SpecifiedTradeDelivery
 {
-
     /**
      * @var Quantity
      * @Type("Easybill\ZUGFeRD\Model\Trade\Item\Quantity")
@@ -17,8 +18,6 @@ class SpecifiedTradeDelivery
 
     /**
      * SpecifiedTradeDelivery constructor.
-     *
-     * @param Quantity $billedQuantity
      */
     public function __construct(Quantity $billedQuantity)
     {
@@ -40,5 +39,4 @@ class SpecifiedTradeDelivery
     {
         $this->billedQuantity = $billedQuantity;
     }
-
 }

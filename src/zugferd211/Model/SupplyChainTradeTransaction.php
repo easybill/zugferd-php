@@ -36,6 +36,4 @@ class SupplyChainTradeTransaction
      * @SerializedName("ApplicableHeaderTradeSettlement")
      */
     public HeaderTradeSettlement $applicableHeaderTradeSettlement;
-
-
 }

@@ -21,5 +21,4 @@ class Period
      * @SerializedName("EndDateTime")
      */
     public DateTime $endDatetime;
-
 }

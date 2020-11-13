@@ -1,4 +1,6 @@
-<?php namespace Easybill\ZUGFeRD\Model\Trade;
+<?php
+
+namespace Easybill\ZUGFeRD\Model\Trade;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
@@ -7,7 +9,6 @@ use JMS\Serializer\Annotation\XmlElement;
 class PaymentMeans
 {
     /**
-     *
      * @var string
      * @Type("string")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
@@ -16,7 +17,6 @@ class PaymentMeans
     private $code;
 
     /**
-     *
      * @var string
      * @Type("string")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
@@ -25,7 +25,6 @@ class PaymentMeans
     private $information;
 
     /**
-     *
      * @var CreditorFinancialAccount
      * @Type("Easybill\ZUGFeRD\Model\Trade\CreditorFinancialAccount")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
@@ -34,7 +33,6 @@ class PaymentMeans
     private $payeeAccount;
 
     /**
-     *
      * @var CreditorFinancialInstitution
      * @Type("Easybill\ZUGFeRD\Model\Trade\CreditorFinancialInstitution")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
@@ -73,8 +71,6 @@ class PaymentMeans
     }
 
     /**
-     * @param CreditorFinancialAccount $payeeAccount
-     *
      * @return self
      */
     public function setPayeeAccount(CreditorFinancialAccount $payeeAccount)
@@ -101,6 +97,4 @@ class PaymentMeans
         $this->payeeInstitution = $payeeInstitution;
         return $this;
     }
-
-
 }

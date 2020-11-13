@@ -1,4 +1,6 @@
-<?php namespace Easybill\ZUGFeRD\Model\Trade;
+<?php
+
+namespace Easybill\ZUGFeRD\Model\Trade;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
@@ -6,7 +8,6 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class CreditorFinancialAccount
 {
-
     /**
      * IBAN (International Bank Account Number) of the bank account.
      *
@@ -94,5 +95,4 @@ class CreditorFinancialAccount
     {
         $this->proprietary = $proprietary;
     }
-
 }

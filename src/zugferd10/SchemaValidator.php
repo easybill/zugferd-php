@@ -2,10 +2,8 @@
 
 namespace Easybill\ZUGFeRD;
 
-
 class SchemaValidator
 {
-
     /**
      * Validates the given XML-string against the ZUGFeRD XSD-files.
      */

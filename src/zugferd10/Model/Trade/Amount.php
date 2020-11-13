@@ -1,4 +1,6 @@
-<?php namespace Easybill\ZUGFeRD\Model\Trade;
+<?php
+
+namespace Easybill\ZUGFeRD\Model\Trade;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
@@ -6,13 +8,10 @@ use JMS\Serializer\Annotation\XmlAttribute;
 use JMS\Serializer\Annotation\XmlValue;
 
 /**
- * Class Amount
- *
- * @package Easybill\ZUGFeRD\Model\Trade
+ * Class Amount.
  */
 class Amount
 {
-
     /**
      * @var string
      * @Type("string")
@@ -31,16 +30,14 @@ class Amount
     /**
      * Amount constructor.
      *
-     * @param double $value
+     * @param float $value
      * @param string $currency
-     * @param bool $isSum
      */
     public function __construct($value, $currency, bool $isSum = true)
     {
         $this->setValue($value, $isSum);
         $this->currency = $currency;
     }
-
 
     /**
      * @return string
@@ -52,7 +49,6 @@ class Amount
 
     /**
      * @param string $value
-     * @param bool $isSum
      * @return self
      */
     public function setValue($value, bool $isSum = true)
@@ -78,5 +74,4 @@ class Amount
         $this->currency = $currency;
         return $this;
     }
-
 }

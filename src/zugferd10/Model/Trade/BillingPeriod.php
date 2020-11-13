@@ -7,7 +7,6 @@ use JMS\Serializer\Annotation as JMS;
 
 class BillingPeriod
 {
-
     /**
      * @var Date
      * @JMS\Type("Easybill\ZUGFeRD\Model\Date")
@@ -24,10 +23,6 @@ class BillingPeriod
      */
     private $end;
 
-    /**
-     * @param Date $start
-     * @param Date $end
-     */
     public function __construct(Date $start, Date $end)
     {
         $this->start = $start;
@@ -69,5 +64,4 @@ class BillingPeriod
         $this->end = $end;
         return $this;
     }
-
 }

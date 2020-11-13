@@ -1,4 +1,6 @@
-<?php namespace Easybill\ZUGFeRD\Model;
+<?php
+
+namespace Easybill\ZUGFeRD\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
@@ -7,7 +9,6 @@ use JMS\Serializer\Annotation\XmlValue;
 
 class Schema
 {
-
     /**
      * @var string
      * @Type("string")

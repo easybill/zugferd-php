@@ -21,5 +21,4 @@ class LineTradeAgreement
      * @SerializedName("NetPriceProductTradePrice")
      */
     public TradePrice $netPrice;
-
 }

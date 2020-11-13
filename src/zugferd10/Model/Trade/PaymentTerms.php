@@ -7,7 +7,6 @@ use JMS\Serializer\Annotation as JMS;
 
 class PaymentTerms
 {
-
     /**
      * @var string
      * @JMS\Type("string")
@@ -27,8 +26,7 @@ class PaymentTerms
     /**
      * PaymentTerms constructor.
      *
-     * @param string                       $description
-     * @param \Easybill\ZUGFeRD\Model\Date $dueDate
+     * @param string $description
      */
     public function __construct($description, Date $dueDate)
     {
@@ -67,5 +65,4 @@ class PaymentTerms
     {
         $this->dueDate = $dueDate;
     }
-
 }

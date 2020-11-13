@@ -42,5 +42,4 @@ class Address
      * @SerializedName("CountryID")
      */
     public ?string $countryCode = null;
-
 }

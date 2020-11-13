@@ -1,4 +1,6 @@
-<?php namespace Easybill\ZUGFeRD\Model\Trade;
+<?php
+
+namespace Easybill\ZUGFeRD\Model\Trade;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
@@ -6,7 +8,6 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class Agreement
 {
-
     /**
      * @var string
      * @Type("string")
@@ -113,5 +114,4 @@ class Agreement
         $this->buyerOrder = $buyerOrder;
         return $this;
     }
-
 }

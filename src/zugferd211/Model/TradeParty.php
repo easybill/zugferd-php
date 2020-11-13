@@ -1,4 +1,6 @@
-<?php namespace Easybill\ZUGFeRD211\Model;
+<?php
+
+namespace Easybill\ZUGFeRD211\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
@@ -48,5 +50,4 @@ class TradeParty
      * @XmlList(inline=true, entry="SpecifiedTaxRegistration", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
     public $taxRegistrations = [];
-
 }

@@ -69,5 +69,4 @@ class TradeSettlementHeaderMonetarySummation
      * @JMS\SerializedName("DuePayableAmount")
      */
     public Amount $duePayableAmount;
-
 }

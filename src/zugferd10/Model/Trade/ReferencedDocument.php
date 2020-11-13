@@ -2,7 +2,6 @@
 
 namespace Easybill\ZUGFeRD\Model\Trade;
 
-use Easybill\ZUGFeRD\Model\Date;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
@@ -17,9 +16,6 @@ class ReferencedDocument
      */
     private $id;
 
-    /**
-     * @param string $id
-     */
     public function __construct(string $id)
     {
         $this->id = $id;
@@ -34,7 +30,6 @@ class ReferencedDocument
     }
 
     /**
-     * @param string $id
      * @return self
      */
     public function setId(string $id)
@@ -42,5 +37,4 @@ class ReferencedDocument
         $this->id = $id;
         return $this;
     }
-
 }

@@ -1,4 +1,6 @@
-<?php namespace Easybill\ZUGFeRD\Model\Trade;
+<?php
+
+namespace Easybill\ZUGFeRD\Model\Trade;
 
 use Easybill\ZUGFeRD\Model\Address;
 use Easybill\ZUGFeRD\Model\Trade\Tax\TaxRegistration;
@@ -45,7 +47,7 @@ class TradeParty
      */
     private $taxRegistrations;
 
-    public function __construct($name = '', Address $address, array $taxRegistrations = array())
+    public function __construct($name = '', Address $address, array $taxRegistrations = [])
     {
         $this->name = $name;
         $this->address = $address;
@@ -71,6 +73,7 @@ class TradeParty
 
         return $this;
     }
+
     /**
      * @return \Easybill\ZUGFeRD\Model\Schema
      */
@@ -80,8 +83,6 @@ class TradeParty
     }
 
     /**
-     * @param Schema $schema
-     *
      * @return self
      */
     public function setGlobalId(Schema $schema)
@@ -118,8 +119,6 @@ class TradeParty
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Address $address
-     *
      * @return self
      */
     public function setAddress(Address $address)
@@ -137,8 +136,6 @@ class TradeParty
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\Tax\TaxRegistration $taxRegistration
-     *
      * @return self
      */
     public function addTaxRegistration(TaxRegistration $taxRegistration)

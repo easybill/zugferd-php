@@ -1,4 +1,6 @@
-<?php namespace Easybill\ZUGFeRD\Model\Trade;
+<?php
+
+namespace Easybill\ZUGFeRD\Model\Trade;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
@@ -6,7 +8,6 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class MonetarySummation
 {
-
     /**
      * Total amount of all invoice positions.
      *
@@ -70,21 +71,23 @@ class MonetarySummation
     /**
      * MonetarySummation constructor.
      *
-     * @param double $lineTotal
-     * @param double $chargeTotal
-     * @param double $allowanceTotal
-     * @param double $taxBasisTotal
-     * @param double $taxTotal
-     * @param double $grandTotal
+     * @param float $lineTotal
+     * @param float $chargeTotal
+     * @param float $allowanceTotal
+     * @param float $taxBasisTotal
+     * @param float $taxTotal
+     * @param float $grandTotal
      * @param string $currency
      */
-    public function __construct($lineTotal,
-                                $chargeTotal,
-                                $allowanceTotal,
-                                $taxBasisTotal,
-                                $taxTotal,
-                                $grandTotal,
-                                $currency = 'EUR')
+    public function __construct(
+        $lineTotal,
+        $chargeTotal,
+        $allowanceTotal,
+        $taxBasisTotal,
+        $taxTotal,
+        $grandTotal,
+        $currency = 'EUR'
+    )
     {
         $this->lineTotal = new Amount($lineTotal, $currency);
         $this->chargeTotal = new Amount($chargeTotal, $currency);
@@ -189,5 +192,4 @@ class MonetarySummation
     {
         $this->grandTotal = $grandTotal;
     }
-
 }

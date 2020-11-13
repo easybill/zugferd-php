@@ -1,4 +1,6 @@
-<?php namespace Easybill\ZUGFeRD\Model\Trade\Item;
+<?php
+
+namespace Easybill\ZUGFeRD\Model\Trade\Item;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
@@ -6,7 +8,6 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class SpecifiedTradeAgreement
 {
-
     /**
      * @var Price
      * @Type("Easybill\ZUGFeRD\Model\Trade\Item\Price")
@@ -60,5 +61,4 @@ class SpecifiedTradeAgreement
         $this->netPrice = $netPrice;
         return $this;
     }
-
 }

@@ -42,8 +42,4 @@ class SupplyChainTradeLineItem
      * @SerializedName("SpecifiedLineTradeSettlement")
      */
     public LineTradeSettlement $specifiedLineTradeSettlement;
-
-
-
-
 }

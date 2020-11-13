@@ -8,7 +8,6 @@ use JMS\Serializer\SerializerInterface;
 
 class Builder
 {
-
     private $serializer;
 
     public function __construct(SerializerInterface $serializer)
@@ -25,7 +24,8 @@ class Builder
     {
         $serializer = SerializerBuilder::create()
             ->setDebug(true)
-            ->build();
+            ->build()
+        ;
         return new self($serializer);
     }
 }

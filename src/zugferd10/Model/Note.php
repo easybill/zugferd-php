@@ -1,11 +1,13 @@
-<?php namespace Easybill\ZUGFeRD\Model;
+<?php
+
+namespace Easybill\ZUGFeRD\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 
 /**
- * Class Note
+ * Class Note.
  */
 class Note
 {
@@ -28,7 +30,7 @@ class Note
     /**
      * Note constructor.
      *
-     * @param             $content
+     * @param $content
      * @param null|string $subjectCode
      */
     public function __construct($content, $subjectCode = null)
@@ -36,7 +38,6 @@ class Note
         $this->setContent($content);
         $this->setSubjectCode($subjectCode);
     }
-
 
     /**
      * @return string
@@ -81,7 +82,5 @@ class Note
         }
 
         $this->subjectCode = $subjectCode;
-
     }
-
 }

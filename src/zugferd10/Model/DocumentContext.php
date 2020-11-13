@@ -1,4 +1,6 @@
-<?php namespace Easybill\ZUGFeRD\Model;
+<?php
+
+namespace Easybill\ZUGFeRD\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
@@ -31,16 +33,13 @@ class DocumentContext
     }
 
     /**
-    * @return null|Indicator
-    */
+     * @return null|Indicator
+     */
     public function getTestIndicator()
     {
         return $this->testIndicator;
     }
 
-    /**
-     * @param bool $bool
-     */
     public function setTestIndicator(bool $bool)
     {
         $this->testIndicator = new Indicator($bool);

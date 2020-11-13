@@ -1,16 +1,16 @@
-<?php namespace Easybill\ZUGFeRD\Model;
+<?php
+
+namespace Easybill\ZUGFeRD\Model;
 
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class Indicator
- *
- * @package Easybill\ZUGFeRD\Model
+ * Class Indicator.
  */
 class Indicator
 {
     /**
-     * @var boolean
+     * @var bool
      * @JMS\Type("boolean")
      * @JMS\XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15")
      * @JMS\SerializedName("Indicator")
@@ -28,7 +28,7 @@ class Indicator
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getIndicator()
     {
@@ -36,11 +36,10 @@ class Indicator
     }
 
     /**
-     * @param boolean $indicator
+     * @param bool $indicator
      */
     public function setIndicator($indicator)
     {
         $this->indicator = $indicator;
     }
-
 }
