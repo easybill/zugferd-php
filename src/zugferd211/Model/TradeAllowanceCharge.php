@@ -37,7 +37,7 @@ class TradeAllowanceCharge
      * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @JMS\SerializedName("Reason")
      */
-    public string $reason;
+    public ?string $reason = null;
 
     /**
      * @var TradeTax[]
