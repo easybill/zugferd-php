@@ -16,7 +16,7 @@ class TradeAllowanceCharge
      * @JMS\XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @JMS\SerializedName("ChargeIndicator")
      */
-    public Indicator $indicator;
+    public ?Indicator $indicator = null;
 
     /**
      * @JMS\Type("Easybill\ZUGFeRD211\Model\Amount")
