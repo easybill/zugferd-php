@@ -31,6 +31,13 @@ class HeaderTradeSettlement
     public array $tradeTaxes = [];
 
     /**
+     * @var TradeAllowanceCharge[]
+     * @Type("array<Easybill\ZUGFeRD211\Model\TradeAllowanceCharge>")
+     * @XmlList(inline = true, entry = "SpecifiedTradeAllowanceCharge", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     */
+    public array $specifiedTradeAllowanceCharge = [];
+
+    /**
      * @var TradePaymentTerms[]
      * @Type("array<Easybill\ZUGFeRD211\Model\TradePaymentTerms>")
      * @XmlList(inline = true, entry = "SpecifiedTradePaymentTerms", namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
