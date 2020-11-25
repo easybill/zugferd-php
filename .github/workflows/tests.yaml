@@ -1,0 +1,40 @@
+name: Tests
+
+on:
+    push:
+        branches: [ master ]
+    pull_request:
+        branches: [ master ]
+
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                php-version: [ '7.4' ]
+                dependencies: [ '' ]
+                include:
+                    - { php-version: '7.4', dependencies: '--prefer-lowest' }
+
+        name: PHP ${{ matrix.php-version }} ${{ matrix.dependencies }}
+
+        steps:
+            -   uses: actions/checkout@v2
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php-version }}
+                    extensions:
+                    coverage: pcov
+                    tools: composer:v1
+
+            -   name: Install dependencies
+                run: |
+                    composer update --no-interaction ${{ matrix.dependencies }}
+
+            -   name: Run tests
+                run: |
+                    php vendor/bin/phpunit
