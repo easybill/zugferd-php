@@ -33,7 +33,7 @@ jobs:
 
             -   name: Install dependencies
                 run: |
-                    composer update --no-interaction ${{ matrix.dependencies }}
+                    composer install --no-interaction ${{ matrix.dependencies }}
 
             -   name: Run tests
                 run: |
