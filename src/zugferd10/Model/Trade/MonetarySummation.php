@@ -87,8 +87,7 @@ class MonetarySummation
         $taxTotal,
         $grandTotal,
         $currency = 'EUR'
-    )
-    {
+    ) {
         $this->lineTotal = new Amount($lineTotal, $currency);
         $this->chargeTotal = new Amount($chargeTotal, $currency);
         $this->allowanceTotal = new Amount($allowanceTotal, $currency);

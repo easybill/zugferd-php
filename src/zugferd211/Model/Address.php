@@ -8,5 +8,4 @@ namespace Easybill\ZUGFeRD211\Model;
  */
 class Address extends TradeAddress
 {
-
 }
