@@ -16,7 +16,7 @@ Add this repository to your composer information using the following command
 composer require easybill/zugferd-php
 ```
 
-## Usage
+## Usage ZUGFeRD v1
 
 Convert XML to PHP Objects:
 
@@ -37,6 +37,28 @@ $doc = new Document(Document::TYPE_COMFORT);
 $doc->getHeader()->setId('RE1337'); // Set invoice No.
 
 $xml = Builder::create()->getXML($doc);
+echo $xml; // Zugferd XML.
+```
+
+## Usage ZUGFeRD v2.1
+
+Convert XML to PHP Objects:
+
+```php
+use Easybill\ZUGFeRD211\Reader;
+
+$xml = file_get_contents('factur-x.xml');
+$obj = Reader::create()->transform($xml);
+```
+
+Convert PHP Objects to XML:
+
+```php
+use Easybill\ZUGFeRD211\Builder;
+ 
+$obj = ...;
+
+$xml = Builder::create()->transform($obj);
 echo $xml; // Zugferd XML.
 ```
 
