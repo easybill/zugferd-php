@@ -3,7 +3,7 @@
 namespace Easybill\ZUGFeRD211\Tests;
 
 use Easybill\ZUGFeRD211\Builder;
-use Easybill\ZUGFeRD211\Model\Address;
+use Easybill\ZUGFeRD211\Model\TradeAddress;
 use Easybill\ZUGFeRD211\Model\Amount;
 use Easybill\ZUGFeRD211\Model\CreditorFinancialAccount;
 use Easybill\ZUGFeRD211\Model\CreditorFinancialInstitution;
@@ -126,7 +126,7 @@ Handelsregisternummer: H A 123
         $sellerTradeParty->definedTradeContact->emailURIUniversalCommunication = new UniversalCommunication();
         $sellerTradeParty->definedTradeContact->emailURIUniversalCommunication->uriid = Id::create('Max@Mustermann.de');
 
-        $sellerTradeParty->postalTradeAddress = new Address();
+        $sellerTradeParty->postalTradeAddress = new TradeAddress();
         $sellerTradeParty->postalTradeAddress->postcode = '80333';
         $sellerTradeParty->postalTradeAddress->lineOne = 'Lieferantenstraße 20';
         $sellerTradeParty->postalTradeAddress->city = 'München';
@@ -139,7 +139,7 @@ Handelsregisternummer: H A 123
         $buyerTradeParty->id = Id::create('GE2020211');
         $buyerTradeParty->name = 'Kunden AG Mitte';
 
-        $buyerTradeParty->postalTradeAddress = new Address();
+        $buyerTradeParty->postalTradeAddress = new TradeAddress();
         $buyerTradeParty->postalTradeAddress->postcode = '69876';
         $buyerTradeParty->postalTradeAddress->lineOne = 'Kundenstraße 15';
         $buyerTradeParty->postalTradeAddress->city = 'Frankfurt';

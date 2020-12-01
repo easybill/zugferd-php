@@ -38,11 +38,11 @@ class TradeParty
     public ?TradeContact $definedTradeContact = null;
 
     /**
-     * @Type("Easybill\ZUGFeRD211\Model\Address")
+     * @Type("Easybill\ZUGFeRD211\Model\TradeAddress")
      * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("PostalTradeAddress")
      */
-    public ?Address $postalTradeAddress = null;
+    public ?TradeAddress $postalTradeAddress = null;
 
     /**
      * @var TaxRegistration[]
