@@ -15,10 +15,38 @@ class ReferencedDocument
      */
     public Id $issuerAssignedID;
 
-    public static function create(string $orderNumber): self
+    /**
+     * @Type("Easybill\ZUGFeRD211\Model\Id")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("URIID")
+     */
+    public ?Id $uriid = null;
+
+    /**
+     * @Type("string")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("TypeCode")
+     */
+    public ?string $typeCode = null;
+
+    /**
+     * @Type("string")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("Name")
+     */
+    public ?string $name = null;
+
+    /**
+     * @Type("Easybill\ZUGFeRD211\Model\BinaryObject")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("AttachmentBinaryObject")
+     */
+    public ?BinaryObject $attachmentBinaryObject = null;
+
+    public static function create(string $issuerAssignedID): self
     {
         $self = new self();
-        $self->issuerAssignedID = Id::create($orderNumber);
+        $self->issuerAssignedID = Id::create($issuerAssignedID);
         return $self;
     }
 }
