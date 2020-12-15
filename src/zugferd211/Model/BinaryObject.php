@@ -25,5 +25,4 @@ class BinaryObject
      * @JMS\XmlValue(cdata=false)
      */
     public string $value;
-
 }
