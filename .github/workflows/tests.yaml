@@ -28,6 +28,7 @@ jobs:
                     php-version: ${{ matrix.php-version }}
                     coverage: pcov
                     tools: composer:v2
+                    ini-values: ${{ matrix.ini-values }}
 
             -   name: Install dependencies
                 run: |
