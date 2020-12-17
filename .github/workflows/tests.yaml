@@ -15,7 +15,7 @@ jobs:
             matrix:
                 php-version: [ '7.4' ]
                 include:
-                    - { operating-system: 'ubuntu-latest', php-version: '8.0', dependencies: '--ignore-platform-req=php' }
+                    - { operating-system: 'ubuntu-latest', php-version: '8.0', dependencies: '--ignore-platform-req=php', ini-values: 'error_reporting=E_ALL & ~E_DEPRECATED' }
 
         name: PHP ${{ matrix.php-version }}
 
