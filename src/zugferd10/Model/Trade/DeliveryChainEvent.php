@@ -23,7 +23,7 @@ class DeliveryChainEvent
      * @param string $date
      * @param int $format
      */
-    public function __construct($date = '', $format)
+    public function __construct($date = '', $format = 102)
     {
         $this->date = new Date($date, $format);
     }
