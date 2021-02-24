@@ -47,7 +47,7 @@ class TradeParty
      */
     private $taxRegistrations;
 
-    public function __construct($name = '', Address $address, array $taxRegistrations = [])
+    public function __construct($name, Address $address, array $taxRegistrations = [])
     {
         $this->name = $name;
         $this->address = $address;
