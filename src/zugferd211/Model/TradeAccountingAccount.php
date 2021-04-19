@@ -3,6 +3,9 @@
 namespace Easybill\ZUGFeRD211\Model;
 
 use JMS\Serializer\Annotation as JMS;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
 
 class TradeAccountingAccount
 {
