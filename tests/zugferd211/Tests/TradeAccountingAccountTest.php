@@ -116,7 +116,7 @@ XML;
     /**
      * @return CrossIndustryInvoice
      */
-    public function getMinimalInvoice()
+    private function getMinimalInvoice(): CrossIndustryInvoice
     {
         $invoice = new CrossIndustryInvoice();
         $invoice->exchangedDocumentContext = new ExchangedDocumentContext();
