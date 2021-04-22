@@ -29,4 +29,11 @@ class LineTradeSettlement
      * @SerializedName("SpecifiedTradeSettlementLineMonetarySummation")
      */
     public TradeSettlementLineMonetarySummation $monetarySummation;
+
+    /**
+     * @var TradeAccountingAccount[]
+     * @Type("array<Easybill\ZUGFeRD211\Model\TradeAccountingAccount>")
+     * @XmlList(inline = true, entry = "ReceivableSpecifiedTradeAccountingAccount", namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     */
+    public array $tradeAccountingAccount = [];
 }
