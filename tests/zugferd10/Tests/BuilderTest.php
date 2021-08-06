@@ -33,6 +33,7 @@ use Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax;
 use Easybill\ZUGFeRD\Model\Trade\Trade;
 use Easybill\ZUGFeRD\Model\Trade\TradeParty;
 use Easybill\ZUGFeRD\Model\Schema;
+use Easybill\ZUGFeRD\Model\Trade\SpecifiedLogisticsServiceCharge;
 use Easybill\ZUGFeRD\Model\Trade\TradeContact;
 use Easybill\ZUGFeRD\Model\Trade\UniversalCommunication;
 use Easybill\ZUGFeRD\SchemaValidator;
@@ -203,6 +204,15 @@ class BuilderTest extends TestCase
         $allowanceCharge = new AllowanceCharge(false, 1, 'EUR', true);
         $allowanceCharge->setBasisAmount(new Amount(1, 'EUR'));
 
+
+        $shippingTax = new TradeTax();
+        $shippingTax->setCode('VAT');
+        $shippingTax->setPercent(0.00);
+        $shippingTax->setCategory('S');
+
+        $shippingCost = new SpecifiedLogisticsServiceCharge('Versandkosten', new Amount(0, 'EUR'));
+        $shippingCost->addTradeTax($shippingTax);
+
         $settlement
             ->addTradeTax($tradeTax)
             ->addTradeTax($tradeTax2)
@@ -216,6 +226,7 @@ class BuilderTest extends TestCase
                             ->setPercent(19)
                     )
             )
+            ->addLogisticsServiceCharge($shippingCost)
             ->setMonetarySummation(
                 new MonetarySummation(198.00, 0.00, 0.00, 198.00, 37.62, 235.62, 'EUR')
             );

@@ -179,6 +179,15 @@
           <ram:ApplicablePercent>19.00</ram:ApplicablePercent>
         </ram:CategoryTradeTax>
       </ram:SpecifiedTradeAllowanceCharge>
+      <ram:SpecifiedLogisticsServiceCharge>
+        <ram:Description>Versandkosten</ram:Description>
+        <ram:AppliedAmount currencyID="EUR">0.00</ram:AppliedAmount>
+        <ram:AppliedTradeTax>
+          <ram:TypeCode>VAT</ram:TypeCode>
+          <ram:CategoryCode>S</ram:CategoryCode>
+          <ram:ApplicablePercent>0.00</ram:ApplicablePercent>
+        </ram:AppliedTradeTax>
+      </ram:SpecifiedLogisticsServiceCharge>
       <ram:SpecifiedTradePaymentTerms>
         <ram:Description>Zahlbar innerhalb von 20 Tagen (bis zum 05.10.2016) unter Abzug von 3% Skonto (Zahlungsbetrag = 1.766,03 €). Bis zum 29.09.2016 ohne Abzug.</ram:Description>
         <ram:DueDateDateTime>
