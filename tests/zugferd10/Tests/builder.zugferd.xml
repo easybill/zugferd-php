@@ -62,6 +62,14 @@
       <ram:BuyerOrderReferencedDocument>
         <ram:ID>0234587234</ram:ID>
       </ram:BuyerOrderReferencedDocument>
+      <ram:AdditionalReferencedDocument>
+        <ram:IssueDateTime>2021-08-06T09:20:00</ram:IssueDateTime>
+        <ram:TypeCode>AAA</ram:TypeCode>
+        <ram:ID>123456</ram:ID>
+      </ram:AdditionalReferencedDocument>
+      <ram:CustomerOrderReferencedDocument>
+        <ram:ID>654789</ram:ID>
+      </ram:CustomerOrderReferencedDocument>
     </ram:ApplicableSupplyChainTradeAgreement>
     <ram:ApplicableSupplyChainTradeDelivery>
       <ram:ActualDeliverySupplyChainEvent>

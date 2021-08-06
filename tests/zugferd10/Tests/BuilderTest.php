@@ -88,9 +88,9 @@ class BuilderTest extends TestCase
             'Lieferant GmbH',
             new Address('80333', 'Lieferantenstraße 20', null, 'München', 'DE'),
             [
-                        new TaxRegistration('FC', '201/113/40209'),
-                        new TaxRegistration('VA', 'DE123456789'),
-                    ]
+                new TaxRegistration('FC', '201/113/40209'),
+                new TaxRegistration('VA', 'DE123456789'),
+            ]
         );
         $seller->setId("ID576");
         $seller->setGlobalId(new Schema("0088", "AZ327"));
@@ -100,12 +100,14 @@ class BuilderTest extends TestCase
             'Kunden AG Mitte',
             new Address('69876', 'Hans Muster', 'Kundenstraße 15', 'Frankfurt', 'DE')
         );
-        
+
         $trade->getAgreement()
             ->setBuyerReference('AB-312')
             ->setSeller($seller)
             ->setBuyer($buyer)
-        ->setBuyerOrder(new ReferencedDocument('0234587234'));
+            ->setBuyerOrder(new ReferencedDocument('0234587234'))
+            ->addAdditionalReferencedDocument(new ReferencedDocument('123456', '2021-08-06T09:20:00', 'AAA'))
+            ->setCustomerOrderReferencedDocument(new ReferencedDocument('654789'));
     }
 
     private function setLineItem(Trade $trade): void
