@@ -33,6 +33,7 @@ use Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax;
 use Easybill\ZUGFeRD\Model\Trade\Trade;
 use Easybill\ZUGFeRD\Model\Trade\TradeParty;
 use Easybill\ZUGFeRD\Model\Schema;
+use Easybill\ZUGFeRD\Model\Trade\TradeCountry;
 use Easybill\ZUGFeRD\Model\Trade\SpecifiedLogisticsServiceCharge;
 use Easybill\ZUGFeRD\Model\Trade\TradeContact;
 use Easybill\ZUGFeRD\Model\Trade\UniversalCommunication;
@@ -165,12 +166,16 @@ class BuilderTest extends TestCase
             ->setTradeTax($lineItemTradeTax)
             ->setMonetarySummation(new SpecifiedTradeMonetarySummation(198.00));
 
+
+        $product = new Product('TB100A4', 'Trennblätter A4', 'Das Beste was man kaufen kann');
+        $product->addTradeCountry(new TradeCountry('DE'));
+
         $lineItem = new LineItem();
         $lineItem
             ->setTradeAgreement($tradeAgreement)
             ->setDelivery(new SpecifiedTradeDelivery(new Quantity('C62', 20.00)))
             ->setSettlement($lineItemSettlement)
-            ->setProduct(new Product('TB100A4', 'Trennblätter A4'))
+            ->setProduct($product)
             ->setLineDocument(new LineDocument('1'))
             ->getLineDocument()
             ->addNote(new Note('Testcontent in einem LineDocument'));

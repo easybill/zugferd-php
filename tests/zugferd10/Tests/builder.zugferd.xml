@@ -266,6 +266,10 @@
       <ram:SpecifiedTradeProduct>
         <ram:SellerAssignedID>TB100A4</ram:SellerAssignedID>
         <ram:Name>Trennblätter A4</ram:Name>
+        <ram:Description>Das Beste was man kaufen kann</ram:Description>
+        <ram:OriginTradeCountry>
+          <ram:ID>DE</ram:ID>
+        </ram:OriginTradeCountry>
       </ram:SpecifiedTradeProduct>
     </ram:IncludedSupplyChainTradeLineItem>
   </rsm:SpecifiedSupplyChainTradeTransaction>
