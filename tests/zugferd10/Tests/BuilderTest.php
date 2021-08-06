@@ -178,6 +178,20 @@ class BuilderTest extends TestCase
     private function setSettlement(Trade $trade): void
     {
         $settlement = new Settlement('2013-471102', 'EUR');
+        $settlement->setPayeeTradeParty(
+            new TradeParty(
+                'Kunden AG Mitte',
+                new Address('69876', 'Hans Muster', 'Kundenstraße 15', 'Frankfurt', 'DE'),
+                [],
+                new TradeContact(
+                    'Test Kunde',
+                    'Rechnungsprüfung',
+                    new UniversalCommunication('+49 (0)9876 54123.1'),
+                    new UniversalCommunication('+49 (0)9876 54123.0'),
+                    new UniversalCommunication(null, 'Rechnungsprüfung@testmail.de')
+                )
+            )
+        );
         $settlement->setPaymentTerms(new PaymentTerms('Zahlbar innerhalb von 20 Tagen (bis zum 05.10.2016) unter Abzug von 3% Skonto (Zahlungsbetrag = 1.766,03 €). Bis zum 29.09.2016 ohne Abzug.', new Date('20130404')));
 
         $settlement->setPaymentMeans(new PaymentMeans());

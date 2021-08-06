@@ -130,6 +130,29 @@
     <ram:ApplicableSupplyChainTradeSettlement>
       <ram:PaymentReference>2013-471102</ram:PaymentReference>
       <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
+      <ram:PayeeTradeParty>
+        <ram:Name>Kunden AG Mitte</ram:Name>
+        <ram:DefinedTradeContact>
+          <ram:PersonName>Test Kunde</ram:PersonName>
+          <ram:DepartmentName>Rechnungsprüfung</ram:DepartmentName>
+          <ram:TelephoneUniversalCommunication>
+            <ram:CompleteNumber>+49 (0)9876 54123.1</ram:CompleteNumber>
+          </ram:TelephoneUniversalCommunication>
+          <ram:FaxUniversalCommunication>
+            <ram:CompleteNumber>+49 (0)9876 54123.0</ram:CompleteNumber>
+          </ram:FaxUniversalCommunication>
+          <ram:EmailURIUniversalCommunication>
+            <ram:URIID>Rechnungsprüfung@testmail.de</ram:URIID>
+          </ram:EmailURIUniversalCommunication>
+        </ram:DefinedTradeContact>
+        <ram:PostalTradeAddress>
+          <ram:PostcodeCode>69876</ram:PostcodeCode>
+          <ram:LineOne>Hans Muster</ram:LineOne>
+          <ram:LineTwo>Kundenstraße 15</ram:LineTwo>
+          <ram:CityName>Frankfurt</ram:CityName>
+          <ram:CountryID>DE</ram:CountryID>
+        </ram:PostalTradeAddress>
+      </ram:PayeeTradeParty>
       <ram:SpecifiedTradeSettlementPaymentMeans>
         <ram:TypeCode>31</ram:TypeCode>
         <ram:Information>Überweisung</ram:Information>
