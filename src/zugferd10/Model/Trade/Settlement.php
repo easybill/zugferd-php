@@ -11,7 +11,7 @@ use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
 /**
- * @AccessorOrder("custom", custom = {"paymentReference", "currency", "paymentMeans", "tradeTaxes", "billingPeriod", "allowanceCharges", "logisticsServiceCharge", "paymentTerms", "monetarySummation"})
+ * @AccessorOrder("custom", custom = {"paymentReference", "currency", "invoiceeTradeParty", "payeeTradeParty", "paymentMeans", "tradeTaxes", "billingPeriod", "allowanceCharges", "logisticsServiceCharge", "paymentTerms", "monetarySummation"})
  */
 class Settlement
 {
@@ -30,6 +30,22 @@ class Settlement
      * @SerializedName("InvoiceCurrencyCode")
      */
     private $currency;
+
+    /**
+     * @var TradeParty
+     * @Type("Easybill\ZUGFeRD\Model\Trade\TradeParty")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("InvoiceeTradeParty")
+     */
+    private $invoiceeTradeParty;
+
+    /**
+     * @var TradeParty
+     * @Type("Easybill\ZUGFeRD\Model\Trade\TradeParty")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("PayeeTradeParty")
+     */
+    private $payeeTradeParty;
 
     /**
      * @var PaymentMeans
@@ -253,6 +269,42 @@ class Settlement
     public function addLogisticsServiceCharge(SpecifiedLogisticsServiceCharge $logisticsServiceCharge)
     {
         $this->logisticsServiceCharge[] = $logisticsServiceCharge;
+        return $this;
+    }
+
+    /**
+     * @return  TradeParty
+     */
+    public function getInvoiceeTradeParty()
+    {
+        return $this->invoiceeTradeParty;
+    }
+
+    /**
+     * @param  TradeParty  $invoiceeTradeParty
+     * @return  self
+     */
+    public function setInvoiceeTradeParty(TradeParty $invoiceeTradeParty)
+    {
+        $this->invoiceeTradeParty = $invoiceeTradeParty;
+        return $this;
+    }
+
+    /**
+     * @return  TradeParty
+     */
+    public function getPayeeTradeParty()
+    {
+        return $this->payeeTradeParty;
+    }
+
+    /**
+     * @param  TradeParty  $payeeTradeParty
+     * @return  self
+     */
+    public function setPayeeTradeParty(TradeParty $payeeTradeParty)
+    {
+        $this->payeeTradeParty = $payeeTradeParty;
         return $this;
     }
 }
