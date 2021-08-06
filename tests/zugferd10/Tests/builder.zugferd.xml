@@ -148,6 +148,8 @@
         <ram:CalculatedAmount currencyID="EUR">19.25</ram:CalculatedAmount>
         <ram:TypeCode>VAT</ram:TypeCode>
         <ram:BasisAmount currencyID="EUR">275.00</ram:BasisAmount>
+        <ram:LineTotalBasisAmount currencyID="EUR">270.00</ram:LineTotalBasisAmount>
+        <ram:AllowanceChargeBasisAmount currencyID="EUR">5.00</ram:AllowanceChargeBasisAmount>
         <ram:ApplicablePercent>7.00</ram:ApplicablePercent>
       </ram:ApplicableTradeTax>
       <ram:ApplicableTradeTax>

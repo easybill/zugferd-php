@@ -190,6 +190,8 @@ class BuilderTest extends TestCase
         $tradeTax->setCode('VAT');
         $tradeTax->setPercent(7.00);
         $tradeTax->setBasisAmount(new Amount(275.00, 'EUR'));
+        $tradeTax->setLineTotalBasisAmount(new Amount(270.00, 'EUR'));
+        $tradeTax->setAllowanceChargeBasisAmount(new Amount(5.00, 'EUR'));
         $tradeTax->setCalculatedAmount(new Amount(19.25, 'EUR'));
 
         $tradeTax2 = new TradeTax();

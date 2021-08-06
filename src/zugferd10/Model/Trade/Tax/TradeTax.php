@@ -5,9 +5,6 @@ namespace Easybill\ZUGFeRD\Model\Trade\Tax;
 use Easybill\ZUGFeRD\Model\Trade\Amount;
 use JMS\Serializer\Annotation as JMS;
 
-/**
- * @JMS\AccessorOrder("custom", custom = {"calculatedAmount", "code", "basisAmount", "category", "percent"})
- */
 class TradeTax
 {
     /**
@@ -27,6 +24,14 @@ class TradeTax
     private $code = '';
 
     /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @JMS\SerializedName("ExemptionReason")
+     */
+    private $exemptionReason;
+
+    /**
      * @var Amount
      * @JMS\Type("Easybill\ZUGFeRD\Model\Trade\Amount")
      * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
@@ -35,12 +40,20 @@ class TradeTax
     private $basisAmount;
 
     /**
-     * @var string
-     * @JMS\Type("string")
+     * @var Amount
+     * @JMS\Type("Easybill\ZUGFeRD\Model\Trade\Amount")
      * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @JMS\SerializedName("ApplicablePercent")
+     * @JMS\SerializedName("LineTotalBasisAmount")
      */
-    private $percent;
+    private $lineTotalBasisAmount;
+
+    /**
+     * @var Amount
+     * @JMS\Type("Easybill\ZUGFeRD\Model\Trade\Amount")
+     * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @JMS\SerializedName("AllowanceChargeBasisAmount")
+     */
+    private $allowanceChargeBasisAmount;
 
     /**
      * @var string
@@ -49,6 +62,14 @@ class TradeTax
      * @JMS\SerializedName("CategoryCode")
      */
     private $category;
+
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @JMS\SerializedName("ApplicablePercent")
+     */
+    private $percent;
 
     /**
      * @return Amount
@@ -140,6 +161,61 @@ class TradeTax
     public function setCategory($category)
     {
         $this->category = $category;
+        return $this;
+    }
+
+    /**
+     * @return  string
+     */
+    public function getExemptionReason()
+    {
+        return $this->exemptionReason;
+    }
+
+    /**
+     * @param  string  $exemptionReason
+     * @return  self
+     */
+    public function setExemptionReason(string $exemptionReason)
+    {
+        $this->exemptionReason = $exemptionReason;
+
+        return $this;
+    }
+
+    /**
+     * @return  Amount
+     */
+    public function getLineTotalBasisAmount()
+    {
+        return $this->lineTotalBasisAmount;
+    }
+
+    /**
+     * @param  Amount  $lineTotalBasisAmount
+     * @return  self
+     */
+    public function setLineTotalBasisAmount(Amount $lineTotalBasisAmount)
+    {
+        $this->lineTotalBasisAmount = $lineTotalBasisAmount;
+        return $this;
+    }
+
+    /**
+     * @return  Amount
+     */
+    public function getAllowanceChargeBasisAmount()
+    {
+        return $this->allowanceChargeBasisAmount;
+    }
+
+    /**
+     * @param  Amount  $allowanceChargeBasisAmount
+     * @return  self
+     */
+    public function setAllowanceChargeBasisAmount(Amount $allowanceChargeBasisAmount)
+    {
+        $this->allowanceChargeBasisAmount = $allowanceChargeBasisAmount;
         return $this;
     }
 }
