@@ -33,6 +33,8 @@ use Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax;
 use Easybill\ZUGFeRD\Model\Trade\Trade;
 use Easybill\ZUGFeRD\Model\Trade\TradeParty;
 use Easybill\ZUGFeRD\Model\Schema;
+use Easybill\ZUGFeRD\Model\Trade\TradeContact;
+use Easybill\ZUGFeRD\Model\Trade\UniversalCommunication;
 use Easybill\ZUGFeRD\SchemaValidator;
 use PHPUnit\Framework\TestCase;
 
@@ -90,7 +92,14 @@ class BuilderTest extends TestCase
             [
                 new TaxRegistration('FC', '201/113/40209'),
                 new TaxRegistration('VA', 'DE123456789'),
-            ]
+            ],
+            new TradeContact(
+                'Christian Szardenings',
+                'Dev',
+                new UniversalCommunication('+49 (0)1234 56789.1'),
+                new UniversalCommunication('+49 (0)1234 56789.0'),
+                new UniversalCommunication(null, 'mail@mail.de')
+            )
         );
         $seller->setId("ID576");
         $seller->setGlobalId(new Schema("0088", "AZ327"));
@@ -98,7 +107,15 @@ class BuilderTest extends TestCase
 
         $buyer = new TradeParty(
             'Kunden AG Mitte',
-            new Address('69876', 'Hans Muster', 'Kundenstraße 15', 'Frankfurt', 'DE')
+            new Address('69876', 'Hans Muster', 'Kundenstraße 15', 'Frankfurt', 'DE'),
+            [],
+            new TradeContact(
+                'Test Kunde',
+                'Rechnungsprüfung',
+                new UniversalCommunication('+49 (0)9876 54123.1'),
+                new UniversalCommunication('+49 (0)9876 54123.0'),
+                new UniversalCommunication(null, 'Rechnungsprüfung@testmail.de')
+            )
         );
 
         $trade->getAgreement()

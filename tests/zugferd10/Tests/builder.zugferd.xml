@@ -36,6 +36,19 @@
         <ram:ID>ID576</ram:ID>
         <ram:GlobalID schemeID="0088">AZ327</ram:GlobalID>
         <ram:Name>Lieferant GmbH</ram:Name>
+        <ram:DefinedTradeContact>
+          <ram:PersonName>Christian Szardenings</ram:PersonName>
+          <ram:DepartmentName>Dev</ram:DepartmentName>
+          <ram:TelephoneUniversalCommunication>
+            <ram:CompleteNumber>+49 (0)1234 56789.1</ram:CompleteNumber>
+          </ram:TelephoneUniversalCommunication>
+          <ram:FaxUniversalCommunication>
+            <ram:CompleteNumber>+49 (0)1234 56789.0</ram:CompleteNumber>
+          </ram:FaxUniversalCommunication>
+          <ram:EmailURIUniversalCommunication>
+            <ram:URIID>mail@mail.de</ram:URIID>
+          </ram:EmailURIUniversalCommunication>
+        </ram:DefinedTradeContact>
         <ram:PostalTradeAddress>
           <ram:PostcodeCode>80333</ram:PostcodeCode>
           <ram:LineOne>Lieferantenstraße 20</ram:LineOne>
@@ -51,6 +64,19 @@
       </ram:SellerTradeParty>
       <ram:BuyerTradeParty>
         <ram:Name>Kunden AG Mitte</ram:Name>
+        <ram:DefinedTradeContact>
+          <ram:PersonName>Test Kunde</ram:PersonName>
+          <ram:DepartmentName>Rechnungsprüfung</ram:DepartmentName>
+          <ram:TelephoneUniversalCommunication>
+            <ram:CompleteNumber>+49 (0)9876 54123.1</ram:CompleteNumber>
+          </ram:TelephoneUniversalCommunication>
+          <ram:FaxUniversalCommunication>
+            <ram:CompleteNumber>+49 (0)9876 54123.0</ram:CompleteNumber>
+          </ram:FaxUniversalCommunication>
+          <ram:EmailURIUniversalCommunication>
+            <ram:URIID>Rechnungsprüfung@testmail.de</ram:URIID>
+          </ram:EmailURIUniversalCommunication>
+        </ram:DefinedTradeContact>
         <ram:PostalTradeAddress>
           <ram:PostcodeCode>69876</ram:PostcodeCode>
           <ram:LineOne>Hans Muster</ram:LineOne>

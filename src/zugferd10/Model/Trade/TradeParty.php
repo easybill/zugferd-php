@@ -34,6 +34,12 @@ class TradeParty
      */
     private $name;
     /**
+     * @Type("Easybill\ZUGFeRD\Model\Trade\TradeContact")
+     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("DefinedTradeContact")
+     */
+    public $definedTradeContact;
+    /**
      * @var Address
      * @Type("Easybill\ZUGFeRD\Model\Address")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
@@ -47,10 +53,11 @@ class TradeParty
      */
     private $taxRegistrations;
 
-    public function __construct($name, Address $address, array $taxRegistrations = [])
+    public function __construct($name, Address $address, array $taxRegistrations = [], TradeContact $definedTradeContact = null)
     {
         $this->name = $name;
         $this->address = $address;
+        $this->definedTradeContact = $definedTradeContact;
         $this->taxRegistrations = $taxRegistrations;
     }
 
@@ -141,6 +148,23 @@ class TradeParty
     public function addTaxRegistration(TaxRegistration $taxRegistration)
     {
         $this->taxRegistrations[] = $taxRegistration;
+        return $this;
+    }
+
+    /**
+     * @return \Easybill\ZUGFeRD\Model\Trade\Tax\TradeContact
+     */
+    public function getDefinedTradeContact()
+    {
+        return $this->definedTradeContact;
+    }
+
+    /**
+     * @return  self
+     */
+    public function setDefinedTradeContact(TradeContact $definedTradeContact)
+    {
+        $this->definedTradeContact = $definedTradeContact;
         return $this;
     }
 }
