@@ -98,6 +98,29 @@
       </ram:CustomerOrderReferencedDocument>
     </ram:ApplicableSupplyChainTradeAgreement>
     <ram:ApplicableSupplyChainTradeDelivery>
+      <ram:ShipToTradeParty>
+        <ram:Name>Kunden AG Mitte</ram:Name>
+        <ram:DefinedTradeContact>
+          <ram:PersonName>Test Kunde</ram:PersonName>
+          <ram:DepartmentName>Rechnungsprüfung</ram:DepartmentName>
+          <ram:TelephoneUniversalCommunication>
+            <ram:CompleteNumber>+49 (0)9876 54123.1</ram:CompleteNumber>
+          </ram:TelephoneUniversalCommunication>
+          <ram:FaxUniversalCommunication>
+            <ram:CompleteNumber>+49 (0)9876 54123.0</ram:CompleteNumber>
+          </ram:FaxUniversalCommunication>
+          <ram:EmailURIUniversalCommunication>
+            <ram:URIID>Rechnungsprüfung@testmail.de</ram:URIID>
+          </ram:EmailURIUniversalCommunication>
+        </ram:DefinedTradeContact>
+        <ram:PostalTradeAddress>
+          <ram:PostcodeCode>69876</ram:PostcodeCode>
+          <ram:LineOne>Hans Muster</ram:LineOne>
+          <ram:LineTwo>Kundenstraße 15</ram:LineTwo>
+          <ram:CityName>Frankfurt</ram:CityName>
+          <ram:CountryID>DE</ram:CountryID>
+        </ram:PostalTradeAddress>
+      </ram:ShipToTradeParty>
       <ram:ActualDeliverySupplyChainEvent>
         <ram:OccurrenceDateTime>
           <udt:DateTimeString format="102">20130305</udt:DateTimeString>

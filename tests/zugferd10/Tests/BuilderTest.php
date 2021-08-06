@@ -69,7 +69,20 @@ class BuilderTest extends TestCase
 
         $trade = $doc->getTrade();
 
-        $trade->setDelivery(new Delivery('20130305', 102));
+        $delivery = new Delivery('20130305', 102);
+        $delivery->setShipToTradeParty(new TradeParty(
+            'Kunden AG Mitte',
+            new Address('69876', 'Hans Muster', 'Kundenstraße 15', 'Frankfurt', 'DE'),
+            [],
+            new TradeContact(
+                'Test Kunde',
+                'Rechnungsprüfung',
+                new UniversalCommunication('+49 (0)9876 54123.1'),
+                new UniversalCommunication('+49 (0)9876 54123.0'),
+                new UniversalCommunication(null, 'Rechnungsprüfung@testmail.de')
+            )
+        ));
+        $trade->setDelivery($delivery);
 
         $this->setAgreement($trade);
         $this->setLineItem($trade);
