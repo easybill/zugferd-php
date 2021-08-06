@@ -170,6 +170,7 @@
         <ram:ChargeIndicator>
           <udt:Indicator>false</udt:Indicator>
         </ram:ChargeIndicator>
+        <ram:BasisAmount currencyID="EUR">1.00</ram:BasisAmount>
         <ram:ActualAmount currencyID="EUR">1.00</ram:ActualAmount>
         <ram:Reason>Sondernachlass</ram:Reason>
         <ram:CategoryTradeTax>

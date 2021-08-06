@@ -200,11 +200,14 @@ class BuilderTest extends TestCase
         $tradeTax2->setBasisAmount(new Amount(198.00, 'EUR'));
         $tradeTax2->setCalculatedAmount(new Amount(37.62, 'EUR'));
 
+        $allowanceCharge = new AllowanceCharge(false, 1, 'EUR', true);
+        $allowanceCharge->setBasisAmount(new Amount(1, 'EUR'));
+
         $settlement
             ->addTradeTax($tradeTax)
             ->addTradeTax($tradeTax2)
             ->addAllowanceCharge(
-                (new AllowanceCharge(false, 1, 'EUR', true))
+                ($allowanceCharge)
                     ->setReason('Sondernachlass')
                     ->addCategoryTradeTax(
                         (new TradeTax())

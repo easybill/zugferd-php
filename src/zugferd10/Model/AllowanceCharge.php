@@ -3,6 +3,7 @@
 namespace Easybill\ZUGFeRD\Model;
 
 use Easybill\ZUGFeRD\Model\Trade\Amount;
+use Easybill\ZUGFeRD\Model\Trade\Item\Quantity;
 use Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax;
 use JMS\Serializer\Annotation as JMS;
 
@@ -20,12 +21,52 @@ class AllowanceCharge
     private $indicator;
 
     /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @JMS\SerializedName("SequenceNumeric")
+     */
+    private $sequenceNumeric;
+
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @JMS\SerializedName("CalculationPercent")
+     */
+    private $calculationPercent;
+
+    /**
+     * @var Quantity
+     * @JMS\Type("Easybill\ZUGFeRD\Model\Trade\Quantity")
+     * @JMS\XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @JMS\SerializedName("BasisQuantity")
+     */
+    private $basisQuantity;
+
+    /**
+     * @var Amount
+     * @JMS\Type("Easybill\ZUGFeRD\Model\Trade\Amount")
+     * @JMS\XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @JMS\SerializedName("BasisAmount")
+     */
+    private $basisAmount;
+
+    /**
      * @var Amount
      * @JMS\Type("Easybill\ZUGFeRD\Model\Trade\Amount")
      * @JMS\XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @JMS\SerializedName("ActualAmount")
      */
     private $actualAmount;
+
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @JMS\SerializedName("ReasonCode")
+     */
+    private $reasonCode;
 
     /**
      * @var string
@@ -114,6 +155,96 @@ class AllowanceCharge
     public function addCategoryTradeTax(TradeTax $tradeTax)
     {
         $this->categoryTradeTaxes[] = $tradeTax;
+        return $this;
+    }
+
+    /**
+     * @return  string
+     */
+    public function getSequenceNumeric()
+    {
+        return $this->sequenceNumeric;
+    }
+
+    /**
+     * @param  string  $sequenceNumeric
+     * @return  self
+     */
+    public function setSequenceNumeric(string $sequenceNumeric)
+    {
+        $this->sequenceNumeric = $sequenceNumeric;
+        return $this;
+    }
+
+    /**
+     * @return  string
+     */
+    public function getCalculationPercent()
+    {
+        return $this->calculationPercent;
+    }
+
+    /**
+     * @param  string  $calculationPercent
+     * @return  self
+     */
+    public function setCalculationPercent(string $calculationPercent)
+    {
+        $this->calculationPercent = $calculationPercent;
+        return $this;
+    }
+
+    /**
+     * @return  Quantity
+     */
+    public function getBasisQuantity()
+    {
+        return $this->basisQuantity;
+    }
+
+    /**
+     * @param  Quantity  $basisQuantity
+     * @return  self
+     */
+    public function setBasisQuantity(Quantity $basisQuantity)
+    {
+        $this->basisQuantity = $basisQuantity;
+        return $this;
+    }
+
+    /**
+     * @return  Amount
+     */
+    public function getBasisAmount()
+    {
+        return $this->basisAmount;
+    }
+
+    /**
+     * @param  Amount  $basisAmount
+     * @return  self
+     */
+    public function setBasisAmount(Amount $basisAmount)
+    {
+        $this->basisAmount = $basisAmount;
+        return $this;
+    }
+
+    /**
+     * @return  string
+     */
+    public function getReasonCode()
+    {
+        return $this->reasonCode;
+    }
+
+    /**
+     * @param  string  $reasonCode
+     * @return  self
+     */
+    public function setReasonCode(string $reasonCode)
+    {
+        $this->reasonCode = $reasonCode;
         return $this;
     }
 }
