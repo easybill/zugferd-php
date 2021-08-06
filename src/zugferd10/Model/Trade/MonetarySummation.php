@@ -69,6 +69,26 @@ class MonetarySummation
     private $grandTotal;
 
     /**
+     * Total Prepaid Amount.
+     *
+     * @var Amount
+     * @Type("Easybill\ZUGFeRD\Model\Trade\Amount")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("TotalPrepaidAmount")
+     */
+    private $totalPrepaidAmount;
+
+    /**
+     * Due Payable Amount.
+     *
+     * @var Amount
+     * @Type("Easybill\ZUGFeRD\Model\Trade\Amount")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("DuePayableAmount")
+     */
+    private $duePayableAmount;
+
+    /**
      * MonetarySummation constructor.
      *
      * @param float $lineTotal
@@ -190,5 +210,41 @@ class MonetarySummation
     public function setGrandTotal($grandTotal)
     {
         $this->grandTotal = $grandTotal;
+    }
+
+    /**
+     * @return  Amount
+     */
+    public function getTotalPrepaidAmount()
+    {
+        return $this->totalPrepaidAmount;
+    }
+
+    /**
+     * @param  Amount  $totalPrepaidAmount  Gross amount.
+     * @return  self
+     */
+    public function setTotalPrepaidAmount(Amount $totalPrepaidAmount)
+    {
+        $this->totalPrepaidAmount = $totalPrepaidAmount;
+        return $this;
+    }
+
+    /**
+     * @return  Amount
+     */
+    public function getDuePayableAmount()
+    {
+        return $this->duePayableAmount;
+    }
+
+    /**
+     * @param  Amount  $duePayableAmount  Gross amount.
+     * @return  self
+     */
+    public function setDuePayableAmount(Amount $duePayableAmount)
+    {
+        $this->duePayableAmount = $duePayableAmount;
+        return $this;
     }
 }

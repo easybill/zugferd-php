@@ -224,6 +224,7 @@
         <ram:TaxBasisTotalAmount currencyID="EUR">198.00</ram:TaxBasisTotalAmount>
         <ram:TaxTotalAmount currencyID="EUR">37.62</ram:TaxTotalAmount>
         <ram:GrandTotalAmount currencyID="EUR">235.62</ram:GrandTotalAmount>
+        <ram:DuePayableAmount currencyID="EUR">235.62</ram:DuePayableAmount>
       </ram:SpecifiedTradeSettlementMonetarySummation>
     </ram:ApplicableSupplyChainTradeSettlement>
     <ram:IncludedSupplyChainTradeLineItem>

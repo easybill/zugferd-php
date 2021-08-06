@@ -227,6 +227,9 @@ class BuilderTest extends TestCase
         $shippingCost = new SpecifiedLogisticsServiceCharge('Versandkosten', new Amount(0, 'EUR'));
         $shippingCost->addTradeTax($shippingTax);
 
+        $monetarySummation = new MonetarySummation(198.00, 0.00, 0.00, 198.00, 37.62, 235.62, 'EUR');
+        $monetarySummation->setDuePayableAmount(new Amount(235.62, 'EUR'));
+
         $settlement
             ->addTradeTax($tradeTax)
             ->addTradeTax($tradeTax2)
@@ -241,9 +244,7 @@ class BuilderTest extends TestCase
                     )
             )
             ->addLogisticsServiceCharge($shippingCost)
-            ->setMonetarySummation(
-                new MonetarySummation(198.00, 0.00, 0.00, 198.00, 37.62, 235.62, 'EUR')
-            );
+            ->setMonetarySummation($monetarySummation);
 
         $billingPeriod = new BillingPeriod(
             new Date('20130104'),
