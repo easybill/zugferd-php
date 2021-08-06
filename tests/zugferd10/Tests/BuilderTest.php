@@ -147,10 +147,13 @@ class BuilderTest extends TestCase
 
         $grossPrice = new Price(9.90, 'EUR', false);
         $grossPrice
-            ->addAllowanceCharge(new AllowanceCharge(false, 1.80));
+            ->addAllowanceCharge(new AllowanceCharge(false, 1.80))
+            ->setQuantity(new Quantity('C62', 1));
 
         $tradeAgreement->setGrossPrice($grossPrice);
-        $tradeAgreement->setNetPrice(new Price(9.90, 'EUR', false));
+        $grossNetPrice = new Price(9.90, 'EUR', false);
+        $grossNetPrice->setQuantity(new Quantity('C62', 1));
+        $tradeAgreement->setNetPrice($grossNetPrice);
 
         $lineItemTradeTax = new TradeTax();
         $lineItemTradeTax->setCode('VAT');
