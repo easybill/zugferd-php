@@ -52,7 +52,6 @@ class TradeContact
         $this->emailURIUniversalCommunication = $emailURIUniversalCommunication;
     }
 
-
     /**
      * @return string
      */
@@ -63,7 +62,7 @@ class TradeContact
 
     /**
      * @param string $personName
-     * @return  self
+     * @return self
      */
     public function setPersonName($personName)
     {
@@ -81,7 +80,7 @@ class TradeContact
 
     /**
      * @param string $departmentName
-     * @return  self
+     * @return self
      */
     public function setDepartmentName($departmentName)
     {
@@ -98,7 +97,7 @@ class TradeContact
     }
 
     /**
-     * @return  self
+     * @return self
      */
     public function setTelephoneUniversalCommunication(UniversalCommunication $telephoneUniversalCommunication)
     {
@@ -115,7 +114,7 @@ class TradeContact
     }
 
     /**
-     * @return  self
+     * @return self
      */
     public function setFaxUniversalCommunication(UniversalCommunication $faxUniversalCommunication)
     {
@@ -132,7 +131,7 @@ class TradeContact
     }
 
     /**
-     * @return  self
+     * @return self
      */
     public function setEmailURIUniversalCommunication(UniversalCommunication $emailURIUniversalCommunication)
     {

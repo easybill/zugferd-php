@@ -57,7 +57,7 @@ class ReferencedDocument
     }
 
     /**
-     * @return  string
+     * @return string
      */
     public function getIssuedDateTime()
     {
@@ -65,7 +65,7 @@ class ReferencedDocument
     }
 
     /**
-     * @return  self
+     * @return self
      */
     public function setIssuedDateTime(string $issuedDateTime)
     {
@@ -74,7 +74,7 @@ class ReferencedDocument
     }
 
     /**
-     * @return  string
+     * @return string
      */
     public function getTypeCode()
     {
@@ -82,7 +82,7 @@ class ReferencedDocument
     }
 
     /**
-     * @return  self
+     * @return self
      */
     public function setTypeCode(string $typeCode)
     {

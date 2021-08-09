@@ -8,7 +8,6 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class Delivery
 {
-
     /**
      * @var TradeParty
      * @Type("Easybill\ZUGFeRD\Model\Trade\TradeParty")
@@ -69,7 +68,7 @@ class Delivery
     }
 
     /**
-     * @return  \Easybill\ZUGFeRD\Model\Trade\TradeParty
+     * @return \Easybill\ZUGFeRD\Model\Trade\TradeParty
      */
     public function getShipToTradeParty()
     {
@@ -77,8 +76,7 @@ class Delivery
     }
 
     /**
-     * @param  TradeParty  $shipToTradeParty
-     * @return  self
+     * @return self
      */
     public function setShipToTradeParty(TradeParty $shipToTradeParty)
     {
@@ -87,7 +85,7 @@ class Delivery
     }
 
     /**
-     * @return  \Easybill\ZUGFeRD\Model\Trade\TradeParty
+     * @return \Easybill\ZUGFeRD\Model\Trade\TradeParty
      */
     public function getUltimateShipToTradeParty()
     {
@@ -95,8 +93,7 @@ class Delivery
     }
 
     /**
-     * @param  TradeParty  $ultimateShipToTradeParty
-     * @return  self
+     * @return self
      */
     public function setUltimateShipToTradeParty(TradeParty $ultimateShipToTradeParty)
     {
@@ -105,7 +102,7 @@ class Delivery
     }
 
     /**
-     * @return  \Easybill\ZUGFeRD\Model\Trade\TradeParty
+     * @return \Easybill\ZUGFeRD\Model\Trade\TradeParty
      */
     public function getShipFromTradeParty()
     {
@@ -113,9 +110,7 @@ class Delivery
     }
 
     /**
-
-     * @param  TradeParty  $shipFromTradeParty
-     * @return  self
+     * @return self
      */
     public function setShipFromTradeParty(TradeParty $shipFromTradeParty)
     {

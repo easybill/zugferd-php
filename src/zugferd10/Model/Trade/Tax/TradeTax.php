@@ -165,7 +165,7 @@ class TradeTax
     }
 
     /**
-     * @return  string
+     * @return string
      */
     public function getExemptionReason()
     {
@@ -173,8 +173,7 @@ class TradeTax
     }
 
     /**
-     * @param  string  $exemptionReason
-     * @return  self
+     * @return self
      */
     public function setExemptionReason(string $exemptionReason)
     {
@@ -184,7 +183,7 @@ class TradeTax
     }
 
     /**
-     * @return  Amount
+     * @return Amount
      */
     public function getLineTotalBasisAmount()
     {
@@ -192,8 +191,7 @@ class TradeTax
     }
 
     /**
-     * @param  Amount  $lineTotalBasisAmount
-     * @return  self
+     * @return self
      */
     public function setLineTotalBasisAmount(Amount $lineTotalBasisAmount)
     {
@@ -202,7 +200,7 @@ class TradeTax
     }
 
     /**
-     * @return  Amount
+     * @return Amount
      */
     public function getAllowanceChargeBasisAmount()
     {
@@ -210,8 +208,7 @@ class TradeTax
     }
 
     /**
-     * @param  Amount  $allowanceChargeBasisAmount
-     * @return  self
+     * @return self
      */
     public function setAllowanceChargeBasisAmount(Amount $allowanceChargeBasisAmount)
     {

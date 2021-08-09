@@ -213,7 +213,7 @@ class MonetarySummation
     }
 
     /**
-     * @return  Amount
+     * @return Amount
      */
     public function getTotalPrepaidAmount()
     {
@@ -221,8 +221,8 @@ class MonetarySummation
     }
 
     /**
-     * @param  Amount  $totalPrepaidAmount  Gross amount.
-     * @return  self
+     * @param Amount $totalPrepaidAmount gross amount
+     * @return self
      */
     public function setTotalPrepaidAmount(Amount $totalPrepaidAmount)
     {
@@ -231,7 +231,7 @@ class MonetarySummation
     }
 
     /**
-     * @return  Amount
+     * @return Amount
      */
     public function getDuePayableAmount()
     {
@@ -239,8 +239,8 @@ class MonetarySummation
     }
 
     /**
-     * @param  Amount  $duePayableAmount  Gross amount.
-     * @return  self
+     * @param Amount $duePayableAmount gross amount
+     * @return self
      */
     public function setDuePayableAmount(Amount $duePayableAmount)
     {

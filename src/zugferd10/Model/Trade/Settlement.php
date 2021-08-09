@@ -255,7 +255,7 @@ class Settlement
     }
 
     /**
-     * @return  SpecifiedLogisticsServiceCharge[]
+     * @return SpecifiedLogisticsServiceCharge[]
      */
     public function getLogisticsServiceCharge()
     {
@@ -263,8 +263,7 @@ class Settlement
     }
 
     /**
-     * @param  SpecifiedLogisticsServiceCharge  $logisticsServiceCharge
-     * @return  self
+     * @return self
      */
     public function addLogisticsServiceCharge(SpecifiedLogisticsServiceCharge $logisticsServiceCharge)
     {
@@ -273,7 +272,7 @@ class Settlement
     }
 
     /**
-     * @return  TradeParty
+     * @return TradeParty
      */
     public function getInvoiceeTradeParty()
     {
@@ -281,8 +280,7 @@ class Settlement
     }
 
     /**
-     * @param  TradeParty  $invoiceeTradeParty
-     * @return  self
+     * @return self
      */
     public function setInvoiceeTradeParty(TradeParty $invoiceeTradeParty)
     {
@@ -291,7 +289,7 @@ class Settlement
     }
 
     /**
-     * @return  TradeParty
+     * @return TradeParty
      */
     public function getPayeeTradeParty()
     {
@@ -299,8 +297,7 @@ class Settlement
     }
 
     /**
-     * @param  TradeParty  $payeeTradeParty
-     * @return  self
+     * @return self
      */
     public function setPayeeTradeParty(TradeParty $payeeTradeParty)
     {

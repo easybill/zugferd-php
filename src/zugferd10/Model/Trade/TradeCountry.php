@@ -27,7 +27,7 @@ class TradeCountry
     }
 
     /**
-     * @return  string
+     * @return string
      */
     public function getId()
     {
@@ -35,8 +35,7 @@ class TradeCountry
     }
 
     /**
-     * @param  string  $id
-     * @return  self
+     * @return self
      */
     public function setId(string $id)
     {

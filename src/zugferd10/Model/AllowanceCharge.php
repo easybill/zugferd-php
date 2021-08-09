@@ -159,7 +159,7 @@ class AllowanceCharge
     }
 
     /**
-     * @return  string
+     * @return string
      */
     public function getSequenceNumeric()
     {
@@ -167,8 +167,7 @@ class AllowanceCharge
     }
 
     /**
-     * @param  string  $sequenceNumeric
-     * @return  self
+     * @return self
      */
     public function setSequenceNumeric(string $sequenceNumeric)
     {
@@ -177,7 +176,7 @@ class AllowanceCharge
     }
 
     /**
-     * @return  string
+     * @return string
      */
     public function getCalculationPercent()
     {
@@ -185,8 +184,7 @@ class AllowanceCharge
     }
 
     /**
-     * @param  string  $calculationPercent
-     * @return  self
+     * @return self
      */
     public function setCalculationPercent(string $calculationPercent)
     {
@@ -195,7 +193,7 @@ class AllowanceCharge
     }
 
     /**
-     * @return  Quantity
+     * @return Quantity
      */
     public function getBasisQuantity()
     {
@@ -203,8 +201,7 @@ class AllowanceCharge
     }
 
     /**
-     * @param  Quantity  $basisQuantity
-     * @return  self
+     * @return self
      */
     public function setBasisQuantity(Quantity $basisQuantity)
     {
@@ -213,7 +210,7 @@ class AllowanceCharge
     }
 
     /**
-     * @return  Amount
+     * @return Amount
      */
     public function getBasisAmount()
     {
@@ -221,8 +218,7 @@ class AllowanceCharge
     }
 
     /**
-     * @param  Amount  $basisAmount
-     * @return  self
+     * @return self
      */
     public function setBasisAmount(Amount $basisAmount)
     {
@@ -231,7 +227,7 @@ class AllowanceCharge
     }
 
     /**
-     * @return  string
+     * @return string
      */
     public function getReasonCode()
     {
@@ -239,8 +235,7 @@ class AllowanceCharge
     }
 
     /**
-     * @param  string  $reasonCode
-     * @return  self
+     * @return self
      */
     public function setReasonCode(string $reasonCode)
     {

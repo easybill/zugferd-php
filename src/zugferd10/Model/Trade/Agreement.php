@@ -132,7 +132,7 @@ class Agreement
     }
 
     /**
-     * @return  \Easybill\ZUGFeRD\Model\Trade\ReferencedDocument[]
+     * @return \Easybill\ZUGFeRD\Model\Trade\ReferencedDocument[]
      */
     public function getAdditionalReferencedDocuments()
     {
@@ -140,7 +140,7 @@ class Agreement
     }
 
     /**
-     * @return  self
+     * @return self
      */
     public function addAdditionalReferencedDocument(ReferencedDocument $additionalReferencedDocument)
     {
@@ -150,8 +150,7 @@ class Agreement
     }
 
     /**
-
-     * @return  \Easybill\ZUGFeRD\Model\Trade\ReferencedDocument
+     * @return \Easybill\ZUGFeRD\Model\Trade\ReferencedDocument
      */
     public function getCustomerOrderReferencedDocument()
     {
@@ -159,7 +158,7 @@ class Agreement
     }
 
     /**
-     * @return  self
+     * @return self
      */
     public function setCustomerOrderReferencedDocument(ReferencedDocument $customerOrderReferencedDocument)
     {

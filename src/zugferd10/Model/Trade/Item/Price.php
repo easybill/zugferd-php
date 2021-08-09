@@ -4,7 +4,6 @@ namespace Easybill\ZUGFeRD\Model\Trade\Item;
 
 use Easybill\ZUGFeRD\Model\AllowanceCharge;
 use Easybill\ZUGFeRD\Model\Trade\Amount;
-use Easybill\ZUGFeRD\Model\Trade\Item\Quantity;
 use JMS\Serializer\Annotation as JMS;
 
 class Price
@@ -78,7 +77,7 @@ class Price
     }
 
     /**
-     * @return  Quantity
+     * @return Quantity
      */
     public function getQuantity()
     {
@@ -86,8 +85,7 @@ class Price
     }
 
     /**
-     * @param  Quantity  $quantity
-     * @return  self
+     * @return self
      */
     public function setQuantity(Quantity $quantity)
     {

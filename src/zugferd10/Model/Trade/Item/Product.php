@@ -57,6 +57,7 @@ class Product
      *
      * @param string $sellerAssignedID
      * @param string $name
+     * @param null|mixed $description
      */
     public function __construct($sellerAssignedID, $name, $description = null)
     {
@@ -82,7 +83,7 @@ class Product
     }
 
     /**
-     * @return  string
+     * @return string
      */
     public function getBuyerAssignedID()
     {
@@ -90,8 +91,7 @@ class Product
     }
 
     /**
-     * @param  string  $buyerAssignedID
-     * @return  self
+     * @return self
      */
     public function setBuyerAssignedID(string $buyerAssignedID)
     {
@@ -116,7 +116,7 @@ class Product
     }
 
     /**
-     * @return  string
+     * @return string
      */
     public function getDescription()
     {
@@ -124,8 +124,7 @@ class Product
     }
 
     /**
-     * @param  string  $description
-     * @return  self
+     * @return self
      */
     public function setDescription(string $description)
     {
@@ -134,7 +133,7 @@ class Product
     }
 
     /**
-     * @return  TradeCountry[]
+     * @return TradeCountry[]
      */
     public function getTradeCountries()
     {
@@ -142,8 +141,8 @@ class Product
     }
 
     /**
-     * @param  TradeCountry[]  $tradeCountry
-     * @return  self
+     * @param TradeCountry[] $tradeCountry
+     * @return self
      */
     public function addTradeCountry(TradeCountry $tradeCountry)
     {

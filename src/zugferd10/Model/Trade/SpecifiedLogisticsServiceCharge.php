@@ -8,7 +8,6 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
-
 class SpecifiedLogisticsServiceCharge
 {
     /**
@@ -34,10 +33,6 @@ class SpecifiedLogisticsServiceCharge
      */
     private $tradeTaxes = [];
 
-    /**
-     * @param string $description
-     * @param Amount $appliedAmount
-     */
     public function __construct(string $description, Amount $appliedAmount)
     {
         $this->description = $description;
@@ -45,8 +40,8 @@ class SpecifiedLogisticsServiceCharge
     }
 
     /**
-     * Get the value of description
-     * @return  string
+     * Get the value of description.
+     * @return string
      */
     public function getDescription()
     {
@@ -54,8 +49,7 @@ class SpecifiedLogisticsServiceCharge
     }
 
     /**
-     * @param  string  $description
-     * @return  self
+     * @return self
      */
     public function setDescription(string $description)
     {
@@ -64,7 +58,7 @@ class SpecifiedLogisticsServiceCharge
     }
 
     /**
-     * @return  Amount
+     * @return Amount
      */
     public function getAppliedAmount()
     {
@@ -72,8 +66,7 @@ class SpecifiedLogisticsServiceCharge
     }
 
     /**
-     * @param  Amount  $appliedAmount
-     * @return  self
+     * @return self
      */
     public function setAppliedAmount(Amount $appliedAmount)
     {
@@ -82,7 +75,7 @@ class SpecifiedLogisticsServiceCharge
     }
 
     /**
-     * @return  TradeTax[]
+     * @return TradeTax[]
      */
     public function getTradeTaxes()
     {
@@ -90,8 +83,8 @@ class SpecifiedLogisticsServiceCharge
     }
 
     /**
-     * @param  TradeTax  $tradeTaxes
-     * @return  self
+     * @param TradeTax $tradeTaxes
+     * @return self
      */
     public function addTradeTax(TradeTax $tradeTax)
     {

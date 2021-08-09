@@ -160,7 +160,7 @@ class TradeParty
     }
 
     /**
-     * @return  self
+     * @return self
      */
     public function setDefinedTradeContact(TradeContact $definedTradeContact)
     {

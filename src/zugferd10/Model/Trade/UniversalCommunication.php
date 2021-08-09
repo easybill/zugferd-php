@@ -22,7 +22,6 @@ class UniversalCommunication
      */
     public $uriid;
 
-
     public function __construct(string $completeNumber = null, string $uriid = null)
     {
         $this->completeNumber = $completeNumber;
@@ -38,8 +37,7 @@ class UniversalCommunication
     }
 
     /**
-     * @param string $completeNumber
-     * @return  self
+     * @return self
      */
     public function setCompleteNumber(string $completeNumber)
     {
@@ -56,8 +54,7 @@ class UniversalCommunication
     }
 
     /**
-     * @param string $uriid
-     * @return  self
+     * @return self
      */
     public function setUriid(string $uriid)
     {
