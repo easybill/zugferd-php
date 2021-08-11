@@ -71,12 +71,12 @@ class Note
      */
     public function setSubjectCode($subjectCode)
     {
-        if ($subjectCode !== null &&
-            strlen($subjectCode) > 0 &&
-            $subjectCode !== 'REG' &&
-            $subjectCode !== 'AAK' &&
-            $subjectCode !== 'AAJ' &&
-            $subjectCode !== 'PMT'
+        if ($subjectCode !== null
+            && strlen($subjectCode) > 0
+            && $subjectCode !== 'REG'
+            && $subjectCode !== 'AAK'
+            && $subjectCode !== 'AAJ'
+            && $subjectCode !== 'PMT'
         ) {
             throw new \RuntimeException('Invalid subject code! Please set it to null or to an empty string, REG, AAK, AAJ, PMT or ');
         }
