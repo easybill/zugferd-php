@@ -5,6 +5,7 @@ namespace Easybill\ZUGFeRD\Model\Trade;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
+use JMS\Serializer\Annotation\XmlList;
 
 class Agreement
 {
@@ -39,6 +40,21 @@ class Agreement
      * @SerializedName("BuyerOrderReferencedDocument")
      */
     private $buyerOrder;
+
+    /**
+     * @var ReferencedDocument[]
+     * @Type("array<Easybill\ZUGFeRD\Model\Trade\ReferencedDocument>")
+     * @XmlList(inline = true, entry = "AdditionalReferencedDocument", namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     */
+    private $additionalReferencedDocuments;
+
+    /**
+     * @var ReferencedDocument
+     * @Type("Easybill\ZUGFeRD\Model\Trade\ReferencedDocument")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("CustomerOrderReferencedDocument")
+     */
+    private $customerOrderReferencedDocument;
 
     /**
      * @return string
@@ -112,6 +128,41 @@ class Agreement
     public function setBuyerOrder(ReferencedDocument $buyerOrder)
     {
         $this->buyerOrder = $buyerOrder;
+        return $this;
+    }
+
+    /**
+     * @return \Easybill\ZUGFeRD\Model\Trade\ReferencedDocument[]
+     */
+    public function getAdditionalReferencedDocuments()
+    {
+        return $this->additionalReferencedDocuments;
+    }
+
+    /**
+     * @return self
+     */
+    public function addAdditionalReferencedDocument(ReferencedDocument $additionalReferencedDocument)
+    {
+        $this->additionalReferencedDocuments[] = $additionalReferencedDocument;
+
+        return $this;
+    }
+
+    /**
+     * @return \Easybill\ZUGFeRD\Model\Trade\ReferencedDocument
+     */
+    public function getCustomerOrderReferencedDocument()
+    {
+        return $this->customerOrderReferencedDocument;
+    }
+
+    /**
+     * @return self
+     */
+    public function setCustomerOrderReferencedDocument(ReferencedDocument $customerOrderReferencedDocument)
+    {
+        $this->customerOrderReferencedDocument = $customerOrderReferencedDocument;
         return $this;
     }
 }

@@ -17,6 +17,14 @@ class Price
     private $amount;
 
     /**
+     * @var Quantity
+     * @JMS\Type("Easybill\ZUGFeRD\Model\Trade\Item\Quantity")
+     * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @JMS\SerializedName("BasisQuantity")
+     */
+    private $quantity;
+
+    /**
      * @var AllowanceCharge[]
      * @JMS\Type("array<Easybill\ZUGFeRD\Model\AllowanceCharge>")
      * @JMS\XmlList(inline = true, entry = "AppliedTradeAllowanceCharge", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
@@ -65,6 +73,23 @@ class Price
     public function addAllowanceCharge(AllowanceCharge $allowanceCharge)
     {
         $this->allowanceCharges[] = $allowanceCharge;
+        return $this;
+    }
+
+    /**
+     * @return Quantity
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * @return self
+     */
+    public function setQuantity(Quantity $quantity)
+    {
+        $this->quantity = $quantity;
         return $this;
     }
 }

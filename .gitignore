@@ -6,3 +6,4 @@ vendor
 /zugferd211de
 .phpunit.result.cache
 .php_cs.cache
+.vscode

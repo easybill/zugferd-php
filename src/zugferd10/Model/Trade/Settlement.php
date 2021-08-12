@@ -11,7 +11,7 @@ use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
 /**
- * @AccessorOrder("custom", custom = {"paymentReference", "currency", "paymentMeans", "tradeTaxes", "billingPeriod", "allowanceCharges", "paymentTerms", "monetarySummation"})
+ * @AccessorOrder("custom", custom = {"paymentReference", "currency", "invoiceeTradeParty", "payeeTradeParty", "paymentMeans", "tradeTaxes", "billingPeriod", "allowanceCharges", "logisticsServiceCharge", "paymentTerms", "monetarySummation"})
  */
 class Settlement
 {
@@ -30,6 +30,22 @@ class Settlement
      * @SerializedName("InvoiceCurrencyCode")
      */
     private $currency;
+
+    /**
+     * @var TradeParty
+     * @Type("Easybill\ZUGFeRD\Model\Trade\TradeParty")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("InvoiceeTradeParty")
+     */
+    private $invoiceeTradeParty;
+
+    /**
+     * @var TradeParty
+     * @Type("Easybill\ZUGFeRD\Model\Trade\TradeParty")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("PayeeTradeParty")
+     */
+    private $payeeTradeParty;
 
     /**
      * @var PaymentMeans
@@ -52,6 +68,13 @@ class Settlement
      * @XmlList(inline = true, entry = "SpecifiedTradeAllowanceCharge", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      */
     private $allowanceCharges = [];
+
+    /**
+     * @var SpecifiedLogisticsServiceCharge[]
+     * @Type("array<Easybill\ZUGFeRD\Model\Trade\SpecifiedLogisticsServiceCharge>")
+     * @XmlList(inline = true, entry = "SpecifiedLogisticsServiceCharge", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     */
+    private $logisticsServiceCharge = [];
 
     /**
      * @var BillingPeriod
@@ -228,6 +251,57 @@ class Settlement
     public function setBillingPeriod($billingPeriod)
     {
         $this->billingPeriod = $billingPeriod;
+        return $this;
+    }
+
+    /**
+     * @return SpecifiedLogisticsServiceCharge[]
+     */
+    public function getLogisticsServiceCharge()
+    {
+        return $this->logisticsServiceCharge;
+    }
+
+    /**
+     * @return self
+     */
+    public function addLogisticsServiceCharge(SpecifiedLogisticsServiceCharge $logisticsServiceCharge)
+    {
+        $this->logisticsServiceCharge[] = $logisticsServiceCharge;
+        return $this;
+    }
+
+    /**
+     * @return TradeParty
+     */
+    public function getInvoiceeTradeParty()
+    {
+        return $this->invoiceeTradeParty;
+    }
+
+    /**
+     * @return self
+     */
+    public function setInvoiceeTradeParty(TradeParty $invoiceeTradeParty)
+    {
+        $this->invoiceeTradeParty = $invoiceeTradeParty;
+        return $this;
+    }
+
+    /**
+     * @return TradeParty
+     */
+    public function getPayeeTradeParty()
+    {
+        return $this->payeeTradeParty;
+    }
+
+    /**
+     * @return self
+     */
+    public function setPayeeTradeParty(TradeParty $payeeTradeParty)
+    {
+        $this->payeeTradeParty = $payeeTradeParty;
         return $this;
     }
 }
