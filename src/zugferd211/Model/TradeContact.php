@@ -32,6 +32,13 @@ class TradeContact
     /**
      * @Type("Easybill\ZUGFeRD211\Model\UniversalCommunication")
      * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("FaxUniversalCommunication")
+     */
+    public ?UniversalCommunication $faxUniversalCommunication = null;
+
+    /**
+     * @Type("Easybill\ZUGFeRD211\Model\UniversalCommunication")
+     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("EmailURIUniversalCommunication")
      */
     public ?UniversalCommunication $emailURIUniversalCommunication = null;

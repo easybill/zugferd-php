@@ -19,6 +19,13 @@ class ExchangedDocument
     /**
      * @Type("string")
      * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("Name")
+     */
+    public ?string $name = null;
+
+    /**
+     * @Type("string")
+     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("TypeCode")
      */
     public string $typeCode;
@@ -29,6 +36,13 @@ class ExchangedDocument
      * @SerializedName("IssueDateTime")
      */
     public DateTime $issueDateTime;
+
+    /**
+     * @Type("string")
+     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("LanguageID")
+     */
+    public ?string $languageId = null;
 
     /**
      * @var Note[]

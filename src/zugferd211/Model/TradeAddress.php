@@ -49,4 +49,11 @@ class TradeAddress
      * @SerializedName("CountryID")
      */
     public ?string $countryCode = null;
+
+    /**
+     * @Type("string")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("CountrySubDivisionName")
+     */
+    public ?string $countrySubDivisionName = null;
 }
