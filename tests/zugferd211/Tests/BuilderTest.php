@@ -214,7 +214,7 @@ Handelsregisternummer: H A 123
         $invoice->exchangedDocument->name = 'Rechnung';
         $invoice->exchangedDocument->issueDateTime = DateTime::create(102, '20180305');
         $invoice->exchangedDocument->typeCode = '380';
-        $invoice->exchangedDocument->languageId = 'de';
+        $invoice->exchangedDocument->languageId[] = 'de';
         $invoice->exchangedDocument->notes[] = Note::create('Rechnung gemäß Bestellung vom 01.03.2018.');
         $invoice->exchangedDocument->notes[] = Note::create('Lieferant GmbH				
 Lieferantenstraße 20				

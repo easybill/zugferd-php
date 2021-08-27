@@ -38,11 +38,12 @@ class ExchangedDocument
     public DateTime $issueDateTime;
 
     /**
-     * @Type("string")
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     * @SerializedName("LanguageID")
+     * @var string[]
+     * @Type("array<string>")
+     * @XmlElement(cdata=false)
+     * @XmlList(inline = true, entry = "LanguageID", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
-    public ?string $languageId = null;
+    public ?array $languageId = [];
 
     /**
      * @var Note[]
