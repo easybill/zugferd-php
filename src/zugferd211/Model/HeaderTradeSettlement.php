@@ -53,8 +53,8 @@ class HeaderTradeSettlement
     public array $specifiedTradeAllowanceCharge = [];
 
     /**
-     * @var SpecifiedLogisticsServiceCharge[]
-     * @Type("array<Easybill\ZUGFeRD211\Model\SpecifiedLogisticsServiceCharge>")
+     * @var LogisticsServiceCharge[]
+     * @Type("array<Easybill\ZUGFeRD211\Model\LogisticsServiceCharge>")
      * @XmlList(inline = true, entry = "SpecifiedLogisticsServiceCharge", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
     public array $specifiedLogisticsServiceCharge = [];

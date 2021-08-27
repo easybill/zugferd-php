@@ -44,11 +44,11 @@ class ReferencedDocument
     public ?BinaryObject $attachmentBinaryObject = null;
 
     /**
-     * @Type("Easybill\ZUGFeRD211\Model\QualifiedDateTime")
+     * @Type("Easybill\ZUGFeRD211\Model\FormattedDateTime")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("FormattedIssueDateTime")
      */
-    public ?QualifiedDateTime $formattedIssueDateTime = null;
+    public ?FormattedDateTime $formattedIssueDateTime = null;
 
     public static function create(string $issuerAssignedID): self
     {

@@ -7,7 +7,7 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
-class SpecifiedLogisticsServiceCharge
+class LogisticsServiceCharge
 {
     /**
      * @Type("string")

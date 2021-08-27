@@ -21,9 +21,9 @@ use Easybill\ZUGFeRD211\Model\LineTradeDelivery;
 use Easybill\ZUGFeRD211\Model\LineTradeSettlement;
 use Easybill\ZUGFeRD211\Model\Note;
 use Easybill\ZUGFeRD211\Model\Quantity;
-use Easybill\ZUGFeRD211\Model\QualifiedDateTime;
+use Easybill\ZUGFeRD211\Model\FormattedDateTime;
 use Easybill\ZUGFeRD211\Model\ReferencedDocument;
-use Easybill\ZUGFeRD211\Model\SpecifiedProcuringProject;
+use Easybill\ZUGFeRD211\Model\ProcuringProject;
 use Easybill\ZUGFeRD211\Model\SupplyChainEvent;
 use Easybill\ZUGFeRD211\Model\SupplyChainTradeLineItem;
 use Easybill\ZUGFeRD211\Model\SupplyChainTradeTransaction;
@@ -309,7 +309,7 @@ Handelsregisternummer: H A 123
         $buyerTradeParty->postalTradeAddress->city = 'Frankfurt';
         $buyerTradeParty->postalTradeAddress->countryCode = 'DE';
 
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->specifiedProcuringProject = SpecifiedProcuringProject::create('1234', 'Projekt');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->specifiedProcuringProject = ProcuringProject::create('1234', 'Projekt');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->shipToTradeParty = $buyerTradeParty;
@@ -317,13 +317,13 @@ Handelsregisternummer: H A 123
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->chainEvent->date = DateTime::create('102', '20180305');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->deliveryNoteReferencedDocument = ReferencedDocument::create('123456');
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->deliveryNoteReferencedDocument->formattedIssueDateTime = QualifiedDateTime::create('102', '20180305');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->deliveryNoteReferencedDocument->formattedIssueDateTime = FormattedDateTime::create('102', '20180305');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = new HeaderTradeSettlement();
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->paymentReference = '421102';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->currency = 'EUR';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->payeeTradeParty = $sellerTradeParty;
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedLogisticsServiceCharge[] = $logisticsServiceCharge = new SpecifiedProcuringProject();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedLogisticsServiceCharge[] = $logisticsServiceCharge = new ProcuringProject();
 
         $logisticsServiceCharge->description = 'Versandkosten';
         $logisticsServiceCharge->appliedAmount = Amount::create('9.99');
