@@ -207,7 +207,7 @@ Handelsregisternummer: H A 123
         $invoice = new CrossIndustryInvoice();
         $invoice->exchangedDocumentContext = new ExchangedDocumentContext();
         $invoice->exchangedDocumentContext->documentContextParameter = new DocumentContextParameter();
-        $invoice->exchangedDocumentContext->documentContextParameter->id = 'urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_1.2';
+        $invoice->exchangedDocumentContext->documentContextParameter->id = 'urn:cen.eu:en16931:2017#conformant#urn:zugferd.de:2p1:extended';
 
         $invoice->exchangedDocument = new ExchangedDocument();
         $invoice->exchangedDocument->id = '471102';
