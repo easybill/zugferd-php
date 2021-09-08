@@ -43,7 +43,7 @@ class ExchangedDocument
      * @XmlElement(cdata=false)
      * @XmlList(inline = true, entry = "LanguageID", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
-    public ?array $languageId = [];
+    public array $languageId = [];
 
     /**
      * @var Note[]
