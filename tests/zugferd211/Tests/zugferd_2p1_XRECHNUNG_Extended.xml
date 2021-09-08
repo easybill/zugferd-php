@@ -303,7 +303,7 @@ Handelsregisternummer: H A 123
       </ram:ApplicableTradeTax>
       <ram:SpecifiedLogisticsServiceCharge>
         <ram:Description>Versandkosten</ram:Description>
-        <ram:AppliedAmount>9.99</ram:AppliedAmount>
+        <ram:AppliedAmount>0</ram:AppliedAmount>
         <ram:AppliedTradeTax>
           <ram:TypeCode>VAT</ram:TypeCode>
           <ram:CategoryCode>S</ram:CategoryCode>

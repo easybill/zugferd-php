@@ -326,7 +326,7 @@ Handelsregisternummer: H A 123
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedLogisticsServiceCharge[] = $logisticsServiceCharge = new ProcuringProject();
 
         $logisticsServiceCharge->description = 'Versandkosten';
-        $logisticsServiceCharge->appliedAmount = Amount::create('9.99');
+        $logisticsServiceCharge->appliedAmount = Amount::create('0');
         $logisticsServiceCharge->tradeTaxes[] = $shippingTax = new TradeTax();
 
         $shippingTax->typeCode = 'VAT';
