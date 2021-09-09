@@ -43,4 +43,11 @@ class HeaderTradeAgreement
      * @XmlList(inline = true, entry = "AdditionalReferencedDocument", namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
     public array $additionalReferencedDocuments = [];
+
+    /**
+     * @Type("Easybill\ZUGFeRD211\Model\ProcuringProject")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("SpecifiedProcuringProject")
+     */
+    public ?ProcuringProject $specifiedProcuringProject = null;
 }

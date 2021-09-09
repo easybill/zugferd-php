@@ -28,4 +28,18 @@ class TradeProduct
      * @SerializedName("Name")
      */
     public string $name;
+
+    /**
+     * @Type("string")
+     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("Description")
+     */
+    public ?string $description = null;
+
+    /**
+     * @Type("Easybill\ZUGFeRD211\Model\TradeCountry")
+     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("OriginTradeCountry")
+     */
+    public ?TradeCountry $tradeCountry = null;
 }

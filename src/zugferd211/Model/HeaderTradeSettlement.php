@@ -12,9 +12,24 @@ class HeaderTradeSettlement
     /**
      * @Type("string")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("PaymentReference")
+     */
+    public ?string $paymentReference = null;
+
+    /**
+     * @Type("string")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("InvoiceCurrencyCode")
      */
     public string $currency;
+
+    /**
+     * @var TradeParty
+     * @Type("Easybill\ZUGFeRD211\Model\TradeParty")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("PayeeTradeParty")
+     */
+    public ?TradeParty $payeeTradeParty = null;
 
     /**
      * @var TradeSettlementPaymentMeans[]
@@ -36,6 +51,13 @@ class HeaderTradeSettlement
      * @XmlList(inline = true, entry = "SpecifiedTradeAllowanceCharge", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
     public array $specifiedTradeAllowanceCharge = [];
+
+    /**
+     * @var LogisticsServiceCharge[]
+     * @Type("array<Easybill\ZUGFeRD211\Model\LogisticsServiceCharge>")
+     * @XmlList(inline = true, entry = "SpecifiedLogisticsServiceCharge", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     */
+    public array $specifiedLogisticsServiceCharge = [];
 
     /**
      * @var TradePaymentTerms[]

@@ -2,9 +2,9 @@
 
 namespace Easybill\ZUGFeRD211\Model;
 
-    use JMS\Serializer\Annotation\SerializedName;
-    use JMS\Serializer\Annotation\Type;
-    use JMS\Serializer\Annotation\XmlElement;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
 
 class ReferencedDocument
 {
@@ -42,6 +42,13 @@ class ReferencedDocument
      * @SerializedName("AttachmentBinaryObject")
      */
     public ?BinaryObject $attachmentBinaryObject = null;
+
+    /**
+     * @Type("Easybill\ZUGFeRD211\Model\FormattedDateTime")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("FormattedIssueDateTime")
+     */
+    public ?FormattedDateTime $formattedIssueDateTime = null;
 
     public static function create(string $issuerAssignedID): self
     {

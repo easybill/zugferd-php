@@ -88,15 +88,17 @@ costs, losses or damages could normally have been foreseen.-->
 <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
   <rsm:ExchangedDocumentContext>
     <ram:GuidelineSpecifiedDocumentContextParameter>
-      <ram:ID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_1.2</ram:ID>
+      <ram:ID>urn:cen.eu:en16931:2017#conformant#urn:zugferd.de:2p1:extended</ram:ID>
     </ram:GuidelineSpecifiedDocumentContextParameter>
   </rsm:ExchangedDocumentContext>
   <rsm:ExchangedDocument>
     <ram:ID>471102</ram:ID>
+    <ram:Name>Rechnung</ram:Name>
     <ram:TypeCode>380</ram:TypeCode>
     <ram:IssueDateTime>
       <udt:DateTimeString format="102">20180305</udt:DateTimeString>
     </ram:IssueDateTime>
+    <ram:LanguageID>de</ram:LanguageID>
     <ram:IncludedNote>
       <ram:Content>Rechnung gemäß Bestellung vom 01.03.2018.</ram:Content>
     </ram:IncludedNote>
@@ -120,6 +122,9 @@ Handelsregisternummer: H A 123
         <ram:GlobalID schemeID="0160">4012345001235</ram:GlobalID>
         <ram:SellerAssignedID>TB100A4</ram:SellerAssignedID>
         <ram:Name>Trennblätter A4</ram:Name>
+        <ram:OriginTradeCountry>
+          <ram:ID>DE</ram:ID>
+        </ram:OriginTradeCountry>
       </ram:SpecifiedTradeProduct>
       <ram:SpecifiedLineTradeAgreement>
         <ram:GrossPriceProductTradePrice>
@@ -127,6 +132,7 @@ Handelsregisternummer: H A 123
         </ram:GrossPriceProductTradePrice>
         <ram:NetPriceProductTradePrice>
           <ram:ChargeAmount>9.9000</ram:ChargeAmount>
+          <ram:BasisQuantity unitCode="C62">1</ram:BasisQuantity>
         </ram:NetPriceProductTradePrice>
       </ram:SpecifiedLineTradeAgreement>
       <ram:SpecifiedLineTradeDelivery>
@@ -140,6 +146,7 @@ Handelsregisternummer: H A 123
         </ram:ApplicableTradeTax>
         <ram:SpecifiedTradeSettlementLineMonetarySummation>
           <ram:LineTotalAmount>198.00</ram:LineTotalAmount>
+          <ram:TotalAllowanceChargeAmount>0</ram:TotalAllowanceChargeAmount>
         </ram:SpecifiedTradeSettlementLineMonetarySummation>
       </ram:SpecifiedLineTradeSettlement>
     </ram:IncludedSupplyChainTradeLineItem>
@@ -212,16 +219,63 @@ Handelsregisternummer: H A 123
           <ram:CountryID>DE</ram:CountryID>
         </ram:PostalTradeAddress>
       </ram:BuyerTradeParty>
+      <ram:SpecifiedProcuringProject>
+        <ram:ID>1234</ram:ID>
+        <ram:Name>Projekt</ram:Name>
+      </ram:SpecifiedProcuringProject>
     </ram:ApplicableHeaderTradeAgreement>
     <ram:ApplicableHeaderTradeDelivery>
+      <ram:ShipToTradeParty>
+        <ram:ID>GE2020211</ram:ID>
+        <ram:Name>Kunden AG Mitte</ram:Name>
+        <ram:PostalTradeAddress>
+          <ram:PostcodeCode>69876</ram:PostcodeCode>
+          <ram:LineOne>Kundenstraße 15</ram:LineOne>
+          <ram:CityName>Frankfurt</ram:CityName>
+          <ram:CountryID>DE</ram:CountryID>
+        </ram:PostalTradeAddress>
+      </ram:ShipToTradeParty>
       <ram:ActualDeliverySupplyChainEvent>
         <ram:OccurrenceDateTime>
           <udt:DateTimeString format="102">20180305</udt:DateTimeString>
         </ram:OccurrenceDateTime>
       </ram:ActualDeliverySupplyChainEvent>
+      <ram:DeliveryNoteReferencedDocument>
+        <ram:IssuerAssignedID>123456</ram:IssuerAssignedID>
+        <ram:FormattedIssueDateTime>
+          <qdt:DateTimeString format="102">20180305</qdt:DateTimeString>
+        </ram:FormattedIssueDateTime>
+      </ram:DeliveryNoteReferencedDocument>
     </ram:ApplicableHeaderTradeDelivery>
     <ram:ApplicableHeaderTradeSettlement>
+      <ram:PaymentReference>421102</ram:PaymentReference>
       <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
+      <ram:PayeeTradeParty>
+        <ram:GlobalID schemeID="0088">4000001123452</ram:GlobalID>
+        <ram:Name>Lieferant GmbH</ram:Name>
+        <ram:DefinedTradeContact>
+          <ram:PersonName>Max Mustermann</ram:PersonName>
+          <ram:DepartmentName>Muster-Einkauf</ram:DepartmentName>
+          <ram:TelephoneUniversalCommunication>
+            <ram:CompleteNumber>+49891234567</ram:CompleteNumber>
+          </ram:TelephoneUniversalCommunication>
+          <ram:EmailURIUniversalCommunication>
+            <ram:URIID>Max@Mustermann.de</ram:URIID>
+          </ram:EmailURIUniversalCommunication>
+        </ram:DefinedTradeContact>
+        <ram:PostalTradeAddress>
+          <ram:PostcodeCode>80333</ram:PostcodeCode>
+          <ram:LineOne>Lieferantenstraße 20</ram:LineOne>
+          <ram:CityName>München</ram:CityName>
+          <ram:CountryID>DE</ram:CountryID>
+        </ram:PostalTradeAddress>
+        <ram:SpecifiedTaxRegistration>
+          <ram:ID schemeID="FC">201/113/40209</ram:ID>
+        </ram:SpecifiedTaxRegistration>
+        <ram:SpecifiedTaxRegistration>
+          <ram:ID schemeID="VA">DE123456789</ram:ID>
+        </ram:SpecifiedTaxRegistration>
+      </ram:PayeeTradeParty>
 	  <ram:SpecifiedTradeSettlementPaymentMeans>
 		<ram:TypeCode>58</ram:TypeCode>
 		<ram:Information>Zahlung per SEPA Überweisung.</ram:Information>
@@ -247,6 +301,15 @@ Handelsregisternummer: H A 123
         <ram:CategoryCode>S</ram:CategoryCode>
         <ram:RateApplicablePercent>19.00</ram:RateApplicablePercent>
       </ram:ApplicableTradeTax>
+      <ram:SpecifiedLogisticsServiceCharge>
+        <ram:Description>Versandkosten</ram:Description>
+        <ram:AppliedAmount>0</ram:AppliedAmount>
+        <ram:AppliedTradeTax>
+          <ram:TypeCode>VAT</ram:TypeCode>
+          <ram:CategoryCode>S</ram:CategoryCode>
+          <ram:RateApplicablePercent>19.00</ram:RateApplicablePercent>
+        </ram:AppliedTradeTax>
+      </ram:SpecifiedLogisticsServiceCharge>
       <ram:SpecifiedTradePaymentTerms>
         <ram:Description>Zahlbar innerhalb 30 Tagen netto bis 04.04.2018, 3% Skonto innerhalb 10 Tagen bis 15.03.2018</ram:Description>
       </ram:SpecifiedTradePaymentTerms>
