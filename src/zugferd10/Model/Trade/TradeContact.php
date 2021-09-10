@@ -13,14 +13,14 @@ class TradeContact
      * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("PersonName")
      */
-    public string $personName;
+    public ?string $personName;
 
     /**
      * @Type("string")
      * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      * @SerializedName("DepartmentName")
      */
-    public string $departmentName;
+    public ?string $departmentName;
 
     /**
      * @Type("Easybill\ZUGFeRD\Model\Trade\UniversalCommunication")
