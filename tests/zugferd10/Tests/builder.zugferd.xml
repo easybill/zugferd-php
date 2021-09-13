@@ -37,8 +37,6 @@
         <ram:GlobalID schemeID="0088">AZ327</ram:GlobalID>
         <ram:Name>Lieferant GmbH</ram:Name>
         <ram:DefinedTradeContact>
-          <ram:PersonName>Christian Szardenings</ram:PersonName>
-          <ram:DepartmentName>Dev</ram:DepartmentName>
           <ram:TelephoneUniversalCommunication>
             <ram:CompleteNumber>+49 (0)1234 56789.1</ram:CompleteNumber>
           </ram:TelephoneUniversalCommunication>
