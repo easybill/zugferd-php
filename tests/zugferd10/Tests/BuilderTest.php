@@ -42,7 +42,6 @@ use PHPUnit\Framework\TestCase;
 
 class BuilderTest extends TestCase
 {
-
     /**
      * @before
      */
@@ -66,8 +65,8 @@ class BuilderTest extends TestCase
             
             Geschäftsführer:
             Christian Szardenings
-            Ronny Keyser', 'REG'));
-
+            Ronny Keyser', 'REG'))
+        ;
 
         $trade = $doc->getTrade();
 
@@ -109,16 +108,15 @@ class BuilderTest extends TestCase
                 new TaxRegistration('VA', 'DE123456789'),
             ],
             new TradeContact(
-                'Christian Szardenings',
-                'Dev',
+                null,
+                null,
                 new UniversalCommunication('+49 (0)1234 56789.1'),
                 new UniversalCommunication('+49 (0)1234 56789.0'),
                 new UniversalCommunication(null, 'mail@mail.de')
             )
         );
-        $seller->setId("ID576");
-        $seller->setGlobalId(new Schema("0088", "AZ327"));
-
+        $seller->setId('ID576');
+        $seller->setGlobalId(new Schema('0088', 'AZ327'));
 
         $buyer = new TradeParty(
             'Kunden AG Mitte',
@@ -139,7 +137,8 @@ class BuilderTest extends TestCase
             ->setBuyer($buyer)
             ->setBuyerOrder(new ReferencedDocument('0234587234'))
             ->addAdditionalReferencedDocument(new ReferencedDocument('123456', '2021-08-06T09:20:00', 'AAA'))
-            ->setCustomerOrderReferencedDocument(new ReferencedDocument('654789'));
+            ->setCustomerOrderReferencedDocument(new ReferencedDocument('654789'))
+        ;
     }
 
     private function setLineItem(Trade $trade): void
@@ -149,7 +148,8 @@ class BuilderTest extends TestCase
         $grossPrice = new Price(9.90, 'EUR', false);
         $grossPrice
             ->addAllowanceCharge(new AllowanceCharge(false, 1.80))
-            ->setQuantity(new Quantity('C62', 1));
+            ->setQuantity(new Quantity('C62', 1))
+        ;
 
         $tradeAgreement->setGrossPrice($grossPrice);
         $grossNetPrice = new Price(9.90, 'EUR', false);
@@ -164,8 +164,8 @@ class BuilderTest extends TestCase
         $lineItemSettlement = new SpecifiedTradeSettlement();
         $lineItemSettlement
             ->setTradeTax($lineItemTradeTax)
-            ->setMonetarySummation(new SpecifiedTradeMonetarySummation(198.00));
-
+            ->setMonetarySummation(new SpecifiedTradeMonetarySummation(198.00))
+        ;
 
         $product = new Product('TB100A4', 'Trennblätter A4', 'Das Beste was man kaufen kann');
         $product->addTradeCountry(new TradeCountry('DE'));
@@ -178,7 +178,8 @@ class BuilderTest extends TestCase
             ->setProduct($product)
             ->setLineDocument(new LineDocument('1'))
             ->getLineDocument()
-            ->addNote(new Note('Testcontent in einem LineDocument'));
+            ->addNote(new Note('Testcontent in einem LineDocument'))
+        ;
 
         $trade->addLineItem($lineItem);
     }
@@ -207,7 +208,8 @@ class BuilderTest extends TestCase
             ->setCode('31')
             ->setInformation('Überweisung')
             ->setPayeeAccount(new CreditorFinancialAccount('DE08700901001234567890', '', ''))
-            ->setPayeeInstitution(new CreditorFinancialInstitution('GENODEF1M04', '', ''));
+            ->setPayeeInstitution(new CreditorFinancialInstitution('GENODEF1M04', '', ''))
+        ;
 
         $tradeTax = new TradeTax();
         $tradeTax->setCode('VAT');
@@ -225,7 +227,6 @@ class BuilderTest extends TestCase
 
         $allowanceCharge = new AllowanceCharge(false, 1, 'EUR', true);
         $allowanceCharge->setBasisAmount(new Amount(1, 'EUR'));
-
 
         $shippingTax = new TradeTax();
         $shippingTax->setCode('VAT');
@@ -252,7 +253,8 @@ class BuilderTest extends TestCase
                     )
             )
             ->addLogisticsServiceCharge($shippingCost)
-            ->setMonetarySummation($monetarySummation);
+            ->setMonetarySummation($monetarySummation)
+        ;
 
         $billingPeriod = new BillingPeriod(
             new Date('20130104'),
