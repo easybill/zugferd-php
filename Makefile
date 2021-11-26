@@ -13,5 +13,8 @@ test74:
 test8:
 	docker run --rm -v $(current_dir):/app -w /app php:8.0 vendor/bin/phpunit
 
+test81:
+	docker run --rm -v $(current_dir):/app -w /app php:8.1.0RC6-zts-buster vendor/bin/phpunit
+
 cs-fix:
 	./vendor/bin/php-cs-fixer fix ./src --config .php_cs.dist
