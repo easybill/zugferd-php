@@ -13,7 +13,7 @@ jobs:
         strategy:
             matrix:
                 include:
-                    - { operating-system: 'ubuntu-latest', php-version: '7.4', dependencies: '--ignore-platform-req' }
+                    - { operating-system: 'ubuntu-latest', php-version: '7.4', dependencies: '--ignore-platform-req=php' }
 
         name: PHP ${{ matrix.php-version }}
 
@@ -25,7 +25,7 @@ jobs:
                 with:
                     php-version: ${{ matrix.php-version }}
                     coverage: pcov
-                    tools: composer:v1
+                    tools: composer:v2
 
             -   name: Install dependencies
                 run: |
