@@ -12,7 +12,8 @@ jobs:
 
         strategy:
             matrix:
-                php-version: [ '7.4' ]
+                include:
+                    - { operating-system: 'ubuntu-latest', php-version: '7.4', dependencies: '--ignore-platform-req=php' }
 
         name: PHP ${{ matrix.php-version }}
 
@@ -29,7 +30,7 @@ jobs:
 
             -   name: Install dependencies
                 run: |
-                    composer install --no-interaction --ignore-platform-req=php
+                    composer install --no-interaction --prefer-dist --no-progress ${{ matrix.dependencies }}
 
             -   name: Check code style
                 run: |
