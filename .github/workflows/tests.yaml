@@ -6,16 +6,16 @@ on:
     pull_request:
         branches: [ master ]
 
-
 jobs:
     build:
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                php-version: [ '7.4' ]
                 include:
+                    - { operating-system: 'ubuntu-latest', php-version: '7.4', dependencies: '--ignore-platform-req=php' }
                     - { operating-system: 'ubuntu-latest', php-version: '8.0', dependencies: '--ignore-platform-req=php' }
+                    - { operating-system: 'ubuntu-latest', php-version: '8.1', dependencies: '--ignore-platform-req=php' }
 
         name: PHP ${{ matrix.php-version }}
 

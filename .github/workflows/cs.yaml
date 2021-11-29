@@ -12,7 +12,8 @@ jobs:
 
         strategy:
             matrix:
-                php-version: [ '7.4' ]
+                include:
+                    - { operating-system: 'ubuntu-latest', php-version: '7.4', dependencies: '--ignore-platform-req=php' }
 
         name: PHP ${{ matrix.php-version }}
 
@@ -23,13 +24,12 @@ jobs:
                 uses: shivammathur/setup-php@v2
                 with:
                     php-version: ${{ matrix.php-version }}
-                    extensions:
                     coverage: pcov
-                    tools: composer:v1
+                    tools: composer:v2
 
             -   name: Install dependencies
                 run: |
-                    composer install --no-interaction
+                    composer install --no-interaction --prefer-dist --no-progress ${{ matrix.dependencies }}
 
             -   name: Check code style
                 run: |
