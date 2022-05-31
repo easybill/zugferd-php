@@ -19,6 +19,13 @@ class TradeAllowanceCharge
     public ?Indicator $indicator = null;
 
     /**
+     * @JMS\Type("string")
+     * @JMS\XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @JMS\SerializedName("CalculationPercent")
+     */
+    public ?string $calculationPercent = null;
+
+    /**
      * @JMS\Type("Easybill\ZUGFeRD211\Model\Amount")
      * @JMS\XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @JMS\SerializedName("BasisAmount")

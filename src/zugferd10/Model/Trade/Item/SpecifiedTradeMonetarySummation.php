@@ -18,6 +18,14 @@ class SpecifiedTradeMonetarySummation
     private $totalAmount;
 
     /**
+     * @var Amount
+     * @Type("Easybill\ZUGFeRD\Model\Trade\Amount")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+     * @SerializedName("TotalAllowanceChargeAmount")
+     */
+    private $totalAllowanceChargeAmount;
+
+    /**
      * SpecifiedMonetarySummation constructor.
      *
      * @param float $value
@@ -42,5 +50,21 @@ class SpecifiedTradeMonetarySummation
     public function setTotalAmount($totalAmount)
     {
         $this->totalAmount = $totalAmount;
+    }
+
+    /**
+     * @return \Easybill\ZUGFeRD\Model\Trade\Amount
+     */
+    public function getTotalAllowanceChargeAmount()
+    {
+        return $this->totalAllowanceChargeAmount;
+    }
+
+    /**
+     * @param \Easybill\ZUGFeRD\Model\Trade\Amount $totalAllowanceChargeAmount
+     */
+    public function setTotalAllowanceChargeAmount($totalAllowanceChargeAmount)
+    {
+        $this->totalAllowanceChargeAmount = $totalAllowanceChargeAmount;
     }
 }

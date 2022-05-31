@@ -22,6 +22,7 @@ use Easybill\ZUGFeRD211\Model\LineTradeSettlement;
 use Easybill\ZUGFeRD211\Model\Note;
 use Easybill\ZUGFeRD211\Model\Quantity;
 use Easybill\ZUGFeRD211\Model\FormattedDateTime;
+use Easybill\ZUGFeRD211\Model\Indicator;
 use Easybill\ZUGFeRD211\Model\ReferencedDocument;
 use Easybill\ZUGFeRD211\Model\ProcuringProject;
 use Easybill\ZUGFeRD211\Model\SupplyChainEvent;
@@ -29,6 +30,7 @@ use Easybill\ZUGFeRD211\Model\SupplyChainTradeLineItem;
 use Easybill\ZUGFeRD211\Model\SupplyChainTradeTransaction;
 use Easybill\ZUGFeRD211\Model\TaxRegistration;
 use Easybill\ZUGFeRD211\Model\TradeAddress;
+use Easybill\ZUGFeRD211\Model\TradeAllowanceCharge;
 use Easybill\ZUGFeRD211\Model\TradeContact;
 use Easybill\ZUGFeRD211\Model\TradeCountry;
 use Easybill\ZUGFeRD211\Model\TradeParty;
@@ -247,7 +249,14 @@ Handelsregisternummer: H A 123
         $item1tax->categoryCode = 'S';
         $item1tax->rateApplicablePercent = '19.00';
 
-        $item1->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('198.00', '0');
+        $item1->specifiedLineTradeSettlement->specifiedTradeAllowanceCharge[] = $allowanceCharge = new TradeAllowanceCharge();
+        $allowanceCharge->indicator = new Indicator();
+        $allowanceCharge->indicator->indicator = false;
+        $allowanceCharge->basisAmount = Amount::create('198.00');
+        $allowanceCharge->actualAmount = Amount::create('8.00');
+        $allowanceCharge->reason = 'Artikelrabatt';
+
+        $item1->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('190.00', '8.00');
 
         $invoice->supplyChainTradeTransaction->lineItems[] = $item2 = new SupplyChainTradeLineItem();
         $item2->associatedDocumentLineDocument = DocumentLineDocument::create('2');
@@ -353,22 +362,22 @@ Handelsregisternummer: H A 123
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->tradeTaxes[] = $headerTax2 = new TradeTax();
         $headerTax2->typeCode = 'VAT';
         $headerTax2->categoryCode = 'S';
-        $headerTax2->basisAmount = Amount::create('198.00');
-        $headerTax2->calculatedAmount = Amount::create('37.62');
+        $headerTax2->basisAmount = Amount::create('190.00');
+        $headerTax2->calculatedAmount = Amount::create('36.10');
         $headerTax2->rateApplicablePercent = '19.00';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradePaymentTerms[] = $paymentTerms = new TradePaymentTerms();
         $paymentTerms->description = 'Zahlbar innerhalb 30 Tagen netto bis 04.04.2018, 3% Skonto innerhalb 10 Tagen bis 15.03.2018';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = $summation = new TradeSettlementHeaderMonetarySummation();
-        $summation->lineTotalAmount = Amount::create('473.00');
+        $summation->lineTotalAmount = Amount::create('465.00');
         $summation->chargeTotalAmount = Amount::create('0.00');
         $summation->allowanceTotalAmount = Amount::create('0.00');
-        $summation->taxBasisTotalAmount[] = Amount::create('473.00');
-        $summation->taxTotalAmount[] = Amount::create('56.87', 'EUR');
-        $summation->grandTotalAmount[] = Amount::create('529.87');
+        $summation->taxBasisTotalAmount[] = Amount::create('465.00');
+        $summation->taxTotalAmount[] = Amount::create('55.35', 'EUR');
+        $summation->grandTotalAmount[] = Amount::create('520.35');
         $summation->totalPrepaidAmount = Amount::create('0.00');
-        $summation->duePayableAmount = Amount::create('529.87');
+        $summation->duePayableAmount = Amount::create('520.35');
 
         $xml = Builder::create()->transform($invoice);
         self::assertNotEmpty($xml);
