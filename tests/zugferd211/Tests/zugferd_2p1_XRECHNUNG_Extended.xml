@@ -117,6 +117,11 @@ Handelsregisternummer: H A 123
     <ram:IncludedSupplyChainTradeLineItem>
       <ram:AssociatedDocumentLineDocument>
         <ram:LineID>1</ram:LineID>
+        <ram:IncludedNote>
+          <ram:ContentCode>Umverpackung</ram:ContentCode>
+          <ram:Content>Neutrale Umverpackung</ram:Content>
+          <ram:SubjectCode>AAI</ram:SubjectCode>
+        </ram:IncludedNote>
       </ram:AssociatedDocumentLineDocument>
       <ram:SpecifiedTradeProduct>
         <ram:GlobalID schemeID="0160">4012345001235</ram:GlobalID>

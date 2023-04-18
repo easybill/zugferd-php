@@ -229,6 +229,8 @@ Handelsregisternummer: H A 123
         $invoice->supplyChainTradeTransaction = new SupplyChainTradeTransaction();
         $invoice->supplyChainTradeTransaction->lineItems[] = $item1 = new SupplyChainTradeLineItem();
         $item1->associatedDocumentLineDocument = DocumentLineDocument::create('1');
+        $item1->associatedDocumentLineDocument->notes[] = Note::create('Neutrale Umverpackung','AAI','Umverpackung');
+
 
         $item1->specifiedTradeProduct = new TradeProduct();
         $item1->specifiedTradeProduct->name = 'Trennblätter A4';
