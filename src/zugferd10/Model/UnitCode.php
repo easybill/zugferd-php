@@ -5,33 +5,33 @@ namespace Easybill\ZUGFeRD\Model;
 class UnitCode
 {
     // area units
-    const HECTARE = 'HAR';
-    const METER = 'MTR';
-    const MILLIMETER = 'MMT';
-    const SQUARE_MILLIMETER = 'MMK';
+    public const HECTARE = 'HAR';
+    public const METER = 'MTR';
+    public const MILLIMETER = 'MMT';
+    public const SQUARE_MILLIMETER = 'MMK';
 
-    const SQUARE_METER = 'MTK';
-    const CUBIC_METER = 'MTQ';
+    public const SQUARE_METER = 'MTK';
+    public const CUBIC_METER = 'MTQ';
 
     // weight units
-    const KILOGRAM = 'KGM';
-    const KILOMETER = 'KTM';
-    const TONNE = 'TNE';
+    public const KILOGRAM = 'KGM';
+    public const KILOMETER = 'KTM';
+    public const TONNE = 'TNE';
 
     // time units
-    const WEEK = 'WEE';
-    const DAY = 'DAY';
-    const HOUR = 'HUR';
-    const MINUTE = 'MIN';
+    public const WEEK = 'WEE';
+    public const DAY = 'DAY';
+    public const HOUR = 'HUR';
+    public const MINUTE = 'MIN';
 
     // Misc.
-    const PIECE = 'C62';
-    const BOX = 'CT';
-    const NUMBER_OF_ITEM = 'NAR';
-    const NUMBER_OF_PAIRS = 'NPR';
-    const SET = 'SET';
-    const KWH = 'KWH';
-    const FLAT_RATE = 'LS';
-    const LITER = 'LTR';
-    const PERCENT = 'P1';
+    public const PIECE = 'C62';
+    public const BOX = 'CT';
+    public const NUMBER_OF_ITEM = 'NAR';
+    public const NUMBER_OF_PAIRS = 'NPR';
+    public const SET = 'SET';
+    public const KWH = 'KWH';
+    public const FLAT_RATE = 'LS';
+    public const LITER = 'LTR';
+    public const PERCENT = 'P1';
 }

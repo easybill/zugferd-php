@@ -30,7 +30,6 @@ class Note
     /**
      * Note constructor.
      *
-     * @param $content
      * @param null|string $subjectCode
      */
     public function __construct($content, $subjectCode = null)

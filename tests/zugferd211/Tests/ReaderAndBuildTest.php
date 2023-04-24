@@ -26,7 +26,7 @@ class ReaderAndBuildTest extends TestCase
      */
     public function setupAnnotationRegistry(): void
     {
-        AnnotationRegistry::registerLoader('class_exists');
+        #AnnotationRegistry::registerLoader('class_exists');
     }
 
     /** @dataProvider dataProvider */

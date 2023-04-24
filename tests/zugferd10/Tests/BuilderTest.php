@@ -47,7 +47,7 @@ class BuilderTest extends TestCase
      */
     public function setupAnnotationRegistry(): void
     {
-        AnnotationRegistry::registerLoader('class_exists');
+        #AnnotationRegistry::registerLoader('class_exists');
     }
 
     public function testGetXML(): void
