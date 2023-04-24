@@ -47,7 +47,7 @@ class BuilderTest extends TestCase
      */
     public function setupAnnotationRegistry(): void
     {
-        AnnotationRegistry::registerLoader('class_exists');
+        // AnnotationRegistry::registerLoader('class_exists');
     }
 
     public function testGetXML(): void
@@ -243,7 +243,7 @@ class BuilderTest extends TestCase
             ->addTradeTax($tradeTax)
             ->addTradeTax($tradeTax2)
             ->addAllowanceCharge(
-                ($allowanceCharge)
+                $allowanceCharge
                     ->setReason('Sondernachlass')
                     ->addCategoryTradeTax(
                         (new TradeTax())

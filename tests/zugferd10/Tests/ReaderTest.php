@@ -17,18 +17,16 @@ use PHPUnit\Framework\TestCase;
 
 class ReaderTest extends TestCase
 {
-
     /**
      * @before
      */
     public function setupAnnotationRegistry(): void
     {
-        AnnotationRegistry::registerLoader('class_exists');
+        // AnnotationRegistry::registerLoader('class_exists');
     }
 
     public function testGetDocument(): void
     {
-
         $reader = Reader::create();
 
         $doc = $reader->getDocument(file_get_contents(__DIR__ . '/reader.zugferd.xml'));
@@ -53,7 +51,7 @@ class ReaderTest extends TestCase
 
         $cnt = 0;
         foreach ($notes as $note) {
-            $cnt++;
+            ++$cnt;
             $this->assertInstanceOf(Note::class, $note);
 
             if ($cnt === 3) {
@@ -104,7 +102,7 @@ class ReaderTest extends TestCase
         $sellerRegistrations = $seller->getTaxRegistrations();
         $this->assertCount(2, $sellerRegistrations);
 
-        for ($cnt = 0; $cnt < 2; $cnt++) {
+        for ($cnt = 0; $cnt < 2; ++$cnt) {
             $taxRegistration = $sellerRegistrations[$cnt];
             if ($cnt === 0) {
                 $this->assertSame('FC', $taxRegistration->getRegistration()->getSchemeID());
@@ -236,5 +234,4 @@ class ReaderTest extends TestCase
         $this->assertSame('TB100A4', $product->getSellerAssignedID());
         $this->assertSame('Trennblätter A4', $product->getName());
     }
-
 }

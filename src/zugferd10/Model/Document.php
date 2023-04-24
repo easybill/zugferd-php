@@ -20,9 +20,9 @@ use JMS\Serializer\Annotation\XmlRoot;
  */
 class Document
 {
-    const TYPE_BASIC = 'BASIC';
-    const TYPE_COMFORT = 'COMFORT';
-    const TYPE_EXTENDED = 'EXTENDED';
+    public const TYPE_BASIC = 'BASIC';
+    public const TYPE_COMFORT = 'COMFORT';
+    public const TYPE_EXTENDED = 'EXTENDED';
 
     /**
      * @Type("Easybill\ZUGFeRD\Model\DocumentContext")
