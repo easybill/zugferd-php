@@ -3,7 +3,6 @@
 namespace Easybill\ZUGFeRD211\Tests;
 
 use Doctrine\Common\Annotations\AnnotationRegistry;
-use DOMDocument;
 use Easybill\ZUGFeRD211\Builder;
 use Easybill\ZUGFeRD211\Reader;
 use PHPUnit\Framework\TestCase;
@@ -14,7 +13,7 @@ class ReaderAndBuildTest extends TestCase
     {
         $xml = preg_replace('/<!--(.|\s)*?-->/', '', $xml);
 
-        $doc = new DomDocument('1.0', 'UTF-8');
+        $doc = new \DomDocument('1.0', 'UTF-8');
         $doc->preserveWhiteSpace = false;
         $doc->formatOutput = true;
         $doc->loadXML($xml);
@@ -26,7 +25,7 @@ class ReaderAndBuildTest extends TestCase
      */
     public function setupAnnotationRegistry(): void
     {
-        #AnnotationRegistry::registerLoader('class_exists');
+        // AnnotationRegistry::registerLoader('class_exists');
     }
 
     /** @dataProvider dataProvider */

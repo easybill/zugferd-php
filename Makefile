@@ -20,4 +20,4 @@ test82:
 	docker run --rm -v $(current_dir):/app -w /app php:8.2 vendor/bin/phpunit
 
 cs-fix:
-	./vendor/bin/php-cs-fixer fix ./src --config .php-cs-fixer.dist.php
+	./vendor/bin/php-cs-fixer fix --config .php-cs-fixer.dist.php
