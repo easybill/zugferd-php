@@ -23,8 +23,8 @@
   },
   "require-dev": {
     "phpunit/phpunit": "^9.3",
-    "friendsofphp/php-cs-fixer": "^2.19.3",
-    "ext-libxml": "*"
+    "ext-libxml": "*",
+    "friendsofphp/php-cs-fixer": "^3.16"
   },
   "autoload": {
     "psr-4": {
@@ -37,5 +37,8 @@
       "Easybill\\ZUGFeRD\\": "tests/zugferd10",
       "Easybill\\ZUGFeRD211\\": "tests/zugferd211"
     }
+  },
+  "config": {
+    "platform-check": false
   }
 }
