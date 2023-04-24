@@ -13,7 +13,7 @@ class ReaderAndBuildTest extends TestCase
     {
         $xml = preg_replace('/<!--(.|\s)*?-->/', '', $xml);
 
-        $doc = new \DomDocument('1.0', 'UTF-8');
+        $doc = new \DOMDocument('1.0', 'UTF-8');
         $doc->preserveWhiteSpace = false;
         $doc->formatOutput = true;
         $doc->loadXML($xml);
