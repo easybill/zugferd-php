@@ -229,6 +229,7 @@ Handelsregisternummer: H A 123
         $invoice->supplyChainTradeTransaction = new SupplyChainTradeTransaction();
         $invoice->supplyChainTradeTransaction->lineItems[] = $item1 = new SupplyChainTradeLineItem();
         $item1->associatedDocumentLineDocument = DocumentLineDocument::create('1');
+        $item1->associatedDocumentLineDocument->notes[] = Note::create('Neutrale Umverpackung', 'AAI', 'Umverpackung');
 
         $item1->specifiedTradeProduct = new TradeProduct();
         $item1->specifiedTradeProduct->name = 'Trennblätter A4';
@@ -242,6 +243,8 @@ Handelsregisternummer: H A 123
 
         $item1->delivery = new LineTradeDelivery();
         $item1->delivery->billedQuantity = Quantity::create('20.0000', 'H87');
+        $item1->delivery->chainEvent = new SupplyChainEvent();
+        $item1->delivery->chainEvent->date = DateTime::create('102', '20180305');
 
         $item1->specifiedLineTradeSettlement = new LineTradeSettlement();
         $item1->specifiedLineTradeSettlement->tradeTax[] = $item1tax = new TradeTax();
