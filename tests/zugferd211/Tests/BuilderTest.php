@@ -332,6 +332,7 @@ Handelsregisternummer: H A 123
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->deliveryNoteReferencedDocument->formattedIssueDateTime = FormattedDateTime::create('102', '20180305');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = new HeaderTradeSettlement();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->creditorReferenceID = 'TEST1234';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->paymentReference = '421102';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->currency = 'EUR';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->payeeTradeParty = $sellerTradeParty;
@@ -370,6 +371,7 @@ Handelsregisternummer: H A 123
         $headerTax2->rateApplicablePercent = '19.00';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradePaymentTerms[] = $paymentTerms = new TradePaymentTerms();
+        $paymentTerms->directDebitMandateID = 'Mandate Reference';
         $paymentTerms->description = 'Zahlbar innerhalb 30 Tagen netto bis 04.04.2018, 3% Skonto innerhalb 10 Tagen bis 15.03.2018';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = $summation = new TradeSettlementHeaderMonetarySummation();
