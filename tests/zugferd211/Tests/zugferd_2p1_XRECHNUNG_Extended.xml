@@ -266,6 +266,7 @@ Handelsregisternummer: H A 123
       </ram:DeliveryNoteReferencedDocument>
     </ram:ApplicableHeaderTradeDelivery>
     <ram:ApplicableHeaderTradeSettlement>
+      <ram:CreditorReferenceID>TEST1234</ram:CreditorReferenceID>
       <ram:PaymentReference>421102</ram:PaymentReference>
       <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
       <ram:PayeeTradeParty>
@@ -330,6 +331,7 @@ Handelsregisternummer: H A 123
       </ram:SpecifiedLogisticsServiceCharge>
       <ram:SpecifiedTradePaymentTerms>
         <ram:Description>Zahlbar innerhalb 30 Tagen netto bis 04.04.2018, 3% Skonto innerhalb 10 Tagen bis 15.03.2018</ram:Description>
+        <ram:DirectDebitMandateID>Mandate Reference</ram:DirectDebitMandateID>
       </ram:SpecifiedTradePaymentTerms>
       <ram:SpecifiedTradeSettlementHeaderMonetarySummation>
         <ram:LineTotalAmount>465.00</ram:LineTotalAmount>
