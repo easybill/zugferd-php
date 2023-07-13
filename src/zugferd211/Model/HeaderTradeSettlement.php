@@ -12,6 +12,13 @@ class HeaderTradeSettlement
     /**
      * @Type("string")
      * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("CreditorReferenceID")
+     */
+    public ?string $creditorReferenceID = null;
+
+    /**
+     * @Type("string")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("PaymentReference")
      */
     public ?string $paymentReference = null;
