@@ -19,14 +19,6 @@ class ReaderAndBuildTest extends TestCase
         return $doc->saveXML();
     }
 
-    /**
-     * @before
-     */
-    public function setupAnnotationRegistry(): void
-    {
-        // AnnotationRegistry::registerLoader('class_exists');
-    }
-
     /** @dataProvider dataProvider */
     public function testGetDocument(string $filename): void
     {
