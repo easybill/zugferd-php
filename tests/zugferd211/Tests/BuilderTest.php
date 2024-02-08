@@ -16,6 +16,7 @@ use Easybill\ZUGFeRD211\Model\HeaderTradeAgreement;
 use Easybill\ZUGFeRD211\Model\HeaderTradeDelivery;
 use Easybill\ZUGFeRD211\Model\HeaderTradeSettlement;
 use Easybill\ZUGFeRD211\Model\Id;
+use Easybill\ZUGFeRD211\Model\LegalOrganization;
 use Easybill\ZUGFeRD211\Model\LineTradeAgreement;
 use Easybill\ZUGFeRD211\Model\LineTradeDelivery;
 use Easybill\ZUGFeRD211\Model\LineTradeSettlement;
@@ -387,6 +388,269 @@ Handelsregisternummer: H A 123
         $xml = Builder::create()->transform($invoice);
         self::assertNotEmpty($xml);
         $referenceFile = file_get_contents(__DIR__ . '/zugferd_2p1_XRECHNUNG_Extended.xml');
+        $referenceFile = ReaderAndBuildTest::reformatXml($referenceFile);
+        $xml = ReaderAndBuildTest::reformatXml($xml);
+        self::assertEquals($referenceFile, $xml);
+
+        $result = (new Validator())->validateAgainstXsd($xml, Validator::SCHEMA_EXTENDED);
+        self::assertNull($result, $result ?? '');
+    }
+
+    public function testFacturXExtendedExample(): void
+    {
+        $invoice = new CrossIndustryInvoice();
+
+        // <rsm:ExchangedDocumentContext>
+        $invoice->exchangedDocumentContext = new ExchangedDocumentContext();
+        $invoice->exchangedDocumentContext->documentContextParameter = new DocumentContextParameter();
+        $invoice->exchangedDocumentContext->documentContextParameter->id = 'urn:cen.eu:en16931:2017#conformant#urn:factur-x.eu:1p0:extended';
+        // </rsm:ExchangedDocumentContext>
+
+        // <rsm:ExchangedDocument>
+        $invoice->exchangedDocument = new ExchangedDocument();
+        $invoice->exchangedDocument->id = 'FA-2017-0010';
+        $invoice->exchangedDocument->typeCode = '380';
+        $invoice->exchangedDocument->issueDateTime = DateTime::create(102, '20171113');
+        $invoice->exchangedDocument->notes[] = Note::create('Franco de port (commande > 300 € HT)');
+        // </rsm:ExchangedDocument>
+
+        // <rsm:SupplyChainTradeTransaction>
+        $invoice->supplyChainTradeTransaction = new SupplyChainTradeTransaction();
+
+        // <ram:IncludedSupplyChainTradeLineItem>
+        $invoice->supplyChainTradeTransaction->lineItems[] = $lineItem1 = new SupplyChainTradeLineItem();
+
+        $lineItem1->associatedDocumentLineDocument = DocumentLineDocument::create('1');
+
+        // <ram:SpecifiedTradeProduct>
+        $lineItem1->specifiedTradeProduct = new TradeProduct();
+        $lineItem1->specifiedTradeProduct->globalID = Id::create('3518370400049', '0160');
+        $lineItem1->specifiedTradeProduct->sellerAssignedID = 'NOUG250';
+        $lineItem1->specifiedTradeProduct->name = 'Nougat de l\'Abbaye 250g';
+        // </ram:SpecifiedTradeProduct>
+
+        // <ram:SpecifiedLineTradeAgreement>
+        $lineItem1->tradeAgreement = new LineTradeAgreement();
+        $lineItem1->tradeAgreement->grossPrice = TradePrice::create('4.55');
+        $lineItem1->tradeAgreement->grossPrice->appliedTradeAllowanceCharge = $tradeAllowanceCharge = new TradeAllowanceCharge();
+        $tradeAllowanceCharge->indicator = $indicator = new Indicator();
+        $indicator->indicator = false;
+        $tradeAllowanceCharge->actualAmount = Amount::create('0.45');
+        $lineItem1->tradeAgreement->netPrice = TradePrice::create('4.10');
+        // </ram:SpecifiedLineTradeAgreement>
+
+        // <ram:SpecifiedLineTradeDelivery>
+        $lineItem1->delivery = new LineTradeDelivery();
+        $lineItem1->delivery->billedQuantity = Quantity::create('20.000', 'C62');
+        // </ram:SpecifiedLineTradeDelivery>
+
+        // <ram:SpecifiedLineTradeSettlement>
+        $lineItem1->specifiedLineTradeSettlement = new LineTradeSettlement();
+        $lineItem1->specifiedLineTradeSettlement->tradeTax[] = $itemTradeTax = new TradeTax();
+        $itemTradeTax->typeCode = 'VAT';
+        $itemTradeTax->categoryCode = 'S';
+        $itemTradeTax->rateApplicablePercent = '20.00';
+
+        $lineItem1->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('81.90');
+        // </ram:IncludedSupplyChainTradeLineItem>
+
+        // <ram:IncludedSupplyChainTradeLineItem>
+        $invoice->supplyChainTradeTransaction->lineItems[] = $lineItem2 = new SupplyChainTradeLineItem();
+
+        $lineItem2->associatedDocumentLineDocument = DocumentLineDocument::create('2');
+
+        // <ram:SpecifiedTradeProduct>
+        $lineItem2->specifiedTradeProduct = new TradeProduct();
+        $lineItem2->specifiedTradeProduct->globalID = Id::create('3518370200090', '0160');
+        $lineItem2->specifiedTradeProduct->sellerAssignedID = 'BRAIS300';
+        $lineItem2->specifiedTradeProduct->name = 'Biscuits aux raisins 300g';
+        // </ram:SpecifiedTradeProduct>
+
+        // <ram:SpecifiedLineTradeAgreement>
+        $lineItem2->tradeAgreement = new LineTradeAgreement();
+        $lineItem2->tradeAgreement->grossPrice = TradePrice::create('3.20');
+        $lineItem2->tradeAgreement->netPrice = TradePrice::create('3.20');
+        // </ram:SpecifiedLineTradeAgreement>
+
+        // <ram:SpecifiedLineTradeDelivery>
+        $lineItem2->delivery = new LineTradeDelivery();
+        $lineItem2->delivery->billedQuantity = Quantity::create('15.000', 'C62');
+        // </ram:SpecifiedLineTradeDelivery>
+
+        // <ram:SpecifiedLineTradeSettlement>
+        $lineItem2->specifiedLineTradeSettlement = new LineTradeSettlement();
+        $lineItem2->specifiedLineTradeSettlement->tradeTax[] = $itemTradeTax = new TradeTax();
+        $itemTradeTax->typeCode = 'VAT';
+        $itemTradeTax->categoryCode = 'S';
+        $itemTradeTax->rateApplicablePercent = '5.50';
+
+        $lineItem2->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('48.00');
+        // </ram:IncludedSupplyChainTradeLineItem>
+
+        $invoice->supplyChainTradeTransaction->lineItems[] = $lineItem3 = new SupplyChainTradeLineItem();
+        $lineItem3->associatedDocumentLineDocument = DocumentLineDocument::create('3');
+
+        // <ram:SpecifiedTradeProduct>
+        $lineItem3->specifiedTradeProduct = new TradeProduct();
+        $lineItem3->specifiedTradeProduct->sellerAssignedID = 'HOLANCL';
+        $lineItem3->specifiedTradeProduct->name = 'Huile d\'olive à l\'ancienne';
+        // </ram:SpecifiedTradeProduct>
+
+        // <ram:SpecifiedLineTradeAgreement>
+        $lineItem3->tradeAgreement = new LineTradeAgreement();
+        $lineItem3->tradeAgreement->grossPrice = TradePrice::create('19.80');
+        $lineItem3->tradeAgreement->netPrice = TradePrice::create('19.80');
+        // </ram:SpecifiedLineTradeAgreement>
+
+        // <ram:SpecifiedLineTradeDelivery>
+        $lineItem3->delivery = new LineTradeDelivery();
+        $lineItem3->delivery->billedQuantity = Quantity::create('25.000', 'LTR');
+        // </ram:SpecifiedLineTradeDelivery>
+
+        // <ram:SpecifiedLineTradeSettlement>
+        $lineItem3->specifiedLineTradeSettlement = new LineTradeSettlement();
+        $lineItem3->specifiedLineTradeSettlement->tradeTax[] = $itemTradeTax = new TradeTax();
+        $itemTradeTax->typeCode = 'VAT';
+        $itemTradeTax->categoryCode = 'S';
+        $itemTradeTax->rateApplicablePercent = '5.50';
+
+        $lineItem3->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('495.00');
+        // </ram:IncludedSupplyChainTradeLineItem>
+
+        // <ram:ApplicableHeaderTradeAgreement>
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement = new HeaderTradeAgreement();
+
+        // <ram:SellerTradeParty>
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
+        $sellerTradeParty->name = 'Au bon moulin';
+        $sellerTradeParty->specifiedLegalOrganization = $legalOrganization = new LegalOrganization();
+        $legalOrganization->id = Id::create('99999999800010', '0002');
+
+        // <ram:DefinedTradeContact>
+        $sellerTradeParty->definedTradeContact = new TradeContact();
+        $sellerTradeParty->definedTradeContact->personName = 'Tony Dubois';
+        $sellerTradeParty->definedTradeContact->telephoneUniversalCommunication = $telephoneUniversalCommunication = new UniversalCommunication();
+        $telephoneUniversalCommunication->completeNumber = '+33 4 72 07 08 56';
+
+        $sellerTradeParty->definedTradeContact->emailURIUniversalCommunication = new UniversalCommunication();
+        $sellerTradeParty->definedTradeContact->emailURIUniversalCommunication->uriid = Id::create('tony.dubois@aubonmoulin.fr', 'SMTP');
+        // </ram:DefinedTradeContact>
+
+        // <ram:PostalTradeAddress>
+        $sellerTradeParty->postalTradeAddress = $postalTradeAddress = new TradeAddress();
+        $postalTradeAddress->postcode = '84340';
+        $postalTradeAddress->lineOne = '1242 chemin de l\'olive';
+        $postalTradeAddress->city = 'Malaucène';
+        $postalTradeAddress->countryCode = 'FR';
+        // </ram:PostalTradeAddress>
+
+        // <ram:SpecifiedTaxRegistration>
+        $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('FR11999999998', 'VA');
+        // </ram:SpecifiedTaxRegistration>
+
+        // </ram:SellerTradeParty>
+        // <ram:BuyerTradeParty>
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
+        $buyerTradeParty->name = 'Ma jolie boutique';
+
+        // <ram:SpecifiedLegalOrganization>
+        $buyerTradeParty->specifiedLegalOrganization = $legalOrganization = new LegalOrganization();
+        $legalOrganization->id = Id::create('78787878400035', '0002');
+        // </ram:SpecifiedLegalOrganization>
+
+        // <ram:DefinedTradeContact>
+        $buyerTradeParty->definedTradeContact = new TradeContact();
+        $buyerTradeParty->definedTradeContact->personName = 'Alexandre Payet';
+
+        $buyerTradeParty->definedTradeContact->telephoneUniversalCommunication = $telephoneUniversalCommunication = new UniversalCommunication();
+        $telephoneUniversalCommunication->completeNumber = '+33 4 72 07 08 67';
+
+        $buyerTradeParty->definedTradeContact->emailURIUniversalCommunication = new UniversalCommunication();
+        $buyerTradeParty->definedTradeContact->emailURIUniversalCommunication->uriid = Id::create('alexandre.payet@majolieboutique.net', 'SMTP');
+        // </ram:DefinedTradeContact>
+
+        // <ram:PostalTradeAddress>
+        $buyerTradeParty->postalTradeAddress = $postalTradeAddress = new TradeAddress();
+        $postalTradeAddress->postcode = '69001';
+        $postalTradeAddress->lineOne = '35 rue de la République';
+        $postalTradeAddress->city = 'Lyon';
+        $postalTradeAddress->countryCode = 'FR';
+        // </ram:PostalTradeAddress>
+
+        // <ram:SpecifiedTaxRegistration>
+        $buyerTradeParty->taxRegistrations[] = TaxRegistration::create('FR19787878784', 'VA');
+        // </ram:SpecifiedTaxRegistration>
+
+        // </ram:BuyerTradeParty>
+
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerOrderReferencedDocument = ReferencedDocument::create('PO445');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->contractReferencedDocument = ReferencedDocument::create('MSPE2017');
+
+        // <ram:ApplicableHeaderTradeDelivery>
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->shipToTradeParty = $shipToTradeParty = new TradeParty();
+        $shipToTradeParty->postalTradeAddress = $postalTradeAddress = new TradeAddress();
+        $postalTradeAddress->postcode = '69001';
+        $postalTradeAddress->lineOne = '35 rue de la République';
+        $postalTradeAddress->city = 'Lyon';
+        $postalTradeAddress->countryCode = 'FR';
+        // </ram:ApplicableHeaderTradeDelivery>
+
+        // <ram:ApplicableHeaderTradeSettlement>
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = new HeaderTradeSettlement();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->paymentReference = 'FA-2017-0010';
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->currency = 'EUR';
+
+        // <ram:SpecifiedTradeSettlementPaymentMeans>
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementPaymentMeans[] = $paymentMeans1 = new TradeSettlementPaymentMeans();
+        $paymentMeans1->typeCode = '30';
+        $paymentMeans1->information = 'Virement sur compte Banque Fiducial';
+        $paymentMeans1->payeePartyCreditorFinancialAccount = new CreditorFinancialAccount();
+        $paymentMeans1->payeePartyCreditorFinancialAccount->ibanId = Id::create('FR2012421242124212421242124');
+        $paymentMeans1->payeeSpecifiedCreditorFinancialInstitution = new CreditorFinancialInstitution();
+        $paymentMeans1->payeeSpecifiedCreditorFinancialInstitution->bicId = Id::create('FIDCFR21XXX');
+        // </ram:ApplicableHeaderTradeSettlement>
+
+        // <ram:ApplicableTradeTax>
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->tradeTaxes[] = $applicableTradeTax1 = new TradeTax();
+        $applicableTradeTax1->calculatedAmount = Amount::create('16.38');
+        $applicableTradeTax1->typeCode = 'VAT';
+        $applicableTradeTax1->basisAmount = Amount::create('81.90');
+        $applicableTradeTax1->categoryCode = 'S';
+        $applicableTradeTax1->dueDateTypeCode = '5';
+        $applicableTradeTax1->rateApplicablePercent = '20.00';
+
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->tradeTaxes[] = $applicableTradeTax2 = new TradeTax();
+        $applicableTradeTax2->calculatedAmount = Amount::create('29.87');
+        $applicableTradeTax2->typeCode = 'VAT';
+        $applicableTradeTax2->basisAmount = Amount::create('543.00');
+        $applicableTradeTax2->categoryCode = 'S';
+        $applicableTradeTax2->dueDateTypeCode = '5';
+        $applicableTradeTax2->rateApplicablePercent = '5.50';
+        // </ram:ApplicableTradeTax>
+
+        // <ram:SpecifiedTradePaymentTerms>
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradePaymentTerms[] = $paymentTerms = new TradePaymentTerms();
+        $paymentTerms->description = '30% d\'acompte, solde à 30 j';
+        $paymentTerms->dueDate = DateTime::create('102', '20171213');
+        // </ram:SpecifiedTradePaymentTerms>
+
+        // <ram:SpecifiedTradeSettlementHeaderMonetarySummation>
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = $summation = new TradeSettlementHeaderMonetarySummation();
+        $summation->lineTotalAmount = Amount::create('624.90');
+        $summation->taxBasisTotalAmount[] = Amount::create('624.90');
+        $summation->taxTotalAmount[] = Amount::create('46.25', 'EUR');
+        $summation->grandTotalAmount[] = Amount::create('671.15');
+        $summation->totalPrepaidAmount = Amount::create('201.00');
+        $summation->duePayableAmount = Amount::create('470.15');
+        // </ram:SpecifiedTradeSettlementHeaderMonetarySummation>
+
+        // </ram:ApplicableHeaderTradeSettlement>
+        // </rsm:SupplyChainTradeTransaction>
+
+        $xml = Builder::create()->transform($invoice);
+        self::assertNotEmpty($xml);
+        $referenceFile = file_get_contents(__DIR__ . '/official_example_xml/facturx_EXTENDED.xml');
         $referenceFile = ReaderAndBuildTest::reformatXml($referenceFile);
         $xml = ReaderAndBuildTest::reformatXml($xml);
         self::assertEquals($referenceFile, $xml);
