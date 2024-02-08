@@ -17,48 +17,28 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class SupplyChainTradeLineItem
 {
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\DocumentLineDocument")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("AssociatedDocumentLineDocument")
-     */
+    #[Type(DocumentLineDocument::class)]
+    #[SerializedName('AssociatedDocumentLineDocument')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public DocumentLineDocument $associatedDocumentLineDocument;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\TradeProduct")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("SpecifiedTradeProduct")
-     */
+    #[Type(TradeProduct::class)]
+    #[SerializedName('SpecifiedTradeProduct')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public TradeProduct $specifiedTradeProduct;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\LineTradeAgreement")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("SpecifiedLineTradeAgreement")
-     */
+    #[Type(LineTradeAgreement::class)]
+    #[SerializedName('SpecifiedLineTradeAgreement')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public LineTradeAgreement $tradeAgreement;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\LineTradeDelivery")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("SpecifiedLineTradeDelivery")
-     */
+    #[Type(LineTradeDelivery::class)]
+    #[SerializedName('SpecifiedLineTradeDelivery')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?LineTradeDelivery $delivery = null;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\LineTradeSettlement")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("SpecifiedLineTradeSettlement")
-     */
+    #[Type(LineTradeSettlement::class)]
+    #[SerializedName('SpecifiedLineTradeSettlement')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public LineTradeSettlement $specifiedLineTradeSettlement;
 }

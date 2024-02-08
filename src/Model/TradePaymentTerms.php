@@ -15,30 +15,18 @@ use JMS\Serializer\Annotation as JMS;
 
 class TradePaymentTerms
 {
-    /**
-     * @JMS\Type("string")
-     *
-     * @JMS\XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @JMS\SerializedName("Description")
-     */
+    #[JMS\Type('string')]
+    #[JMS\SerializedName('Description')]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?string $description = null;
 
-    /**
-     * @JMS\Type("Easybill\ZUGFeRD\Model\DateTime")
-     *
-     * @JMS\XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @JMS\SerializedName("DueDateDateTime")
-     */
+    #[JMS\Type(DateTime::class)]
+    #[JMS\SerializedName('DueDateDateTime')]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?DateTime $dueDate = null;
 
-    /**
-     * @JMS\Type("string")
-     *
-     * @JMS\XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @JMS\SerializedName("DirectDebitMandateID")
-     */
+    #[JMS\Type('string')]
+    #[JMS\SerializedName('DirectDebitMandateID')]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?string $directDebitMandateID = null;
 }

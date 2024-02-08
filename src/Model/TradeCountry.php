@@ -17,13 +17,9 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class TradeCountry
 {
-    /**
-     * @Type("string")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("ID")
-     */
+    #[Type('string')]
+    #[SerializedName('ID')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public string $id;
 
     public static function create(string $id): self

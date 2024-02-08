@@ -17,30 +17,18 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class HeaderTradeDelivery
 {
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\TradeParty")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("ShipToTradeParty")
-     */
+    #[Type(TradeParty::class)]
+    #[SerializedName('ShipToTradeParty')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?TradeParty $shipToTradeParty = null;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\SupplyChainEvent")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("ActualDeliverySupplyChainEvent")
-     */
+    #[Type(SupplyChainEvent::class)]
+    #[SerializedName('ActualDeliverySupplyChainEvent')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?SupplyChainEvent $chainEvent = null;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\ReferencedDocument")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("DeliveryNoteReferencedDocument")
-     */
+    #[Type(ReferencedDocument::class)]
+    #[SerializedName('DeliveryNoteReferencedDocument')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?ReferencedDocument $deliveryNoteReferencedDocument = null;
 }

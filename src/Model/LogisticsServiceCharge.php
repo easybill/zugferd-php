@@ -18,30 +18,20 @@ use JMS\Serializer\Annotation\XmlList;
 
 class LogisticsServiceCharge
 {
-    /**
-     * @Type("string")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("Description")
-     */
+    #[Type('string')]
+    #[SerializedName('Description')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public string $description;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\Amount")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("AppliedAmount")
-     */
+    #[Type(Amount::class)]
+    #[SerializedName('AppliedAmount')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public Amount $appliedAmount;
 
     /**
      * @var TradeTax[]
-     *
-     * @Type("array<Easybill\ZUGFeRD\Model\TradeTax>")
-     *
-     * @XmlList(inline = true, entry = "AppliedTradeTax", namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
+    #[Type('array<Easybill\ZUGFeRD\Model\TradeTax>')]
+    #[XmlList(inline: true, entry: 'AppliedTradeTax', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $tradeTaxes = [];
 }

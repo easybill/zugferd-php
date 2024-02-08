@@ -28,30 +28,18 @@ use JMS\Serializer\Annotation\XmlRoot;
  */
 class CrossIndustryInvoice
 {
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\ExchangedDocumentContext")
-     *
-     * @XmlElement(namespace="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100")
-     *
-     * @SerializedName("ExchangedDocumentContext")
-     */
+    #[Type(ExchangedDocumentContext::class)]
+    #[SerializedName('ExchangedDocumentContext')]
+    #[XmlElement(namespace: 'urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100')]
     public ExchangedDocumentContext $exchangedDocumentContext;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\ExchangedDocument")
-     *
-     * @XmlElement(namespace="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100")
-     *
-     * @SerializedName("ExchangedDocument")
-     */
+    #[Type(ExchangedDocument::class)]
+    #[SerializedName('ExchangedDocument')]
+    #[XmlElement(namespace: 'urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100')]
     public ExchangedDocument $exchangedDocument;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\SupplyChainTradeTransaction")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100")
-     *
-     * @SerializedName("SupplyChainTradeTransaction")
-     */
+    #[Type(SupplyChainTradeTransaction::class)]
+    #[SerializedName('SupplyChainTradeTransaction')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100')]
     public SupplyChainTradeTransaction $supplyChainTradeTransaction;
 }

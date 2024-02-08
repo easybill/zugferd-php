@@ -17,13 +17,9 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class DateTime
 {
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\DateTimeString")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100")
-     *
-     * @SerializedName("DateTimeString")
-     */
+    #[Type(DateTimeString::class)]
+    #[SerializedName('DateTimeString')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100')]
     public DateTimeString $dateTimeString;
 
     public static function create(int $format, string $value): self

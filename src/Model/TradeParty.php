@@ -18,84 +18,52 @@ use JMS\Serializer\Annotation\XmlList;
 
 class TradeParty
 {
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\Id")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("ID")
-     */
+    #[Type(Id::class)]
+    #[SerializedName('ID')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?Id $id = null;
 
     /**
      * @var Id[]
-     *
-     * @Type("array<Easybill\ZUGFeRD\Model\Id>")
-     *
-     * @XmlList(inline = true, entry = "GlobalID", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
+    #[Type('array<Easybill\ZUGFeRD\Model\Id>')]
+    #[XmlList(inline: true, entry: 'GlobalID', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $globalID = [];
 
-    /**
-     * @Type("string")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("Name")
-     */
+    #[Type('string')]
+    #[SerializedName('Name')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public string $name;
 
-    /**
-     * @Type("string")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("RoleCode")
-     */
+    #[Type('string')]
+    #[SerializedName('RoleCode')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?string $roleCode = null;
 
-    /**
-     * @Type("string")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("Description")
-     */
+    #[Type('string')]
+    #[SerializedName('Description')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?string $description = null;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\LegalOrganization")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("SpecifiedLegalOrganization")
-     */
+    #[Type(LegalOrganization::class)]
+    #[SerializedName('SpecifiedLegalOrganization')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?LegalOrganization $specifiedLegalOrganization = null;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\TradeContact")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("DefinedTradeContact")
-     */
+    #[Type(TradeContact::class)]
+    #[SerializedName('DefinedTradeContact')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?TradeContact $definedTradeContact = null;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\TradeAddress")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("PostalTradeAddress")
-     */
+    #[Type(TradeAddress::class)]
+    #[SerializedName('PostalTradeAddress')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?TradeAddress $postalTradeAddress = null;
 
     /**
      * @var TaxRegistration[]
-     *
-     * @Type("array<Easybill\ZUGFeRD\Model\TaxRegistration>")
-     *
-     * @XmlList(inline=true, entry="SpecifiedTaxRegistration", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
+    #[Type('array<Easybill\ZUGFeRD\Model\TaxRegistration>')]
+    #[XmlList(inline: true, entry: 'SpecifiedTaxRegistration', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public $taxRegistrations = [];
 }

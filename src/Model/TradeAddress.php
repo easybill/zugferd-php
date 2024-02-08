@@ -17,66 +17,38 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class TradeAddress
 {
-    /**
-     * @Type("string")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("PostcodeCode")
-     */
+    #[Type('string')]
+    #[SerializedName('PostcodeCode')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?string $postcode = null;
 
-    /**
-     * @Type("string")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("LineOne")
-     */
+    #[Type('string')]
+    #[SerializedName('LineOne')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?string $lineOne = null;
 
-    /**
-     * @Type("string")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("LineTwo")
-     */
+    #[Type('string')]
+    #[SerializedName('LineTwo')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?string $lineTwo = null;
 
-    /**
-     * @Type("string")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("LineThree")
-     */
+    #[Type('string')]
+    #[SerializedName('LineThree')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?string $lineThree = null;
 
-    /**
-     * @Type("string")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("CityName")
-     */
+    #[Type('string')]
+    #[SerializedName('CityName')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?string $city = null;
 
-    /**
-     * @Type("string")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("CountryID")
-     */
+    #[Type('string')]
+    #[SerializedName('CountryID')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?string $countryCode = null;
 
-    /**
-     * @Type("string")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("CountrySubDivisionName")
-     */
+    #[Type('string')]
+    #[SerializedName('CountrySubDivisionName')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?string $countrySubDivisionName = null;
 }

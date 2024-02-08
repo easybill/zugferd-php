@@ -20,22 +20,17 @@ class Id
 {
     /**
      * @var string
-     *
-     * @Type("string")
-     *
-     * @XmlAttribute
-     *
-     * @SerializedName("schemeID")
      */
+    #[Type('string')]
+    #[XmlAttribute]
+    #[SerializedName('schemeID')]
     public $schemeID;
 
     /**
      * @var string
-     *
-     * @Type("string")
-     *
-     * @XmlValue(cdata=false)
      */
+    #[Type('string')]
+    #[XmlValue(cdata: false)]
     public $value;
 
     public static function create(string $id, ?string $schemeID = null): self

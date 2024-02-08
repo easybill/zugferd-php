@@ -17,13 +17,9 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class TaxRegistration
 {
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\Id")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("ID")
-     */
+    #[Type(Id::class)]
+    #[SerializedName('ID')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public Id $registration;
 
     public static function create(string $id, ?string $schemeID = null): self

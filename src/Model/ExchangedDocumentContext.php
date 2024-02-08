@@ -17,12 +17,8 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class ExchangedDocumentContext
 {
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\DocumentContextParameter")
-     *
-     * @XmlElement(namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("GuidelineSpecifiedDocumentContextParameter")
-     */
+    #[Type(DocumentContextParameter::class)]
+    #[SerializedName('GuidelineSpecifiedDocumentContextParameter')]
+    #[XmlElement(namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public DocumentContextParameter $documentContextParameter;
 }

@@ -18,20 +18,13 @@ use JMS\Serializer\Annotation\XmlValue;
 
 class Quantity
 {
-    /**
-     * @Type("string")
-     *
-     * @XmlAttribute
-     *
-     * @SerializedName("unitCode")
-     */
+    #[Type('string')]
+    #[XmlAttribute]
+    #[SerializedName('unitCode')]
     public string $unitCode;
 
-    /**
-     * @Type("string")
-     *
-     * @XmlValue(cdata=false)
-     */
+    #[Type('string')]
+    #[XmlValue(cdata: false)]
     public string $value;
 
     public static function create(string $value, string $unitCode): self

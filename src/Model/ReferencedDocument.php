@@ -17,58 +17,34 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class ReferencedDocument
 {
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\Id")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("IssuerAssignedID")
-     */
+    #[Type(Id::class)]
+    #[SerializedName('IssuerAssignedID')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public Id $issuerAssignedID;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\Id")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("URIID")
-     */
+    #[Type(Id::class)]
+    #[SerializedName('URIID')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?Id $uriid = null;
 
-    /**
-     * @Type("string")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("TypeCode")
-     */
+    #[Type('string')]
+    #[SerializedName('TypeCode')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?string $typeCode = null;
 
-    /**
-     * @Type("string")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("Name")
-     */
+    #[Type('string')]
+    #[SerializedName('Name')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?string $name = null;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\BinaryObject")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("AttachmentBinaryObject")
-     */
+    #[Type(BinaryObject::class)]
+    #[SerializedName('AttachmentBinaryObject')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?BinaryObject $attachmentBinaryObject = null;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\FormattedDateTime")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("FormattedIssueDateTime")
-     */
+    #[Type(FormattedDateTime::class)]
+    #[SerializedName('FormattedIssueDateTime')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?FormattedDateTime $formattedIssueDateTime = null;
 
     public static function create(string $issuerAssignedID): self

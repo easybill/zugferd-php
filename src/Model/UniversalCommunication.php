@@ -17,21 +17,13 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class UniversalCommunication
 {
-    /**
-     * @Type("string")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("CompleteNumber")
-     */
+    #[Type('string')]
+    #[SerializedName('CompleteNumber')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?string $completeNumber = null;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\Id")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("URIID")
-     */
+    #[Type(Id::class)]
+    #[SerializedName('URIID')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?Id $uriid = null;
 }

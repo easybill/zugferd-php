@@ -17,22 +17,14 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class TradeSettlementLineMonetarySummation
 {
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\Amount")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("LineTotalAmount")
-     */
+    #[Type(Amount::class)]
+    #[SerializedName('LineTotalAmount')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public Amount $totalAmount;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\Amount")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("TotalAllowanceChargeAmount")
-     */
+    #[Type(Amount::class)]
+    #[SerializedName('TotalAllowanceChargeAmount')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?Amount $totalAllowanceChargeAmount = null;
 
     public static function create(string $totalAmount, ?string $totalAllowanceChargeAmount = null): self

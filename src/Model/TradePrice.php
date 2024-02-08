@@ -15,31 +15,19 @@ use JMS\Serializer\Annotation as JMS;
 
 class TradePrice
 {
-    /**
-     * @JMS\Type("Easybill\ZUGFeRD\Model\Amount")
-     *
-     * @JMS\XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @JMS\SerializedName("ChargeAmount")
-     */
+    #[JMS\Type(Amount::class)]
+    #[JMS\SerializedName('ChargeAmount')]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public Amount $chargeAmount;
 
-    /**
-     * @JMS\Type("Easybill\ZUGFeRD\Model\Quantity")
-     *
-     * @JMS\XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @JMS\SerializedName("BasisQuantity")
-     */
+    #[JMS\Type(Quantity::class)]
+    #[JMS\SerializedName('BasisQuantity')]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?Quantity $basisQuantity = null;
 
-    /**
-     * @JMS\Type("Easybill\ZUGFeRD\Model\TradeAllowanceCharge")
-     *
-     * @JMS\XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @JMS\SerializedName("AppliedTradeAllowanceCharge")
-     */
+    #[JMS\Type(TradeAllowanceCharge::class)]
+    #[JMS\SerializedName('AppliedTradeAllowanceCharge')]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?TradeAllowanceCharge $appliedTradeAllowanceCharge = null;
 
     public static function create(string $amount, ?Quantity $quantity = null, ?TradeAllowanceCharge $appliedTradeAllowanceCharge = null): self

@@ -17,11 +17,8 @@ use JMS\Serializer\SerializerInterface;
 
 class Reader
 {
-    private SerializerInterface $serializer;
-
-    public function __construct(SerializerInterface $serializer)
+    public function __construct(private SerializerInterface $serializer)
     {
-        $this->serializer = $serializer;
     }
 
     public function transform(string $xml): CrossIndustryInvoice

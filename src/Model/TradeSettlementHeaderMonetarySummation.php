@@ -16,84 +16,54 @@ use JMS\Serializer\Annotation\XmlList;
 
 class TradeSettlementHeaderMonetarySummation
 {
-    /**
-     * @JMS\Type("Easybill\ZUGFeRD\Model\Amount")
-     *
-     * @JMS\XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @JMS\SerializedName("LineTotalAmount")
-     */
+    #[JMS\Type(Amount::class)]
+    #[JMS\SerializedName('LineTotalAmount')]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?Amount $lineTotalAmount = null;
 
-    /**
-     * @JMS\Type("Easybill\ZUGFeRD\Model\Amount")
-     *
-     * @JMS\XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @JMS\SerializedName("ChargeTotalAmount")
-     */
+    #[JMS\Type(Amount::class)]
+    #[JMS\SerializedName('ChargeTotalAmount')]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?Amount $chargeTotalAmount = null;
 
-    /**
-     * @JMS\Type("Easybill\ZUGFeRD\Model\Amount")
-     *
-     * @JMS\XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @JMS\SerializedName("AllowanceTotalAmount")
-     */
+    #[JMS\Type(Amount::class)]
+    #[JMS\SerializedName('AllowanceTotalAmount')]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?Amount $allowanceTotalAmount = null;
 
     /**
      * @var Amount[]
-     *
-     * @JMS\Type("array<Easybill\ZUGFeRD\Model\Amount>")
-     *
-     * @XmlList(inline = true, entry = "TaxBasisTotalAmount", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
+    #[JMS\Type('array<Easybill\ZUGFeRD\Model\Amount>')]
+    #[XmlList(inline: true, entry: 'TaxBasisTotalAmount', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $taxBasisTotalAmount = [];
 
     /**
      * @var Amount[]
-     *
-     * @JMS\Type("array<Easybill\ZUGFeRD\Model\Amount>")
-     *
-     * @XmlList(inline = true, entry = "TaxTotalAmount", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
+    #[JMS\Type('array<Easybill\ZUGFeRD\Model\Amount>')]
+    #[XmlList(inline: true, entry: 'TaxTotalAmount', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $taxTotalAmount = [];
 
-    /**
-     * @JMS\Type("Easybill\ZUGFeRD\Model\Amount")
-     *
-     * @JMS\XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @JMS\SerializedName("RoundingAmount")
-     */
+    #[JMS\Type(Amount::class)]
+    #[JMS\SerializedName('RoundingAmount')]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?Amount $roundingAmount = null;
 
     /**
      * @var Amount[]
-     *
-     * @JMS\Type("array<Easybill\ZUGFeRD\Model\Amount>")
-     *
-     * @XmlList(inline = true, entry = "GrandTotalAmount", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
+    #[JMS\Type('array<Easybill\ZUGFeRD\Model\Amount>')]
+    #[XmlList(inline: true, entry: 'GrandTotalAmount', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $grandTotalAmount = [];
 
-    /**
-     * @JMS\Type("Easybill\ZUGFeRD\Model\Amount")
-     *
-     * @JMS\XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @JMS\SerializedName("TotalPrepaidAmount")
-     */
+    #[JMS\Type(Amount::class)]
+    #[JMS\SerializedName('TotalPrepaidAmount')]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?Amount $totalPrepaidAmount = null;
 
-    /**
-     * @JMS\Type("Easybill\ZUGFeRD\Model\Amount")
-     *
-     * @JMS\XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @JMS\SerializedName("DuePayableAmount")
-     */
+    #[JMS\Type(Amount::class)]
+    #[JMS\SerializedName('DuePayableAmount')]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public Amount $duePayableAmount;
 }

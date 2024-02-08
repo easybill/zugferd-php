@@ -17,12 +17,8 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class CreditorFinancialInstitution
 {
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\Id")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("BICID")
-     */
+    #[Type(Id::class)]
+    #[SerializedName('BICID')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public Id $bicId;
 }

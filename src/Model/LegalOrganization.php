@@ -15,30 +15,18 @@ use JMS\Serializer\Annotation as JMS;
 
 class LegalOrganization
 {
-    /**
-     * @JMS\Type("Easybill\ZUGFeRD\Model\Id")
-     *
-     * @JMS\XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @JMS\SerializedName("ID")
-     */
+    #[JMS\Type(Id::class)]
+    #[JMS\SerializedName('ID')]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public Id $id;
 
-    /**
-     * @JMS\Type("string")
-     *
-     * @JMS\XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @JMS\SerializedName("TradingBusinessName")
-     */
+    #[JMS\Type('string')]
+    #[JMS\SerializedName('TradingBusinessName')]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?string $tradingBusinessName = null;
 
-    /**
-     * @JMS\Type("Easybill\ZUGFeRD\Model\TradeAddress")
-     *
-     * @JMS\XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @JMS\SerializedName("PostalTradeAddress")
-     */
+    #[JMS\Type(TradeAddress::class)]
+    #[JMS\SerializedName('PostalTradeAddress')]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?TradeAddress $postalTradeAddress = null;
 }

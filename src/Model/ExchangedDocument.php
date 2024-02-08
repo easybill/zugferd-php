@@ -18,59 +18,38 @@ use JMS\Serializer\Annotation\XmlList;
 
 class ExchangedDocument
 {
-    /**
-     * @Type("string")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("ID")
-     */
+    #[Type('string')]
+    #[SerializedName('ID')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public string $id;
 
-    /**
-     * @Type("string")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("Name")
-     */
+    #[Type('string')]
+    #[SerializedName('Name')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?string $name = null;
 
-    /**
-     * @Type("string")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("TypeCode")
-     */
+    #[Type('string')]
+    #[SerializedName('TypeCode')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public string $typeCode;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\DateTime")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("IssueDateTime")
-     */
+    #[Type(DateTime::class)]
+    #[SerializedName('IssueDateTime')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public DateTime $issueDateTime;
 
     /**
      * @var string[]
-     *
-     * @Type("array<string>")
-     *
-     * @XmlElement(cdata=false)
-     *
-     * @XmlList(inline = true, entry = "LanguageID", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
+    #[Type('array<string>')]
+    #[XmlElement(cdata: false)]
+    #[XmlList(inline: true, entry: 'LanguageID', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $languageId = [];
 
     /**
      * @var Note[]
-     *
-     * @Type("array<Easybill\ZUGFeRD\Model\Note>")
-     *
-     * @XmlList(inline = true, entry = "IncludedNote", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
+    #[Type('array<Easybill\ZUGFeRD\Model\Note>')]
+    #[XmlList(inline: true, entry: 'IncludedNote', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $notes = [];
 }

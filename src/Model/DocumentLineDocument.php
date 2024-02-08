@@ -18,22 +18,16 @@ use JMS\Serializer\Annotation\XmlList;
 
 class DocumentLineDocument
 {
-    /**
-     * @Type("string")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("LineID")
-     */
+    #[Type('string')]
+    #[SerializedName('LineID')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public string $lineId;
 
     /**
      * @var Note[]
-     *
-     * @Type("array<Easybill\ZUGFeRD\Model\Note>")
-     *
-     * @XmlList(inline=true, entry="IncludedNote", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
+    #[Type('array<Easybill\ZUGFeRD\Model\Note>')]
+    #[XmlList(inline: true, entry: 'IncludedNote', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $notes = [];
 
     public static function create(string $lineId): self

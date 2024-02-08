@@ -15,28 +15,17 @@ use JMS\Serializer\Annotation as JMS;
 
 class BinaryObject
 {
-    /**
-     * @JMS\Type("string")
-     *
-     * @JMS\XmlAttribute
-     *
-     * @JMS\SerializedName("mimeCode")
-     */
+    #[JMS\Type('string')]
+    #[JMS\XmlAttribute]
+    #[JMS\SerializedName('mimeCode')]
     public string $mimeCode;
 
-    /**
-     * @JMS\Type("string")
-     *
-     * @JMS\XmlAttribute
-     *
-     * @JMS\SerializedName("filename")
-     */
+    #[JMS\Type('string')]
+    #[JMS\XmlAttribute]
+    #[JMS\SerializedName('filename')]
     public string $filename;
 
-    /**
-     * @JMS\Type("string")
-     *
-     * @JMS\XmlValue(cdata=false)
-     */
+    #[JMS\Type('string')]
+    #[JMS\XmlValue(cdata: false)]
     public string $value;
 }

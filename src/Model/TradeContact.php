@@ -17,48 +17,28 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class TradeContact
 {
-    /**
-     * @Type("string")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("PersonName")
-     */
+    #[Type('string')]
+    #[SerializedName('PersonName')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?string $personName = null;
 
-    /**
-     * @Type("string")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("DepartmentName")
-     */
+    #[Type('string')]
+    #[SerializedName('DepartmentName')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?string $departmentName = null;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\UniversalCommunication")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("TelephoneUniversalCommunication")
-     */
+    #[Type(UniversalCommunication::class)]
+    #[SerializedName('TelephoneUniversalCommunication')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?UniversalCommunication $telephoneUniversalCommunication = null;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\UniversalCommunication")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("FaxUniversalCommunication")
-     */
+    #[Type(UniversalCommunication::class)]
+    #[SerializedName('FaxUniversalCommunication')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?UniversalCommunication $faxUniversalCommunication = null;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\UniversalCommunication")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("EmailURIUniversalCommunication")
-     */
+    #[Type(UniversalCommunication::class)]
+    #[SerializedName('EmailURIUniversalCommunication')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?UniversalCommunication $emailURIUniversalCommunication = null;
 }

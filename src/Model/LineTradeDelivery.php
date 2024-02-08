@@ -17,21 +17,13 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class LineTradeDelivery
 {
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\Quantity")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("BilledQuantity")
-     */
+    #[Type(Quantity::class)]
+    #[SerializedName('BilledQuantity')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public Quantity $billedQuantity;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\SupplyChainEvent")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("ActualDeliverySupplyChainEvent")
-     */
+    #[Type(SupplyChainEvent::class)]
+    #[SerializedName('ActualDeliverySupplyChainEvent')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?SupplyChainEvent $chainEvent = null;
 }

@@ -17,21 +17,13 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class LineTradeAgreement
 {
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\TradePrice")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("GrossPriceProductTradePrice")
-     */
+    #[Type(TradePrice::class)]
+    #[SerializedName('GrossPriceProductTradePrice')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?TradePrice $grossPrice = null;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\TradePrice")
-     *
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     *
-     * @SerializedName("NetPriceProductTradePrice")
-     */
+    #[Type(TradePrice::class)]
+    #[SerializedName('NetPriceProductTradePrice')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public TradePrice $netPrice;
 }
