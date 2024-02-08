@@ -11,6 +11,10 @@
     {
       "name": "Patrick Romowicz",
       "email": "patrick@romowicz.de"
+    },
+    {
+      "name": "SILARHI",
+      "email": "dev@silarhi.fr"
     }
   ],
   "require": {
@@ -28,12 +32,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Easybill\\ZUGFeRD211\\": "src/zugferd211"
+      "Easybill\\ZUGFeRD\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Easybill\\ZUGFeRD211\\": "tests/zugferd211"
+      "Easybill\\ZUGFeRD\\Tests\\": "tests/"
     }
   },
   "config": {

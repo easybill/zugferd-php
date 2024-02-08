@@ -21,7 +21,7 @@ composer require easybill/zugferd-php
 Convert XML to PHP Objects:
 
 ```php
-use Easybill\ZUGFeRD211\Reader;
+use src\Reader;
 
 $xml = file_get_contents('factur-x.xml');
 $obj = Reader::create()->transform($xml);
@@ -30,7 +30,7 @@ $obj = Reader::create()->transform($xml);
 Convert PHP Objects to XML:
 
 ```php
-use Easybill\ZUGFeRD211\Builder;
+use src\Builder;
  
 $obj = ...;
 
