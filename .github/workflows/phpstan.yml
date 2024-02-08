@@ -1,0 +1,52 @@
+name: PHPStan
+on:
+  pull_request:
+  push:
+    branches:
+      - 'refs/pull/*'
+      - '5.x'
+
+env:
+  CI: true
+
+jobs:
+  run:
+    name: PHPStan ${{ matrix.php }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest ]
+        php: [ '8.2' ]
+
+    steps:
+      -   name: Checkout
+          uses: actions/checkout@v4
+
+      -   name: Install PHP
+          uses: shivammathur/setup-php@v2
+          with:
+            coverage: none
+            php-version: ${{ matrix.php }}
+            ini-values: memory_limit=-1
+            tools: composer:v2
+
+      -   name: Determine composer cache directory
+          id: composer-cache
+          run: |
+            echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      -   name: Cache composer dependencies
+          uses: actions/cache@v4.0.0
+          with:
+            path: ${{ steps.composer-cache.outputs.dir }}
+            key: ${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
+            restore-keys: |
+              ${{ matrix.php }}-composer-
+
+      -   name: Install Dependencies
+          run: composer update --no-progress --ansi
+
+      -   name: PHPStan
+          run: ./vendor/bin/phpstan analyse
