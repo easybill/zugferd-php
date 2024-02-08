@@ -1,6 +1,7 @@
 vendor
 .idea
 .DS_Store
+/composer.lock
 /zugferd20
 /zugferd211de
 .phpunit.result.cache
