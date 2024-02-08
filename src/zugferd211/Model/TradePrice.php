@@ -20,11 +20,19 @@ class TradePrice
      */
     public ?Quantity $basisQuantity = null;
 
-    public static function create(string $amount, Quantity $quantity = null): self
+    /**
+     * @JMS\Type("Easybill\ZUGFeRD211\Model\TradeAllowanceCharge")
+     * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @JMS\SerializedName("AppliedTradeAllowanceCharge")
+     */
+    public ?TradeAllowanceCharge $appliedTradeAllowanceCharge = null;
+
+    public static function create(string $amount, Quantity $quantity = null, TradeAllowanceCharge $appliedTradeAllowanceCharge = null): self
     {
         $self = new self();
         $self->chargeAmount = Amount::create($amount);
         $self->basisQuantity = $quantity;
+        $self->appliedTradeAllowanceCharge = $appliedTradeAllowanceCharge;
         return $self;
     }
 }
