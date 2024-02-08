@@ -20,6 +20,7 @@ use Easybill\ZUGFeRD211\Model\LegalOrganization;
 use Easybill\ZUGFeRD211\Model\LineTradeAgreement;
 use Easybill\ZUGFeRD211\Model\LineTradeDelivery;
 use Easybill\ZUGFeRD211\Model\LineTradeSettlement;
+use Easybill\ZUGFeRD211\Model\LogisticsServiceCharge;
 use Easybill\ZUGFeRD211\Model\Note;
 use Easybill\ZUGFeRD211\Model\Quantity;
 use Easybill\ZUGFeRD211\Model\FormattedDateTime;
@@ -337,7 +338,7 @@ Handelsregisternummer: H A 123
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->paymentReference = '421102';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->currency = 'EUR';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->payeeTradeParty = $sellerTradeParty;
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedLogisticsServiceCharge[] = $logisticsServiceCharge = new ProcuringProject();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedLogisticsServiceCharge[] = $logisticsServiceCharge = new LogisticsServiceCharge();
 
         $logisticsServiceCharge->description = 'Versandkosten';
         $logisticsServiceCharge->appliedAmount = Amount::create('0');
