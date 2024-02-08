@@ -34,6 +34,9 @@ class ReaderAndBuildTest extends TestCase
         self::assertTrue(true);
     }
 
+    /**
+     * @return array<int, array<int, string>>
+     */
     public function dataProvider(): array
     {
         return [

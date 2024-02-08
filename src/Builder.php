@@ -8,7 +8,7 @@ use JMS\Serializer\SerializerInterface;
 
 class Builder
 {
-    private $serializer;
+    private SerializerInterface $serializer;
 
     public function __construct(SerializerInterface $serializer)
     {

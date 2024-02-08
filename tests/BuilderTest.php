@@ -155,7 +155,7 @@ Handelsregisternummer: H A 123
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->chainEvent = new SupplyChainEvent();
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->chainEvent->date = DateTime::create('102', '20180305');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->chainEvent->date = DateTime::create(102, '20180305');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = new HeaderTradeSettlement();
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->currency = 'EUR';
@@ -240,13 +240,13 @@ Handelsregisternummer: H A 123
         $item1->specifiedTradeProduct->tradeCountry = TradeCountry::create('DE');
 
         $item1->tradeAgreement = new LineTradeAgreement();
-        $item1->tradeAgreement->netPrice = TradePrice::create('9.9000', Quantity::create(1, 'C62'));
+        $item1->tradeAgreement->netPrice = TradePrice::create('9.9000', Quantity::create('1', 'C62'));
         $item1->tradeAgreement->grossPrice = TradePrice::create('9.9000');
 
         $item1->delivery = new LineTradeDelivery();
         $item1->delivery->billedQuantity = Quantity::create('20.0000', 'H87');
         $item1->delivery->chainEvent = new SupplyChainEvent();
-        $item1->delivery->chainEvent->date = DateTime::create('102', '20180305');
+        $item1->delivery->chainEvent->date = DateTime::create(102, '20180305');
 
         $item1->specifiedLineTradeSettlement = new LineTradeSettlement();
         $item1->specifiedLineTradeSettlement->tradeTax[] = $item1tax = new TradeTax();
@@ -328,10 +328,10 @@ Handelsregisternummer: H A 123
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->shipToTradeParty = $buyerTradeParty;
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->chainEvent = new SupplyChainEvent();
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->chainEvent->date = DateTime::create('102', '20180305');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->chainEvent->date = DateTime::create(102, '20180305');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->deliveryNoteReferencedDocument = ReferencedDocument::create('123456');
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->deliveryNoteReferencedDocument->formattedIssueDateTime = FormattedDateTime::create('102', '20180305');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->deliveryNoteReferencedDocument->formattedIssueDateTime = FormattedDateTime::create(102, '20180305');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = new HeaderTradeSettlement();
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->creditorReferenceID = 'TEST1234';
@@ -633,7 +633,7 @@ Handelsregisternummer: H A 123
         // <ram:SpecifiedTradePaymentTerms>
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradePaymentTerms[] = $paymentTerms = new TradePaymentTerms();
         $paymentTerms->description = '30% d\'acompte, solde à 30 j';
-        $paymentTerms->dueDate = DateTime::create('102', '20171213');
+        $paymentTerms->dueDate = DateTime::create(102, '20171213');
         // </ram:SpecifiedTradePaymentTerms>
 
         // <ram:SpecifiedTradeSettlementHeaderMonetarySummation>

@@ -7,7 +7,7 @@ use Easybill\ZUGFeRD\Validator;
 
 class ValidatorTest extends TestCase
 {
-    public function testXsdSuccess()
+    public function testXsdSuccess(): void
     {
         $validator = new Validator();
         $xml = file_get_contents(__DIR__ . '/data/official_example_xml/zugferd_2p1_EN16931_Einfach.xml');
@@ -15,7 +15,7 @@ class ValidatorTest extends TestCase
         self::assertNull($errors, $errors ?? '');
     }
 
-    public function testXsdFail()
+    public function testXsdFail(): void
     {
         $validator = new Validator();
         $xml = file_get_contents(__DIR__ . '/data/broken_example.xml');
