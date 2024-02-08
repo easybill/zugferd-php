@@ -1,5 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of the ZUGFeRD PHP package.
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Easybill\ZUGFeRD\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
@@ -11,43 +20,56 @@ class ExchangedDocument
 {
     /**
      * @Type("string")
+     *
      * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     *
      * @SerializedName("ID")
      */
     public string $id;
 
     /**
      * @Type("string")
+     *
      * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     *
      * @SerializedName("Name")
      */
     public ?string $name = null;
 
     /**
      * @Type("string")
+     *
      * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     *
      * @SerializedName("TypeCode")
      */
     public string $typeCode;
 
     /**
      * @Type("Easybill\ZUGFeRD\Model\DateTime")
+     *
      * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     *
      * @SerializedName("IssueDateTime")
      */
     public DateTime $issueDateTime;
 
     /**
      * @var string[]
+     *
      * @Type("array<string>")
+     *
      * @XmlElement(cdata=false)
+     *
      * @XmlList(inline = true, entry = "LanguageID", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
     public array $languageId = [];
 
     /**
      * @var Note[]
+     *
      * @Type("array<Easybill\ZUGFeRD\Model\Note>")
+     *
      * @XmlList(inline = true, entry = "IncludedNote", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      */
     public array $notes = [];

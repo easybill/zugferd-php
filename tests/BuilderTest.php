@@ -1,10 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of the ZUGFeRD PHP package.
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Easybill\ZUGFeRD\Tests;
 
-use Easybill\ZUGFeRD\Model\LegalOrganization;
-use Easybill\ZUGFeRD\Model\LogisticsServiceCharge;
-use PHPUnit\Framework\TestCase;
 use Easybill\ZUGFeRD\Builder;
 use Easybill\ZUGFeRD\Model\Amount;
 use Easybill\ZUGFeRD\Model\CreditorFinancialAccount;
@@ -21,9 +27,11 @@ use Easybill\ZUGFeRD\Model\HeaderTradeDelivery;
 use Easybill\ZUGFeRD\Model\HeaderTradeSettlement;
 use Easybill\ZUGFeRD\Model\Id;
 use Easybill\ZUGFeRD\Model\Indicator;
+use Easybill\ZUGFeRD\Model\LegalOrganization;
 use Easybill\ZUGFeRD\Model\LineTradeAgreement;
 use Easybill\ZUGFeRD\Model\LineTradeDelivery;
 use Easybill\ZUGFeRD\Model\LineTradeSettlement;
+use Easybill\ZUGFeRD\Model\LogisticsServiceCharge;
 use Easybill\ZUGFeRD\Model\Note;
 use Easybill\ZUGFeRD\Model\ProcuringProject;
 use Easybill\ZUGFeRD\Model\Quantity;
@@ -46,6 +54,7 @@ use Easybill\ZUGFeRD\Model\TradeSettlementPaymentMeans;
 use Easybill\ZUGFeRD\Model\TradeTax;
 use Easybill\ZUGFeRD\Model\UniversalCommunication;
 use Easybill\ZUGFeRD\Validator;
+use PHPUnit\Framework\TestCase;
 
 class BuilderTest extends TestCase
 {
@@ -61,10 +70,10 @@ class BuilderTest extends TestCase
         $invoice->exchangedDocument->issueDateTime = DateTime::create(102, '20180305');
         $invoice->exchangedDocument->typeCode = '380';
         $invoice->exchangedDocument->notes[] = Note::create('Rechnung gemäß Bestellung vom 01.03.2018.');
-        $invoice->exchangedDocument->notes[] = Note::create('Lieferant GmbH				
-Lieferantenstraße 20				
-80333 München				
-Deutschland				
+        $invoice->exchangedDocument->notes[] = Note::create('Lieferant GmbH
+Lieferantenstraße 20
+80333 München
+Deutschland
 Geschäftsführer: Hans Muster
 Handelsregisternummer: H A 123
       ', 'REG');
@@ -220,10 +229,10 @@ Handelsregisternummer: H A 123
         $invoice->exchangedDocument->typeCode = '380';
         $invoice->exchangedDocument->languageId[] = 'de';
         $invoice->exchangedDocument->notes[] = Note::create('Rechnung gemäß Bestellung vom 01.03.2018.');
-        $invoice->exchangedDocument->notes[] = Note::create('Lieferant GmbH				
-Lieferantenstraße 20				
-80333 München				
-Deutschland				
+        $invoice->exchangedDocument->notes[] = Note::create('Lieferant GmbH
+Lieferantenstraße 20
+80333 München
+Deutschland
 Geschäftsführer: Hans Muster
 Handelsregisternummer: H A 123
       ', 'REG');
@@ -531,7 +540,7 @@ Handelsregisternummer: H A 123
         $sellerTradeParty->definedTradeContact = new TradeContact();
         $sellerTradeParty->definedTradeContact->personName = 'Tony Dubois';
         $sellerTradeParty->definedTradeContact->telephoneUniversalCommunication = $telephoneUniversalCommunication = new UniversalCommunication();
-        $telephoneUniversalCommunication->completeNumber = '+33 4 72 07 08 56';
+        $telephoneUniversalCommunication->completeNumber = "+33\u{a0}4\u{a0}72\u{a0}07\u{a0}08\u{a0}56";
 
         $sellerTradeParty->definedTradeContact->emailURIUniversalCommunication = new UniversalCommunication();
         $sellerTradeParty->definedTradeContact->emailURIUniversalCommunication->uriid = Id::create('tony.dubois@aubonmoulin.fr', 'SMTP');
@@ -564,7 +573,7 @@ Handelsregisternummer: H A 123
         $buyerTradeParty->definedTradeContact->personName = 'Alexandre Payet';
 
         $buyerTradeParty->definedTradeContact->telephoneUniversalCommunication = $telephoneUniversalCommunication = new UniversalCommunication();
-        $telephoneUniversalCommunication->completeNumber = '+33 4 72 07 08 67';
+        $telephoneUniversalCommunication->completeNumber = "+33\u{a0}4\u{a0}72\u{a0}07\u{a0}08\u{a0}67";
 
         $buyerTradeParty->definedTradeContact->emailURIUniversalCommunication = new UniversalCommunication();
         $buyerTradeParty->definedTradeContact->emailURIUniversalCommunication->uriid = Id::create('alexandre.payet@majolieboutique.net', 'SMTP');

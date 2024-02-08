@@ -1,10 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of the ZUGFeRD PHP package.
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Easybill\ZUGFeRD\Tests;
 
-use PHPUnit\Framework\TestCase;
+use DOMDocument;
 use Easybill\ZUGFeRD\Builder;
 use Easybill\ZUGFeRD\Reader;
+use PHPUnit\Framework\TestCase;
 
 class ReaderAndBuildTest extends TestCase
 {
@@ -12,10 +22,11 @@ class ReaderAndBuildTest extends TestCase
     {
         $xml = preg_replace('/<!--(.|\s)*?-->/', '', $xml);
 
-        $doc = new \DOMDocument('1.0', 'UTF-8');
+        $doc = new DOMDocument('1.0', 'UTF-8');
         $doc->preserveWhiteSpace = false;
         $doc->formatOutput = true;
         $doc->loadXML($xml);
+
         return $doc->saveXML();
     }
 

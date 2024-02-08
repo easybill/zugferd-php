@@ -1,7 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of the ZUGFeRD PHP package.
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
+
+$header = <<<'EOF'
+This file is part of the ZUGFeRD PHP package.
+
+This source file is subject to the MIT license that is bundled
+with this source code in the file LICENSE.
+EOF;
 
 $finder = (new Finder())
     ->in([
@@ -14,32 +30,21 @@ $finder = (new Finder())
 ;
 
 return (new Config())
-    ->setRiskyAllowed(false)
+    ->setRiskyAllowed(true)
     ->setRules([
-        '@PSR2' => true,
         '@Symfony' => true,
-        '@PhpCsFixer' => true,
+        '@Symfony:risky' => true,
+        '@DoctrineAnnotation' => true,
         'array_syntax' => ['syntax' => 'short'],
-        'cast_spaces' => ['space' => 'none'],
+        'phpdoc_summary' => false,
+        'no_superfluous_phpdoc_tags' => true,
+        'header_comment' => ['header' => $header],
         'concat_space' => ['spacing' => 'one'],
-        'yoda_style' => false,
-        'ordered_class_elements' => false,
-        'ordered_imports' => false,
-        // 'method_argument_space' => null,
-        // 'no_whitespace_in_blank_line' => null,
-        // 'no_extra_blank_lines' => null,
-        // 'braces' => null,
-        'blank_line_before_statement' => false,
-        'phpdoc_align' => ['align' => 'left'],
-        'phpdoc_var_without_name' => false,
-        'phpdoc_types_order' => false,
-        'phpdoc_order' => false,
-        'phpdoc_separation' => false,
-        // 'no_superfluous_elseif' => null,
-        'class_definition' => false,
-        'ternary_to_null_coalescing' => true,
-        'php_unit_test_class_requires_covers' => false,
-        'php_unit_internal_class' => false,
+        'native_constant_invocation' => true,
+        'native_function_invocation' => ['include' => ['@compiler_optimized']],
+        'ordered_imports' => ['sort_algorithm' => 'alpha'],
+        'global_namespace_import' => ['import_functions' => true],
+        'declare_strict_types' => true,
     ])
     ->setFinder($finder)
 ;

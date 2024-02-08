@@ -1,5 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of the ZUGFeRD PHP package.
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Easybill\ZUGFeRD\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
@@ -11,16 +20,21 @@ class Id
 {
     /**
      * @var string
+     *
      * @Type("string")
+     *
      * @XmlAttribute
+     *
      * @SerializedName("schemeID")
      */
     public $schemeID;
 
     /**
      * @var string
+     *
      * @Type("string")
-     * @XmlValue(cdata = false)
+     *
+     * @XmlValue(cdata=false)
      */
     public $value;
 
@@ -29,6 +43,7 @@ class Id
         $self = new self();
         $self->value = $id;
         $self->schemeID = $schemeID;
+
         return $self;
     }
 }

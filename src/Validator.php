@@ -1,6 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of the ZUGFeRD PHP package.
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Easybill\ZUGFeRD;
+
+use DOMDocument;
 
 class Validator
 {
@@ -12,7 +23,7 @@ class Validator
 
     public function validateAgainstXsd(string $xml, string $schemaFile): ?string
     {
-        $domDoc = new \DOMDocument();
+        $domDoc = new DOMDocument();
         $domDoc->loadXML($xml);
 
         try {
@@ -22,6 +33,7 @@ class Validator
             if ($isValid) {
                 return null;
             }
+
             return implode("\n", array_column(libxml_get_errors(), 'message'));
         } finally {
             libxml_use_internal_errors(false);
