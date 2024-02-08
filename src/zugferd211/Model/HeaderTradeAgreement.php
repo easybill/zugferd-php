@@ -38,6 +38,13 @@ class HeaderTradeAgreement
     public ?ReferencedDocument $buyerOrderReferencedDocument = null;
 
     /**
+     * @Type("Easybill\ZUGFeRD211\Model\ReferencedDocument")
+     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("ContractReferencedDocument")
+     */
+    public ?ReferencedDocument $contractReferencedDocument = null;
+
+    /**
      * @var ReferencedDocument[]
      * @Type("array<Easybill\ZUGFeRD211\Model\ReferencedDocument>")
      * @XmlList(inline = true, entry = "AdditionalReferencedDocument", namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
