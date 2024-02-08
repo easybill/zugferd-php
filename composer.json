@@ -28,13 +28,11 @@
   },
   "autoload": {
     "psr-4": {
-      "Easybill\\ZUGFeRD\\": "src/zugferd10",
       "Easybill\\ZUGFeRD211\\": "src/zugferd211"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Easybill\\ZUGFeRD\\": "tests/zugferd10",
       "Easybill\\ZUGFeRD211\\": "tests/zugferd211"
     }
   },

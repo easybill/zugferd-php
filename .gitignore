@@ -1,7 +1,6 @@
 vendor
 .idea
 .DS_Store
-/zugferd10
 /zugferd20
 /zugferd211de
 .phpunit.result.cache
