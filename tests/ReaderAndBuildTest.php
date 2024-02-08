@@ -42,7 +42,7 @@ class ReaderAndBuildTest extends TestCase
         self::assertTrue(true);
     }
 
-    public function dataProvider()
+    public function dataProvider(): array
     {
         return [
             ['zugferd_2p1_BASIC-WL_Einfach.xml'],
