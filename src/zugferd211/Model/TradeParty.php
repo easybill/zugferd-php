@@ -31,6 +31,27 @@ class TradeParty
     public string $name;
 
     /**
+     * @Type("string")
+     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("RoleCode")
+     */
+    public ?string $roleCode = null;
+
+    /**
+     * @Type("string")
+     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("Description")
+     */
+    public ?string $description = null;
+
+    /**
+     * @Type("Easybill\ZUGFeRD211\Model\LegalOrganization")
+     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
+     * @SerializedName("SpecifiedLegalOrganization")
+     */
+    public ?LegalOrganization $specifiedLegalOrganization = null;
+
+    /**
      * @Type("Easybill\ZUGFeRD211\Model\TradeContact")
      * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
      * @SerializedName("DefinedTradeContact")
