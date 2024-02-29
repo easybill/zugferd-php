@@ -11,7 +11,7 @@ use JMS\Serializer\Annotation as JMS;
  */
 class TradeAllowanceCharge
 {
-    #[JMS\Type(\Easybill\ZUGFeRD211\Model\Indicator::class)]
+    #[JMS\Type(Indicator::class)]
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[JMS\SerializedName('ChargeIndicator')]
     public ?Indicator $indicator = null;
@@ -21,12 +21,12 @@ class TradeAllowanceCharge
     #[JMS\SerializedName('CalculationPercent')]
     public ?string $calculationPercent = null;
 
-    #[JMS\Type(\Easybill\ZUGFeRD211\Model\Amount::class)]
+    #[JMS\Type(Amount::class)]
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[JMS\SerializedName('BasisAmount')]
     public ?Amount $basisAmount = null;
 
-    #[JMS\Type(\Easybill\ZUGFeRD211\Model\Amount::class)]
+    #[JMS\Type(Amount::class)]
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[JMS\SerializedName('ActualAmount')]
     public Amount $actualAmount;
