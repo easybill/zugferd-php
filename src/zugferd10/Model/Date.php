@@ -10,10 +10,10 @@ class Date
 {
     /**
      * @var DateTime
-     * @Type("Easybill\ZUGFeRD\Model\DateTime")
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15")
-     * @SerializedName("DateTimeString")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\DateTime::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15')]
+    #[SerializedName('DateTimeString')]
     private $date;
 
     /**

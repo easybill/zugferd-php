@@ -13,27 +13,26 @@ class Note
 {
     /**
      * @var string
-     * @Type("string")
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("Content")
      */
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('Content')]
     private $content = '';
 
     /**
      * @var string
-     * @Type("string")
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("SubjectCode")
      */
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('SubjectCode')]
     private $subjectCode;
 
     /**
      * Note constructor.
      *
-     * @param mixed $content
      * @param null|string $subjectCode
      */
-    public function __construct($content, $subjectCode = null)
+    public function __construct(mixed $content, $subjectCode = null)
     {
         $this->setContent($content);
         $this->setSubjectCode($subjectCode);

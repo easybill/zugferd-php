@@ -17,7 +17,13 @@ test83:
 	docker run --rm -v $(current_dir):/app -w /app php:8.3 vendor/bin/phpunit
 
 cs-fix:
-	./vendor/bin/php-cs-fixer fix --config .php-cs-fixer.dist.php
+	PHP_CS_FIXER_IGNORE_ENV=1 ./vendor/bin/php-cs-fixer fix --config .php-cs-fixer.dist.php
 
 phpstan:
 	./vendor/bin/phpstan analyse src --level 8
+
+rector:
+	./vendor/bin/rector process
+
+rector-dry-run:
+	./vendor/bin/rector process --dry-run

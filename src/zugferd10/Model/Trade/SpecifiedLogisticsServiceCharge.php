@@ -11,32 +11,20 @@ use JMS\Serializer\Annotation\XmlList;
 class SpecifiedLogisticsServiceCharge
 {
     /**
-     * @var string
-     * @Type("string")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("Description")
-     */
-    private $description;
-
-    /**
-     * @var Amount
-     * @Type("Easybill\ZUGFeRD\Model\Trade\Amount")
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("AppliedAmount")
-     */
-    private $appliedAmount;
-
-    /**
      * @var TradeTax[]
-     * @Type("array<Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax>")
-     * @XmlList(inline = true, entry = "AppliedTradeTax", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      */
+    #[Type('array<Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax>')]
+    #[XmlList(inline: true, entry: 'AppliedTradeTax', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     private $tradeTaxes = [];
 
-    public function __construct(string $description, Amount $appliedAmount)
+    public function __construct(#[Type('string')]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('Description')]
+        private string $description, #[Type(\Easybill\ZUGFeRD\Model\Trade\Amount::class)]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('AppliedAmount')]
+        private Amount $appliedAmount)
     {
-        $this->description = $description;
-        $this->appliedAmount = $appliedAmount;
     }
 
     /**

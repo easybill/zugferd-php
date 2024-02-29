@@ -8,17 +8,13 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class Period
 {
-    /**
-     * @Type("Easybill\ZUGFeRD211\Model\DateTime")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     * @SerializedName("StartDateTime")
-     */
+    #[Type(\Easybill\ZUGFeRD211\Model\DateTime::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('StartDateTime')]
     public DateTime $startDatetime;
 
-    /**
-     * @Type("Easybill\ZUGFeRD211\Model\DateTime")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     * @SerializedName("EndDateTime")
-     */
+    #[Type(\Easybill\ZUGFeRD211\Model\DateTime::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('EndDateTime')]
     public DateTime $endDatetime;
 }

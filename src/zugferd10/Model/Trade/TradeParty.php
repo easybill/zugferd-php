@@ -14,51 +14,40 @@ class TradeParty
 {
     /**
      * @var string
-     * @Type("string")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("ID")
      */
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('ID')]
     private $id;
     /**
      * @var TradePartyGlobalId
-     * @Type("Easybill\ZUGFeRD\Model\Schema")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("GlobalID")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\Schema::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('GlobalID')]
     private $globalId;
-    /**
-     * @var string
-     * @Type("string")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("Name")
-     */
-    private $name;
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\Trade\TradeContact")
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("DefinedTradeContact")
-     */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\TradeContact::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('DefinedTradeContact')]
     public $definedTradeContact;
-    /**
-     * @var Address
-     * @Type("Easybill\ZUGFeRD\Model\Address")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("PostalTradeAddress")
-     */
-    private $address;
-    /**
-     * @var TaxRegistration[]
-     * @Type("array<Easybill\ZUGFeRD\Model\Trade\Tax\TaxRegistration>")
-     * @XmlList(inline = true, entry = "SpecifiedTaxRegistration", namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     */
-    private $taxRegistrations;
 
-    public function __construct($name, Address $address, array $taxRegistrations = [], TradeContact $definedTradeContact = null)
+    /**
+     * @param string $name
+     */
+    public function __construct(#[Type('string')]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('Name')]
+        private $name, #[Type(\Easybill\ZUGFeRD\Model\Address::class)]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('PostalTradeAddress')]
+        private Address $address, /**
+     * @var TaxRegistration[]
+     */
+        #[Type('array<Easybill\ZUGFeRD\Model\Trade\Tax\TaxRegistration>')]
+        #[XmlList(inline: true, entry: 'SpecifiedTaxRegistration', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        private array $taxRegistrations = [], TradeContact $definedTradeContact = null)
     {
-        $this->name = $name;
-        $this->address = $address;
         $this->definedTradeContact = $definedTradeContact;
-        $this->taxRegistrations = $taxRegistrations;
     }
 
     /**

@@ -11,18 +11,10 @@ use JMS\Serializer\Annotation\XmlList;
 class LineDocument
 {
     /**
-     * @var string
-     * @Type("string")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("LineID")
-     */
-    private $lineId;
-
-    /**
      * @var Note[]
-     * @Type("array<Easybill\ZUGFeRD\Model\Note>")
-     * @XmlList(inline = true, entry = "IncludedNote", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      */
+    #[Type('array<Easybill\ZUGFeRD\Model\Note>')]
+    #[XmlList(inline: true, entry: 'IncludedNote', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     private $notes = [];
 
     /**
@@ -30,9 +22,11 @@ class LineDocument
      *
      * @param string $lineId
      */
-    public function __construct($lineId = '')
+    public function __construct(#[Type('string')]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('LineID')]
+        private $lineId = '')
     {
-        $this->lineId = $lineId;
     }
 
     /**

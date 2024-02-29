@@ -8,35 +8,17 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class ReferencedDocument
 {
-    /**
-     * @var string
-     * @Type("string")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("IssueDateTime")
-     */
-    private $issuedDateTime;
-
-    /**
-     * @var string
-     * @Type("string")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("TypeCode")
-     */
-    private $typeCode;
-
-    /**
-     * @var string
-     * @Type("string")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("ID")
-     */
-    private $id;
-
-    public function __construct(string $id, string $issuedDateTime = null, string $typeCode = null)
+    public function __construct(#[Type('string')]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('ID')]
+        private string $id, #[Type('string')]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('IssueDateTime')]
+        private ?string $issuedDateTime = null, #[Type('string')]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('TypeCode')]
+        private ?string $typeCode = null)
     {
-        $this->issuedDateTime = $issuedDateTime;
-        $this->typeCode = $typeCode;
-        $this->id = $id;
     }
 
     /**

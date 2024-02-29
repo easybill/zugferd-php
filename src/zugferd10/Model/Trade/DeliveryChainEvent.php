@@ -11,10 +11,10 @@ class DeliveryChainEvent
 {
     /**
      * @var Date
-     * @Type("Easybill\ZUGFeRD\Model\Date")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("OccurrenceDateTime")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\Date::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('OccurrenceDateTime')]
     private $date;
 
     /**

@@ -15,41 +15,17 @@ class Product
 {
     /**
      * @var string
-     * @Type("string")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("SellerAssignedID")
      */
-    private $sellerAssignedID;
-
-    /**
-     * @var string
-     * @Type("string")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("BuyerAssignedID")
-     */
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('BuyerAssignedID')]
     private $buyerAssignedID;
 
     /**
-     * @var string
-     * @Type("string")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("Name")
-     */
-    private $name;
-
-    /**
-     * @var string
-     * @Type("string")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("Description")
-     */
-    private $description;
-
-    /**
      * @var TradeCountry[]
-     * @Type("array<Easybill\ZUGFeRD\Model\Trade\TradeCountry>")
-     * @XmlList(inline = true, entry = "OriginTradeCountry", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      */
+    #[Type('array<Easybill\ZUGFeRD\Model\Trade\TradeCountry>')]
+    #[XmlList(inline: true, entry: 'OriginTradeCountry', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     private $tradeCountries = [];
 
     /**
@@ -59,11 +35,17 @@ class Product
      * @param string $name
      * @param null|mixed $description
      */
-    public function __construct($sellerAssignedID, $name, $description = null)
+    public function __construct(#[Type('string')]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('SellerAssignedID')]
+        private $sellerAssignedID, #[Type('string')]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('Name')]
+        private $name, #[Type('string')]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('Description')]
+        private $description = null)
     {
-        $this->sellerAssignedID = $sellerAssignedID;
-        $this->name = $name;
-        $this->description = $description;
     }
 
     /**

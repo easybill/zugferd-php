@@ -12,33 +12,33 @@ class Trade
 {
     /**
      * @var Agreement
-     * @Type("Easybill\ZUGFeRD\Model\Trade\Agreement")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("ApplicableSupplyChainTradeAgreement")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\Agreement::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('ApplicableSupplyChainTradeAgreement')]
     private $agreement;
 
     /**
      * @var Delivery
-     * @Type("Easybill\ZUGFeRD\Model\Trade\Delivery")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("ApplicableSupplyChainTradeDelivery")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\Delivery::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('ApplicableSupplyChainTradeDelivery')]
     private $delivery;
 
     /**
      * @var Settlement
-     * @Type("Easybill\ZUGFeRD\Model\Trade\Settlement")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("ApplicableSupplyChainTradeSettlement")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\Settlement::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('ApplicableSupplyChainTradeSettlement')]
     private $settlement;
 
     /**
      * @var LineItem[]
-     * @Type("array<Easybill\ZUGFeRD\Model\Trade\Item\LineItem>")
-     * @XmlList(inline = true, entry = "IncludedSupplyChainTradeLineItem", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      */
+    #[Type('array<Easybill\ZUGFeRD\Model\Trade\Item\LineItem>')]
+    #[XmlList(inline: true, entry: 'IncludedSupplyChainTradeLineItem', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     private $lineItems = [];
 
     public function __construct()

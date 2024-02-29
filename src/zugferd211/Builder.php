@@ -8,11 +8,8 @@ use JMS\Serializer\SerializerInterface;
 
 class Builder
 {
-    private $serializer;
-
-    public function __construct(SerializerInterface $serializer)
+    public function __construct(private readonly SerializerInterface $serializer)
     {
-        $this->serializer = $serializer;
     }
 
     public function transform(CrossIndustryInvoice $crossIndustryInvoice): string

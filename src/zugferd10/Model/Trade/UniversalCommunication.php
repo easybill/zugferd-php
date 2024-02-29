@@ -8,18 +8,14 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class UniversalCommunication
 {
-    /**
-     * @Type("string")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("CompleteNumber")
-     */
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('CompleteNumber')]
     public $completeNumber;
 
-    /**
-     * @Type("string")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("URIID")
-     */
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('URIID')]
     public $uriid;
 
     public function __construct(string $completeNumber = null, string $uriid = null)

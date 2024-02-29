@@ -8,11 +8,9 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class TaxRegistration
 {
-    /**
-     * @Type("Easybill\ZUGFeRD211\Model\Id")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     * @SerializedName("ID")
-     */
+    #[Type(\Easybill\ZUGFeRD211\Model\Id::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('ID')]
     public Id $registration;
 
     public static function create(string $id, ?string $schemeID = null): self

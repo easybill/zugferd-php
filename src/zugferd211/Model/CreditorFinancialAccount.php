@@ -8,17 +8,13 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class CreditorFinancialAccount
 {
-    /**
-     * @Type("Easybill\ZUGFeRD211\Model\Id")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     * @SerializedName("IBANID")
-     */
+    #[Type(\Easybill\ZUGFeRD211\Model\Id::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('IBANID')]
     public ?Id $ibanId = null;
 
-    /**
-     * @Type("string")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100")
-     * @SerializedName("AccountName")
-     */
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('AccountName')]
     public ?string $AccountName = null;
 }

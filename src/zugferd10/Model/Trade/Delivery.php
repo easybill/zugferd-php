@@ -10,34 +10,34 @@ class Delivery
 {
     /**
      * @var TradeParty
-     * @Type("Easybill\ZUGFeRD\Model\Trade\TradeParty")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("ShipToTradeParty")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\TradeParty::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('ShipToTradeParty')]
     private $shipToTradeParty;
 
     /**
      * @var TradeParty
-     * @Type("Easybill\ZUGFeRD\Model\Trade\TradeParty")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("UltimateShipToTradeParty")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\TradeParty::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('UltimateShipToTradeParty')]
     private $ultimateShipToTradeParty;
 
     /**
      * @var TradeParty
-     * @Type("Easybill\ZUGFeRD\Model\Trade\TradeParty")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("ShipFromTradeParty")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\TradeParty::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('ShipFromTradeParty')]
     private $shipFromTradeParty;
 
     /**
      * @var DeliveryChainEvent
-     * @Type("Easybill\ZUGFeRD\Model\Trade\DeliveryChainEvent")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("ActualDeliverySupplyChainEvent")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\DeliveryChainEvent::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('ActualDeliverySupplyChainEvent')]
     private $chainEvent;
 
     /**

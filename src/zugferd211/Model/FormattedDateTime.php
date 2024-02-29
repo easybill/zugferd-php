@@ -8,11 +8,9 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class FormattedDateTime
 {
-    /**
-     * @Type("Easybill\ZUGFeRD211\Model\DateTimeString")
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:QualifiedDataType:100")
-     * @SerializedName("DateTimeString")
-     */
+    #[Type(\Easybill\ZUGFeRD211\Model\DateTimeString::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:QualifiedDataType:100')]
+    #[SerializedName('DateTimeString')]
     public DateTimeString $dateTimeString;
 
     public static function create(int $format, string $value): self

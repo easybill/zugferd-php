@@ -9,19 +9,13 @@ use JMS\Serializer\Annotation\XmlElement;
 class SpecifiedTradeDelivery
 {
     /**
-     * @var Quantity
-     * @Type("Easybill\ZUGFeRD\Model\Trade\Item\Quantity")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("BilledQuantity")
-     */
-    private $billedQuantity;
-
-    /**
      * SpecifiedTradeDelivery constructor.
      */
-    public function __construct(Quantity $billedQuantity)
+    public function __construct(#[Type(\Easybill\ZUGFeRD\Model\Trade\Item\Quantity::class)]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('BilledQuantity')]
+        private Quantity $billedQuantity)
     {
-        $this->billedQuantity = $billedQuantity;
     }
 
     /**

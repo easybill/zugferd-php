@@ -11,39 +11,34 @@ use JMS\Serializer\Annotation\XmlRoot;
 
 /**
  * Class Document.
- *
- * @XmlRoot("rsm:CrossIndustryDocument")
- * @XmlNamespace(uri="http://www.w3.org/2001/XMLSchema-instance", prefix="xsi")
- * @XmlNamespace(uri="urn:ferd:CrossIndustryDocument:invoice:1p0", prefix="rsm")
- * @XmlNamespace(uri="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12", prefix="ram")
- * @XmlNamespace(uri="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15", prefix="udt")
  */
+#[XmlRoot('rsm:CrossIndustryDocument')]
+#[XmlNamespace(uri: 'http://www.w3.org/2001/XMLSchema-instance', prefix: 'xsi')]
+#[XmlNamespace(uri: 'urn:ferd:CrossIndustryDocument:invoice:1p0', prefix: 'rsm')]
+#[XmlNamespace(uri: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12', prefix: 'ram')]
+#[XmlNamespace(uri: 'urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15', prefix: 'udt')]
 class Document
 {
     public const TYPE_BASIC = 'BASIC';
     public const TYPE_COMFORT = 'COMFORT';
     public const TYPE_EXTENDED = 'EXTENDED';
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\DocumentContext")
-     * @XmlElement(namespace="urn:ferd:CrossIndustryDocument:invoice:1p0")
-     * @SerializedName("SpecifiedExchangedDocumentContext")
-     */
+    #[Type(\Easybill\ZUGFeRD\Model\DocumentContext::class)]
+    #[XmlElement(namespace: 'urn:ferd:CrossIndustryDocument:invoice:1p0')]
+    #[SerializedName('SpecifiedExchangedDocumentContext')]
     private $context;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\Header")
-     * @XmlElement(namespace="urn:ferd:CrossIndustryDocument:invoice:1p0")
-     * @SerializedName("HeaderExchangedDocument")
-     */
+    #[Type(\Easybill\ZUGFeRD\Model\Header::class)]
+    #[XmlElement(namespace: 'urn:ferd:CrossIndustryDocument:invoice:1p0')]
+    #[SerializedName('HeaderExchangedDocument')]
     private $header;
 
     /**
      * @var Trade
-     * @Type("Easybill\ZUGFeRD\Model\Trade\Trade")
-     * @XmlElement(cdata = false, namespace = "urn:ferd:CrossIndustryDocument:invoice:1p0")
-     * @SerializedName("SpecifiedSupplyChainTradeTransaction")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\Trade::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:ferd:CrossIndustryDocument:invoice:1p0')]
+    #[SerializedName('SpecifiedSupplyChainTradeTransaction')]
     private $trade;
 
     public function __construct($type = self::TYPE_BASIC, $testIndicator = false)

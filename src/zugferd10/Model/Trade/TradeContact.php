@@ -8,45 +8,29 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class TradeContact
 {
-    /**
-     * @Type("string")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("PersonName")
-     */
-    public ?string $personName;
-
-    /**
-     * @Type("string")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("DepartmentName")
-     */
-    public ?string $departmentName;
-
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\Trade\UniversalCommunication")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("TelephoneUniversalCommunication")
-     */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\UniversalCommunication::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('TelephoneUniversalCommunication')]
     public $telephoneUniversalCommunication;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\Trade\UniversalCommunication")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("FaxUniversalCommunication")
-     */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\UniversalCommunication::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('FaxUniversalCommunication')]
     public $faxUniversalCommunication;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\Trade\UniversalCommunication")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("EmailURIUniversalCommunication")
-     */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\UniversalCommunication::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('EmailURIUniversalCommunication')]
     public $emailURIUniversalCommunication;
 
-    public function __construct(string $personName = null, string $departmentName = null, UniversalCommunication $telephoneUniversalCommunication = null, UniversalCommunication $faxUniversalCommunication = null, UniversalCommunication $emailURIUniversalCommunication = null)
+    public function __construct(#[Type('string')]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('PersonName')]
+        public ?string $personName = null, #[Type('string')]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('DepartmentName')]
+        public ?string $departmentName = null, UniversalCommunication $telephoneUniversalCommunication = null, UniversalCommunication $faxUniversalCommunication = null, UniversalCommunication $emailURIUniversalCommunication = null)
     {
-        $this->personName = $personName;
-        $this->departmentName = $departmentName;
         $this->telephoneUniversalCommunication = $telephoneUniversalCommunication;
         $this->faxUniversalCommunication = $faxUniversalCommunication;
         $this->emailURIUniversalCommunication = $emailURIUniversalCommunication;

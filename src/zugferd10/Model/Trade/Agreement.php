@@ -11,49 +11,49 @@ class Agreement
 {
     /**
      * @var string
-     * @Type("string")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("BuyerReference")
      */
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('BuyerReference')]
     private $buyerReference;
 
     /**
      * @var TradeParty
-     * @Type("Easybill\ZUGFeRD\Model\Trade\TradeParty")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("SellerTradeParty")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\TradeParty::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('SellerTradeParty')]
     private $seller;
 
     /**
      * @var TradeParty
-     * @Type("Easybill\ZUGFeRD\Model\Trade\TradeParty")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("BuyerTradeParty")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\TradeParty::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('BuyerTradeParty')]
     private $buyer;
 
     /**
      * @var ReferencedDocument
-     * @Type("Easybill\ZUGFeRD\Model\Trade\ReferencedDocument")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("BuyerOrderReferencedDocument")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\ReferencedDocument::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('BuyerOrderReferencedDocument')]
     private $buyerOrder;
 
     /**
      * @var ReferencedDocument[]
-     * @Type("array<Easybill\ZUGFeRD\Model\Trade\ReferencedDocument>")
-     * @XmlList(inline = true, entry = "AdditionalReferencedDocument", namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      */
+    #[Type('array<Easybill\ZUGFeRD\Model\Trade\ReferencedDocument>')]
+    #[XmlList(inline: true, entry: 'AdditionalReferencedDocument', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     private $additionalReferencedDocuments;
 
     /**
      * @var ReferencedDocument
-     * @Type("Easybill\ZUGFeRD\Model\Trade\ReferencedDocument")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("CustomerOrderReferencedDocument")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\ReferencedDocument::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('CustomerOrderReferencedDocument')]
     private $customerOrderReferencedDocument;
 
     /**
@@ -122,7 +122,6 @@ class Agreement
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\ReferencedDocument $buyerOrder
      * @return Agreement
      */
     public function setBuyerOrder(ReferencedDocument $buyerOrder)

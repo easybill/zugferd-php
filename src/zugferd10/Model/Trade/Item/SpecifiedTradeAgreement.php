@@ -10,18 +10,18 @@ class SpecifiedTradeAgreement
 {
     /**
      * @var Price
-     * @Type("Easybill\ZUGFeRD\Model\Trade\Item\Price")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("GrossPriceProductTradePrice")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\Item\Price::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('GrossPriceProductTradePrice')]
     private $grossPrice;
 
     /**
      * @var Price
-     * @Type("Easybill\ZUGFeRD\Model\Trade\Item\Price")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("NetPriceProductTradePrice")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\Item\Price::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('NetPriceProductTradePrice')]
     private $netPrice;
 
     /**

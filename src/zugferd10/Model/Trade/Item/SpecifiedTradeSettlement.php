@@ -11,18 +11,18 @@ class SpecifiedTradeSettlement
 {
     /**
      * @var TradeTax
-     * @Type("Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("ApplicableTradeTax")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('ApplicableTradeTax')]
     private $tradeTax;
 
     /**
      * @var SpecifiedTradeMonetarySummation
-     * @Type("Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeMonetarySummation")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("SpecifiedTradeSettlementMonetarySummation")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeMonetarySummation::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('SpecifiedTradeSettlementMonetarySummation')]
     private $monetarySummation;
 
     /**

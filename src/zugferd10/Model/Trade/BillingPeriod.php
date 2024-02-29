@@ -7,26 +7,14 @@ use JMS\Serializer\Annotation as JMS;
 
 class BillingPeriod
 {
-    /**
-     * @var Date
-     * @JMS\Type("Easybill\ZUGFeRD\Model\Date")
-     * @JMS\XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @JMS\SerializedName("StartDateTime")
-     */
-    private $start;
-
-    /**
-     * @var Date
-     * @JMS\Type("Easybill\ZUGFeRD\Model\Date")
-     * @JMS\XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @JMS\SerializedName("EndDateTime")
-     */
-    private $end;
-
-    public function __construct(Date $start, Date $end)
+    public function __construct(#[JMS\Type(\Easybill\ZUGFeRD\Model\Date::class)]
+        #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[JMS\SerializedName('StartDateTime')]
+        private Date $start, #[JMS\Type(\Easybill\ZUGFeRD\Model\Date::class)]
+        #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[JMS\SerializedName('EndDateTime')]
+        private Date $end)
     {
-        $this->start = $start;
-        $this->end = $end;
     }
 
     /**

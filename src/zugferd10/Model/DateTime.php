@@ -8,15 +8,15 @@ class DateTime
 {
     /**
      * @var int
-     * @JMS\Type("integer")
-     * @JMS\XmlAttribute
      */
+    #[JMS\Type('integer')]
+    #[JMS\XmlAttribute]
     private $format;
     /**
      * @var string
-     * @JMS\Type("string")
-     * @JMS\XmlValue(cdata=false)
      */
+    #[JMS\Type('string')]
+    #[JMS\XmlValue(cdata: false)]
     private $time;
 
     /**
@@ -39,17 +39,11 @@ class DateTime
             throw new \RuntimeException('Invalid date! it must be an instance of \DateTime or must be a string!');
         }
 
-        switch ($format) {
-            case 616:
-                $formatStr = 'YW';
-                break;
-            case 610:
-                $formatStr = 'Ym';
-                break;
-            case 102:
-            default:
-                $formatStr = 'Ymd';
-        }
+        $formatStr = match ($format) {
+            616 => 'YW',
+            610 => 'Ym',
+            default => 'Ymd',
+        };
 
         $this->time = $dateTime->format($formatStr);
         $this->format = $format;
