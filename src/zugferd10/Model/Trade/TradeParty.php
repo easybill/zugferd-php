@@ -11,7 +11,7 @@ use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 use Easybill\ZUGFeRD\Model\Schema;
 
-#[AccessorOrder(order: 'custom', custom: ['name', 'definedTradeContact'])]
+#[AccessorOrder(order: 'custom', custom: ['id', 'globalId', 'name', 'definedTradeContact', 'postalTradeAddress', 'specifiedTaxRegistration'])]
 class TradeParty
 {
     /**

@@ -20,7 +20,7 @@ class Agreement
     /**
      * @var TradeParty
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\TradeParty::class)]
+    #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('SellerTradeParty')]
     private $seller;
@@ -28,7 +28,7 @@ class Agreement
     /**
      * @var TradeParty
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\TradeParty::class)]
+    #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('BuyerTradeParty')]
     private $buyer;
@@ -36,7 +36,7 @@ class Agreement
     /**
      * @var ReferencedDocument
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\ReferencedDocument::class)]
+    #[Type(ReferencedDocument::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('BuyerOrderReferencedDocument')]
     private $buyerOrder;
@@ -51,7 +51,7 @@ class Agreement
     /**
      * @var ReferencedDocument
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\ReferencedDocument::class)]
+    #[Type(ReferencedDocument::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('CustomerOrderReferencedDocument')]
     private $customerOrderReferencedDocument;
@@ -76,7 +76,7 @@ class Agreement
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\TradeParty
+     * @return TradeParty
      */
     public function getSeller()
     {
@@ -84,7 +84,7 @@ class Agreement
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\TradeParty $seller
+     * @param TradeParty $seller
      *
      * @return self
      */
@@ -95,7 +95,7 @@ class Agreement
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\TradeParty
+     * @return TradeParty
      */
     public function getBuyer()
     {
@@ -103,7 +103,7 @@ class Agreement
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\TradeParty $buyer
+     * @param TradeParty $buyer
      *
      * @return self
      */
@@ -114,7 +114,7 @@ class Agreement
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\ReferencedDocument
+     * @return ReferencedDocument
      */
     public function getBuyerOrder()
     {
@@ -131,7 +131,7 @@ class Agreement
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\ReferencedDocument[]
+     * @return ReferencedDocument[]
      */
     public function getAdditionalReferencedDocuments()
     {
@@ -149,7 +149,7 @@ class Agreement
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\ReferencedDocument
+     * @return ReferencedDocument
      */
     public function getCustomerOrderReferencedDocument()
     {
