@@ -8,7 +8,7 @@ use JMS\Serializer\Annotation as JMS;
 
 class TradeTax
 {
-    #[JMS\Type(\Easybill\ZUGFeRD211\Model\Amount::class)]
+    #[JMS\Type(Amount::class)]
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[JMS\SerializedName('CalculatedAmount')]
     public ?Amount $calculatedAmount = null;
@@ -23,17 +23,17 @@ class TradeTax
     #[JMS\SerializedName('ExemptionReason')]
     public ?string $exemptionReason = null;
 
-    #[JMS\Type(\Easybill\ZUGFeRD211\Model\Amount::class)]
+    #[JMS\Type(Amount::class)]
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[JMS\SerializedName('BasisAmount')]
     public ?Amount $basisAmount = null;
 
-    #[JMS\Type(\Easybill\ZUGFeRD211\Model\Amount::class)]
+    #[JMS\Type(Amount::class)]
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[JMS\SerializedName('LineTotalBasisAmount')]
     public ?Amount $lineTotalBasisAmount = null;
 
-    #[JMS\Type(\Easybill\ZUGFeRD211\Model\Amount::class)]
+    #[JMS\Type(Amount::class)]
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[JMS\SerializedName('AllowanceChargeBasisAmount')]
     public ?Amount $allowanceChargeBasisAmount = null;

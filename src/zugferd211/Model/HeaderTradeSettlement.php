@@ -26,7 +26,7 @@ class HeaderTradeSettlement
     #[SerializedName('InvoiceCurrencyCode')]
     public string $currency;
 
-    #[Type(\Easybill\ZUGFeRD211\Model\TradeParty::class)]
+    #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('PayeeTradeParty')]
     public ?TradeParty $payeeTradeParty = null;

@@ -18,17 +18,17 @@ use JMS\Serializer\Annotation\XmlRoot;
 #[XmlNamespace(uri: 'urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100', prefix: 'udt')]
 class CrossIndustryInvoice
 {
-    #[Type(\Easybill\ZUGFeRD211\Model\ExchangedDocumentContext::class)]
+    #[Type(ExchangedDocumentContext::class)]
     #[XmlElement(namespace: 'urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100')]
     #[SerializedName('ExchangedDocumentContext')]
     public ExchangedDocumentContext $exchangedDocumentContext;
 
-    #[Type(\Easybill\ZUGFeRD211\Model\ExchangedDocument::class)]
+    #[Type(ExchangedDocument::class)]
     #[XmlElement(namespace: 'urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100')]
     #[SerializedName('ExchangedDocument')]
     public ExchangedDocument $exchangedDocument;
 
-    #[Type(\Easybill\ZUGFeRD211\Model\SupplyChainTradeTransaction::class)]
+    #[Type(SupplyChainTradeTransaction::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100')]
     #[SerializedName('SupplyChainTradeTransaction')]
     public SupplyChainTradeTransaction $supplyChainTradeTransaction;

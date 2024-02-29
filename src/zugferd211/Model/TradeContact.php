@@ -20,17 +20,17 @@ class TradeContact
     #[SerializedName('DepartmentName')]
     public ?string $departmentName = null;
 
-    #[Type(\Easybill\ZUGFeRD211\Model\UniversalCommunication::class)]
+    #[Type(UniversalCommunication::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('TelephoneUniversalCommunication')]
     public ?UniversalCommunication $telephoneUniversalCommunication = null;
 
-    #[Type(\Easybill\ZUGFeRD211\Model\UniversalCommunication::class)]
+    #[Type(UniversalCommunication::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('FaxUniversalCommunication')]
     public ?UniversalCommunication $faxUniversalCommunication = null;
 
-    #[Type(\Easybill\ZUGFeRD211\Model\UniversalCommunication::class)]
+    #[Type(UniversalCommunication::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('EmailURIUniversalCommunication')]
     public ?UniversalCommunication $emailURIUniversalCommunication = null;

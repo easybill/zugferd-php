@@ -20,21 +20,22 @@ class TradeSettlementPaymentMeans
     #[SerializedName('Information')]
     public ?string $information = null;
 
-    #[Type(\Easybill\ZUGFeRD211\Model\CreditorFinancialAccount::class)]
+    #[Type(CreditorFinancialAccount::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('PayeePartyCreditorFinancialAccount')]
     public ?CreditorFinancialAccount $payeePartyCreditorFinancialAccount = null;
 
-    #[Type(\Easybill\ZUGFeRD211\Model\CreditorFinancialInstitution::class)]
+    #[Type(CreditorFinancialInstitution::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('PayeeSpecifiedCreditorFinancialInstitution')]
     public ?CreditorFinancialInstitution $payeeSpecifiedCreditorFinancialInstitution = null;
 
-    #[Type(\Easybill\ZUGFeRD211\Model\DebtorFinancialAccount::class)]
+    #[Type(DebtorFinancialAccount::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('PayerPartyDebtorFinancialAccount')]
     public ?DebtorFinancialAccount $payerPartyDebtorFinancialAccount = null;
-    #[Type(\Easybill\ZUGFeRD211\Model\TradeSettlementFinancialCard::class)]
+
+    #[Type(TradeSettlementFinancialCard::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('ApplicableTradeSettlementFinancialCard')]
     public ?TradeSettlementFinancialCard $applicableTradeSettlementFinancialCard = null;

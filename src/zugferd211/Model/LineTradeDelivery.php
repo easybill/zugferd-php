@@ -10,12 +10,12 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class LineTradeDelivery
 {
-    #[Type(\Easybill\ZUGFeRD211\Model\Quantity::class)]
+    #[Type(Quantity::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('BilledQuantity')]
     public Quantity $billedQuantity;
 
-    #[Type(\Easybill\ZUGFeRD211\Model\SupplyChainEvent::class)]
+    #[Type(SupplyChainEvent::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('ActualDeliverySupplyChainEvent')]
     public ?SupplyChainEvent $chainEvent = null;

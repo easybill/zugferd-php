@@ -26,7 +26,7 @@ class ExchangedDocument
     #[SerializedName('TypeCode')]
     public string $typeCode;
 
-    #[Type(\Easybill\ZUGFeRD211\Model\DateTime::class)]
+    #[Type(DateTime::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('IssueDateTime')]
     public DateTime $issueDateTime;
@@ -36,13 +36,13 @@ class ExchangedDocument
      */
     #[Type('array<string>')]
     #[XmlElement(cdata: false)]
-    #[XmlList(inline: true, entry: 'LanguageID', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[XmlList(entry: 'LanguageID', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $languageId = [];
 
     /**
      * @var Note[]
      */
     #[Type('array<Easybill\ZUGFeRD211\Model\Note>')]
-    #[XmlList(inline: true, entry: 'IncludedNote', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[XmlList(entry: 'IncludedNote', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $notes = [];
 }

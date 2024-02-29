@@ -22,7 +22,7 @@ class TradeParty
      * @var Id[]
      */
     #[Type('array<Easybill\ZUGFeRD211\Model\Id>')]
-    #[XmlList(inline: true, entry: 'GlobalID', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[XmlList(entry: 'GlobalID', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $globalID = [];
 
     #[Type('string')]
@@ -44,6 +44,6 @@ class TradeParty
      * @var TaxRegistration[]
      */
     #[Type('array<Easybill\ZUGFeRD211\Model\TaxRegistration>')]
-    #[XmlList(inline: true, entry: 'SpecifiedTaxRegistration', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    public $taxRegistrations = [];
+    #[XmlList(entry: 'SpecifiedTaxRegistration', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    public array $taxRegistrations = [];
 }

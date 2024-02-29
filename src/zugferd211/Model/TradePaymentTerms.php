@@ -13,7 +13,7 @@ class TradePaymentTerms
     #[JMS\SerializedName('Description')]
     public ?string $description = null;
 
-    #[JMS\Type(\Easybill\ZUGFeRD211\Model\DateTime::class)]
+    #[JMS\Type(DateTime::class)]
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[JMS\SerializedName('DueDateDateTime')]
     public ?DateTime $dueDate = null;

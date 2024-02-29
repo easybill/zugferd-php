@@ -35,7 +35,7 @@ class HeaderTradeAgreement
      * @var ReferencedDocument[]
      */
     #[Type('array<Easybill\ZUGFeRD211\Model\ReferencedDocument>')]
-    #[XmlList(inline: true, entry: 'AdditionalReferencedDocument', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[XmlList(entry: 'AdditionalReferencedDocument', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $additionalReferencedDocuments = [];
 
     #[Type(ProcuringProject::class)]

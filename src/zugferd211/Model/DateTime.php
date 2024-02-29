@@ -10,7 +10,7 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class DateTime
 {
-    #[Type(\Easybill\ZUGFeRD211\Model\DateTimeString::class)]
+    #[Type(DateTimeString::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100')]
     #[SerializedName('DateTimeString')]
     public DateTimeString $dateTimeString;
