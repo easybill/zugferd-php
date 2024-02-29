@@ -8,7 +8,7 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
-#[AccessorOrder(order: "custom", custom: ["description", "appliedAmount", "tradeTaxes"])]
+#[AccessorOrder(order: 'custom', custom: ['description', 'appliedAmount', 'tradeTaxes'])]
 class LogisticsServiceCharge
 {
     #[Type('string')]

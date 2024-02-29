@@ -7,7 +7,7 @@ use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 
-#[AccessorOrder(order: "custom", custom: ["globalID", "sellerAssignedID", "name", "description", "tradeCountry"])]
+#[AccessorOrder(order: 'custom', custom: ['globalID', 'sellerAssignedID', 'name', 'description', 'tradeCountry'])]
 class TradeProduct
 {
     #[Type(Id::class)]

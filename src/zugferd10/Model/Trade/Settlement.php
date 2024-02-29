@@ -10,7 +10,7 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
-#[AccessorOrder(order: "custom", custom: ["paymentReference", "currency", "invoiceeTradeParty", "payeeTradeParty", "paymentMeans", "tradeTaxes", "billingPeriod", "allowanceCharges", "logisticsServiceCharge", "paymentTerms", "monetarySummation"])]
+#[AccessorOrder(order: 'custom', custom: ['paymentReference', 'currency', 'invoiceeTradeParty', 'payeeTradeParty', 'paymentMeans', 'tradeTaxes', 'billingPeriod', 'allowanceCharges', 'logisticsServiceCharge', 'paymentTerms', 'monetarySummation'])]
 class Settlement
 {
     #[Type(TradeParty::class)]

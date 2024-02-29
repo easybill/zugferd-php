@@ -8,7 +8,7 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
-#[AccessorOrder(order: "custom", custom: ["lineId", "notes"])]
+#[AccessorOrder(order: 'custom', custom: ['lineId', 'notes'])]
 class DocumentLineDocument
 {
     #[Type('string')]
