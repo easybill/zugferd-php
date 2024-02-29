@@ -20,7 +20,7 @@ cs-fix:
 	PHP_CS_FIXER_IGNORE_ENV=1 ./vendor/bin/php-cs-fixer fix --config .php-cs-fixer.dist.php
 
 phpstan:
-	./vendor/bin/phpstan analyse src --level 8
+	./vendor/bin/phpstan analyse
 
 rector:
 	./vendor/bin/rector process
