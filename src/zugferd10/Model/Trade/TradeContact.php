@@ -2,23 +2,25 @@
 
 namespace Easybill\ZUGFeRD\Model\Trade;
 
+use JMS\Serializer\Annotation\AccessorOrder;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 
+#[AccessorOrder(order: 'custom', custom: ['personName', 'departmentName', 'telephoneUniversalCommunication', 'faxUniversalCommunication', 'emailURIUniversalCommunication'])]
 class TradeContact
 {
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\UniversalCommunication::class)]
+    #[Type(UniversalCommunication::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('TelephoneUniversalCommunication')]
     public $telephoneUniversalCommunication;
 
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\UniversalCommunication::class)]
+    #[Type(UniversalCommunication::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('FaxUniversalCommunication')]
     public $faxUniversalCommunication;
 
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\UniversalCommunication::class)]
+    #[Type(UniversalCommunication::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('EmailURIUniversalCommunication')]
     public $emailURIUniversalCommunication;
@@ -73,7 +75,7 @@ class TradeContact
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\UniversalCommunication
+     * @return UniversalCommunication
      */
     public function getTelephoneUniversalCommunication()
     {
@@ -90,7 +92,7 @@ class TradeContact
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\UniversalCommunication
+     * @return UniversalCommunication
      */
     public function getFaxUniversalCommunication()
     {
@@ -107,7 +109,7 @@ class TradeContact
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\UniversalCommunication
+     * @return UniversalCommunication
      */
     public function getEmailURIUniversalCommunication()
     {

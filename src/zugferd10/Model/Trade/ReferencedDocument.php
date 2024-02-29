@@ -2,23 +2,28 @@
 
 namespace Easybill\ZUGFeRD\Model\Trade;
 
+use JMS\Serializer\Annotation\AccessorOrder;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 
+#[AccessorOrder(order: 'custom', custom: ['issuedDateTime', 'typeCode', 'id'])]
 class ReferencedDocument
 {
-    public function __construct(#[Type('string')]
+    public function __construct(
+        #[Type('string')]
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('ID')]
-        private string $id, #[Type('string')]
+        private string $id,
+        #[Type('string')]
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('IssueDateTime')]
-        private ?string $issuedDateTime = null, #[Type('string')]
+        private ?string $issuedDateTime = null,
+        #[Type('string')]
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('TypeCode')]
-        private ?string $typeCode = null)
-    {
+        private ?string $typeCode = null
+    ) {
     }
 
     /**

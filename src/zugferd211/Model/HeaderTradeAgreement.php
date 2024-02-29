@@ -14,17 +14,17 @@ class HeaderTradeAgreement
     #[SerializedName('BuyerReference')]
     public ?string $buyerReference = null;
 
-    #[Type(\Easybill\ZUGFeRD211\Model\TradeParty::class)]
+    #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('SellerTradeParty')]
     public TradeParty $sellerTradeParty;
 
-    #[Type(\Easybill\ZUGFeRD211\Model\TradeParty::class)]
+    #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('BuyerTradeParty')]
     public TradeParty $buyerTradeParty;
 
-    #[Type(\Easybill\ZUGFeRD211\Model\ReferencedDocument::class)]
+    #[Type(ReferencedDocument::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('BuyerOrderReferencedDocument')]
     public ?ReferencedDocument $buyerOrderReferencedDocument = null;
@@ -36,7 +36,7 @@ class HeaderTradeAgreement
     #[XmlList(inline: true, entry: 'AdditionalReferencedDocument', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $additionalReferencedDocuments = [];
 
-    #[Type(\Easybill\ZUGFeRD211\Model\ProcuringProject::class)]
+    #[Type(ProcuringProject::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('SpecifiedProcuringProject')]
     public ?ProcuringProject $specifiedProcuringProject = null;

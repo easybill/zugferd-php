@@ -3,14 +3,13 @@
 namespace Easybill\ZUGFeRD\Model\Trade\Item;
 
 use Easybill\ZUGFeRD\Model\Trade\TradeCountry;
+use JMS\Serializer\Annotation\AccessorOrder;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
-/**
- * Class Product.
- */
+#[AccessorOrder(order: 'custom', custom: ['sellerAssignedID', 'name', 'description', 'tradeCountries'])]
 class Product
 {
     /**
@@ -25,26 +24,19 @@ class Product
      * @var TradeCountry[]
      */
     #[Type('array<Easybill\ZUGFeRD\Model\Trade\TradeCountry>')]
-    #[XmlList(inline: true, entry: 'OriginTradeCountry', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[XmlList(entry: 'OriginTradeCountry', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     private $tradeCountries = [];
 
-    /**
-     * Product constructor.
-     *
-     * @param string $sellerAssignedID
-     * @param string $name
-     * @param null|mixed $description
-     */
     public function __construct(#[Type('string')]
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('SellerAssignedID')]
-        private $sellerAssignedID, #[Type('string')]
+        private string $sellerAssignedID, #[Type('string')]
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('Name')]
-        private $name, #[Type('string')]
+        private string $name, #[Type('string')]
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('Description')]
-        private $description = null)
+        private mixed $description = null)
     {
     }
 

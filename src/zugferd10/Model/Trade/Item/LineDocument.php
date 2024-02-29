@@ -3,29 +3,26 @@
 namespace Easybill\ZUGFeRD\Model\Trade\Item;
 
 use Easybill\ZUGFeRD\Model\Note;
+use JMS\Serializer\Annotation\AccessorOrder;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
+#[AccessorOrder(order: 'custom', custom: ['lineId', 'notes'])]
 class LineDocument
 {
     /**
      * @var Note[]
      */
     #[Type('array<Easybill\ZUGFeRD\Model\Note>')]
-    #[XmlList(inline: true, entry: 'IncludedNote', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[XmlList(entry: 'IncludedNote', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     private $notes = [];
 
-    /**
-     * LineDocument constructor.
-     *
-     * @param string $lineId
-     */
     public function __construct(#[Type('string')]
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('LineID')]
-        private $lineId = '')
+        private string $lineId = '')
     {
     }
 

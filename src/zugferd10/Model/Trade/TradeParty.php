@@ -4,12 +4,14 @@ namespace Easybill\ZUGFeRD\Model\Trade;
 
 use Easybill\ZUGFeRD\Model\Address;
 use Easybill\ZUGFeRD\Model\Trade\Tax\TaxRegistration;
+use JMS\Serializer\Annotation\AccessorOrder;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 use Easybill\ZUGFeRD\Model\Schema;
 
+#[AccessorOrder(order: 'custom', custom: ['name', 'definedTradeContact'])]
 class TradeParty
 {
     /**
@@ -22,11 +24,12 @@ class TradeParty
     /**
      * @var TradePartyGlobalId
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Schema::class)]
+    #[Type(Schema::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('GlobalID')]
     private $globalId;
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\TradeContact::class)]
+
+    #[Type(TradeContact::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('DefinedTradeContact')]
     public $definedTradeContact;
@@ -37,7 +40,7 @@ class TradeParty
     public function __construct(#[Type('string')]
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('Name')]
-        private $name, #[Type(\Easybill\ZUGFeRD\Model\Address::class)]
+        private string $name, #[Type(Address::class)]
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('PostalTradeAddress')]
         private Address $address, /**
@@ -71,7 +74,7 @@ class TradeParty
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Schema
+     * @return Schema
      */
     public function getGlobalId()
     {
@@ -107,7 +110,7 @@ class TradeParty
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Address
+     * @return Address
      */
     public function getAddress()
     {
@@ -124,7 +127,7 @@ class TradeParty
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\Tax\TaxRegistration[]
+     * @return TaxRegistration[]
      */
     public function getTaxRegistrations()
     {

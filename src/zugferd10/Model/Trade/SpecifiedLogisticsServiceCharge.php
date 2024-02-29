@@ -3,24 +3,24 @@
 namespace Easybill\ZUGFeRD\Model\Trade;
 
 use Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax;
+use JMS\Serializer\Annotation\AccessorOrder;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
+#[AccessorOrder(order: 'custom', custom: ['description', 'appliedAmount', 'tradeTaxes'])]
 class SpecifiedLogisticsServiceCharge
 {
-    /**
-     * @var TradeTax[]
-     */
+    /** @var TradeTax[] */
     #[Type('array<Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax>')]
     #[XmlList(entry: 'AppliedTradeTax', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
-    private $tradeTaxes = [];
+    private array $tradeTaxes = [];
 
     public function __construct(#[Type('string')]
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('Description')]
-        private string $description, #[Type(\Easybill\ZUGFeRD\Model\Trade\Amount::class)]
+        private string $description, #[Type(Amount::class)]
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('AppliedAmount')]
         private Amount $appliedAmount)
