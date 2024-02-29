@@ -10,21 +10,18 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
-#[AccessorOrder('custom', custom: ['paymentReference', 'currency', 'invoiceeTradeParty', 'payeeTradeParty', 'paymentMeans', 'tradeTaxes', 'billingPeriod', 'allowanceCharges', 'logisticsServiceCharge', 'paymentTerms', 'monetarySummation'])]
+#[AccessorOrder(order: "custom", custom: ["paymentReference", "currency", "invoiceeTradeParty", "payeeTradeParty", "paymentMeans", "tradeTaxes", "billingPeriod", "allowanceCharges", "logisticsServiceCharge", "paymentTerms", "monetarySummation"])]
 class Settlement
 {
-    /**
-     * @var TradeParty
-     */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\TradeParty::class)]
+    #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('InvoiceeTradeParty')]
-    private $invoiceeTradeParty;
+    private TradeParty $invoiceeTradeParty;
 
     /**
      * @var TradeParty
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\TradeParty::class)]
+    #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('PayeeTradeParty')]
     private $payeeTradeParty;
@@ -32,7 +29,7 @@ class Settlement
     /**
      * @var PaymentMeans
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\PaymentMeans::class)]
+    #[Type(PaymentMeans::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('SpecifiedTradeSettlementPaymentMeans')]
     private $paymentMeans;
@@ -41,27 +38,27 @@ class Settlement
      * @var TradeTax[]
      */
     #[Type('array<Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax>')]
-    #[XmlList(inline: true, entry: 'ApplicableTradeTax', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[XmlList(entry: 'ApplicableTradeTax', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     private $tradeTaxes = [];
 
     /**
      * @var AllowanceCharge[]
      */
     #[Type('array<Easybill\ZUGFeRD\Model\AllowanceCharge>')]
-    #[XmlList(inline: true, entry: 'SpecifiedTradeAllowanceCharge', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[XmlList(entry: 'SpecifiedTradeAllowanceCharge', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     private $allowanceCharges = [];
 
     /**
      * @var SpecifiedLogisticsServiceCharge[]
      */
     #[Type('array<Easybill\ZUGFeRD\Model\Trade\SpecifiedLogisticsServiceCharge>')]
-    #[XmlList(inline: true, entry: 'SpecifiedLogisticsServiceCharge', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[XmlList(entry: 'SpecifiedLogisticsServiceCharge', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     private $logisticsServiceCharge = [];
 
     /**
      * @var BillingPeriod
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\BillingPeriod::class)]
+    #[Type(BillingPeriod::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('BillingSpecifiedPeriod')]
     private $billingPeriod;
@@ -69,7 +66,7 @@ class Settlement
     /**
      * @var MonetarySummation
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\MonetarySummation::class)]
+    #[Type(MonetarySummation::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('SpecifiedTradeSettlementMonetarySummation')]
     private $monetarySummation;
@@ -77,25 +74,21 @@ class Settlement
     /**
      * @var PaymentTerms
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\PaymentTerms::class)]
+    #[Type(PaymentTerms::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('SpecifiedTradePaymentTerms')]
     private $paymentTerms;
 
-    /**
-     * Settlement constructor.
-     *
-     * @param string $paymentReference
-     * @param string $currency
-     */
-    public function __construct(#[Type('string')]
+    public function __construct(
+        #[Type('string')]
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('PaymentReference')]
-        private $paymentReference = '', #[Type('string')]
+        private string $paymentReference = '',
+        #[Type('string')]
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('InvoiceCurrencyCode')]
-        private $currency = 'EUR')
-    {
+        private string $currency = 'EUR'
+    ) {
         $this->paymentMeans = new PaymentMeans();
     }
 

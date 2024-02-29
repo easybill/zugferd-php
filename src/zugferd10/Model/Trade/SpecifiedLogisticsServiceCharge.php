@@ -14,7 +14,7 @@ class SpecifiedLogisticsServiceCharge
      * @var TradeTax[]
      */
     #[Type('array<Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax>')]
-    #[XmlList(inline: true, entry: 'AppliedTradeTax', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[XmlList(entry: 'AppliedTradeTax', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     private $tradeTaxes = [];
 
     public function __construct(#[Type('string')]

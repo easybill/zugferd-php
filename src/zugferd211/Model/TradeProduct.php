@@ -2,13 +2,15 @@
 
 namespace Easybill\ZUGFeRD211\Model;
 
+use JMS\Serializer\Annotation\AccessorOrder;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 
+#[AccessorOrder(order: "custom", custom: ["globalID", "sellerAssignedID", "name", "description", "tradeCountry"])]
 class TradeProduct
 {
-    #[Type(\Easybill\ZUGFeRD211\Model\Id::class)]
+    #[Type(Id::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('GlobalID')]
     public ?Id $globalID = null;
@@ -28,7 +30,7 @@ class TradeProduct
     #[SerializedName('Description')]
     public ?string $description = null;
 
-    #[Type(\Easybill\ZUGFeRD211\Model\TradeCountry::class)]
+    #[Type(TradeCountry::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('OriginTradeCountry')]
     public ?TradeCountry $tradeCountry = null;
