@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Easybill\ZUGFeRD\Helper;
 
 use Easybill\ZUGFeRD\Model\UnitCode;

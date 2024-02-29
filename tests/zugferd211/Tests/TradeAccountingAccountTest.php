@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Easybill\ZUGFeRD211\Tests;
 
 use PHPUnit\Framework\TestCase;
