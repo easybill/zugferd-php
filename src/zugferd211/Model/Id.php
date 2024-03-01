@@ -14,7 +14,7 @@ class Id
     #[Type('string')]
     #[XmlAttribute]
     #[SerializedName('schemeID')]
-    public ?string $schemeID;
+    public ?string $schemeID = null;
 
     #[Type('string')]
     #[XmlValue(cdata: false)]

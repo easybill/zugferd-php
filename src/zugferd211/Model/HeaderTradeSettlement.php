@@ -45,6 +45,11 @@ class HeaderTradeSettlement
     #[XmlList(entry: 'ApplicableTradeTax', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $tradeTaxes = [];
 
+    #[Type(Period::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('BillingSpecifiedPeriod')]
+    public ?Period $billingSpecifiedPeriod = null;
+
     /**
      * @var TradeAllowanceCharge[]
      */
