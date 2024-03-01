@@ -18,7 +18,9 @@ class TradeParty
     #[SerializedName('ID')]
     public ?Id $id = null;
 
-    /** @var Id[] */
+    /**
+     * @var Id[]
+     */
     #[Type('array<Easybill\ZUGFeRD211\Model\Id>')]
     #[XmlList(entry: 'GlobalID', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $globalID = [];
@@ -38,23 +40,10 @@ class TradeParty
     #[SerializedName('PostalTradeAddress')]
     public ?TradeAddress $postalTradeAddress = null;
 
-    /** @var TaxRegistration[] */
+    /**
+     * @var TaxRegistration[]
+     */
     #[Type('array<Easybill\ZUGFeRD211\Model\TaxRegistration>')]
     #[XmlList(entry: 'SpecifiedTaxRegistration', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $taxRegistrations = [];
-
-    #[Type('string')]
-    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('RoleCode')]
-    public ?string $roleCode = null;
-
-    #[Type('string')]
-    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('Description')]
-    public ?string $description = null;
-
-    #[Type(LegalOrganization::class)]
-    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('SpecifiedLegalOrganization')]
-    public ?LegalOrganization $specifiedLegalOrganization = null;
 }
