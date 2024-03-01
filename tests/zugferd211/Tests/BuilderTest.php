@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Easybill\ZUGFeRD211\Tests;
 
-use Easybill\ZUGFeRD\Model\Trade\BillingPeriod;
 use Easybill\ZUGFeRD211\Builder;
 use Easybill\ZUGFeRD211\Model\Amount;
 use Easybill\ZUGFeRD211\Model\CreditorFinancialAccount;
@@ -469,6 +468,12 @@ Handelsregisternummer: H A 123
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement = new HeaderTradeAgreement();
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerReference = '04011000-12345-34';
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerOrderReferencedDocument = ReferencedDocument::create('123456');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->contractReferencedDocument = ReferencedDocument::create('123456');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->additionalReferencedDocuments = [
+            ReferencedDocument::create('123456'),
+            ReferencedDocument::create('123456'),
+        ];
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
         $buyerTradeParty->id = Id::create('1034567');

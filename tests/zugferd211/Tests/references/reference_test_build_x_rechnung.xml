@@ -126,6 +126,18 @@ Handelsregisternummer: H A 123
                     <ram:CountryID>DE</ram:CountryID>
                 </ram:PostalTradeAddress>
             </ram:BuyerTradeParty>
+            <ram:BuyerOrderReferencedDocument>
+                <ram:IssuerAssignedID>123456</ram:IssuerAssignedID>
+            </ram:BuyerOrderReferencedDocument>
+            <ram:ContractReferencedDocument>
+                <ram:IssuerAssignedID>123456</ram:IssuerAssignedID>
+            </ram:ContractReferencedDocument>
+            <ram:AdditionalReferencedDocument>
+                <ram:IssuerAssignedID>123456</ram:IssuerAssignedID>
+            </ram:AdditionalReferencedDocument>
+            <ram:AdditionalReferencedDocument>
+                <ram:IssuerAssignedID>123456</ram:IssuerAssignedID>
+            </ram:AdditionalReferencedDocument>
         </ram:ApplicableHeaderTradeAgreement>
         <ram:ApplicableHeaderTradeDelivery>
             <ram:ActualDeliverySupplyChainEvent>
