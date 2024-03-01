@@ -18,11 +18,6 @@ class TradeTax
     #[JMS\SerializedName('TypeCode')]
     public string $typeCode;
 
-    #[JMS\Type('string')]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[JMS\SerializedName('ExemptionReason')]
-    public ?string $exemptionReason = null;
-
     #[JMS\Type(Amount::class)]
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[JMS\SerializedName('BasisAmount')]
@@ -52,4 +47,54 @@ class TradeTax
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[JMS\SerializedName('RateApplicablePercent')]
     public ?string $rateApplicablePercent = null;
+
+    #[JMS\Type('string')]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[JMS\SerializedName('ExemptionReason')]
+    public ?string $exemptionReason = null;
+
+    #[JMS\Type('string')]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[JMS\SerializedName('ExemptionReasonCode')]
+    public ?string $exemptionReasonCode = null;
+
+    #[JMS\Type(DateTime::class)]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[JMS\SerializedName('TaxPointDate')]
+    public ?DateTime $taxPointDate = null;
+
+    #[JMS\Type('string')]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[JMS\SerializedName('DueDateTypeCode')]
+    public ?string $dueDateTypeCode = null;
+
+    public static function create(
+        string $typeCode,
+        ?Amount $calculatedAmount = null,
+        ?Amount $basisAmount = null,
+        ?Amount $lineTotalBasisAmount = null,
+        ?Amount $allowanceChargeBasisAmount = null,
+        ?string $applicablePercent = null,
+        ?string $categoryCode = null,
+        ?string $rateApplicablePercent = null,
+        ?string $exemptionReason = null,
+        ?string $exemptionReasonCode = null,
+        ?DateTime $taxPointDate = null,
+        ?string $dueDateTypeCode = null,
+    ): self {
+        $self = new self();
+        $self->calculatedAmount = $calculatedAmount;
+        $self->typeCode = $typeCode;
+        $self->basisAmount = $basisAmount;
+        $self->lineTotalBasisAmount = $lineTotalBasisAmount;
+        $self->allowanceChargeBasisAmount = $allowanceChargeBasisAmount;
+        $self->applicablePercent = $applicablePercent;
+        $self->categoryCode = $categoryCode;
+        $self->rateApplicablePercent = $rateApplicablePercent;
+        $self->exemptionReason = $exemptionReason;
+        $self->exemptionReasonCode = $exemptionReasonCode;
+        $self->taxPointDate = $taxPointDate;
+        $self->dueDateTypeCode = $dueDateTypeCode;
+        return $self;
+    }
 }

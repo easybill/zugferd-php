@@ -528,19 +528,20 @@ Handelsregisternummer: H A 123
         $paymentMeans1->payeeSpecifiedCreditorFinancialInstitution = new CreditorFinancialInstitution();
         $paymentMeans1->payeeSpecifiedCreditorFinancialInstitution->bicId = Id::create('BYLADEM1001');
 
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->tradeTaxes[] = $headerTax1 = new TradeTax();
-        $headerTax1->typeCode = 'VAT';
-        $headerTax1->categoryCode = 'S';
-        $headerTax1->basisAmount = Amount::create('275.00');
-        $headerTax1->calculatedAmount = Amount::create('19.25');
-        $headerTax1->rateApplicablePercent = '7.00';
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->tradeTaxes[] = TradeTax::create(
+            typeCode: 'VAT',
+            calculatedAmount: Amount::create('19.25'),
+            basisAmount: Amount::create('275.00'),
+            categoryCode: 'S',
+            rateApplicablePercent: '7.00'
+        );
 
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->tradeTaxes[] = $headerTax2 = new TradeTax();
-        $headerTax2->typeCode = 'VAT';
-        $headerTax2->categoryCode = 'S';
-        $headerTax2->basisAmount = Amount::create('198.00');
-        $headerTax2->calculatedAmount = Amount::create('37.62');
-        $headerTax2->rateApplicablePercent = '19.00';
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->tradeTaxes[] = TradeTax::create(
+            typeCode: 'VAT',
+            basisAmount: Amount::create('198.00'),
+            categoryCode: 'G',
+            exemptionReasonCode: 'vatex-eu-g',
+        );
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradePaymentTerms[] = $paymentTerms = new TradePaymentTerms();
         $paymentTerms->description = 'Zahlbar innerhalb 30 Tagen netto bis 04.04.2018, 3% Skonto innerhalb 10 Tagen bis 15.03.2018';
