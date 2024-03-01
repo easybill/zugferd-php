@@ -20,7 +20,7 @@ class ValidatorTest extends TestCase
     public function testXsdFail()
     {
         $validator = new Validator();
-        $xml = file_get_contents(__DIR__ . '/broken_example.xml');
+        $xml = file_get_contents(__DIR__ . '/references/broken_example.xml');
         $errors = $validator->validateAgainstXsd($xml, Validator::SCHEMA_EN16931);
         self::assertNotNull($errors, 'Validator says broken xml is valid.');
     }
