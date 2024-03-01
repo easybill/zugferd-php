@@ -429,7 +429,7 @@ Handelsregisternummer: H A 123
         $item1->specifiedTradeProduct->globalID = Id::create('4012345001235', '0160');
 
         $item1->tradeAgreement = new LineTradeAgreement();
-        $item1->tradeAgreement->netPrice = TradePrice::create('9.9000');
+        $item1->tradeAgreement->netPrice = TradePrice::create('9.9000', tradeAllowanceCharge: TradeAllowanceCharge::create(Amount::create('8.00')));
         $item1->tradeAgreement->grossPrice = TradePrice::create('9.9000');
 
         $item1->delivery = new LineTradeDelivery();

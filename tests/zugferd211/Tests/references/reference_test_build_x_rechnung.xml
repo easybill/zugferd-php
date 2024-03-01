@@ -41,6 +41,9 @@ Handelsregisternummer: H A 123
                 </ram:GrossPriceProductTradePrice>
                 <ram:NetPriceProductTradePrice>
                     <ram:ChargeAmount>9.9000</ram:ChargeAmount>
+                    <ram:AppliedTradeAllowanceCharge>
+                        <ram:ActualAmount>8.00</ram:ActualAmount>
+                    </ram:AppliedTradeAllowanceCharge>
                 </ram:NetPriceProductTradePrice>
             </ram:SpecifiedLineTradeAgreement>
             <ram:SpecifiedLineTradeDelivery>

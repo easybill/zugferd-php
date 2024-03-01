@@ -36,10 +36,26 @@ class TradeAllowanceCharge
     #[JMS\SerializedName('Reason')]
     public ?string $reason = null;
 
-    /**
-     * @var TradeTax[]
-     */
+    /** @var TradeTax[] */
     #[JMS\Type('array<Easybill\ZUGFeRD211\Model\TradeTax>')]
     #[JMS\XmlList(entry: 'CategoryTradeTax', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $tradeTax = [];
+
+    public static function create(
+        Amount $actualAmount,
+        ?Indicator $indicator = null,
+        ?string $calculationPercent = null,
+        ?Amount $basisAmount = null,
+        ?string $reason = null,
+        array $tradeTax = []
+    ): self {
+        $self = new self();
+        $self->actualAmount = $actualAmount;
+        $self->indicator = $indicator;
+        $self->calculationPercent = $calculationPercent;
+        $self->basisAmount = $basisAmount;
+        $self->reason = $reason;
+        $self->tradeTax = $tradeTax;
+        return $self;
+    }
 }
