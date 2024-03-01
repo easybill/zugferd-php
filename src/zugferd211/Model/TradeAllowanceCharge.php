@@ -41,6 +41,7 @@ class TradeAllowanceCharge
     #[JMS\XmlList(entry: 'CategoryTradeTax', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $tradeTax = [];
 
+    /** @param array<TradeTax> $tradeTax */
     public static function create(
         Amount $actualAmount,
         ?Indicator $indicator = null,
