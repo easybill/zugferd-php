@@ -10,7 +10,7 @@ use Rector\TypeDeclaration\Rector\ClassMethod\ReturnTypeFromStrictScalarReturnEx
 
 return RectorConfig::configure()
     ->withPaths([
-        __DIR__ . '/src',
+        __DIR__ . '/src/zugferd211',
     ])
     ->withPhpSets(php81: true)
     ->withRules([
