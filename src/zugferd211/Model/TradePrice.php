@@ -18,11 +18,17 @@ class TradePrice
     #[JMS\SerializedName('BasisQuantity')]
     public ?Quantity $basisQuantity = null;
 
-    public static function create(string $amount, Quantity $quantity = null): self
+    #[JMS\Type(TradeAllowanceCharge::class)]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[JMS\SerializedName('AppliedTradeAllowanceCharge')]
+    public ?TradeAllowanceCharge $appliedTradeAllowanceCharge = null;
+
+    public static function create(string $amount, Quantity $quantity = null, TradeAllowanceCharge $tradeAllowanceCharge = null): self
     {
         $self = new self();
         $self->chargeAmount = Amount::create($amount);
         $self->basisQuantity = $quantity;
+        $self->appliedTradeAllowanceCharge = $tradeAllowanceCharge;
         return $self;
     }
 }
