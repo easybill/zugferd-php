@@ -356,4 +356,125 @@ class BuilderTest extends TestCase
             Validator::SCHEMA_BASIC
         );
     }
+
+    public function testBuildBASICTaxifahrt(): void
+    {
+        $invoice = new CrossIndustryInvoice();
+        $invoice->exchangedDocumentContext = new ExchangedDocumentContext();
+        $invoice->exchangedDocumentContext->documentContextParameter = new DocumentContextParameter();
+        $invoice->exchangedDocumentContext->documentContextParameter->id = 'urn:cen.eu:en16931:2017#compliant#urn:factur-x.eu:1p0:basic';
+
+        $invoice->exchangedDocument = new ExchangedDocument();
+        $invoice->exchangedDocument->id = 'TX-471102';
+        $invoice->exchangedDocument->issueDateTime = DateTime::create(102, '20191030');
+        $invoice->exchangedDocument->typeCode = '380';
+        $invoice->exchangedDocument->notes[] = Note::create('Rechnung gemäß Taxifahrt vom 29.10.2019');
+        $invoice->exchangedDocument->notes[] = Note::create('Taxiunternehmen TX GmbH
+                Lieferantenstraße 20
+                10369 Berlin
+                Deutschland
+                Geschäftsführer: Hans Mustermann
+                Handelsregisternummer: H A 123
+            ');
+        $invoice->exchangedDocument->notes[] = Note::create('Unsere GLN: 4000001123452
+                Ihre GLN: 4000001987658
+                Ihre Kundennummer: GE2020211
+            ');
+
+        $invoice->supplyChainTradeTransaction = new SupplyChainTradeTransaction();
+
+        $item1 = new SupplyChainTradeLineItem();
+        $item1->associatedDocumentLineDocument = DocumentLineDocument::create('1');
+        $item1->specifiedTradeProduct = new TradeProduct();
+        $item1->specifiedTradeProduct->name = 'Grundpreis (Pauschale)';
+        $item1->tradeAgreement = new LineTradeAgreement();
+        $item1->tradeAgreement->netPrice = TradePrice::create('3.90');
+
+        $item1->delivery = new LineTradeDelivery();
+        $item1->delivery->billedQuantity = Quantity::create('1', 'C62');
+
+        $item1->specifiedLineTradeSettlement = new LineTradeSettlement();
+        $item1->specifiedLineTradeSettlement->tradeTax[] = $item1tax = new TradeTax();
+        $item1tax->typeCode = 'VAT';
+        $item1tax->categoryCode = 'S';
+        $item1tax->rateApplicablePercent = '7';
+        $item1->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('3.90');
+        $item1->specifiedLineTradeSettlement->monetarySummation->totalAmount = Amount::create('3.90');
+
+        $invoice->supplyChainTradeTransaction->lineItems[] = $item1;
+
+        $item2 = new SupplyChainTradeLineItem();
+        $item2->associatedDocumentLineDocument = DocumentLineDocument::create('2');
+        $item2->specifiedTradeProduct = new TradeProduct();
+        $item2->specifiedTradeProduct->name = 'Stadtfahrt - 2,00 Euro je gefahrene Kilometer';
+        $item2->tradeAgreement = new LineTradeAgreement();
+        $item2->tradeAgreement->netPrice = TradePrice::create('2.00');
+
+        $item2->delivery = new LineTradeDelivery();
+        $item2->delivery->billedQuantity = Quantity::create('6.50', 'KMT');
+
+        $item2->specifiedLineTradeSettlement = new LineTradeSettlement();
+        $item2->specifiedLineTradeSettlement->tradeTax[] = $item2tax = new TradeTax();
+        $item2tax->typeCode = 'VAT';
+        $item2tax->categoryCode = 'S';
+        $item2tax->rateApplicablePercent = '7';
+        $item2->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('3.90');
+        $item2->specifiedLineTradeSettlement->monetarySummation->totalAmount = Amount::create('13');
+
+        $invoice->supplyChainTradeTransaction->lineItems[] = $item2;
+
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement = new HeaderTradeAgreement();
+
+        // Seller Trade Party
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
+        $sellerTradeParty->name = 'Taxiunternehmen TX GmbH';
+        $sellerTradeParty->postalTradeAddress = new TradeAddress();
+        $sellerTradeParty->postalTradeAddress->postcode = '10369';
+        $sellerTradeParty->postalTradeAddress->lineOne = 'Lieferantenstraße 20';
+        $sellerTradeParty->postalTradeAddress->city = 'Berlin';
+        $sellerTradeParty->postalTradeAddress->countryCode = 'DE';
+        $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('DE123456789', 'VA');
+
+        // Buyer Trade Party
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
+        $buyerTradeParty->name = 'Taxi-Gast AG Mitte';
+        $buyerTradeParty->postalTradeAddress = new TradeAddress();
+        $buyerTradeParty->postalTradeAddress->postcode = '13351';
+        $buyerTradeParty->postalTradeAddress->lineOne = 'Hans Mustermann';
+        $buyerTradeParty->postalTradeAddress->lineTwo = 'Kundenstraße 15';
+        $buyerTradeParty->postalTradeAddress->city = 'Berlin';
+        $buyerTradeParty->postalTradeAddress->countryCode = 'DE';
+
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->chainEvent = $chainEvent = new SupplyChainEvent();
+        $chainEvent->date = DateTime::create(102, '20191029');
+
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = new HeaderTradeSettlement();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->currency = 'EUR';
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->tradeTaxes[] = $headerTax1 = new TradeTax();
+
+        $headerTax1->typeCode = 'VAT';
+        $headerTax1->categoryCode = 'S';
+        $headerTax1->basisAmount = Amount::create('16.90');
+        $headerTax1->calculatedAmount = Amount::create('1.18');
+        $headerTax1->rateApplicablePercent = '7';
+
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradePaymentTerms[] = $paymentTerms = new TradePaymentTerms();
+        $paymentTerms->dueDate = DateTime::create(102, '20191129');
+
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = $monetarySummation = new TradeSettlementHeaderMonetarySummation();
+        $monetarySummation->lineTotalAmount = Amount::create('16.90');
+        $monetarySummation->chargeTotalAmount = Amount::create('0.00');
+        $monetarySummation->allowanceTotalAmount = Amount::create('0.00');
+        $monetarySummation->taxBasisTotalAmount[] = Amount::create('16.90');
+        $monetarySummation->taxTotalAmount[] = Amount::create('1.18', 'EUR');
+        $monetarySummation->grandTotalAmount[] = Amount::create('18.08');
+        $monetarySummation->duePayableAmount = Amount::create('18.08');
+
+        $this->buildAndAssertXmlFromCII(
+            $invoice,
+            __DIR__ . '/Examples/BASIC/BASIC_Taxifahrt.xml',
+            Validator::SCHEMA_BASIC
+        );
+    }
 }
