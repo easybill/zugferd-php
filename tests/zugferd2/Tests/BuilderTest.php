@@ -15,6 +15,7 @@ use Easybill\ZUGFeRD2\Model\HeaderTradeAgreement;
 use Easybill\ZUGFeRD2\Model\HeaderTradeDelivery;
 use Easybill\ZUGFeRD2\Model\HeaderTradeSettlement;
 use Easybill\ZUGFeRD2\Model\Id;
+use Easybill\ZUGFeRD2\Model\Indicator;
 use Easybill\ZUGFeRD2\Model\LineTradeAgreement;
 use Easybill\ZUGFeRD2\Model\LineTradeDelivery;
 use Easybill\ZUGFeRD2\Model\LineTradeSettlement;
@@ -25,6 +26,7 @@ use Easybill\ZUGFeRD2\Model\SupplyChainTradeLineItem;
 use Easybill\ZUGFeRD2\Model\SupplyChainTradeTransaction;
 use Easybill\ZUGFeRD2\Model\TaxRegistration;
 use Easybill\ZUGFeRD2\Model\TradeAddress;
+use Easybill\ZUGFeRD2\Model\TradeAllowanceCharge;
 use Easybill\ZUGFeRD2\Model\TradeParty;
 use Easybill\ZUGFeRD2\Model\TradePaymentTerms;
 use Easybill\ZUGFeRD2\Model\TradePrice;
@@ -146,6 +148,211 @@ class BuilderTest extends TestCase
         $this->buildAndAssertXmlFromCII(
             $invoice,
             __DIR__ . '/Examples/BASIC/BASIC_Einfach.xml',
+            Validator::SCHEMA_BASIC
+        );
+    }
+
+    public function testBuildBASICRechnungskorrektur(): void
+    {
+        $invoice = new CrossIndustryInvoice();
+        $invoice->exchangedDocumentContext = new ExchangedDocumentContext();
+        $invoice->exchangedDocumentContext->documentContextParameter = new DocumentContextParameter();
+        $invoice->exchangedDocumentContext->documentContextParameter->id = 'urn:cen.eu:en16931:2017#compliant#urn:factur-x.eu:1p0:basic';
+
+        $invoice->exchangedDocument = new ExchangedDocument();
+        $invoice->exchangedDocument->id = 'RK21012345';
+        $invoice->exchangedDocument->issueDateTime = DateTime::create(102, '20190916');
+        $invoice->exchangedDocument->typeCode = '384';
+        $invoice->exchangedDocument->notes[] = Note::create('Es bestehen Rabatt- oder Bonusvereinbarungen.');
+        $invoice->exchangedDocument->notes[] = Note::create('MUSTERLIEFERANT GMBH
+                BAHNHOFSTRASSE 99
+                99199 MUSTERHAUSEN
+                Geschäftsführung:
+                Max Mustermann
+                USt-IdNr: DE123456789
+                Telefon: +49 932 431 0
+                www.musterlieferant.de
+                HRB Nr. 372876
+                Amtsgericht Musterstadt
+                GLN 4304171000002
+            ');
+        $invoice->exchangedDocument->notes[] = Note::create('Bei Rückfragen:
+                Telefon: +49 932 431 500
+                E-Mail : max.muster@musterlieferant.de
+            ');
+        $invoice->exchangedDocument->notes[] = Note::create('Warenempfänger
+                GLN 430417088093
+                MUSTER-MARKT
+
+                HAUPTSTRASSE 44
+                31157 SARSTEDT
+
+                Abteilung : 8211
+            ');
+        $invoice->exchangedDocument->notes[] = Note::create('
+                Bestell-Nr         : B123456789
+                Bestell-Datum      : 01.08.2019
+
+                Lieferschein-Nr    : L87654321012345
+                Lieferschein-Datum : 05.08.2019
+                Ursprungsbeleg-Nr  : R87654321012345
+                Reklamationsnummer : REKLA-2018-235
+            ');
+        $invoice->exchangedDocument->notes[] = Note::create('Rechnungsempfänger
+                GLN 4304171000002
+                MUSTER-KUNDE GMBH
+
+                KUNDENWEG 88
+                40235 DUESSELDORF
+                Kunden-Nr. : 009420
+            ');
+
+        $invoice->supplyChainTradeTransaction = new SupplyChainTradeTransaction();
+
+        // Line Item 1
+        $item1 = new SupplyChainTradeLineItem();
+        $item1->associatedDocumentLineDocument = DocumentLineDocument::create('1');
+        $item1->specifiedTradeProduct = new TradeProduct();
+        $item1->specifiedTradeProduct->name = 'GTIN 4123456000014
+                    Art-Nr-Lieferant ZS9997
+                    Zitronensäure 100ml
+                    Verpackung: Flasche
+                    VKE/Geb: 1
+                ';
+
+        $item1->tradeAgreement = new LineTradeAgreement();
+        $item1->tradeAgreement->netPrice = TradePrice::create('1.00');
+
+        $item1->delivery = new LineTradeDelivery();
+        $item1->delivery->billedQuantity = Quantity::create('-5.0000', 'H87');
+
+        $item1->specifiedLineTradeSettlement = new LineTradeSettlement();
+
+        $item1->specifiedLineTradeSettlement->tradeTax[] = $item1tax = new TradeTax();
+        $item1tax->typeCode = 'VAT';
+        $item1tax->categoryCode = 'S';
+        $item1tax->rateApplicablePercent = '19.00';
+
+        $item1->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('-5.00');
+
+        $invoice->supplyChainTradeTransaction->lineItems[] = $item1;
+
+        // Line Item 2
+        $item2 = new SupplyChainTradeLineItem();
+        $item2->associatedDocumentLineDocument = DocumentLineDocument::create('2');
+        $item2->specifiedTradeProduct = new TradeProduct();
+        $item2->specifiedTradeProduct->name = 'GTIN 4123456000021
+                    Art-Nr-Lieferant GZ250
+                    Gelierzucker Extra 250g
+                    Verpackung: Karton
+                    VKE/Geb: 1
+                ';
+
+        $item2->tradeAgreement = new LineTradeAgreement();
+        $item2->tradeAgreement->netPrice = TradePrice::create('1.45');
+
+        $item2->delivery = new LineTradeDelivery();
+        $item2->delivery->billedQuantity = Quantity::create('-2.0000', 'C62');
+
+        $item2->specifiedLineTradeSettlement = new LineTradeSettlement();
+
+        $item2->specifiedLineTradeSettlement->tradeTax[] = $item2tax = new TradeTax();
+        $item2tax->typeCode = 'VAT';
+        $item2tax->categoryCode = 'S';
+        $item2tax->rateApplicablePercent = '7.00';
+
+        $item2->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('-2.90');
+
+        $invoice->supplyChainTradeTransaction->lineItems[] = $item2;
+
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement = new HeaderTradeAgreement();
+
+        // Seller Trade Party
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
+        $sellerTradeParty->name = 'GLN 4333741000005
+                    Lief-Nr: 549910
+                    MUSTERLIEFERANT GMBH
+                ';
+        $sellerTradeParty->postalTradeAddress = new TradeAddress();
+        $sellerTradeParty->postalTradeAddress->postcode = '99199';
+        $sellerTradeParty->postalTradeAddress->lineOne = 'BAHNHOFSTRASSE 99';
+        $sellerTradeParty->postalTradeAddress->city = 'MUSTERHAUSEN';
+        $sellerTradeParty->postalTradeAddress->countryCode = 'DE';
+        $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('DE123456789', 'VA');
+
+        // Buyer Trade Party
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
+        $buyerTradeParty->name = 'GLN 4304171000002
+                    Kunden-Nr. : 009420
+                    MUSTER-KUNDE GMBH
+                ';
+        $buyerTradeParty->postalTradeAddress = new TradeAddress();
+        $buyerTradeParty->postalTradeAddress->postcode = '40235';
+        $buyerTradeParty->postalTradeAddress->lineOne = 'KUNDENWEG 88';
+        $buyerTradeParty->postalTradeAddress->city = 'DUESSELDORF';
+        $buyerTradeParty->postalTradeAddress->countryCode = 'DE';
+
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->chainEvent = $chainEvent = new SupplyChainEvent();
+
+        $chainEvent->date = DateTime::create(102, '20190805');
+
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = new HeaderTradeSettlement();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->currency = 'EUR';
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->tradeTaxes[] = $headerTax1 = new TradeTax();
+
+        $headerTax1->typeCode = 'VAT';
+        $headerTax1->categoryCode = 'S';
+        $headerTax1->basisAmount = Amount::create('-4.85');
+        $headerTax1->calculatedAmount = Amount::create('-0.92');
+        $headerTax1->rateApplicablePercent = '19.00';
+
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->tradeTaxes[] = $headerTax2 = new TradeTax();
+
+        $headerTax2->typeCode = 'VAT';
+        $headerTax2->categoryCode = 'S';
+        $headerTax2->basisAmount = Amount::create('-2.82');
+        $headerTax2->calculatedAmount = Amount::create('-0.20');
+        $headerTax2->rateApplicablePercent = '7.00';
+
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeAllowanceCharge[] = $allowanceCharge1 = new TradeAllowanceCharge();
+        $allowanceCharge1->actualAmount = Amount::create('-0.15');
+        $allowanceCharge1->reason = 'Rechnungsrabatt';
+        $allowanceCharge1->indicator = new Indicator();
+        $allowanceCharge1->indicator->indicator = false;
+        $allowanceCharge1->tradeTax = [
+            TradeTax::create(
+                typeCode: 'VAT',
+                categoryCode: 'S',
+                rateApplicablePercent: '19',
+            ),
+        ];
+
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeAllowanceCharge[] = $allowanceCharge2 = new TradeAllowanceCharge();
+        $allowanceCharge2->actualAmount = Amount::create('-0.08');
+        $allowanceCharge2->reason = 'Rechnungsrabatt';
+        $allowanceCharge2->indicator = new Indicator();
+        $allowanceCharge2->indicator->indicator = false;
+        $allowanceCharge2->tradeTax = [
+            TradeTax::create(
+                typeCode: 'VAT',
+                categoryCode: 'S',
+                rateApplicablePercent: '7',
+            ),
+        ];
+
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = $monetarySummation = new TradeSettlementHeaderMonetarySummation();
+        $monetarySummation->lineTotalAmount = Amount::create('-7.90');
+        $monetarySummation->chargeTotalAmount = Amount::create('0.00');
+        $monetarySummation->allowanceTotalAmount = Amount::create('-0.23');
+        $monetarySummation->taxBasisTotalAmount[] = Amount::create('-7.67');
+        $monetarySummation->taxTotalAmount[] = Amount::create('-1.12', 'EUR');
+        $monetarySummation->grandTotalAmount[] = Amount::create('-8.79');
+        $monetarySummation->duePayableAmount = Amount::create('-8.79');
+
+        $this->buildAndAssertXmlFromCII(
+            $invoice,
+            __DIR__ . '/Examples/BASIC/BASIC_Rechnungskorrektur.xml',
             Validator::SCHEMA_BASIC
         );
     }
