@@ -42,6 +42,9 @@
     <enumeration value="633"/>
     <enumeration value="751"/>
     <enumeration value="780"/>
+    <enumeration value="875"/>
+    <enumeration value="876"/>
+    <enumeration value="877"/>
     <enumeration value="935"/>
   </cl>
   <cl id="2">
@@ -632,6 +635,15 @@
     <enumeration value="0202"/>
     <enumeration value="0203"/>
     <enumeration value="0204"/>
+    <enumeration value="0205"/>
+    <enumeration value="0206"/>
+    <enumeration value="0207"/>
+    <enumeration value="0208"/>
+    <enumeration value="0209"/>
+    <enumeration value="0210"/>
+    <enumeration value="0211"/>
+    <enumeration value="0212"/>
+    <enumeration value="0213"/>
   </cl>
   <cl id="5">
     <enumeration value="AA"/>
@@ -804,7 +816,11 @@
     <enumeration value="TSN"/>
     <enumeration value="TSO"/>
     <enumeration value="TSP"/>
+    <enumeration value="TSQ"/>
+    <enumeration value="TSR"/>
+    <enumeration value="TSS"/>
     <enumeration value="TST"/>
+    <enumeration value="TSU"/>
     <enumeration value="UA"/>
     <enumeration value="UP"/>
     <enumeration value="VN"/>
@@ -984,7 +1000,11 @@
     <enumeration value="TSN"/>
     <enumeration value="TSO"/>
     <enumeration value="TSP"/>
+    <enumeration value="TSQ"/>
+    <enumeration value="TSR"/>
+    <enumeration value="TSS"/>
     <enumeration value="TST"/>
+    <enumeration value="TSU"/>
     <enumeration value="UA"/>
     <enumeration value="UP"/>
     <enumeration value="VN"/>
@@ -1186,16 +1206,44 @@
     <enumeration value="XNT"/>
     <enumeration value="XNU"/>
     <enumeration value="XNV"/>
+    <enumeration value="XO1"/>
+    <enumeration value="XO2"/>
+    <enumeration value="XO3"/>
+    <enumeration value="XO4"/>
+    <enumeration value="XO5"/>
+    <enumeration value="XO6"/>
+    <enumeration value="XO7"/>
+    <enumeration value="XO8"/>
+    <enumeration value="XO9"/>
     <enumeration value="XOA"/>
     <enumeration value="XOB"/>
     <enumeration value="XOC"/>
     <enumeration value="XOD"/>
     <enumeration value="XOE"/>
     <enumeration value="XOF"/>
+    <enumeration value="XOG"/>
+    <enumeration value="XOH"/>
+    <enumeration value="XOI"/>
+    <enumeration value="XOJ"/>
     <enumeration value="XOK"/>
+    <enumeration value="XOL"/>
+    <enumeration value="XOM"/>
+    <enumeration value="XON"/>
+    <enumeration value="XOP"/>
+    <enumeration value="XOQ"/>
+    <enumeration value="XOR"/>
+    <enumeration value="XOS"/>
     <enumeration value="XOT"/>
     <enumeration value="XOU"/>
+    <enumeration value="XOV"/>
+    <enumeration value="XOW"/>
+    <enumeration value="XOX"/>
+    <enumeration value="XOY"/>
+    <enumeration value="XOZ"/>
+    <enumeration value="XP1"/>
     <enumeration value="XP2"/>
+    <enumeration value="XP3"/>
+    <enumeration value="XP4"/>
     <enumeration value="XPA"/>
     <enumeration value="XPB"/>
     <enumeration value="XPC"/>
@@ -1259,6 +1307,7 @@
     <enumeration value="XSU"/>
     <enumeration value="XSV"/>
     <enumeration value="XSW"/>
+    <enumeration value="XSX"/>
     <enumeration value="XSY"/>
     <enumeration value="XSZ"/>
     <enumeration value="XT1"/>
@@ -1879,6 +1928,8 @@
     <enumeration value="DAD"/>
     <enumeration value="DAY"/>
     <enumeration value="DB"/>
+    <enumeration value="DBM"/>
+    <enumeration value="DBW"/>
     <enumeration value="DD"/>
     <enumeration value="DEC"/>
     <enumeration value="DG"/>
@@ -2103,6 +2154,7 @@
     <enumeration value="FH"/>
     <enumeration value="FIT"/>
     <enumeration value="FL"/>
+    <enumeration value="FNU"/>
     <enumeration value="FOT"/>
     <enumeration value="FP"/>
     <enumeration value="FR"/>
@@ -2328,6 +2380,7 @@
     <enumeration value="H98"/>
     <enumeration value="H99"/>
     <enumeration value="HA"/>
+    <enumeration value="HAD"/>
     <enumeration value="HAR"/>
     <enumeration value="HBA"/>
     <enumeration value="HBX"/>
@@ -2341,6 +2394,7 @@
     <enumeration value="HKM"/>
     <enumeration value="HLT"/>
     <enumeration value="HM"/>
+    <enumeration value="HMO"/>
     <enumeration value="HMQ"/>
     <enumeration value="HMT"/>
     <enumeration value="HN"/>
@@ -2348,6 +2402,7 @@
     <enumeration value="HPA"/>
     <enumeration value="HTZ"/>
     <enumeration value="HUR"/>
+    <enumeration value="HWE"/>
     <enumeration value="IA"/>
     <enumeration value="IE"/>
     <enumeration value="INH"/>
@@ -2355,6 +2410,7 @@
     <enumeration value="INQ"/>
     <enumeration value="ISD"/>
     <enumeration value="IU"/>
+    <enumeration value="IUG"/>
     <enumeration value="IV"/>
     <enumeration value="J10"/>
     <enumeration value="J12"/>
@@ -2586,6 +2642,7 @@
     <enumeration value="KWO"/>
     <enumeration value="KWS"/>
     <enumeration value="KWT"/>
+    <enumeration value="KWY"/>
     <enumeration value="KX"/>
     <enumeration value="L10"/>
     <enumeration value="L11"/>
@@ -2807,21 +2864,32 @@
     <enumeration value="MIN"/>
     <enumeration value="MIO"/>
     <enumeration value="MIU"/>
+    <enumeration value="MKD"/>
+    <enumeration value="MKM"/>
+    <enumeration value="MKW"/>
     <enumeration value="MLD"/>
     <enumeration value="MLT"/>
     <enumeration value="MMK"/>
     <enumeration value="MMQ"/>
     <enumeration value="MMT"/>
     <enumeration value="MND"/>
+    <enumeration value="MNJ"/>
     <enumeration value="MON"/>
     <enumeration value="MPA"/>
+    <enumeration value="MQD"/>
     <enumeration value="MQH"/>
+    <enumeration value="MQM"/>
     <enumeration value="MQS"/>
+    <enumeration value="MQW"/>
+    <enumeration value="MRD"/>
+    <enumeration value="MRM"/>
+    <enumeration value="MRW"/>
     <enumeration value="MSK"/>
     <enumeration value="MTK"/>
     <enumeration value="MTQ"/>
     <enumeration value="MTR"/>
     <enumeration value="MTS"/>
+    <enumeration value="MTZ"/>
     <enumeration value="MVA"/>
     <enumeration value="MWH"/>
     <enumeration value="N1"/>
@@ -2933,10 +3001,14 @@
     <enumeration value="NR"/>
     <enumeration value="NT"/>
     <enumeration value="NTT"/>
+    <enumeration value="NTU"/>
     <enumeration value="NU"/>
     <enumeration value="NX"/>
     <enumeration value="OA"/>
     <enumeration value="ODE"/>
+    <enumeration value="ODG"/>
+    <enumeration value="ODK"/>
+    <enumeration value="ODM"/>
     <enumeration value="OHM"/>
     <enumeration value="ON"/>
     <enumeration value="ONZ"/>
@@ -3172,6 +3244,7 @@
     <enumeration value="YDQ"/>
     <enumeration value="YRD"/>
     <enumeration value="Z11"/>
+    <enumeration value="Z9"/>
     <enumeration value="ZP"/>
     <enumeration value="ZZ"/>
   </cl>
@@ -3389,6 +3462,15 @@
     <enumeration value="0202"/>
     <enumeration value="0203"/>
     <enumeration value="0204"/>
+    <enumeration value="0205"/>
+    <enumeration value="0206"/>
+    <enumeration value="0207"/>
+    <enumeration value="0208"/>
+    <enumeration value="0209"/>
+    <enumeration value="0210"/>
+    <enumeration value="0211"/>
+    <enumeration value="0212"/>
+    <enumeration value="0213"/>
   </cl>
   <cl id="11">
     <enumeration value="0002"/>
@@ -3590,6 +3672,15 @@
     <enumeration value="0202"/>
     <enumeration value="0203"/>
     <enumeration value="0204"/>
+    <enumeration value="0205"/>
+    <enumeration value="0206"/>
+    <enumeration value="0207"/>
+    <enumeration value="0208"/>
+    <enumeration value="0209"/>
+    <enumeration value="0210"/>
+    <enumeration value="0211"/>
+    <enumeration value="0212"/>
+    <enumeration value="0213"/>
   </cl>
   <cl id="12">
     <enumeration value="0002"/>
@@ -3621,6 +3712,12 @@
     <enumeration value="0202"/>
     <enumeration value="0203"/>
     <enumeration value="0204"/>
+    <enumeration value="0208"/>
+    <enumeration value="0209"/>
+    <enumeration value="0210"/>
+    <enumeration value="0211"/>
+    <enumeration value="0212"/>
+    <enumeration value="0213"/>
     <enumeration value="9901"/>
     <enumeration value="9902"/>
     <enumeration value="9904"/>
@@ -3880,6 +3977,15 @@
     <enumeration value="0202"/>
     <enumeration value="0203"/>
     <enumeration value="0204"/>
+    <enumeration value="0205"/>
+    <enumeration value="0206"/>
+    <enumeration value="0207"/>
+    <enumeration value="0208"/>
+    <enumeration value="0209"/>
+    <enumeration value="0210"/>
+    <enumeration value="0211"/>
+    <enumeration value="0212"/>
+    <enumeration value="0213"/>
   </cl>
   <cl id="15">
     <enumeration value="0002"/>
@@ -4081,6 +4187,15 @@
     <enumeration value="0202"/>
     <enumeration value="0203"/>
     <enumeration value="0204"/>
+    <enumeration value="0205"/>
+    <enumeration value="0206"/>
+    <enumeration value="0207"/>
+    <enumeration value="0208"/>
+    <enumeration value="0209"/>
+    <enumeration value="0210"/>
+    <enumeration value="0211"/>
+    <enumeration value="0212"/>
+    <enumeration value="0213"/>
   </cl>
   <cl id="16">
     <enumeration value="VA"/>
@@ -4301,6 +4416,15 @@
     <enumeration value="0202"/>
     <enumeration value="0203"/>
     <enumeration value="0204"/>
+    <enumeration value="0205"/>
+    <enumeration value="0206"/>
+    <enumeration value="0207"/>
+    <enumeration value="0208"/>
+    <enumeration value="0209"/>
+    <enumeration value="0210"/>
+    <enumeration value="0211"/>
+    <enumeration value="0212"/>
+    <enumeration value="0213"/>
   </cl>
   <cl id="21">
     <enumeration value="0002"/>
@@ -4502,6 +4626,15 @@
     <enumeration value="0202"/>
     <enumeration value="0203"/>
     <enumeration value="0204"/>
+    <enumeration value="0205"/>
+    <enumeration value="0206"/>
+    <enumeration value="0207"/>
+    <enumeration value="0208"/>
+    <enumeration value="0209"/>
+    <enumeration value="0210"/>
+    <enumeration value="0211"/>
+    <enumeration value="0212"/>
+    <enumeration value="0213"/>
   </cl>
   <cl id="22">
     <enumeration value="0002"/>
@@ -4703,6 +4836,15 @@
     <enumeration value="0202"/>
     <enumeration value="0203"/>
     <enumeration value="0204"/>
+    <enumeration value="0205"/>
+    <enumeration value="0206"/>
+    <enumeration value="0207"/>
+    <enumeration value="0208"/>
+    <enumeration value="0209"/>
+    <enumeration value="0210"/>
+    <enumeration value="0211"/>
+    <enumeration value="0212"/>
+    <enumeration value="0213"/>
   </cl>
   <cl id="23">
     <enumeration value="AE"/>

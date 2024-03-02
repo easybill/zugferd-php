@@ -42,6 +42,9 @@
     <enumeration value="633"/>
     <enumeration value="751"/>
     <enumeration value="780"/>
+    <enumeration value="875"/>
+    <enumeration value="876"/>
+    <enumeration value="877"/>
     <enumeration value="935"/>
   </cl>
   <cl id="2">
@@ -247,6 +250,15 @@
     <enumeration value="0202"/>
     <enumeration value="0203"/>
     <enumeration value="0204"/>
+    <enumeration value="0205"/>
+    <enumeration value="0206"/>
+    <enumeration value="0207"/>
+    <enumeration value="0208"/>
+    <enumeration value="0209"/>
+    <enumeration value="0210"/>
+    <enumeration value="0211"/>
+    <enumeration value="0212"/>
+    <enumeration value="0213"/>
   </cl>
   <cl id="4">
     <enumeration value="FC"/>
@@ -452,6 +464,15 @@
     <enumeration value="0202"/>
     <enumeration value="0203"/>
     <enumeration value="0204"/>
+    <enumeration value="0205"/>
+    <enumeration value="0206"/>
+    <enumeration value="0207"/>
+    <enumeration value="0208"/>
+    <enumeration value="0209"/>
+    <enumeration value="0210"/>
+    <enumeration value="0211"/>
+    <enumeration value="0212"/>
+    <enumeration value="0213"/>
   </cl>
   <cl id="6">
     <enumeration value="AED"/>
