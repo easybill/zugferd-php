@@ -2,31 +2,31 @@
 
 declare(strict_types=1);
 
-namespace Easybill\ZUGFeRD2\Tests;
+namespace Easybill\ZUGFeRD2\Tests\Legacy;
 
-use PHPUnit\Framework\TestCase;
 use Easybill\ZUGFeRD2\Builder;
-use Easybill\ZUGFeRD2\Model\CrossIndustryInvoice;
-use Easybill\ZUGFeRD2\Model\ExchangedDocumentContext;
-use Easybill\ZUGFeRD2\Model\DocumentContextParameter;
-use Easybill\ZUGFeRD2\Model\ExchangedDocument;
-use Easybill\ZUGFeRD2\Model\DateTime;
-use Easybill\ZUGFeRD2\Model\Id;
 use Easybill\ZUGFeRD2\Model\Amount;
-use Easybill\ZUGFeRD2\Model\SupplyChainTradeTransaction;
+use Easybill\ZUGFeRD2\Model\CrossIndustryInvoice;
+use Easybill\ZUGFeRD2\Model\DateTime;
+use Easybill\ZUGFeRD2\Model\DocumentContextParameter;
+use Easybill\ZUGFeRD2\Model\DocumentLineDocument;
+use Easybill\ZUGFeRD2\Model\ExchangedDocument;
+use Easybill\ZUGFeRD2\Model\ExchangedDocumentContext;
 use Easybill\ZUGFeRD2\Model\HeaderTradeAgreement;
-use Easybill\ZUGFeRD2\Model\TradeParty;
 use Easybill\ZUGFeRD2\Model\HeaderTradeDelivery;
 use Easybill\ZUGFeRD2\Model\HeaderTradeSettlement;
-use Easybill\ZUGFeRD2\Model\TradeSettlementHeaderMonetarySummation;
-use Easybill\ZUGFeRD2\Model\SupplyChainTradeLineItem;
-use Easybill\ZUGFeRD2\Model\LineTradeSettlement;
-use Easybill\ZUGFeRD2\Model\DocumentLineDocument;
-use Easybill\ZUGFeRD2\Model\TradeProduct;
+use Easybill\ZUGFeRD2\Model\Id;
 use Easybill\ZUGFeRD2\Model\LineTradeAgreement;
-use Easybill\ZUGFeRD2\Model\TradePrice;
-use Easybill\ZUGFeRD2\Model\TradeSettlementLineMonetarySummation;
+use Easybill\ZUGFeRD2\Model\LineTradeSettlement;
+use Easybill\ZUGFeRD2\Model\SupplyChainTradeLineItem;
+use Easybill\ZUGFeRD2\Model\SupplyChainTradeTransaction;
 use Easybill\ZUGFeRD2\Model\TradeAccountingAccount;
+use Easybill\ZUGFeRD2\Model\TradeParty;
+use Easybill\ZUGFeRD2\Model\TradePrice;
+use Easybill\ZUGFeRD2\Model\TradeProduct;
+use Easybill\ZUGFeRD2\Model\TradeSettlementHeaderMonetarySummation;
+use Easybill\ZUGFeRD2\Model\TradeSettlementLineMonetarySummation;
+use PHPUnit\Framework\TestCase;
 
 class TradeAccountingAccountTest extends TestCase
 {

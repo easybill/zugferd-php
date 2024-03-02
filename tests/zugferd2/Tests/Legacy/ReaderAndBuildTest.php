@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Easybill\ZUGFeRD2\Tests;
+namespace Easybill\ZUGFeRD2\Tests\Legacy;
 
-use Doctrine\Common\Annotations\AnnotationRegistry;
 use Easybill\ZUGFeRD2\Builder;
 use Easybill\ZUGFeRD2\Reader;
 use PHPUnit\Framework\TestCase;

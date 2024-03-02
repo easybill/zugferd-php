@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Easybill\ZUGFeRD2\Tests;
+namespace Easybill\ZUGFeRD2\Tests\Legacy;
 
 use Easybill\ZUGFeRD2\Builder;
 use Easybill\ZUGFeRD2\Model\Amount;
@@ -14,21 +14,20 @@ use Easybill\ZUGFeRD2\Model\DocumentContextParameter;
 use Easybill\ZUGFeRD2\Model\DocumentLineDocument;
 use Easybill\ZUGFeRD2\Model\ExchangedDocument;
 use Easybill\ZUGFeRD2\Model\ExchangedDocumentContext;
+use Easybill\ZUGFeRD2\Model\FormattedDateTime;
 use Easybill\ZUGFeRD2\Model\HeaderTradeAgreement;
 use Easybill\ZUGFeRD2\Model\HeaderTradeDelivery;
 use Easybill\ZUGFeRD2\Model\HeaderTradeSettlement;
 use Easybill\ZUGFeRD2\Model\Id;
+use Easybill\ZUGFeRD2\Model\Indicator;
 use Easybill\ZUGFeRD2\Model\LineTradeAgreement;
 use Easybill\ZUGFeRD2\Model\LineTradeDelivery;
 use Easybill\ZUGFeRD2\Model\LineTradeSettlement;
 use Easybill\ZUGFeRD2\Model\LogisticsServiceCharge;
 use Easybill\ZUGFeRD2\Model\Note;
-use Easybill\ZUGFeRD2\Model\Period;
-use Easybill\ZUGFeRD2\Model\Quantity;
-use Easybill\ZUGFeRD2\Model\FormattedDateTime;
-use Easybill\ZUGFeRD2\Model\Indicator;
-use Easybill\ZUGFeRD2\Model\ReferencedDocument;
 use Easybill\ZUGFeRD2\Model\ProcuringProject;
+use Easybill\ZUGFeRD2\Model\Quantity;
+use Easybill\ZUGFeRD2\Model\ReferencedDocument;
 use Easybill\ZUGFeRD2\Model\SupplyChainEvent;
 use Easybill\ZUGFeRD2\Model\SupplyChainTradeLineItem;
 use Easybill\ZUGFeRD2\Model\SupplyChainTradeTransaction;
