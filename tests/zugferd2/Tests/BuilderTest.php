@@ -557,4 +557,48 @@ class BuilderTest extends TestCase
             Validator::SCHEMA_BASIC_WL
         );
     }
+
+    public function testBuildMINIMUMRechnung(): void
+    {
+        $invoice = new CrossIndustryInvoice();
+        $invoice->exchangedDocumentContext = new ExchangedDocumentContext();
+        $invoice->exchangedDocumentContext->documentContextParameter = new DocumentContextParameter();
+        $invoice->exchangedDocumentContext->documentContextParameter->id = Builder::GUIDELINE_SPECIFIED_DOCUMENT_CONTEXT_ID_MINIMUM;
+
+        $invoice->exchangedDocument = new ExchangedDocument();
+        $invoice->exchangedDocument->id = '471102';
+        $invoice->exchangedDocument->typeCode = '380';
+        $invoice->exchangedDocument->issueDateTime = DateTime::create(102, '20200305');
+
+        $invoice->supplyChainTradeTransaction = new SupplyChainTradeTransaction();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement = new HeaderTradeAgreement();
+
+        // Seller Trade Party
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
+        $sellerTradeParty->name = 'Lieferant GmbH';
+        $sellerTradeParty->postalTradeAddress = new TradeAddress();
+        $sellerTradeParty->postalTradeAddress->countryCode = 'DE';
+        $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('201/113/40209', 'FC');
+        $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('DE123456789', 'VA');
+
+        // Buyer Trade Party
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
+        $buyerTradeParty->name = 'Kunden AG Frankreich';
+
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
+
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = new HeaderTradeSettlement();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->currency = 'EUR';
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = $monetarySummation = new TradeSettlementHeaderMonetarySummation();
+        $monetarySummation->taxBasisTotalAmount[] = Amount::create('198.00');
+        $monetarySummation->taxTotalAmount[] = Amount::create('37.62', 'EUR');
+        $monetarySummation->grandTotalAmount[] = Amount::create('235.62');
+        $monetarySummation->duePayableAmount = Amount::create('235.62');
+
+        $this->buildAndAssertXmlFromCII(
+            $invoice,
+            __DIR__ . '/Examples/MINIMUM/MINIMUM_Rechnung.xml',
+            Validator::SCHEMA_MINIMUM
+        );
+    }
 }

@@ -12,6 +12,7 @@ class Builder
 {
     public const GUIDELINE_SPECIFIED_DOCUMENT_CONTEXT_ID_BASIC = 'urn:cen.eu:en16931:2017#compliant#urn:factur-x.eu:1p0:basic';
     public const GUIDELINE_SPECIFIED_DOCUMENT_CONTEXT_ID_BASIC_WL = 'urn:factur-x.eu:1p0:basicwl';
+    public const GUIDELINE_SPECIFIED_DOCUMENT_CONTEXT_ID_MINIMUM = 'urn:factur-x.eu:1p0:minimum';
 
     public function __construct(private readonly SerializerInterface $serializer)
     {
