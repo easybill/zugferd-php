@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Easybill\ZUGFeRD2\Tests;
+namespace Easybill\ZUGFeRD2\Tests\Traits;
 
 use Easybill\ZUGFeRD2\Builder;
 use Easybill\ZUGFeRD2\Model\CrossIndustryInvoice;

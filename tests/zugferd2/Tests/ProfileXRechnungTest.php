@@ -41,6 +41,7 @@ use Easybill\ZUGFeRD2\Model\TradeSettlementLineMonetarySummation;
 use Easybill\ZUGFeRD2\Model\TradeSettlementPaymentMeans;
 use Easybill\ZUGFeRD2\Model\TradeTax;
 use Easybill\ZUGFeRD2\Model\UniversalCommunication;
+use Easybill\ZUGFeRD2\Tests\Traits\AssertXmlOutputTrait;
 use Easybill\ZUGFeRD2\Validator;
 use PHPUnit\Framework\TestCase;
 
@@ -484,7 +485,6 @@ class ProfileXRechnungTest extends TestCase
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
         $buyerTradeParty->name = 'Beispielmieter GmbH';
-
         $buyerTradeParty->postalTradeAddress = new TradeAddress();
         $buyerTradeParty->postalTradeAddress->postcode = '12345';
         $buyerTradeParty->postalTradeAddress->lineOne = 'Verwaltung Straße 40';

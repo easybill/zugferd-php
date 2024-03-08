@@ -35,6 +35,7 @@ use Easybill\ZUGFeRD2\Model\TradeProduct;
 use Easybill\ZUGFeRD2\Model\TradeSettlementHeaderMonetarySummation;
 use Easybill\ZUGFeRD2\Model\TradeSettlementLineMonetarySummation;
 use Easybill\ZUGFeRD2\Model\TradeTax;
+use Easybill\ZUGFeRD2\Tests\Traits\AssertXmlOutputTrait;
 use Easybill\ZUGFeRD2\Validator;
 use PHPUnit\Framework\TestCase;
 

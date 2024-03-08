@@ -19,6 +19,7 @@ use Easybill\ZUGFeRD2\Model\TaxRegistration;
 use Easybill\ZUGFeRD2\Model\TradeAddress;
 use Easybill\ZUGFeRD2\Model\TradeParty;
 use Easybill\ZUGFeRD2\Model\TradeSettlementHeaderMonetarySummation;
+use Easybill\ZUGFeRD2\Tests\Traits\AssertXmlOutputTrait;
 use Easybill\ZUGFeRD2\Validator;
 use PHPUnit\Framework\TestCase;
 

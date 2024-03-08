@@ -23,6 +23,7 @@ use Easybill\ZUGFeRD2\Model\TradeParty;
 use Easybill\ZUGFeRD2\Model\TradePaymentTerms;
 use Easybill\ZUGFeRD2\Model\TradeSettlementHeaderMonetarySummation;
 use Easybill\ZUGFeRD2\Model\TradeTax;
+use Easybill\ZUGFeRD2\Tests\Traits\AssertXmlOutputTrait;
 use Easybill\ZUGFeRD2\Validator;
 use PHPUnit\Framework\TestCase;
 
