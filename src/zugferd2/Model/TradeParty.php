@@ -47,4 +47,19 @@ class TradeParty
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('URIUniversalCommunication')]
     public ?UniversalCommunication $uriUniversalCommunication = null;
+
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('RoleCode')]
+    public ?string $roleCode = null;
+
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('Description')]
+    public ?string $description = null;
+
+    #[Type(LegalOrganization::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('SpecifiedLegalOrganization')]
+    public ?LegalOrganization $specifiedLegalOrganization = null;
 }

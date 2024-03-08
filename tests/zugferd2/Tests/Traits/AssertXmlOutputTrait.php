@@ -16,13 +16,13 @@ trait AssertXmlOutputTrait
         $xml = Builder::create()->transform($invoice);
         self::assertNotEmpty($xml);
 
-        $referenceFile = file_get_contents($referenceFilePath);
-        $referenceFile = ReaderAndBuildTest::reformatXml($referenceFile);
-
         $xml = ReaderAndBuildTest::reformatXml($xml);
-        self::assertEquals($referenceFile, $xml);
 
         $result = (new Validator())->validateAgainstXsd($xml, $validatorSchema);
         self::assertNull($result, $result ?? '');
+
+        $referenceFile = file_get_contents($referenceFilePath);
+        $referenceFile = ReaderAndBuildTest::reformatXml($referenceFile);
+        self::assertEquals($referenceFile, $xml);
     }
 }
