@@ -32,7 +32,7 @@ class Product
     public function __construct(#[Type('string')]
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('SellerAssignedID')]
-        private string $sellerAssignedID, #[Type('string')]
+        private ?string $sellerAssignedID, #[Type('string')]
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('Name')]
         private string $name, #[Type('string')]
