@@ -349,9 +349,9 @@ class ProfileXRechnungTest extends TestCase
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->shipToTradeParty = $shipToTradeParty = new TradeParty();
         $shipToTradeParty->name = 'Musterfirma Nürnberg';
         $shipToTradeParty->postalTradeAddress = new TradeAddress();
-        $shipToTradeParty->postalTradeAddress->postcode = '75319';
-        $shipToTradeParty->postalTradeAddress->lineOne = 'Am Bahnhof 42';
-        $shipToTradeParty->postalTradeAddress->city = 'Nürnberg';
+        $shipToTradeParty->postalTradeAddress->postcode = '12345';
+        $shipToTradeParty->postalTradeAddress->lineOne = 'Verwaltung Straße 40';
+        $shipToTradeParty->postalTradeAddress->city = 'Musterstadt';
         $shipToTradeParty->postalTradeAddress->countryCode = 'DE';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->additionalReferencedDocuments[] = $additionalReferencedDocument = new ReferencedDocument();
@@ -420,41 +420,40 @@ class ProfileXRechnungTest extends TestCase
         $invoice->exchangedDocumentContext->documentContextParameter->id = Builder::GUIDELINE_SPECIFIED_DOCUMENT_CONTEXT_ID_XRECHNUNG;
 
         $invoice->exchangedDocument = new ExchangedDocument();
-        $invoice->exchangedDocument->id = '280081';
+        $invoice->exchangedDocument->id = '471102';
         $invoice->exchangedDocument->typeCode = '380';
-        $invoice->exchangedDocument->issueDateTime = DateTime::create(102, '20180713');
-        $invoice->exchangedDocument->notes[] = Note::create('Listelotte Müllermann, Kumpelstr. 54, 12345 Berlin
-				Handelsregisternummer: H A 713
-			', 'REG');
-        $invoice->exchangedDocument->notes[] = Note::create('Flug wurde vom Auftraggeber gebucht.
-			', 'AAI');
-        $invoice->exchangedDocument->notes[] = Note::create('Reise: Musterreisekostenabrechnung
-				Zweck: Workshop in Nürnberg
-				Land: Deutschland
-				Strecke: Berlin - Berlin
-			', 'AAI');
+        $invoice->exchangedDocument->issueDateTime = DateTime::create(102, '20180305');
+
+        $invoice->exchangedDocument->notes[] = Note::create('Rechnung gemäß Betriebskostenrechnung vom 21.11.2011.');
+        $invoice->exchangedDocument->notes[] = Note::create('Grundbesitz GmbH & Co.
+            Musterstraße 42
+            75645 Frankfurt
+            Deutschland
+            Geschäftsführer: Hans Muster
+            Handelsregisternummer: H A 123
+         ', 'REG');
 
         $invoice->supplyChainTradeTransaction = new SupplyChainTradeTransaction();
         $invoice->supplyChainTradeTransaction->lineItems[] = $item1 = new SupplyChainTradeLineItem();
         $item1->associatedDocumentLineDocument = DocumentLineDocument::create('1');
 
         $item1->specifiedTradeProduct = new TradeProduct();
-        $item1->specifiedTradeProduct->name = 'Übernachtung. 2 Nächte Hotel';
+        $item1->specifiedTradeProduct->name = 'Abrechnungskreis 1';
+        $item1->specifiedTradeProduct->globalID = Id::create('4012345001235', '0160');
 
         $item1->tradeAgreement = new LineTradeAgreement();
-        $item1->tradeAgreement->grossPrice = TradePrice::create('170');
-        $item1->tradeAgreement->netPrice = TradePrice::create('158.88');
+        $item1->tradeAgreement->netPrice = TradePrice::create('15387.08');
 
         $item1->delivery = new LineTradeDelivery();
-        $item1->delivery->billedQuantity = Quantity::create('1', 'C62');
+        $item1->delivery->billedQuantity = Quantity::create('1.0000', 'C62');
 
         $item1->specifiedLineTradeSettlement = new LineTradeSettlement();
         $item1->specifiedLineTradeSettlement->tradeTax[] = $item1tax = new TradeTax();
         $item1tax->typeCode = 'VAT';
         $item1tax->categoryCode = 'S';
-        $item1tax->rateApplicablePercent = '7.00';
+        $item1tax->rateApplicablePercent = '19';
 
-        $item1->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('158.88');
+        $item1->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('15387.08');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement = new HeaderTradeAgreement();
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerReference = '04011000-12345-34';
@@ -465,7 +464,7 @@ class ProfileXRechnungTest extends TestCase
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
         $sellerTradeParty->globalID[] = Id::create('4000001123452', '0088');
-        $sellerTradeParty->name = 'Lieferant GmbH';
+        $sellerTradeParty->name = 'Grundbesitz GmbH & Co.';
         $sellerTradeParty->definedTradeContact = new TradeContact();
         $sellerTradeParty->definedTradeContact->personName = 'Max Mustermann';
         $sellerTradeParty->definedTradeContact->departmentName = 'Muster-Einkauf';
@@ -475,31 +474,30 @@ class ProfileXRechnungTest extends TestCase
         $sellerTradeParty->definedTradeContact->emailURIUniversalCommunication->uriid = Id::create('Max@Mustermann.de');
 
         $sellerTradeParty->postalTradeAddress = new TradeAddress();
-        $sellerTradeParty->postalTradeAddress->postcode = '80333';
-        $sellerTradeParty->postalTradeAddress->lineOne = 'Lieferantenstraße 20';
-        $sellerTradeParty->postalTradeAddress->city = 'München';
+        $sellerTradeParty->postalTradeAddress->postcode = '75645';
+        $sellerTradeParty->postalTradeAddress->lineOne = 'Musterstraße 42';
+        $sellerTradeParty->postalTradeAddress->city = 'Frankfurt';
         $sellerTradeParty->postalTradeAddress->countryCode = 'DE';
 
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('201/113/40209', 'FC');
-        $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('DE123456789', 'VA');
+        $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('DE136695976', 'VA');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
-        $buyerTradeParty->id = Id::create('GE2020211');
-        $buyerTradeParty->name = 'Kunden AG Mitte';
+        $buyerTradeParty->name = 'Beispielmieter GmbH';
 
         $buyerTradeParty->postalTradeAddress = new TradeAddress();
-        $buyerTradeParty->postalTradeAddress->postcode = '69876';
-        $buyerTradeParty->postalTradeAddress->lineOne = 'Kundenstraße 15';
-        $buyerTradeParty->postalTradeAddress->city = 'Frankfurt';
+        $buyerTradeParty->postalTradeAddress->postcode = '12345';
+        $buyerTradeParty->postalTradeAddress->lineOne = 'Verwaltung Straße 40';
+        $buyerTradeParty->postalTradeAddress->city = 'Musterstadt';
         $buyerTradeParty->postalTradeAddress->countryCode = 'DE';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->shipToTradeParty = $shipToTradeParty = new TradeParty();
-        $shipToTradeParty->name = 'Musterfirma Nürnberg';
         $shipToTradeParty->postalTradeAddress = new TradeAddress();
-        $shipToTradeParty->postalTradeAddress->postcode = '75319';
-        $shipToTradeParty->postalTradeAddress->lineOne = 'Am Bahnhof 42';
-        $shipToTradeParty->postalTradeAddress->city = 'Nürnberg';
+        $shipToTradeParty->postalTradeAddress->postcode = '12345';
+        $shipToTradeParty->postalTradeAddress->lineOne = 'Verwaltung Straße 40';
+        $shipToTradeParty->postalTradeAddress->lineTwo = 'Einheit: 5.OG rechts';
+        $shipToTradeParty->postalTradeAddress->city = 'Musterstadt';
         $shipToTradeParty->postalTradeAddress->countryCode = 'DE';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->additionalReferencedDocuments[] = $additionalReferencedDocument = new ReferencedDocument();
@@ -525,33 +523,26 @@ class ProfileXRechnungTest extends TestCase
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->tradeTaxes[] = $headerTax1 = new TradeTax();
         $headerTax1->typeCode = 'VAT';
         $headerTax1->categoryCode = 'S';
-        $headerTax1->basisAmount = Amount::create('202.33');
-        $headerTax1->calculatedAmount = Amount::create('14.16');
-        $headerTax1->rateApplicablePercent = '7.00';
-
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->tradeTaxes[] = $headerTax2 = new TradeTax();
-        $headerTax2->typeCode = 'VAT';
-        $headerTax2->categoryCode = 'S';
-        $headerTax2->basisAmount = Amount::create('11.76');
-        $headerTax2->calculatedAmount = Amount::create('2.23');
-        $headerTax2->rateApplicablePercent = '19.00';
+        $headerTax1->basisAmount = Amount::create('15387.08');
+        $headerTax1->calculatedAmount = Amount::create('2923.55');
+        $headerTax1->rateApplicablePercent = '19.00';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->billingSpecifiedPeriod = $billingPeriod = new Period();
-        $billingPeriod->startDatetime = DateTime::create(102, '20180709');
-        $billingPeriod->endDatetime = DateTime::create(102, '20180711');
+        $billingPeriod->startDatetime = DateTime::create(102, '20100101');
+        $billingPeriod->endDatetime = DateTime::create(102, '20101231');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradePaymentTerms[] = $paymentTerms = new TradePaymentTerms();
-        $paymentTerms->description = 'Zahlbar innerhalb 30 Tagen netto bis 12.08.2018, 3% Skonto innerhalb 10 Tagen bis 15.03.2018';
+        $paymentTerms->dueDate = DateTime::create(102, '20180404');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = $summation = new TradeSettlementHeaderMonetarySummation();
-        $summation->lineTotalAmount = Amount::create('214.09');
+        $summation->lineTotalAmount = Amount::create('15387.08');
         $summation->chargeTotalAmount = Amount::create('0.00');
         $summation->allowanceTotalAmount = Amount::create('0.00');
-        $summation->taxBasisTotalAmount[] = Amount::create('214.09');
-        $summation->taxTotalAmount[] = Amount::create('16.39', 'EUR');
-        $summation->grandTotalAmount[] = Amount::create('230.48');
-        $summation->totalPrepaidAmount = Amount::create('0.00');
-        $summation->duePayableAmount = Amount::create('230.48');
+        $summation->taxBasisTotalAmount[] = Amount::create('15387.08');
+        $summation->taxTotalAmount[] = Amount::create('2923.55', 'EUR');
+        $summation->grandTotalAmount[] = Amount::create('18310.63');
+        $summation->totalPrepaidAmount = Amount::create('17808.00');
+        $summation->duePayableAmount = Amount::create('502.63');
 
         $this->buildAndAssertXmlFromCII(
             $invoice,
