@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Easybill\ZUGFeRD2\Model;
 
 use JMS\Serializer\Annotation as JMS;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlList;
 
 class TradePrice
 {
@@ -23,12 +25,18 @@ class TradePrice
     #[JMS\SerializedName('AppliedTradeAllowanceCharge')]
     public ?TradeAllowanceCharge $appliedTradeAllowanceCharge = null;
 
-    public static function create(string $amount, Quantity $quantity = null, TradeAllowanceCharge $tradeAllowanceCharge = null): self
+    /** @var TradeAllowanceCharge[] */
+    #[Type('array<Easybill\ZUGFeRD2\Model\TradeAllowanceCharge>')]
+    #[XmlList(entry: 'AppliedTradeAllowanceCharge', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    public ?array $appliedTradeAllowanceCharges = null;
+
+    /** @param array<TradeAllowanceCharge>|null $tradeAllowanceCharge */
+    public static function create(string $amount, Quantity $quantity = null, array $tradeAllowanceCharge = null): self
     {
         $self = new self();
         $self->chargeAmount = Amount::create($amount);
         $self->basisQuantity = $quantity;
-        $self->appliedTradeAllowanceCharge = $tradeAllowanceCharge;
+        $self->appliedTradeAllowanceCharges = $tradeAllowanceCharge;
         return $self;
     }
 }
