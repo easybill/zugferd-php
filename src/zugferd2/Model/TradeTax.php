@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Easybill\ZUGFeRD2\Model;
 
 use JMS\Serializer\Annotation as JMS;
+use JMS\Serializer\Annotation\AccessorOrder;
 
+#[AccessorOrder(order: 'custom', custom: ['calculatedAmount', 'typeCode', 'exemptionReason'])]
 class TradeTax
 {
     #[JMS\Type(Amount::class)]

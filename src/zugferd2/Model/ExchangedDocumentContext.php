@@ -12,6 +12,11 @@ class ExchangedDocumentContext
 {
     #[Type(DocumentContextParameter::class)]
     #[XmlElement(namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('BusinessProcessSpecifiedDocumentContextParameter')]
+    public DocumentContextParameter $businessProcessSpecifiedDocumentContextParameter;
+
+    #[Type(DocumentContextParameter::class)]
+    #[XmlElement(namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('GuidelineSpecifiedDocumentContextParameter')]
     public DocumentContextParameter $documentContextParameter;
 }

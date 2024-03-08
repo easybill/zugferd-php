@@ -349,9 +349,9 @@ class ProfileXRechnungTest extends TestCase
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->shipToTradeParty = $shipToTradeParty = new TradeParty();
         $shipToTradeParty->name = 'Musterfirma Nürnberg';
         $shipToTradeParty->postalTradeAddress = new TradeAddress();
-        $shipToTradeParty->postalTradeAddress->postcode = '12345';
-        $shipToTradeParty->postalTradeAddress->lineOne = 'Verwaltung Straße 40';
-        $shipToTradeParty->postalTradeAddress->city = 'Musterstadt';
+        $shipToTradeParty->postalTradeAddress->postcode = '75319';
+        $shipToTradeParty->postalTradeAddress->lineOne = 'Am Bahnhof 42';
+        $shipToTradeParty->postalTradeAddress->city = 'Nürnberg';
         $shipToTradeParty->postalTradeAddress->countryCode = 'DE';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->additionalReferencedDocuments[] = $additionalReferencedDocument = new ReferencedDocument();

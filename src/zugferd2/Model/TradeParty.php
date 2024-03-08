@@ -10,7 +10,7 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
-#[AccessorOrder(order: 'custom', custom: ['id', 'globalID', 'name', 'definedTradeContact', 'postalTradeAddress', 'taxRegistrations'])]
+#[AccessorOrder(order: 'custom', custom: ['id', 'globalID', 'name', 'definedTradeContact', 'postalTradeAddress', 'uriUniversalCommunication', 'taxRegistrations'])]
 class TradeParty
 {
     #[Type(Id::class)]
@@ -18,9 +18,7 @@ class TradeParty
     #[SerializedName('ID')]
     public ?Id $id = null;
 
-    /**
-     * @var Id[]
-     */
+    /** @var Id[] */
     #[Type('array<Easybill\ZUGFeRD2\Model\Id>')]
     #[XmlList(entry: 'GlobalID', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $globalID = [];
@@ -40,10 +38,13 @@ class TradeParty
     #[SerializedName('PostalTradeAddress')]
     public ?TradeAddress $postalTradeAddress = null;
 
-    /**
-     * @var TaxRegistration[]
-     */
+    /** @var TaxRegistration[] */
     #[Type('array<Easybill\ZUGFeRD2\Model\TaxRegistration>')]
     #[XmlList(entry: 'SpecifiedTaxRegistration', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $taxRegistrations = [];
+
+    #[Type(UniversalCommunication::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('URIUniversalCommunication')]
+    public ?UniversalCommunication $uriUniversalCommunication = null;
 }

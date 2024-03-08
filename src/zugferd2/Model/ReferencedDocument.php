@@ -40,6 +40,11 @@ class ReferencedDocument
     #[SerializedName('FormattedIssueDateTime')]
     public ?FormattedDateTime $formattedIssueDateTime = null;
 
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('LineID')]
+    public string $lineId;
+
     public static function create(string $issuerAssignedID): self
     {
         $self = new self();

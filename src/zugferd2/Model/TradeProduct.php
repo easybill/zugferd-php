@@ -9,7 +9,7 @@ use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 
-#[AccessorOrder(order: 'custom', custom: ['globalID', 'sellerAssignedID', 'name', 'description', 'tradeCountry'])]
+#[AccessorOrder(order: 'custom', custom: ['globalID', 'sellerAssignedID', 'buyerAssignedID', 'name', 'description', 'tradeCountry'])]
 class TradeProduct
 {
     #[Type(Id::class)]
@@ -21,6 +21,11 @@ class TradeProduct
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('SellerAssignedID')]
     public ?string $sellerAssignedID = null;
+
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('BuyerAssignedID')]
+    public ?string $buyerAssignedID = null;
 
     #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
