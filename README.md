@@ -40,12 +40,12 @@ $xml = Builder::create()->getXML($doc);
 echo $xml; // Zugferd XML.
 ```
 
-## Usage ZUGFeRD v2.1
+## Usage ZUGFeRD v2
 
 Convert XML to PHP Objects:
 
 ```php
-use Easybill\ZUGFeRD211\Reader;
+use Easybill\ZUGFeRD2\Reader;
 
 $xml = file_get_contents('factur-x.xml');
 $obj = Reader::create()->transform($xml);
@@ -54,7 +54,7 @@ $obj = Reader::create()->transform($xml);
 Convert PHP Objects to XML:
 
 ```php
-use Easybill\ZUGFeRD211\Builder;
+use Easybill\ZUGFeRD2\Builder;
  
 $obj = ...;
 
