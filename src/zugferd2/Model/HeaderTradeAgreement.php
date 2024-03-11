@@ -36,7 +36,7 @@ class HeaderTradeAgreement
     #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('SellerTaxRepresentativeTradeParty')]
-    public TradeParty $sellerTaxRepresentativeTradeParty;
+    public ?TradeParty $sellerTaxRepresentativeTradeParty = null;
 
     #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
@@ -46,7 +46,7 @@ class HeaderTradeAgreement
     #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('BuyerTaxRepresentativeTradeParty')]
-    public TradeParty $buyerTaxRepresentativeTradeParty;
+    public ?TradeParty $buyerTaxRepresentativeTradeParty = null;
 
     #[Type(ReferencedDocument::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
