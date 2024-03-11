@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Easybill\ZUGFeRD\Model\Trade;
 
 use JMS\Serializer\Annotation\SerializedName;
@@ -10,34 +12,34 @@ class PaymentMeans
 {
     /**
      * @var string
-     * @Type("string")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("TypeCode")
      */
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('TypeCode')]
     private $code;
 
     /**
      * @var string
-     * @Type("string")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("Information")
      */
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('Information')]
     private $information;
 
     /**
      * @var CreditorFinancialAccount
-     * @Type("Easybill\ZUGFeRD\Model\Trade\CreditorFinancialAccount")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("PayeePartyCreditorFinancialAccount")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\CreditorFinancialAccount::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('PayeePartyCreditorFinancialAccount')]
     private $payeeAccount;
 
     /**
      * @var CreditorFinancialInstitution
-     * @Type("Easybill\ZUGFeRD\Model\Trade\CreditorFinancialInstitution")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("PayeeSpecifiedCreditorFinancialInstitution")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\CreditorFinancialInstitution::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('PayeeSpecifiedCreditorFinancialInstitution')]
     private $payeeInstitution;
 
     public function getCode(): ?string

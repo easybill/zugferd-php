@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Easybill\ZUGFeRD\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
@@ -10,30 +12,18 @@ use JMS\Serializer\Annotation\XmlValue;
 class Schema
 {
     /**
-     * @var string
-     * @Type("string")
-     * @XmlAttribute
-     * @SerializedName("schemeID")
-     */
-    private $schemeID;
-
-    /**
-     * @var string
-     * @Type("string")
-     * @XmlValue(cdata = false)
-     */
-    private $value;
-
-    /**
      * TaxRegistration constructor.
      *
      * @param string $schemeID
      * @param string $value
      */
-    public function __construct($schemeID, $value = '')
+    public function __construct(#[Type('string')]
+        #[XmlAttribute]
+        #[SerializedName('schemeID')]
+        private $schemeID, #[Type('string')]
+        #[XmlValue(cdata: false)]
+        private $value = '')
     {
-        $this->schemeID = $schemeID;
-        $this->value = $value;
     }
 
     /**

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Easybill\ZUGFeRD\Model\Trade\Item;
 
 use Easybill\ZUGFeRD\Model\AllowanceCharge;
@@ -10,25 +12,25 @@ class Price
 {
     /**
      * @var Amount
-     * @JMS\Type("Easybill\ZUGFeRD\Model\Trade\Amount")
-     * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @JMS\SerializedName("ChargeAmount")
      */
+    #[JMS\Type(\Easybill\ZUGFeRD\Model\Trade\Amount::class)]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[JMS\SerializedName('ChargeAmount')]
     private $amount;
 
     /**
      * @var Quantity
-     * @JMS\Type("Easybill\ZUGFeRD\Model\Trade\Item\Quantity")
-     * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @JMS\SerializedName("BasisQuantity")
      */
+    #[JMS\Type(\Easybill\ZUGFeRD\Model\Trade\Item\Quantity::class)]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[JMS\SerializedName('BasisQuantity')]
     private $quantity;
 
     /**
      * @var AllowanceCharge[]
-     * @JMS\Type("array<Easybill\ZUGFeRD\Model\AllowanceCharge>")
-     * @JMS\XmlList(inline = true, entry = "AppliedTradeAllowanceCharge", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
      */
+    #[JMS\Type('array<Easybill\ZUGFeRD\Model\AllowanceCharge>')]
+    #[JMS\XmlList(inline: true, entry: 'AppliedTradeAllowanceCharge', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     private $allowanceCharges = [];
 
     /**

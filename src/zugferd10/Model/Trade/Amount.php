@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Easybill\ZUGFeRD\Model\Trade;
 
 use JMS\Serializer\Annotation\SerializedName;
@@ -14,18 +16,10 @@ class Amount
 {
     /**
      * @var string
-     * @Type("string")
-     * @XmlValue(cdata = false)
      */
+    #[Type('string')]
+    #[XmlValue(cdata: false)]
     private $value;
-
-    /**
-     * @var string
-     * @Type("string")
-     * @XmlAttribute
-     * @SerializedName("currencyID")
-     */
-    private $currency;
 
     /**
      * Amount constructor.
@@ -33,10 +27,12 @@ class Amount
      * @param float $value
      * @param string $currency
      */
-    public function __construct($value, $currency, bool $isSum = true)
+    public function __construct($value, #[Type('string')]
+        #[XmlAttribute]
+        #[SerializedName('currencyID')]
+        private $currency, bool $isSum = true)
     {
         $this->setValue($value, $isSum);
-        $this->currency = $currency;
     }
 
     /**

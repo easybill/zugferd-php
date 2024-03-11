@@ -1,52 +1,40 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Easybill\ZUGFeRD\Model\Trade;
 
+use JMS\Serializer\Annotation\AccessorOrder;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 
+#[AccessorOrder(order: 'custom', custom: ['personName', 'departmentName', 'telephoneUniversalCommunication', 'faxUniversalCommunication', 'emailURIUniversalCommunication'])]
 class TradeContact
 {
-    /**
-     * @Type("string")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("PersonName")
-     */
-    public ?string $personName;
-
-    /**
-     * @Type("string")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("DepartmentName")
-     */
-    public ?string $departmentName;
-
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\Trade\UniversalCommunication")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("TelephoneUniversalCommunication")
-     */
+    #[Type(UniversalCommunication::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('TelephoneUniversalCommunication')]
     public $telephoneUniversalCommunication;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\Trade\UniversalCommunication")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("FaxUniversalCommunication")
-     */
+    #[Type(UniversalCommunication::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('FaxUniversalCommunication')]
     public $faxUniversalCommunication;
 
-    /**
-     * @Type("Easybill\ZUGFeRD\Model\Trade\UniversalCommunication")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("EmailURIUniversalCommunication")
-     */
+    #[Type(UniversalCommunication::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('EmailURIUniversalCommunication')]
     public $emailURIUniversalCommunication;
 
-    public function __construct(string $personName = null, string $departmentName = null, UniversalCommunication $telephoneUniversalCommunication = null, UniversalCommunication $faxUniversalCommunication = null, UniversalCommunication $emailURIUniversalCommunication = null)
+    public function __construct(#[Type('string')]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('PersonName')]
+        public ?string $personName = null, #[Type('string')]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('DepartmentName')]
+        public ?string $departmentName = null, UniversalCommunication $telephoneUniversalCommunication = null, UniversalCommunication $faxUniversalCommunication = null, UniversalCommunication $emailURIUniversalCommunication = null)
     {
-        $this->personName = $personName;
-        $this->departmentName = $departmentName;
         $this->telephoneUniversalCommunication = $telephoneUniversalCommunication;
         $this->faxUniversalCommunication = $faxUniversalCommunication;
         $this->emailURIUniversalCommunication = $emailURIUniversalCommunication;
@@ -89,7 +77,7 @@ class TradeContact
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\UniversalCommunication
+     * @return UniversalCommunication
      */
     public function getTelephoneUniversalCommunication()
     {
@@ -106,7 +94,7 @@ class TradeContact
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\UniversalCommunication
+     * @return UniversalCommunication
      */
     public function getFaxUniversalCommunication()
     {
@@ -123,7 +111,7 @@ class TradeContact
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\UniversalCommunication
+     * @return UniversalCommunication
      */
     public function getEmailURIUniversalCommunication()
     {

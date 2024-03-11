@@ -7,3 +7,4 @@ vendor
 .phpunit.result.cache
 .php-cs-fixer.cache
 .vscode
+composer.phar

@@ -1,42 +1,32 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Easybill\ZUGFeRD\Model\Trade;
 
 use Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax;
+use JMS\Serializer\Annotation\AccessorOrder;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
+#[AccessorOrder(order: 'custom', custom: ['description', 'appliedAmount', 'tradeTaxes'])]
 class SpecifiedLogisticsServiceCharge
 {
-    /**
-     * @var string
-     * @Type("string")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("Description")
-     */
-    private $description;
+    /** @var TradeTax[] */
+    #[Type('array<Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax>')]
+    #[XmlList(entry: 'AppliedTradeTax', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    private array $tradeTaxes = [];
 
-    /**
-     * @var Amount
-     * @Type("Easybill\ZUGFeRD\Model\Trade\Amount")
-     * @XmlElement(cdata=false, namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("AppliedAmount")
-     */
-    private $appliedAmount;
-
-    /**
-     * @var TradeTax[]
-     * @Type("array<Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax>")
-     * @XmlList(inline = true, entry = "AppliedTradeTax", namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     */
-    private $tradeTaxes = [];
-
-    public function __construct(string $description, Amount $appliedAmount)
+    public function __construct(#[Type('string')]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('Description')]
+        private string $description, #[Type(Amount::class)]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('AppliedAmount')]
+        private Amount $appliedAmount)
     {
-        $this->description = $description;
-        $this->appliedAmount = $appliedAmount;
     }
 
     /**

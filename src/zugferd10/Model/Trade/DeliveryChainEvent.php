@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Easybill\ZUGFeRD\Model\Trade;
 
 use Easybill\ZUGFeRD\Model\Date;
@@ -11,10 +13,10 @@ class DeliveryChainEvent
 {
     /**
      * @var Date
-     * @Type("Easybill\ZUGFeRD\Model\Date")
-     * @XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("OccurrenceDateTime")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\Date::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('OccurrenceDateTime')]
     private $date;
 
     /**

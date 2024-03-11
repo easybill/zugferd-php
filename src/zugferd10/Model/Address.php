@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Easybill\ZUGFeRD\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
@@ -9,46 +11,6 @@ use JMS\Serializer\Annotation\XmlElement;
 class Address
 {
     /**
-     * @var string
-     * @Type("string")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("PostcodeCode")
-     */
-    private $postcode;
-
-    /**
-     * @var string
-     * @Type("string")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("LineOne")
-     */
-    private $lineOne;
-
-    /**
-     * @var string
-     * @Type("string")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("LineTwo")
-     */
-    private $lineTwo;
-
-    /**
-     * @var string
-     * @Type("string")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("CityName")
-     */
-    private $city;
-
-    /**
-     * @var string
-     * @Type("string")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("CountryID")
-     */
-    private $countryCode;
-
-    /**
      * Address constructor.
      *
      * @param string $postcode
@@ -57,13 +19,23 @@ class Address
      * @param string $city
      * @param string $countryCode
      */
-    public function __construct($postcode = '', $lineOne = '', $lineTwo = '', $city = '', $countryCode = '')
+    public function __construct(#[Type('string')]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('PostcodeCode')]
+        private $postcode = '', #[Type('string')]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('LineOne')]
+        private $lineOne = '', #[Type('string')]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('LineTwo')]
+        private $lineTwo = '', #[Type('string')]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('CityName')]
+        private $city = '', #[Type('string')]
+        #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[SerializedName('CountryID')]
+        private $countryCode = '')
     {
-        $this->postcode = $postcode;
-        $this->lineOne = $lineOne;
-        $this->lineTwo = $lineTwo;
-        $this->city = $city;
-        $this->countryCode = $countryCode;
     }
 
     /**

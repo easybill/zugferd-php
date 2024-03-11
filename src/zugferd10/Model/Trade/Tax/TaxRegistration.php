@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Easybill\ZUGFeRD\Model\Trade\Tax;
 
 use JMS\Serializer\Annotation\SerializedName;
@@ -10,10 +12,10 @@ class TaxRegistration
 {
     /**
      * @var Registration
-     * @Type("Easybill\ZUGFeRD\Model\Trade\Tax\Registration")
-     * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @SerializedName("ID")
      */
+    #[Type(\Easybill\ZUGFeRD\Model\Trade\Tax\Registration::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('ID')]
     private $registration;
 
     /**
@@ -35,9 +37,6 @@ class TaxRegistration
         return $this->registration;
     }
 
-    /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\Tax\Registration $registration
-     */
     public function setRegistration(Registration $registration)
     {
         $this->registration = $registration;

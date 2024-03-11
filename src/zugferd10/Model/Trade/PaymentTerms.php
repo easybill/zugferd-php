@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Easybill\ZUGFeRD\Model\Trade;
 
 use Easybill\ZUGFeRD\Model\Date;
@@ -8,30 +10,18 @@ use JMS\Serializer\Annotation as JMS;
 class PaymentTerms
 {
     /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @JMS\SerializedName("Description")
-     */
-    private $description;
-
-    /**
-     * @var Date
-     * @JMS\Type("Easybill\ZUGFeRD\Model\Date")
-     * @JMS\XmlElement(cdata=false,namespace="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
-     * @JMS\SerializedName("DueDateDateTime")
-     */
-    private $dueDate;
-
-    /**
      * PaymentTerms constructor.
      *
      * @param string $description
      */
-    public function __construct($description, Date $dueDate)
+    public function __construct(#[JMS\Type('string')]
+        #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[JMS\SerializedName('Description')]
+        private $description, #[JMS\Type(\Easybill\ZUGFeRD\Model\Date::class)]
+        #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+        #[JMS\SerializedName('DueDateDateTime')]
+        private Date $dueDate)
     {
-        $this->description = $description;
-        $this->dueDate = $dueDate;
     }
 
     /**

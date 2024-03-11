@@ -11,10 +11,14 @@
     {
       "name": "Patrick Romowicz",
       "email": "patrick@romowicz.de"
+    },
+    {
+      "name": "Jan Nöhles",
+      "email": "jan.noehles@easybill.de"
     }
   ],
   "require": {
-    "php": "^7.4 || ^8.0",
+    "php": "^8.1",
     "jms/serializer": "^3.16",
     "ext-dom": "*"
   },
@@ -24,18 +28,20 @@
   "require-dev": {
     "phpunit/phpunit": "^9.3",
     "ext-libxml": "*",
-    "friendsofphp/php-cs-fixer": "^3.16"
+    "friendsofphp/php-cs-fixer": "^3.16",
+    "phpstan/phpstan": "^1.10",
+    "rector/rector": "^1.0"
   },
   "autoload": {
     "psr-4": {
       "Easybill\\ZUGFeRD\\": "src/zugferd10",
-      "Easybill\\ZUGFeRD211\\": "src/zugferd211"
+      "Easybill\\ZUGFeRD2\\": "src/zugferd2"
     }
   },
   "autoload-dev": {
     "psr-4": {
       "Easybill\\ZUGFeRD\\": "tests/zugferd10",
-      "Easybill\\ZUGFeRD211\\": "tests/zugferd211"
+      "Easybill\\ZUGFeRD2\\": "tests/zugferd2"
     }
   },
   "config": {

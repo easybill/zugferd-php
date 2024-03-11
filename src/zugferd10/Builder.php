@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Easybill\ZUGFeRD;
 
 use Easybill\ZUGFeRD\Model\Document;
@@ -8,11 +10,8 @@ use JMS\Serializer\SerializerInterface;
 
 class Builder
 {
-    private $serializer;
-
-    public function __construct(SerializerInterface $serializer)
+    public function __construct(private readonly SerializerInterface $serializer)
     {
-        $this->serializer = $serializer;
     }
 
     public function getXML(Document $document): string
