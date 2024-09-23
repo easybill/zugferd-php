@@ -6,20 +6,12 @@ namespace Easybill\ZUGFeRD2\Tests\Legacy;
 
 use Easybill\ZUGFeRD2\Builder;
 use Easybill\ZUGFeRD2\Reader;
+use Easybill\ZUGFeRD2\Tests\Traits\ReformatXmlTrait;
 use PHPUnit\Framework\TestCase;
 
 class ReaderAndBuildTest extends TestCase
 {
-    public static function reformatXml(string $xml): string
-    {
-        $xml = preg_replace('/<!--(.|\s)*?-->/', '', $xml);
-
-        $doc = new \DOMDocument('1.0', 'UTF-8');
-        $doc->preserveWhiteSpace = false;
-        $doc->formatOutput = true;
-        $doc->loadXML($xml);
-        return $doc->saveXML();
-    }
+    use ReformatXmlTrait;
 
     /**
      * @before
