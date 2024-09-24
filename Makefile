@@ -17,7 +17,10 @@ test83:
 	docker run --rm -v $(current_dir):/app -w /app php:8.3 vendor/bin/phpunit
 
 cs-fix:
-	PHP_CS_FIXER_IGNORE_ENV=1 ./vendor/bin/php-cs-fixer fix --config .php-cs-fixer.dist.php
+	./vendor/bin/php-cs-fixer fix --config .php-cs-fixer.dist.php
+
+cs-fix-debug:
+	./vendor/bin/php-cs-fixer fix --verbose --dry-run --config .php-cs-fixer.dist.php
 
 phpstan:
 	./vendor/bin/phpstan analyse
