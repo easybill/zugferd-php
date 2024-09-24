@@ -42,7 +42,6 @@ class ReaderTest extends TestCase
             ->in(__DIR__ . '/Examples')
         ;
 
-
         $buffer = [];
         foreach ($finder as $file) {
             $buffer[$file->getFilename()] = [$file];
