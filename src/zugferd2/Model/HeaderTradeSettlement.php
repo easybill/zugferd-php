@@ -37,6 +37,13 @@ class HeaderTradeSettlement
     public ?TradeParty $payeeTradeParty = null;
 
     /**
+     * @var TradeCurrencyExchange[]
+     */
+    #[Type('array<Easybill\ZUGFeRD2\Model\TradeCurrencyExchange>')]
+    #[XmlList(entry: 'TaxApplicableTradeCurrencyExchange', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    public array $taxApplicableTradeCurrencyExchange = [];
+
+    /**
      * @var TradeSettlementPaymentMeans[]
      */
     #[Type('array<Easybill\ZUGFeRD2\Model\TradeSettlementPaymentMeans>')]
@@ -86,9 +93,7 @@ class HeaderTradeSettlement
     #[SerializedName('InvoiceReferencedDocument')]
     public ?ReferencedDocument $invoiceReferencedDocument = null;
 
-    /**
-     * @var TradeAccountingAccount[]
-     */
+    /** @var TradeAccountingAccount[] */
     #[Type('array<Easybill\ZUGFeRD2\Model\TradeAccountingAccount>')]
     #[XmlList(entry: 'ReceivableSpecifiedTradeAccountingAccount', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $receivableSpecifiedTradeAccountingAccount = [];
