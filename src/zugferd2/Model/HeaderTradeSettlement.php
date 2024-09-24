@@ -33,6 +33,11 @@ class HeaderTradeSettlement
 
     #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('InvoiceeTradeParty')]
+    public ?TradeParty $invoiceeTradeParty = null;
+
+    #[Type(TradeParty::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('PayeeTradeParty')]
     public ?TradeParty $payeeTradeParty = null;
 
