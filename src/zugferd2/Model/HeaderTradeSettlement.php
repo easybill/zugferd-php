@@ -80,4 +80,11 @@ class HeaderTradeSettlement
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('InvoiceReferencedDocument')]
     public ?ReferencedDocument $invoiceReferencedDocument = null;
+
+    /**
+     * @var TradeAccountingAccount[]
+     */
+    #[Type('array<Easybill\ZUGFeRD2\Model\TradeAccountingAccount>')]
+    #[XmlList(entry: 'ReceivableSpecifiedTradeAccountingAccount', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    public array $receivableSpecifiedTradeAccountingAccount = [];
 }
