@@ -23,6 +23,11 @@ class HeaderTradeSettlement
 
     #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('TaxCurrencyCode')]
+    public string $taxCurrencyCode;
+
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('InvoiceCurrencyCode')]
     public string $currency;
 
