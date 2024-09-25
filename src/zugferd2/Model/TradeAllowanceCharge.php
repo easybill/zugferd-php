@@ -33,6 +33,11 @@ class TradeAllowanceCharge
 
     #[JMS\Type('string')]
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[JMS\SerializedName('ReasonCode')]
+    public ?string $reasonCode = null;
+
+    #[JMS\Type('string')]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[JMS\SerializedName('Reason')]
     public ?string $reason = null;
 

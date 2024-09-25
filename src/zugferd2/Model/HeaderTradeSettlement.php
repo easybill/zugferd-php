@@ -23,13 +23,30 @@ class HeaderTradeSettlement
 
     #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('TaxCurrencyCode')]
+    public string $taxCurrencyCode;
+
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('InvoiceCurrencyCode')]
     public string $currency;
 
     #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('InvoiceeTradeParty')]
+    public ?TradeParty $invoiceeTradeParty = null;
+
+    #[Type(TradeParty::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('PayeeTradeParty')]
     public ?TradeParty $payeeTradeParty = null;
+
+    /**
+     * @var TradeCurrencyExchange[]
+     */
+    #[Type('array<Easybill\ZUGFeRD2\Model\TradeCurrencyExchange>')]
+    #[XmlList(entry: 'TaxApplicableTradeCurrencyExchange', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    public array $taxApplicableTradeCurrencyExchange = [];
 
     /**
      * @var TradeSettlementPaymentMeans[]
@@ -80,4 +97,9 @@ class HeaderTradeSettlement
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('InvoiceReferencedDocument')]
     public ?ReferencedDocument $invoiceReferencedDocument = null;
+
+    /** @var TradeAccountingAccount[] */
+    #[Type('array<Easybill\ZUGFeRD2\Model\TradeAccountingAccount>')]
+    #[XmlList(entry: 'ReceivableSpecifiedTradeAccountingAccount', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    public array $receivableSpecifiedTradeAccountingAccount = [];
 }

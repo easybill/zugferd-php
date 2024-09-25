@@ -1,10 +1,13 @@
 <?php
 
+use PhpCsFixer\Config;
+use PhpCsFixer\Finder;
 
-$finder = (new PhpCsFixer\Finder())
-    ->in([__DIR__ . '/src', __DIR__ . '/tests']);
+$finder = (new Finder())
+    ->in([__DIR__ . '/src', __DIR__ . '/tests'])
+;
 
-return (new PhpCsFixer\Config())
+return (new Config())
     ->setRiskyAllowed(false)
     ->setRules([
         '@PSR2' => true,

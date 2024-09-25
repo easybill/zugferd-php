@@ -10,6 +10,11 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class ExchangedDocumentContext
 {
+    #[Type(Indicator::class)]
+    #[XmlElement(namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('TestIndicator')]
+    public ?Indicator $testIndicator = null;
+
     #[Type(DocumentContextParameter::class)]
     #[XmlElement(namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('BusinessProcessSpecifiedDocumentContextParameter')]

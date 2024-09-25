@@ -18,6 +18,7 @@ use JMS\Serializer\Annotation\XmlList;
     'buyerTaxRepresentativeTradeParty',
     'buyerOrderReferencedDocument',
     'contractReferencedDocument',
+    'sellerOrderReferencedDocument',
     'additionalReferencedDocuments',
     'specifiedProcuringProject',
 ])]
@@ -62,6 +63,11 @@ class HeaderTradeAgreement
     #[Type('array<Easybill\ZUGFeRD2\Model\ReferencedDocument>')]
     #[XmlList(entry: 'AdditionalReferencedDocument', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $additionalReferencedDocuments = [];
+
+    #[Type(ReferencedDocument::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('SellerOrderReferencedDocument')]
+    public ?ReferencedDocument $sellerOrderReferencedDocument;
 
     #[Type(ProcuringProject::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
