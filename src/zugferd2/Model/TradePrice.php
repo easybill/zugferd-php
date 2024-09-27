@@ -19,7 +19,7 @@ class TradePrice
     public ?Quantity $basisQuantity = null;
 
     /** @var TradeAllowanceCharge[] */
-    #[JMS\Type('array<Easybill\ZUGFeRD2\Model\TradeAllowanceCharge>')]
+    #[JMS\Type('array<' . TradeAllowanceCharge::class . '>')]
     #[JMS\XmlList(entry: 'AppliedTradeAllowanceCharge', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $appliedTradeAllowanceCharges = [];
 

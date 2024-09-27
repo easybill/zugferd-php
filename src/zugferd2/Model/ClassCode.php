@@ -17,6 +17,11 @@ class ClassCode
     public ?string $listID = null;
 
     #[Type('string')]
+    #[XmlAttribute]
+    #[SerializedName('listVersionID')]
+    public string $listVersionID;
+
+    #[Type('string')]
     #[XmlValue(cdata: false)]
     public string $value;
 

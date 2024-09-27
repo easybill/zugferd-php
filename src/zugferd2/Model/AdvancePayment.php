@@ -8,25 +8,25 @@ use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 
-class TradeCurrencyExchange
+class AdvancePayment
 {
-    #[Type('string')]
+    #[Type(Amount::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('SourceCurrencyCode')]
-    public string $sourceCurrencyCode;
+    #[SerializedName('PaidAmount')]
+    public ?Amount $totalPrepaidAmount = null;
 
-    #[Type('string')]
+    #[Type(FormattedDateTime::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('TargetCurrencyCode')]
-    public string $targetCurrencyCode;
+    #[SerializedName('FormattedReceivedDateTime')]
+    public ?FormattedDateTime $formattedReceivedDateTime = null;
 
-    #[Type('float')]
+    #[Type(TradeTax::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('ConversionRate')]
-    public ?float $conversionRate = null;
+    #[SerializedName('IncludedTradeTax')]
+    public ?TradeTax $includedTradeTax = null;
 
-    #[Type(DateTime::class)]
+    #[Type(ReferencedDocument::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('ConversionRateDateTime')]
-    public ?DateTime $conversionRateDateTime = null;
+    #[SerializedName('InvoiceSpecifiedReferencedDocument')]
+    public ?ReferencedDocument $referencedDocument = null;
 }

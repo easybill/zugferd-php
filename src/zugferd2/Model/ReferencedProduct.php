@@ -7,10 +7,14 @@ namespace Easybill\ZUGFeRD2\Model;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
-use JMS\Serializer\Annotation\XmlList;
 
-class TradeProduct
+class ReferencedProduct
 {
+    #[Type(Id::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('ID')]
+    public ?Id $id = null;
+
     #[Type(Id::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('GlobalID')]
@@ -26,6 +30,11 @@ class TradeProduct
     #[SerializedName('BuyerAssignedID')]
     public ?Id $buyerAssignedID = null;
 
+    #[Type(Id::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('IndustryAssignedID')]
+    public ?Id $industryAssignedID = null;
+
     #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('Name')]
@@ -36,23 +45,8 @@ class TradeProduct
     #[SerializedName('Description')]
     public ?string $description = null;
 
-    /** @var ProductCharacteristic[] */
-    #[Type('array<' . ProductCharacteristic::class . '>')]
-    #[XmlList(entry: 'ApplicableProductCharacteristic', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    public array $applicableProductCharacteristic = [];
-
-    #[Type(ProductClassification::class)]
+    #[Type(Quantity::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('DesignatedProductClassification')]
-    public ?ProductClassification $designatedProductClassification = null;
-
-    #[Type(TradeCountry::class)]
-    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('OriginTradeCountry')]
-    public ?TradeCountry $tradeCountry = null;
-
-    /** @var ReferencedProduct[] */
-    #[Type('array<' . ReferencedProduct::class . '>')]
-    #[XmlList(entry: 'IncludedReferencedProduct', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    public array $includedReferencedProducts = [];
+    #[SerializedName('UnitQuantity')]
+    public ?Quantity $unitQuantity = null;
 }

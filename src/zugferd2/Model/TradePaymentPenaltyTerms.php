@@ -8,30 +8,30 @@ use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 
-class HeaderTradeDelivery
+class TradePaymentPenaltyTerms
 {
-    #[Type(TradeParty::class)]
+    #[Type(DateTime::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('ShipToTradeParty')]
-    public ?TradeParty $shipToTradeParty = null;
+    #[SerializedName('BasisDateTime')]
+    public ?DateTime $basisDateTime = null;
 
-    #[Type(SupplyChainEvent::class)]
+    #[Type(Measure::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('ActualDeliverySupplyChainEvent')]
-    public ?SupplyChainEvent $chainEvent = null;
+    #[SerializedName('BasisPeriodMeasure')]
+    public ?Measure $basisPeriodMeasure = null;
 
-    #[Type(ReferencedDocument::class)]
+    #[Type(Amount::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('DespatchAdviceReferencedDocument')]
-    public ?ReferencedDocument $despatchAdviceReferencedDocument = null;
+    #[SerializedName('BasisAmount')]
+    public ?Amount $basisAmount = null;
 
-    #[Type(ReferencedDocument::class)]
+    #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('ReceivingAdviceReferencedDocument')]
-    public ?ReferencedDocument $receivingAdviceReferencedDocument = null;
+    #[SerializedName('CalculationPercent')]
+    public ?string $calculationPercent = null;
 
-    #[Type(ReferencedDocument::class)]
+    #[Type(Amount::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('DeliveryNoteReferencedDocument')]
-    public ?ReferencedDocument $deliveryNoteReferencedDocument = null;
+    #[SerializedName('ActualPenaltyAmount')]
+    public ?Amount $actualPenaltyAmount = null;
 }

@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace Easybill\ZUGFeRD2\Model;
 
 use JMS\Serializer\Annotation as JMS;
-use JMS\Serializer\Annotation\AccessorOrder;
 
-#[AccessorOrder(order: 'custom', custom: ['calculatedAmount', 'typeCode', 'exemptionReason'])]
 class TradeTax
 {
     #[JMS\Type(Amount::class)]
@@ -19,6 +17,11 @@ class TradeTax
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[JMS\SerializedName('TypeCode')]
     public string $typeCode;
+
+    #[JMS\Type('string')]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[JMS\SerializedName('ExemptionReason')]
+    public ?string $exemptionReason = null;
 
     #[JMS\Type(Amount::class)]
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
@@ -47,16 +50,6 @@ class TradeTax
 
     #[JMS\Type('string')]
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[JMS\SerializedName('RateApplicablePercent')]
-    public ?string $rateApplicablePercent = null;
-
-    #[JMS\Type('string')]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[JMS\SerializedName('ExemptionReason')]
-    public ?string $exemptionReason = null;
-
-    #[JMS\Type('string')]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[JMS\SerializedName('ExemptionReasonCode')]
     public ?string $exemptionReasonCode = null;
 
@@ -69,6 +62,11 @@ class TradeTax
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[JMS\SerializedName('DueDateTypeCode')]
     public ?string $dueDateTypeCode = null;
+
+    #[JMS\Type('string')]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[JMS\SerializedName('RateApplicablePercent')]
+    public ?string $rateApplicablePercent = null;
 
     public static function create(
         string $typeCode,
