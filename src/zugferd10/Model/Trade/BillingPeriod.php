@@ -9,15 +9,13 @@ use JMS\Serializer\Annotation as JMS;
 
 class BillingPeriod
 {
-    public function __construct(#[JMS\Type(\Easybill\ZUGFeRD\Model\Date::class)]
+    public function __construct(#[JMS\Type(Date::class)]
         #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[JMS\SerializedName('StartDateTime')]
-        private Date $start, #[JMS\Type(\Easybill\ZUGFeRD\Model\Date::class)]
+        private Date $start, #[JMS\Type(Date::class)]
         #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[JMS\SerializedName('EndDateTime')]
-        private Date $end)
-    {
-    }
+        private Date $end) {}
 
     /**
      * @return Date

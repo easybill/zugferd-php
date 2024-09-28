@@ -10,9 +10,7 @@ use JMS\Serializer\SerializerInterface;
 
 class Reader
 {
-    public function __construct(private readonly SerializerInterface $serializer)
-    {
-    }
+    public function __construct(private readonly SerializerInterface $serializer) {}
 
     public function getDocument(string $xml): Document
     {

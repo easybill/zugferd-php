@@ -39,8 +39,7 @@ class CreditorFinancialInstitution
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('Name')]
         private $name
-    ) {
-    }
+    ) {}
 
     /**
      * @return string

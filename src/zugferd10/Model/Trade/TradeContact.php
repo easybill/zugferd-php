@@ -33,7 +33,7 @@ class TradeContact
         public ?string $personName = null, #[Type('string')]
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('DepartmentName')]
-        public ?string $departmentName = null, UniversalCommunication $telephoneUniversalCommunication = null, UniversalCommunication $faxUniversalCommunication = null, UniversalCommunication $emailURIUniversalCommunication = null)
+        public ?string $departmentName = null, ?UniversalCommunication $telephoneUniversalCommunication = null, ?UniversalCommunication $faxUniversalCommunication = null, ?UniversalCommunication $emailURIUniversalCommunication = null)
     {
         $this->telephoneUniversalCommunication = $telephoneUniversalCommunication;
         $this->faxUniversalCommunication = $faxUniversalCommunication;

@@ -17,12 +17,10 @@ class PaymentTerms
     public function __construct(#[JMS\Type('string')]
         #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[JMS\SerializedName('Description')]
-        private $description, #[JMS\Type(\Easybill\ZUGFeRD\Model\Date::class)]
+        private $description, #[JMS\Type(Date::class)]
         #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[JMS\SerializedName('DueDateDateTime')]
-        private Date $dueDate)
-    {
-    }
+        private Date $dueDate) {}
 
     /**
      * @return string
@@ -41,7 +39,7 @@ class PaymentTerms
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Date
+     * @return Date
      */
     public function getDueDate()
     {
@@ -49,7 +47,7 @@ class PaymentTerms
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Date $dueDate
+     * @param Date $dueDate
      */
     public function setDueDate($dueDate)
     {

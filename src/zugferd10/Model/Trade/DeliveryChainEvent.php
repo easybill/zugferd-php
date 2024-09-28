@@ -14,7 +14,7 @@ class DeliveryChainEvent
     /**
      * @var Date
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Date::class)]
+    #[Type(Date::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('OccurrenceDateTime')]
     private $date;
@@ -31,7 +31,7 @@ class DeliveryChainEvent
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Date
+     * @return Date
      */
     public function getDate()
     {
@@ -39,7 +39,7 @@ class DeliveryChainEvent
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Date $date
+     * @param Date $date
      */
     public function setDate($date)
     {

@@ -13,7 +13,7 @@ class Delivery
     /**
      * @var TradeParty
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\TradeParty::class)]
+    #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('ShipToTradeParty')]
     private $shipToTradeParty;
@@ -21,7 +21,7 @@ class Delivery
     /**
      * @var TradeParty
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\TradeParty::class)]
+    #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('UltimateShipToTradeParty')]
     private $ultimateShipToTradeParty;
@@ -29,7 +29,7 @@ class Delivery
     /**
      * @var TradeParty
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\TradeParty::class)]
+    #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('ShipFromTradeParty')]
     private $shipFromTradeParty;
@@ -37,7 +37,7 @@ class Delivery
     /**
      * @var DeliveryChainEvent
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\DeliveryChainEvent::class)]
+    #[Type(DeliveryChainEvent::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('ActualDeliverySupplyChainEvent')]
     private $chainEvent;
@@ -54,7 +54,7 @@ class Delivery
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\DeliveryChainEvent
+     * @return DeliveryChainEvent
      */
     public function getChainEvent()
     {
@@ -62,7 +62,7 @@ class Delivery
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\DeliveryChainEvent $chainEvent
+     * @param DeliveryChainEvent $chainEvent
      */
     public function setChainEvent($chainEvent)
     {
@@ -70,7 +70,7 @@ class Delivery
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\TradeParty
+     * @return TradeParty
      */
     public function getShipToTradeParty()
     {
@@ -87,7 +87,7 @@ class Delivery
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\TradeParty
+     * @return TradeParty
      */
     public function getUltimateShipToTradeParty()
     {
@@ -104,7 +104,7 @@ class Delivery
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\TradeParty
+     * @return TradeParty
      */
     public function getShipFromTradeParty()
     {

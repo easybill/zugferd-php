@@ -10,12 +10,11 @@ use JMS\Serializer\SerializerInterface;
 
 class Reader
 {
-    public function __construct(private readonly SerializerInterface $serializer)
-    {
-    }
+    public function __construct(private readonly SerializerInterface $serializer) {}
 
     public function transform(string $xml): CrossIndustryInvoice
     {
+        // @phpstan-ignore-next-line
         return $this->serializer->deserialize($xml, CrossIndustryInvoice::class, 'xml');
     }
 

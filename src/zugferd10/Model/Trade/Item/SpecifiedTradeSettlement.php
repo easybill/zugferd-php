@@ -14,7 +14,7 @@ class SpecifiedTradeSettlement
     /**
      * @var TradeTax
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax::class)]
+    #[Type(TradeTax::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('ApplicableTradeTax')]
     private $tradeTax;
@@ -22,13 +22,13 @@ class SpecifiedTradeSettlement
     /**
      * @var SpecifiedTradeMonetarySummation
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeMonetarySummation::class)]
+    #[Type(SpecifiedTradeMonetarySummation::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('SpecifiedTradeSettlementMonetarySummation')]
     private $monetarySummation;
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax
+     * @return TradeTax
      */
     public function getTradeTax()
     {
@@ -36,7 +36,7 @@ class SpecifiedTradeSettlement
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax $tradeTax
+     * @param TradeTax $tradeTax
      *
      * @return self
      */
@@ -47,7 +47,7 @@ class SpecifiedTradeSettlement
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeMonetarySummation
+     * @return SpecifiedTradeMonetarySummation
      */
     public function getMonetarySummation()
     {
@@ -55,7 +55,7 @@ class SpecifiedTradeSettlement
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeMonetarySummation $monetarySummation
+     * @param SpecifiedTradeMonetarySummation $monetarySummation
      *
      * @return self
      */

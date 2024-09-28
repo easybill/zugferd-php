@@ -13,7 +13,7 @@ class TaxRegistration
     /**
      * @var Registration
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\Tax\Registration::class)]
+    #[Type(Registration::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('ID')]
     private $registration;
@@ -30,7 +30,7 @@ class TaxRegistration
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\Tax\Registration
+     * @return Registration
      */
     public function getRegistration()
     {

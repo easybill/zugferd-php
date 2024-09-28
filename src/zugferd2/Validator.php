@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Easybill\ZUGFeRD2;
 
+use DOMDocument;
+
 class Validator
 {
     public const SCHEMA_BASIC = __DIR__ . '/Schema/BASIC/Factur-X_1.0.07_BASIC.xsd';
@@ -14,7 +16,7 @@ class Validator
 
     public function validateAgainstXsd(string $xml, string $schemaFile): ?string
     {
-        $domDoc = new \DOMDocument();
+        $domDoc = new DOMDocument();
         $domDoc->loadXML($xml);
 
         try {

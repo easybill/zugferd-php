@@ -13,7 +13,7 @@ class Date
     /**
      * @var DateTime
      */
-    #[Type(\Easybill\ZUGFeRD\Model\DateTime::class)]
+    #[Type(DateTime::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15')]
     #[SerializedName('DateTimeString')]
     private $date;

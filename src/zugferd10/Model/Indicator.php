@@ -19,9 +19,7 @@ class Indicator
     public function __construct(#[JMS\Type('boolean')]
         #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15')]
         #[JMS\SerializedName('Indicator')]
-        private $indicator)
-    {
-    }
+        private $indicator) {}
 
     /**
      * @return bool

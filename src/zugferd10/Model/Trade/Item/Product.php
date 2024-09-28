@@ -38,9 +38,7 @@ class Product
         private string $name, #[Type('string')]
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('Description')]
-        private mixed $description = null)
-    {
-    }
+        private mixed $description = null) {}
 
     /**
      * @return string

@@ -22,9 +22,7 @@ class Registration
         #[SerializedName('schemeID')]
         private $schemeID, #[Type('string')]
         #[XmlValue(cdata: false)]
-        private $value = '')
-    {
-    }
+        private $value = '') {}
 
     /**
      * @return string

@@ -21,7 +21,7 @@ trait AssertXmlOutputTrait
         $result = (new Validator())->validateAgainstXsd($xml, $validatorSchema);
         self::assertNull($result, $result ?? '');
 
-        $referenceFile = file_get_contents($referenceFilePath);
+        $referenceFile = (string)file_get_contents($referenceFilePath);
         $referenceFile = ReaderAndBuildTest::reformatXml($referenceFile);
         self::assertEquals($referenceFile, $xml);
     }

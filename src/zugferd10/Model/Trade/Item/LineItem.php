@@ -13,7 +13,7 @@ class LineItem
     /**
      * @var LineDocument
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\Item\LineDocument::class)]
+    #[Type(LineDocument::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('AssociatedDocumentLineDocument')]
     private $lineDocument;
@@ -21,7 +21,7 @@ class LineItem
     /**
      * @var SpecifiedTradeAgreement
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeAgreement::class)]
+    #[Type(SpecifiedTradeAgreement::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('SpecifiedSupplyChainTradeAgreement')]
     private $tradeAgreement;
@@ -29,7 +29,7 @@ class LineItem
     /**
      * @var SpecifiedTradeDelivery
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeDelivery::class)]
+    #[Type(SpecifiedTradeDelivery::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('SpecifiedSupplyChainTradeDelivery')]
     private $delivery;
@@ -37,7 +37,7 @@ class LineItem
     /**
      * @var SpecifiedTradeSettlement
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeSettlement::class)]
+    #[Type(SpecifiedTradeSettlement::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('SpecifiedSupplyChainTradeSettlement')]
     private $settlement;
@@ -45,13 +45,13 @@ class LineItem
     /**
      * @var Product
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\Item\Product::class)]
+    #[Type(Product::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('SpecifiedTradeProduct')]
     private $product;
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\Item\LineDocument
+     * @return LineDocument
      */
     public function getLineDocument()
     {
@@ -68,7 +68,7 @@ class LineItem
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeAgreement
+     * @return SpecifiedTradeAgreement
      */
     public function getTradeAgreement()
     {
@@ -76,7 +76,7 @@ class LineItem
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeAgreement $tradeAgreement
+     * @param SpecifiedTradeAgreement $tradeAgreement
      *
      * @return self
      */
@@ -87,7 +87,7 @@ class LineItem
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeDelivery
+     * @return SpecifiedTradeDelivery
      */
     public function getDelivery()
     {
@@ -95,7 +95,7 @@ class LineItem
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeDelivery $delivery
+     * @param SpecifiedTradeDelivery $delivery
      *
      * @return self
      */
@@ -106,7 +106,7 @@ class LineItem
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeSettlement
+     * @return SpecifiedTradeSettlement
      */
     public function getSettlement()
     {
@@ -114,7 +114,7 @@ class LineItem
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\Item\SpecifiedTradeSettlement $settlement
+     * @param SpecifiedTradeSettlement $settlement
      *
      * @return self
      */
@@ -125,7 +125,7 @@ class LineItem
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\Item\Product
+     * @return Product
      */
     public function getProduct()
     {

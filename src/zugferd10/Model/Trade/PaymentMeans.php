@@ -29,7 +29,7 @@ class PaymentMeans
     /**
      * @var CreditorFinancialAccount
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\CreditorFinancialAccount::class)]
+    #[Type(CreditorFinancialAccount::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('PayeePartyCreditorFinancialAccount')]
     private $payeeAccount;
@@ -37,7 +37,7 @@ class PaymentMeans
     /**
      * @var CreditorFinancialInstitution
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\CreditorFinancialInstitution::class)]
+    #[Type(CreditorFinancialInstitution::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('PayeeSpecifiedCreditorFinancialInstitution')]
     private $payeeInstitution;
@@ -82,7 +82,7 @@ class PaymentMeans
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\CreditorFinancialInstitution
+     * @return CreditorFinancialInstitution
      */
     public function getPayeeInstitution()
     {
@@ -90,7 +90,7 @@ class PaymentMeans
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\CreditorFinancialInstitution $payeeInstitution
+     * @param CreditorFinancialInstitution $payeeInstitution
      *
      * @return self
      */

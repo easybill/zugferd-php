@@ -24,7 +24,7 @@ class TradePrice
     public array $appliedTradeAllowanceCharges = [];
 
     /** @param array<TradeAllowanceCharge> $tradeAllowanceCharge */
-    public static function create(string $amount, Quantity $quantity = null, array $tradeAllowanceCharge = []): self
+    public static function create(string $amount, ?Quantity $quantity = null, array $tradeAllowanceCharge = []): self
     {
         $self = new self();
         $self->chargeAmount = Amount::create($amount);

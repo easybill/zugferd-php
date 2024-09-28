@@ -362,7 +362,7 @@ class ProfileXRechnungTest extends TestCase
         $additionalReferencedDocument->attachmentBinaryObject = $additionalReferencedDocumentBinaryObject = new BinaryObject();
         $additionalReferencedDocumentBinaryObject->filename = 'Hotelrechnung-Immo.pdf';
         $additionalReferencedDocumentBinaryObject->mimeCode = 'application/pdf';
-        $additionalReferencedDocumentBinaryObject->value = base64_encode(file_get_contents(__DIR__ . '/Examples/XRECHNUNG/Attachments/EN16931_Betriebskostenabrechnung_Abrechnung 2010.pdf'));
+        $additionalReferencedDocumentBinaryObject->value = base64_encode((string)file_get_contents(__DIR__ . '/Examples/XRECHNUNG/Attachments/EN16931_Betriebskostenabrechnung_Abrechnung 2010.pdf'));
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = new HeaderTradeSettlement();
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->currency = 'EUR';
@@ -507,7 +507,7 @@ class ProfileXRechnungTest extends TestCase
         $additionalReferencedDocument->attachmentBinaryObject = $additionalReferencedDocumentBinaryObject = new BinaryObject();
         $additionalReferencedDocumentBinaryObject->filename = 'Betriebskostenabrechnung.pdf';
         $additionalReferencedDocumentBinaryObject->mimeCode = 'application/pdf';
-        $additionalReferencedDocumentBinaryObject->value = base64_encode(file_get_contents(__DIR__ . '/Examples/XRECHNUNG/Attachments/EN16931_Betriebskostenabrechnung_Abrechnung 2010.pdf'));
+        $additionalReferencedDocumentBinaryObject->value = base64_encode((string)file_get_contents(__DIR__ . '/Examples/XRECHNUNG/Attachments/EN16931_Betriebskostenabrechnung_Abrechnung 2010.pdf'));
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = new HeaderTradeSettlement();
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->currency = 'EUR';

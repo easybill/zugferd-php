@@ -12,7 +12,7 @@ class TradeTax
     /**
      * @var Amount
      */
-    #[JMS\Type(\Easybill\ZUGFeRD\Model\Trade\Amount::class)]
+    #[JMS\Type(Amount::class)]
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[JMS\SerializedName('CalculatedAmount')]
     private $calculatedAmount;
@@ -36,7 +36,7 @@ class TradeTax
     /**
      * @var Amount
      */
-    #[JMS\Type(\Easybill\ZUGFeRD\Model\Trade\Amount::class)]
+    #[JMS\Type(Amount::class)]
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[JMS\SerializedName('BasisAmount')]
     private $basisAmount;
@@ -44,7 +44,7 @@ class TradeTax
     /**
      * @var Amount
      */
-    #[JMS\Type(\Easybill\ZUGFeRD\Model\Trade\Amount::class)]
+    #[JMS\Type(Amount::class)]
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[JMS\SerializedName('LineTotalBasisAmount')]
     private $lineTotalBasisAmount;
@@ -52,7 +52,7 @@ class TradeTax
     /**
      * @var Amount
      */
-    #[JMS\Type(\Easybill\ZUGFeRD\Model\Trade\Amount::class)]
+    #[JMS\Type(Amount::class)]
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[JMS\SerializedName('AllowanceChargeBasisAmount')]
     private $allowanceChargeBasisAmount;

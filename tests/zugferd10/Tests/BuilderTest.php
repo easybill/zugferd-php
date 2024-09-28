@@ -41,6 +41,7 @@ use Easybill\ZUGFeRD\Model\Trade\TradeContact;
 use Easybill\ZUGFeRD\Model\Trade\UniversalCommunication;
 use Easybill\ZUGFeRD\SchemaValidator;
 use PHPUnit\Framework\TestCase;
+use DateTime;
 
 class BuilderTest extends TestCase
 {
@@ -58,7 +59,7 @@ class BuilderTest extends TestCase
         $doc->getHeader()
             ->setId('RE1337')
             ->setName('RECHNUNG')
-            ->setDate(new Date(new \DateTime('20130305'), 102))
+            ->setDate(new Date(new DateTime('20130305'), 102))
             ->addNote(new Note('Test Node 1'))
             ->addNote(new Note('Test Node 2'))
             ->addNote(new Note('easybill GmbH
