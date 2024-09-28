@@ -12,15 +12,11 @@ class TradeCountry
 {
     /**
      * Trade Country constructor.
-     *
-     * @param string $description
      */
     public function __construct(#[Type('string')]
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('ID')]
-        private string $id)
-    {
-    }
+        private string $id) {}
 
     /**
      * @return string

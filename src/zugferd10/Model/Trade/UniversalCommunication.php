@@ -20,7 +20,7 @@ class UniversalCommunication
     #[SerializedName('URIID')]
     public $uriid;
 
-    public function __construct(string $completeNumber = null, string $uriid = null)
+    public function __construct(?string $completeNumber = null, ?string $uriid = null)
     {
         $this->completeNumber = $completeNumber;
         $this->uriid = $uriid;

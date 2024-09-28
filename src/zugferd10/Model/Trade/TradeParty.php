@@ -50,7 +50,7 @@ class TradeParty
      */
         #[Type('array<Easybill\ZUGFeRD\Model\Trade\Tax\TaxRegistration>')]
         #[XmlList(inline: true, entry: 'SpecifiedTaxRegistration', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
-        private array $taxRegistrations = [], TradeContact $definedTradeContact = null)
+        private array $taxRegistrations = [], ?TradeContact $definedTradeContact = null)
     {
         $this->definedTradeContact = $definedTradeContact;
     }
@@ -146,7 +146,7 @@ class TradeParty
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\Tax\TradeContact
+     * @return Tax\TradeContact
      */
     public function getDefinedTradeContact()
     {

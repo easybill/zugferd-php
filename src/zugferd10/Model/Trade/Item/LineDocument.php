@@ -24,9 +24,7 @@ class LineDocument
     public function __construct(#[Type('string')]
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('LineID')]
-        private string $lineId = '')
-    {
-    }
+        private string $lineId = '') {}
 
     /**
      * @return string

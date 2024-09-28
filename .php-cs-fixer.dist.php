@@ -8,6 +8,7 @@ $finder = (new Finder())
 ;
 
 return (new Config())
+    ->setParallelConfig(PhpCsFixer\Runner\Parallel\ParallelConfigFactory::detect())
     ->setRiskyAllowed(false)
     ->setRules([
         '@PSR2' => true,

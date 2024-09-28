@@ -13,7 +13,7 @@ class Price
     /**
      * @var Amount
      */
-    #[JMS\Type(\Easybill\ZUGFeRD\Model\Trade\Amount::class)]
+    #[JMS\Type(Amount::class)]
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[JMS\SerializedName('ChargeAmount')]
     private $amount;
@@ -21,7 +21,7 @@ class Price
     /**
      * @var Quantity
      */
-    #[JMS\Type(\Easybill\ZUGFeRD\Model\Trade\Item\Quantity::class)]
+    #[JMS\Type(Quantity::class)]
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[JMS\SerializedName('BasisQuantity')]
     private $quantity;
@@ -46,7 +46,7 @@ class Price
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\Amount
+     * @return Amount
      */
     public function getAmount()
     {
@@ -54,7 +54,7 @@ class Price
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\Amount $amount
+     * @param Amount $amount
      */
     public function setAmount($amount)
     {
