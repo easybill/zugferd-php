@@ -8,3 +8,4 @@ vendor
 .php-cs-fixer.cache
 .vscode
 composer.phar
+/composer.lock
