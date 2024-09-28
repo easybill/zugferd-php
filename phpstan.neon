@@ -2,5 +2,7 @@ parameters:
     level: 8
     paths:
         - 'src'
+        - 'tests'
     excludePaths:
         - 'src/zugferd10'
+        - 'tests/zugferd10'
