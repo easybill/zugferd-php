@@ -7,6 +7,7 @@ namespace Easybill\ZUGFeRD\Model;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
+use RuntimeException;
 
 /**
  * Class Note.
@@ -79,7 +80,7 @@ class Note
             && $subjectCode !== 'AAJ'
             && $subjectCode !== 'PMT'
         ) {
-            throw new \RuntimeException('Invalid subject code! Please set it to null or to an empty string, REG, AAK, AAJ, PMT or ');
+            throw new RuntimeException('Invalid subject code! Please set it to null or to an empty string, REG, AAK, AAJ, PMT or ');
         }
 
         $this->subjectCode = $subjectCode;

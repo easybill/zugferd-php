@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Easybill\ZUGFeRD;
 
+use DOMDocument;
+
 class SchemaValidator
 {
     /**
@@ -11,7 +13,7 @@ class SchemaValidator
      */
     public static function isValid(string $xml): bool
     {
-        $xmlValidate = new \DOMDocument();
+        $xmlValidate = new DOMDocument();
         $xmlValidate->loadXML($xml);
         return $xmlValidate->schemaValidate(__DIR__ . '/Assets/Schema/ZUGFeRD1p0.xsd');
     }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Easybill\ZUGFeRD\Model;
 
 use JMS\Serializer\Annotation as JMS;
+use RuntimeException;
 
 class DateTime
 {
@@ -30,7 +31,7 @@ class DateTime
     public function __construct($time, $format = 102)
     {
         if ($format !== 102 && $format !== 610 && $format !== 616) {
-            throw new \RuntimeException('Invalid format! Please set it to: 102, 610 or 616');
+            throw new RuntimeException('Invalid format! Please set it to: 102, 610 or 616');
         }
 
         if ($time instanceof \DateTime) {
@@ -38,7 +39,7 @@ class DateTime
         } elseif (is_string($time)) {
             $dateTime = new \DateTime($time);
         } else {
-            throw new \RuntimeException('Invalid date! it must be an instance of \DateTime or must be a string!');
+            throw new RuntimeException('Invalid date! it must be an instance of \DateTime or must be a string!');
         }
 
         $formatStr = match ($format) {

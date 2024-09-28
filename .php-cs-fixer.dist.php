@@ -28,6 +28,7 @@ return (new Config())
         'yoda_style' => false,
         'ordered_class_elements' => false,
         'ordered_imports' => false,
+        'global_namespace_import' => ['import_functions' => true],
         // 'method_argument_space' => null,
         // 'no_whitespace_in_blank_line' => null,
         // 'no_extra_blank_lines' => null,
