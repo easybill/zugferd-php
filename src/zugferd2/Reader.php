@@ -16,6 +16,7 @@ class Reader
 
     public function transform(string $xml): CrossIndustryInvoice
     {
+        // @phpstan-ignore-next-line
         return $this->serializer->deserialize($xml, CrossIndustryInvoice::class, 'xml');
     }
 
