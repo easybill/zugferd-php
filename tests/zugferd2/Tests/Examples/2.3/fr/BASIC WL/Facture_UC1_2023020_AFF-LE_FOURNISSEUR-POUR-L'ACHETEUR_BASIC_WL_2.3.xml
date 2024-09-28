@@ -1,0 +1,208 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<rsm:CrossIndustryInvoice xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100"
+xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100"
+xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100"
+xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+     <rsm:ExchangedDocumentContext>
+          <ram:BusinessProcessSpecifiedDocumentContextParameter>
+               <ram:ID>S1</ram:ID>
+          </ram:BusinessProcessSpecifiedDocumentContextParameter>
+          <ram:GuidelineSpecifiedDocumentContextParameter>
+               <ram:ID>urn:factur-x.eu:1p0:basicwl</ram:ID>
+          </ram:GuidelineSpecifiedDocumentContextParameter>
+     </rsm:ExchangedDocumentContext>
+     <rsm:ExchangedDocument>
+          <ram:ID>UC1_2023020_AFF</ram:ID>
+          <ram:TypeCode>393</ram:TypeCode>
+          <ram:IssueDateTime>
+               <udt:DateTimeString format="102">20230101</udt:DateTimeString>
+          </ram:IssueDateTime>
+          <ram:IncludedNote>
+               <ram:Content>FOURNISSEUR F SARL au capital de 50 000 EUR</ram:Content>
+               <ram:SubjectCode>REG</ram:SubjectCode>
+          </ram:IncludedNote>
+          <ram:IncludedNote>
+               <ram:Content>Tout retard de paiement engendre une pénalité exigible à compter de la date d'échéance, calculée sur la base de trois fois le taux d'intérêt légal.</ram:Content>
+               <ram:SubjectCode>PMD</ram:SubjectCode>
+          </ram:IncludedNote>
+          <ram:IncludedNote>
+               <ram:Content>Indemnité forfaitaire pour frais de recouvrement en cas de retard de paiement : 40 €.</ram:Content>
+               <ram:SubjectCode>PMT</ram:SubjectCode>
+          </ram:IncludedNote>
+          <ram:IncludedNote>
+               <ram:Content>Les réglements reçus avant la date d'échéance ne donneront pas lieu à escompte.</ram:Content>
+               <ram:SubjectCode>AAB</ram:SubjectCode>
+          </ram:IncludedNote>
+          <ram:IncludedNote>
+               <ram:Content>RCS PARIS 987 654 324 - NAF xxxxx</ram:Content>
+               <ram:SubjectCode>ABL</ram:SubjectCode>
+          </ram:IncludedNote>
+          <ram:IncludedNote>
+               <ram:Content>Mon adresse dans ma ville - contact@moifournisseur.fr - www.moifournisseur.com</ram:Content>
+               <ram:SubjectCode>AAI</ram:SubjectCode>
+          </ram:IncludedNote>
+          <ram:IncludedNote>
+               <ram:Content>MENTION SUBROGATION - CONTRAT N° XXXXX</ram:Content>
+               <ram:SubjectCode>ACC</ram:SubjectCode>
+          </ram:IncludedNote>
+     </rsm:ExchangedDocument>
+     <rsm:SupplyChainTradeTransaction>
+          <ram:ApplicableHeaderTradeAgreement>
+               <ram:BuyerReference>BuyerReference - ID Service interne - BU</ram:BuyerReference>
+               <ram:SellerTradeParty>
+                    <ram:GlobalID schemeID="0009">10000000900017</ram:GlobalID>
+                    <ram:Name>LE FOURNISSEUR</ram:Name>
+                    <ram:SpecifiedLegalOrganization>
+                         <ram:ID schemeID="0002">100000009</ram:ID>
+                         <ram:TradingBusinessName>SELLER TRADE NAME</ram:TradingBusinessName>
+                    </ram:SpecifiedLegalOrganization>
+                    <ram:PostalTradeAddress>
+                         <ram:PostcodeCode>29000</ram:PostcodeCode>
+                         <ram:LineOne>1, rue du fournisseur</ram:LineOne>
+                         <ram:LineTwo>Cour du fournisseur</ram:LineTwo>
+                         <ram:LineThree>BATIMENT DU FOURNISSEUR</ram:LineThree>
+                         <ram:CityName>Quimper</ram:CityName>
+                         <ram:CountryID>FR</ram:CountryID>
+                    </ram:PostalTradeAddress>
+                    <ram:URIUniversalCommunication>
+                         <ram:URIID schemeID="0225">100000009_00017_VendeurCanal1</ram:URIID>
+                    </ram:URIUniversalCommunication>
+                    <ram:SpecifiedTaxRegistration>
+                         <ram:ID schemeID="VA">FR88100000009</ram:ID>
+                    </ram:SpecifiedTaxRegistration>
+               </ram:SellerTradeParty>
+               <ram:BuyerTradeParty>
+                    <ram:GlobalID schemeID="0009">20000000800025</ram:GlobalID>
+                    <ram:Name>L'ACHETEUR</ram:Name>
+                    <ram:SpecifiedLegalOrganization>
+                         <ram:ID schemeID="0002">200000008</ram:ID>
+                    </ram:SpecifiedLegalOrganization>
+                    <ram:PostalTradeAddress>
+                         <ram:PostcodeCode>38000</ram:PostcodeCode>
+                         <ram:LineOne>1, rue de l'acheteur</ram:LineOne>
+                         <ram:LineTwo>Cour de l'acheteur</ram:LineTwo>
+                         <ram:LineThree>BATIMENT DE L'ACHETEUR</ram:LineThree>
+                         <ram:CityName>Grenoble</ram:CityName>
+                         <ram:CountryID>FR</ram:CountryID>
+                    </ram:PostalTradeAddress>
+                    <ram:URIUniversalCommunication>
+                         <ram:URIID schemeID="0225">200000008_00025_AcheteurCanal1</ram:URIID>
+                    </ram:URIUniversalCommunication>
+                    <ram:SpecifiedTaxRegistration>
+                         <ram:ID schemeID="VA">FR37200000008</ram:ID>
+                    </ram:SpecifiedTaxRegistration>
+               </ram:BuyerTradeParty>
+               <ram:BuyerOrderReferencedDocument>
+                    <ram:IssuerAssignedID>ACHETEUR_BC001</ram:IssuerAssignedID>
+               </ram:BuyerOrderReferencedDocument>
+               <ram:ContractReferencedDocument>
+                    <ram:IssuerAssignedID>CT2018120802</ram:IssuerAssignedID>
+               </ram:ContractReferencedDocument>
+          </ram:ApplicableHeaderTradeAgreement>
+          <ram:ApplicableHeaderTradeDelivery>
+               <ram:ShipToTradeParty>
+                    <ram:GlobalID schemeID="0088">1234567890128</ram:GlobalID>
+                    <ram:Name>DEL Name</ram:Name>
+                    <ram:PostalTradeAddress>
+                         <ram:PostcodeCode>71000</ram:PostcodeCode>
+                         <ram:LineOne>DEL line 1</ram:LineOne>
+                         <ram:LineTwo>DEL line 2</ram:LineTwo>
+                         <ram:LineThree>BATIMENT DE LIVRAISON</ram:LineThree>
+                         <ram:CityName>Mâcon</ram:CityName>
+                         <ram:CountryID>FR</ram:CountryID>
+                    </ram:PostalTradeAddress>
+               </ram:ShipToTradeParty>
+               <ram:ActualDeliverySupplyChainEvent>
+                    <ram:OccurrenceDateTime>
+                         <udt:DateTimeString format="102">20230101</udt:DateTimeString>
+                    </ram:OccurrenceDateTime>
+               </ram:ActualDeliverySupplyChainEvent>
+               <ram:DespatchAdviceReferencedDocument>
+                    <ram:IssuerAssignedID>DESPADV002</ram:IssuerAssignedID>
+               </ram:DespatchAdviceReferencedDocument>
+          </ram:ApplicableHeaderTradeDelivery>
+          <ram:ApplicableHeaderTradeSettlement>
+               <ram:PaymentReference>200000008_UC1_2023020_AFF</ram:PaymentReference>
+               <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
+               <ram:PayeeTradeParty>
+                    <ram:GlobalID schemeID="0009">30000000700033</ram:GlobalID>
+                    <ram:Name>FACTOR</ram:Name>
+                    <ram:SpecifiedLegalOrganization>
+                         <ram:ID schemeID="0002">300000007</ram:ID>
+                    </ram:SpecifiedLegalOrganization>
+               </ram:PayeeTradeParty>
+               <ram:SpecifiedTradeSettlementPaymentMeans>
+                    <ram:TypeCode>30</ram:TypeCode>
+                    <ram:PayeePartyCreditorFinancialAccount>
+                         <ram:IBANID>FR20 1254 2547 2569 8542 5874 698</ram:IBANID>
+                    </ram:PayeePartyCreditorFinancialAccount>
+               </ram:SpecifiedTradeSettlementPaymentMeans>
+               <ram:ApplicableTradeTax>
+                    <ram:CalculatedAmount>36.00</ram:CalculatedAmount>
+                    <ram:TypeCode>VAT</ram:TypeCode>
+                    <ram:BasisAmount>180.00</ram:BasisAmount>
+                    <ram:CategoryCode>S</ram:CategoryCode>
+                    <ram:DueDateTypeCode>72</ram:DueDateTypeCode>
+                    <ram:RateApplicablePercent>20.00</ram:RateApplicablePercent>
+               </ram:ApplicableTradeTax>
+               <ram:BillingSpecifiedPeriod>
+                    <ram:StartDateTime>
+                         <udt:DateTimeString format="102">20230101</udt:DateTimeString>
+                    </ram:StartDateTime>
+                    <ram:EndDateTime>
+                         <udt:DateTimeString format="102">20230131</udt:DateTimeString>
+                    </ram:EndDateTime>
+               </ram:BillingSpecifiedPeriod>
+               <ram:SpecifiedTradeAllowanceCharge>
+                    <ram:ChargeIndicator>
+                         <udt:Indicator>false</udt:Indicator>
+                    </ram:ChargeIndicator>
+                    <ram:CalculationPercent>20.00</ram:CalculationPercent>
+                    <ram:BasisAmount>200.00</ram:BasisAmount>
+                    <ram:ActualAmount>40.00</ram:ActualAmount>
+                    <ram:ReasonCode>100</ram:ReasonCode>
+                    <ram:Reason>Remise commerciale</ram:Reason>
+                    <ram:CategoryTradeTax>
+                         <ram:TypeCode>VAT</ram:TypeCode>
+                         <ram:CategoryCode>S</ram:CategoryCode>
+                         <ram:RateApplicablePercent>20.00</ram:RateApplicablePercent>
+                    </ram:CategoryTradeTax>
+               </ram:SpecifiedTradeAllowanceCharge>
+               <ram:SpecifiedTradeAllowanceCharge>
+                    <ram:ChargeIndicator>
+                         <udt:Indicator>true</udt:Indicator>
+                    </ram:ChargeIndicator>
+                    <ram:CalculationPercent>10.00</ram:CalculationPercent>
+                    <ram:BasisAmount>200.00</ram:BasisAmount>
+                    <ram:ActualAmount>20.00</ram:ActualAmount>
+                    <ram:ReasonCode>AAA</ram:ReasonCode>
+                    <ram:Reason>Frais télécommunication</ram:Reason>
+                    <ram:CategoryTradeTax>
+                         <ram:TypeCode>VAT</ram:TypeCode>
+                         <ram:CategoryCode>S</ram:CategoryCode>
+                         <ram:RateApplicablePercent>20.00</ram:RateApplicablePercent>
+                    </ram:CategoryTradeTax>
+               </ram:SpecifiedTradeAllowanceCharge>
+               <ram:SpecifiedTradePaymentTerms>
+                    <ram:Description> 30 JOURS NETS</ram:Description>
+                    <ram:DueDateDateTime>
+                         <udt:DateTimeString format="102">20230130</udt:DateTimeString>
+                    </ram:DueDateDateTime>
+               </ram:SpecifiedTradePaymentTerms>
+               <ram:SpecifiedTradeSettlementHeaderMonetarySummation>
+                    <ram:LineTotalAmount>200.00</ram:LineTotalAmount>
+                    <ram:ChargeTotalAmount>20.00</ram:ChargeTotalAmount>
+                    <ram:AllowanceTotalAmount>40.00</ram:AllowanceTotalAmount>
+                    <ram:TaxBasisTotalAmount>180.00</ram:TaxBasisTotalAmount>
+                    <ram:TaxTotalAmount currencyID="EUR">36.00</ram:TaxTotalAmount>
+                    <ram:GrandTotalAmount>216.00</ram:GrandTotalAmount>
+                    <ram:TotalPrepaidAmount>0.00</ram:TotalPrepaidAmount>
+                    <ram:DuePayableAmount>216.00</ram:DuePayableAmount>
+               </ram:SpecifiedTradeSettlementHeaderMonetarySummation>
+               <ram:ReceivableSpecifiedTradeAccountingAccount>
+                    <ram:ID>BuyerAccountRef</ram:ID>
+               </ram:ReceivableSpecifiedTradeAccountingAccount>
+          </ram:ApplicableHeaderTradeSettlement>
+     </rsm:SupplyChainTradeTransaction>
+</rsm:CrossIndustryInvoice>
