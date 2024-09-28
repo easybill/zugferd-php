@@ -22,11 +22,16 @@ class HeaderTradeDelivery
 
     #[Type(ReferencedDocument::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('DeliveryNoteReferencedDocument')]
-    public ?ReferencedDocument $deliveryNoteReferencedDocument = null;
+    #[SerializedName('DespatchAdviceReferencedDocument')]
+    public ?ReferencedDocument $despatchAdviceReferencedDocument = null;
 
     #[Type(ReferencedDocument::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('DespatchAdviceReferencedDocument')]
-    public ?ReferencedDocument $despatchAdviceReferencedDocument = null;
+    #[SerializedName('ReceivingAdviceReferencedDocument')]
+    public ?ReferencedDocument $receivingAdviceReferencedDocument = null;
+
+    #[Type(ReferencedDocument::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('DeliveryNoteReferencedDocument')]
+    public ?ReferencedDocument $deliveryNoteReferencedDocument = null;
 }

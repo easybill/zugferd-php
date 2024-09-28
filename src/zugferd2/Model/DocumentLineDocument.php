@@ -19,7 +19,7 @@ class DocumentLineDocument
     public string $lineId;
 
     /** @var Note[] */
-    #[Type('array<Easybill\ZUGFeRD2\Model\Note>')]
+    #[Type('array<' . Note::class . '>')]
     #[XmlList(entry: 'IncludedNote', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $notes = [];
 

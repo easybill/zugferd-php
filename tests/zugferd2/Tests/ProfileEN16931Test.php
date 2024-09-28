@@ -70,7 +70,7 @@ class ProfileEN16931Test extends TestCase
         $item1->specifiedTradeProduct = new TradeProduct();
         $item1->specifiedTradeProduct->name = 'Trennblätter A4';
         $item1->specifiedTradeProduct->globalID = Id::create('4012345001235', '0160');
-        $item1->specifiedTradeProduct->sellerAssignedID = 'TB100A4';
+        $item1->specifiedTradeProduct->sellerAssignedID = Id::create('TB100A4');
 
         $item1->tradeAgreement = new LineTradeAgreement();
         $item1->tradeAgreement->grossPrice = TradePrice::create('9.9000');
@@ -92,7 +92,7 @@ class ProfileEN16931Test extends TestCase
         $item2->specifiedTradeProduct = new TradeProduct();
         $item2->specifiedTradeProduct->name = 'Joghurt Banane';
         $item2->specifiedTradeProduct->globalID = Id::create('4000050986428', '0160');
-        $item2->specifiedTradeProduct->sellerAssignedID = 'ARNR2';
+        $item2->specifiedTradeProduct->sellerAssignedID = Id::create('ARNR2');
 
         $item2->tradeAgreement = new LineTradeAgreement();
         $item2->tradeAgreement->grossPrice = TradePrice::create('5.5000');

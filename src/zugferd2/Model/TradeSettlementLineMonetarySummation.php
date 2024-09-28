@@ -20,7 +20,7 @@ class TradeSettlementLineMonetarySummation
     #[SerializedName('TotalAllowanceChargeAmount')]
     public ?Amount $totalAllowanceChargeAmount = null;
 
-    public static function create(string $totalAmount, string $totalAllowanceChargeAmount = null): self
+    public static function create(string $totalAmount, ?string $totalAllowanceChargeAmount = null): self
     {
         $self = new self();
         $self->totalAmount = Amount::create($totalAmount);

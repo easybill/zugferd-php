@@ -11,10 +11,8 @@ use JMS\Serializer\Annotation\XmlList;
 
 class SupplyChainTradeTransaction
 {
-    /**
-     * @var SupplyChainTradeLineItem[]
-     */
-    #[Type('array<Easybill\ZUGFeRD2\Model\SupplyChainTradeLineItem>')]
+    /** @var SupplyChainTradeLineItem[] */
+    #[Type('array<' . SupplyChainTradeLineItem::class . '>')]
     #[XmlList(entry: 'IncludedSupplyChainTradeLineItem', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $lineItems = [];
 

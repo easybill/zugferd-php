@@ -72,14 +72,14 @@ class ProfileExtendedTest extends TestCase
         $invoice->supplyChainTradeTransaction->lineItems[] = $item1 = new SupplyChainTradeLineItem();
         $item1->associatedDocumentLineDocument = DocumentLineDocument::create('1');
         $item1->specifiedTradeProduct = new TradeProduct();
-        $item1->specifiedTradeProduct->sellerAssignedID = 'CO-123/V2A';
-        $item1->specifiedTradeProduct->buyerAssignedID = 'Toolbox 0815';
+        $item1->specifiedTradeProduct->sellerAssignedID = Id::create('CO-123/V2A');
+        $item1->specifiedTradeProduct->buyerAssignedID = Id::create('Toolbox 0815');
         $item1->specifiedTradeProduct->name = 'Windschutzscheibe';
         $item1->specifiedTradeProduct->tradeCountry = TradeCountry::create('DE');
 
         $item1->tradeAgreement = new LineTradeAgreement();
         $item1->tradeAgreement->buyerOrderReferencedDocument = ReferencedDocument::create('ORDER84359');
-        $item1->tradeAgreement->buyerOrderReferencedDocument->lineId = '1';
+        $item1->tradeAgreement->buyerOrderReferencedDocument->lineId = Id::create('1');
 
         $item1->tradeAgreement->grossPrice = TradePrice::create('100', Quantity::create('1', 'H87'));
         $item1->tradeAgreement->netPrice = TradePrice::create('100', Quantity::create('1', 'H87'));
@@ -102,14 +102,14 @@ class ProfileExtendedTest extends TestCase
         $invoice->supplyChainTradeTransaction->lineItems[] = $item2 = new SupplyChainTradeLineItem();
         $item2->associatedDocumentLineDocument = DocumentLineDocument::create('2');
         $item2->specifiedTradeProduct = new TradeProduct();
-        $item2->specifiedTradeProduct->sellerAssignedID = 'IM-712/A2A';
-        $item2->specifiedTradeProduct->buyerAssignedID = 'BR-4529-ZF';
+        $item2->specifiedTradeProduct->sellerAssignedID = Id::create('IM-712/A2A');
+        $item2->specifiedTradeProduct->buyerAssignedID = Id::create('BR-4529-ZF');
         $item2->specifiedTradeProduct->name = 'Stoßfänger';
         $item2->specifiedTradeProduct->tradeCountry = TradeCountry::create('DE');
 
         $item2->tradeAgreement = new LineTradeAgreement();
         $item2->tradeAgreement->buyerOrderReferencedDocument = ReferencedDocument::create('ORDER84753');
-        $item2->tradeAgreement->buyerOrderReferencedDocument->lineId = '7';
+        $item2->tradeAgreement->buyerOrderReferencedDocument->lineId = Id::create('7');
 
         $item2->tradeAgreement->grossPrice = TradePrice::create('100', Quantity::create('1', 'H87'));
         $item2->tradeAgreement->netPrice = TradePrice::create('100', Quantity::create('1', 'H87'));

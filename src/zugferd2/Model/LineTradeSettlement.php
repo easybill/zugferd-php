@@ -11,34 +11,33 @@ use JMS\Serializer\Annotation\XmlList;
 
 class LineTradeSettlement
 {
-    /**
-     * @var TradeTax[]
-     */
-    #[Type('array<Easybill\ZUGFeRD2\Model\TradeTax>')]
+    /** @var TradeTax[] */
+    #[Type('array<' . TradeTax::class . '>')]
     #[XmlList(entry: 'ApplicableTradeTax', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $tradeTax = [];
-
-    /**
-     * @var TradeAllowanceCharge[]
-     */
-    #[Type('array<Easybill\ZUGFeRD2\Model\TradeAllowanceCharge>')]
-    #[XmlList(entry: 'SpecifiedTradeAllowanceCharge', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    public array $specifiedTradeAllowanceCharge = [];
 
     #[Type(Period::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('BillingSpecifiedPeriod')]
     public ?Period $billingSpecifiedPeriod = null;
 
+    /** @var TradeAllowanceCharge[] */
+    #[Type('array<' . TradeAllowanceCharge::class . '>')]
+    #[XmlList(entry: 'SpecifiedTradeAllowanceCharge', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    public array $specifiedTradeAllowanceCharge = [];
+
     #[Type(TradeSettlementLineMonetarySummation::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('SpecifiedTradeSettlementLineMonetarySummation')]
     public TradeSettlementLineMonetarySummation $monetarySummation;
 
-    /**
-     * @var TradeAccountingAccount[]
-     */
-    #[Type('array<Easybill\ZUGFeRD2\Model\TradeAccountingAccount>')]
+    #[Type(ReferencedDocument::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('AdditionalReferencedDocument')]
+    public ReferencedDocument $referencedDocument;
+
+    /** @var TradeAccountingAccount[] */
+    #[Type('array<' . TradeAccountingAccount::class . '>')]
     #[XmlList(entry: 'ReceivableSpecifiedTradeAccountingAccount', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $tradeAccountingAccount = [];
 }

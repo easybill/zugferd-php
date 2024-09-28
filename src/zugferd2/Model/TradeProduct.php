@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Easybill\ZUGFeRD2\Model;
 
-use JMS\Serializer\Annotation\AccessorOrder;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
-#[AccessorOrder(order: 'custom', custom: ['globalID', 'sellerAssignedID', 'buyerAssignedID', 'name', 'description', 'tradeCountry'])]
 class TradeProduct
 {
     #[Type(Id::class)]
@@ -18,15 +16,15 @@ class TradeProduct
     #[SerializedName('GlobalID')]
     public ?Id $globalID = null;
 
-    #[Type('string')]
+    #[Type(Id::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('SellerAssignedID')]
-    public ?string $sellerAssignedID = null;
+    public ?Id $sellerAssignedID = null;
 
-    #[Type('string')]
+    #[Type(Id::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('BuyerAssignedID')]
-    public ?string $buyerAssignedID = null;
+    public ?Id $buyerAssignedID = null;
 
     #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
@@ -38,23 +36,23 @@ class TradeProduct
     #[SerializedName('Description')]
     public ?string $description = null;
 
-    #[Type(TradeCountry::class)]
-    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('OriginTradeCountry')]
-    public ?TradeCountry $tradeCountry = null;
-
     /** @var ProductCharacteristic[] */
-    #[Type('array<Easybill\ZUGFeRD2\Model\ProductCharacteristic>')]
+    #[Type('array<' . ProductCharacteristic::class . '>')]
     #[XmlList(entry: 'ApplicableProductCharacteristic', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    public ?array $applicableProductCharacteristic = [];
+    public array $applicableProductCharacteristic = [];
 
     #[Type(ProductClassification::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('DesignatedProductClassification')]
     public ?ProductClassification $designatedProductClassification = null;
 
-    /** @var ProductType[] */
-    #[Type('array<Easybill\ZUGFeRD2\Model\ProductType>')]
+    #[Type(TradeCountry::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('OriginTradeCountry')]
+    public ?TradeCountry $tradeCountry = null;
+
+    /** @var ReferencedProduct[] */
+    #[Type('array<' . ReferencedProduct::class . '>')]
     #[XmlList(entry: 'IncludedReferencedProduct', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    public array $includedReferencedProduct = [];
+    public array $includedReferencedProducts = [];
 }

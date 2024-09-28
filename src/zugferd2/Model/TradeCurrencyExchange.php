@@ -23,7 +23,7 @@ class TradeCurrencyExchange
     #[Type('float')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('ConversionRate')]
-    public float $conversionRate;
+    public ?float $conversionRate = null;
 
     #[Type(DateTime::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]

@@ -33,8 +33,8 @@ class ReaderTest extends TestCase
         self::assertTrue(true);
     }
 
-    /** @return array<string, array<SplFileInfo>> */
-    public function dataProvider(): array
+    /** @return iterable<int, array<SplFileInfo>> */
+    public function dataProvider(): iterable
     {
         $finder = (new Finder())
             ->files()
@@ -44,7 +44,7 @@ class ReaderTest extends TestCase
 
         $buffer = [];
         foreach ($finder as $file) {
-            $buffer[$file->getFilename()] = [$file];
+            yield [$file];
         }
 
         return $buffer;
