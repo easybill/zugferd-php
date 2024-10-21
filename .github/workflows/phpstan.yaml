@@ -33,4 +33,4 @@ jobs:
 
             -   name: Analyze code for issues
                 run: |
-                    php vendor/bin/phpstan analyse src --level 8
+                    php vendor/bin/phpstan analyse
