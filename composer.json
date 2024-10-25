@@ -31,7 +31,8 @@
     "friendsofphp/php-cs-fixer": "^3.16",
     "phpstan/phpstan": "^1.10",
     "rector/rector": "^1.0",
-    "symfony/finder": "^5.4"
+    "symfony/finder": "^5.4",
+    "phpstan/phpstan-strict-rules": "^1.5"
   },
   "autoload": {
     "psr-4": {

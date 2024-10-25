@@ -108,7 +108,7 @@ class TradeAccountingAccountTest extends TestCase
   </rsm:SupplyChainTradeTransaction>
 </rsm:CrossIndustryInvoice>
 XML;
-        $this->assertEquals(
+        self::assertEquals(
             // Removes white-space
             preg_replace('/\s/', '', $xml),
             preg_replace('/\s/', '', Builder::create()->transform($invoice))
