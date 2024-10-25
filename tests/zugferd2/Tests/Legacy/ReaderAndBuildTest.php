@@ -24,7 +24,7 @@ class ReaderAndBuildTest extends TestCase
     /** @dataProvider dataProvider */
     public function testGetDocument(string $filename): void
     {
-        $xml = file_get_contents(__DIR__ . '/official_example_xml/' . $filename);
+        $xml = (string)file_get_contents(__DIR__ . '/official_example_xml/' . $filename);
         $obj = Reader::create()->transform($xml);
         $str = Builder::create()->transform($obj);
 
@@ -36,7 +36,10 @@ class ReaderAndBuildTest extends TestCase
         self::assertTrue(true);
     }
 
-    public function dataProvider()
+    /**
+     * @return string[][]
+     */
+    public function dataProvider(): array
     {
         return [
             ['zugferd_2p1_BASIC-WL_Einfach.xml'],
