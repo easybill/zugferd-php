@@ -25,9 +25,7 @@ class SpecifiedLogisticsServiceCharge
         private string $description, #[Type(Amount::class)]
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('AppliedAmount')]
-        private Amount $appliedAmount)
-    {
-    }
+        private Amount $appliedAmount) {}
 
     /**
      * Get the value of description.
@@ -73,7 +71,6 @@ class SpecifiedLogisticsServiceCharge
     }
 
     /**
-     * @param TradeTax $tradeTaxes
      * @return self
      */
     public function addTradeTax(TradeTax $tradeTax)

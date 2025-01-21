@@ -13,15 +13,15 @@ class DocumentContext
     /**
      * @var \Easybill\ZUGFeRD\Model\Indicator,
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Indicator::class)]
+    #[Type(Indicator::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('TestIndicator')]
     private $testIndicator;
 
     /**
-     * @var \Easybill\ZUGFeRD\Model\ContextParameterID
+     * @var ContextParameterID
      */
-    #[Type(\Easybill\ZUGFeRD\Model\ContextParameterID::class)]
+    #[Type(ContextParameterID::class)]
     #[XmlElement(namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('GuidelineSpecifiedDocumentContextParameter')]
     private $type;

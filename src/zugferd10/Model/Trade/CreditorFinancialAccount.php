@@ -33,8 +33,7 @@ class CreditorFinancialAccount
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('ProprietaryID')]
         private $proprietary
-    ) {
-    }
+    ) {}
 
     /**
      * @return string

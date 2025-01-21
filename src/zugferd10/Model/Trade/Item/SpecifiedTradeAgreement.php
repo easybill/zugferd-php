@@ -13,7 +13,7 @@ class SpecifiedTradeAgreement
     /**
      * @var Price
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\Item\Price::class)]
+    #[Type(Price::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('GrossPriceProductTradePrice')]
     private $grossPrice;
@@ -21,13 +21,13 @@ class SpecifiedTradeAgreement
     /**
      * @var Price
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\Item\Price::class)]
+    #[Type(Price::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('NetPriceProductTradePrice')]
     private $netPrice;
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\Item\Price
+     * @return Price
      */
     public function getGrossPrice()
     {
@@ -35,7 +35,7 @@ class SpecifiedTradeAgreement
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\Item\Price $grossPrice
+     * @param Price $grossPrice
      *
      * @return self
      */
@@ -46,7 +46,7 @@ class SpecifiedTradeAgreement
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\Item\Price
+     * @return Price
      */
     public function getNetPrice()
     {
@@ -54,7 +54,7 @@ class SpecifiedTradeAgreement
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\Item\Price $netPrice
+     * @param Price $netPrice
      *
      * @return self
      */

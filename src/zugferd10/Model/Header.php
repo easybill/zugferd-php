@@ -38,7 +38,7 @@ class Header
     /**
      * @var Date
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Date::class)]
+    #[Type(Date::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('IssueDateTime')]
     private $date;
