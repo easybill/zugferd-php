@@ -14,7 +14,7 @@ class SpecifiedTradeMonetarySummation
     /**
      * @var Amount
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\Amount::class)]
+    #[Type(Amount::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('LineTotalAmount')]
     private $totalAmount;
@@ -22,7 +22,7 @@ class SpecifiedTradeMonetarySummation
     /**
      * @var Amount
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\Amount::class)]
+    #[Type(Amount::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('TotalAllowanceChargeAmount')]
     private $totalAllowanceChargeAmount;
@@ -39,7 +39,7 @@ class SpecifiedTradeMonetarySummation
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\Amount
+     * @return Amount
      */
     public function getTotalAmount()
     {
@@ -47,7 +47,7 @@ class SpecifiedTradeMonetarySummation
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\Amount $totalAmount
+     * @param Amount $totalAmount
      */
     public function setTotalAmount($totalAmount)
     {
@@ -55,7 +55,7 @@ class SpecifiedTradeMonetarySummation
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\Amount
+     * @return Amount
      */
     public function getTotalAllowanceChargeAmount()
     {
@@ -63,7 +63,7 @@ class SpecifiedTradeMonetarySummation
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\Amount $totalAllowanceChargeAmount
+     * @param Amount $totalAllowanceChargeAmount
      */
     public function setTotalAllowanceChargeAmount($totalAllowanceChargeAmount)
     {

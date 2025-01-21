@@ -13,15 +13,13 @@ class SpecifiedTradeDelivery
     /**
      * SpecifiedTradeDelivery constructor.
      */
-    public function __construct(#[Type(\Easybill\ZUGFeRD\Model\Trade\Item\Quantity::class)]
+    public function __construct(#[Type(Quantity::class)]
         #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
         #[SerializedName('BilledQuantity')]
-        private Quantity $billedQuantity)
-    {
-    }
+        private Quantity $billedQuantity) {}
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\Item\Quantity
+     * @return Quantity
      */
     public function getBilledQuantity()
     {
@@ -29,7 +27,7 @@ class SpecifiedTradeDelivery
     }
 
     /**
-     * @param \Easybill\ZUGFeRD\Model\Trade\Item\Quantity $billedQuantity
+     * @param Quantity $billedQuantity
      */
     public function setBilledQuantity($billedQuantity)
     {
