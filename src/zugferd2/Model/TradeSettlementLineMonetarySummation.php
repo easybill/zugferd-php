@@ -17,6 +17,26 @@ class TradeSettlementLineMonetarySummation
 
     #[Type(Amount::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('ChargeTotalAmount')]
+    public ?Amount $chargeTotalAmount = null;
+
+    #[Type(Amount::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('AllowanceTotalAmount')]
+    public ?Amount $allowanceTotalAmount = null;
+
+    #[Type(Amount::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('TaxTotalAmount')]
+    public ?Amount $taxTotalAmount = null;
+
+    #[Type(Amount::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('GrandTotalAmount')]
+    public ?Amount $grandTotalAmount = null;
+
+    #[Type(Amount::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('TotalAllowanceChargeAmount')]
     public ?Amount $totalAllowanceChargeAmount = null;
 
