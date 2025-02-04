@@ -25,12 +25,12 @@ class Document
     public const TYPE_COMFORT = 'COMFORT';
     public const TYPE_EXTENDED = 'EXTENDED';
 
-    #[Type(\Easybill\ZUGFeRD\Model\DocumentContext::class)]
+    #[Type(DocumentContext::class)]
     #[XmlElement(namespace: 'urn:ferd:CrossIndustryDocument:invoice:1p0')]
     #[SerializedName('SpecifiedExchangedDocumentContext')]
     private $context;
 
-    #[Type(\Easybill\ZUGFeRD\Model\Header::class)]
+    #[Type(Header::class)]
     #[XmlElement(namespace: 'urn:ferd:CrossIndustryDocument:invoice:1p0')]
     #[SerializedName('HeaderExchangedDocument')]
     private $header;
@@ -38,7 +38,7 @@ class Document
     /**
      * @var Trade
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\Trade::class)]
+    #[Type(Trade::class)]
     #[XmlElement(cdata: false, namespace: 'urn:ferd:CrossIndustryDocument:invoice:1p0')]
     #[SerializedName('SpecifiedSupplyChainTradeTransaction')]
     private $trade;
@@ -75,7 +75,7 @@ class Document
     }
 
     /**
-     * @return \Easybill\ZUGFeRD\Model\Trade\Trade
+     * @return Trade
      */
     public function getTrade()
     {

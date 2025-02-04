@@ -17,7 +17,7 @@ class AllowanceCharge
     /**
      * @var Indicator
      */
-    #[JMS\Type(\Easybill\ZUGFeRD\Model\Indicator::class)]
+    #[JMS\Type(Indicator::class)]
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[JMS\SerializedName('ChargeIndicator')]
     private $indicator;
@@ -49,7 +49,7 @@ class AllowanceCharge
     /**
      * @var Amount
      */
-    #[JMS\Type(\Easybill\ZUGFeRD\Model\Trade\Amount::class)]
+    #[JMS\Type(Amount::class)]
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[JMS\SerializedName('BasisAmount')]
     private $basisAmount;
@@ -57,7 +57,7 @@ class AllowanceCharge
     /**
      * @var Amount
      */
-    #[JMS\Type(\Easybill\ZUGFeRD\Model\Trade\Amount::class)]
+    #[JMS\Type(Amount::class)]
     #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[JMS\SerializedName('ActualAmount')]
     private $actualAmount;
