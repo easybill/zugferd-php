@@ -15,7 +15,7 @@ class MonetarySummation
      *
      * @var Amount
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\Amount::class)]
+    #[Type(Amount::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('LineTotalAmount')]
     private $lineTotal;
@@ -25,7 +25,7 @@ class MonetarySummation
      *
      * @var Amount
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\Amount::class)]
+    #[Type(Amount::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('ChargeTotalAmount')]
     private $chargeTotal;
@@ -35,7 +35,7 @@ class MonetarySummation
      *
      * @var Amount
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\Amount::class)]
+    #[Type(Amount::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('AllowanceTotalAmount')]
     private $allowanceTotal;
@@ -45,7 +45,7 @@ class MonetarySummation
      *
      * @var Amount
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\Amount::class)]
+    #[Type(Amount::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('TaxBasisTotalAmount')]
     private $taxBasisTotal;
@@ -55,7 +55,7 @@ class MonetarySummation
      *
      * @var Amount
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\Amount::class)]
+    #[Type(Amount::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('TaxTotalAmount')]
     private $taxTotal;
@@ -65,7 +65,7 @@ class MonetarySummation
      *
      * @var Amount
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\Amount::class)]
+    #[Type(Amount::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('GrandTotalAmount')]
     private $grandTotal;
@@ -75,7 +75,7 @@ class MonetarySummation
      *
      * @var Amount
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\Amount::class)]
+    #[Type(Amount::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('TotalPrepaidAmount')]
     private $totalPrepaidAmount;
@@ -85,7 +85,7 @@ class MonetarySummation
      *
      * @var Amount
      */
-    #[Type(\Easybill\ZUGFeRD\Model\Trade\Amount::class)]
+    #[Type(Amount::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     #[SerializedName('DuePayableAmount')]
     private $duePayableAmount;
