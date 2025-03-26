@@ -5,6 +5,7 @@ tests export-ignore
 .gitignore export-ignore
 .php-cs-fixer.dist.php export-ignore
 Makefile export-ignore
+composer.lock export-ignore
 phpstan.neon export-ignore
 phpunit.xml export-ignore
 rector.php export-ignore
