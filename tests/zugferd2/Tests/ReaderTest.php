@@ -33,8 +33,10 @@ class ReaderTest extends TestCase
         self::assertTrue(true);
     }
 
-    /** @return array<string, array<SplFileInfo>> */
-    public function dataProvider(): array
+    /**
+     * @return \Generator<string, array<SplFileInfo>>
+     */
+    public function dataProvider(): \Generator
     {
         $finder = (new Finder())
             ->files()
@@ -42,11 +44,8 @@ class ReaderTest extends TestCase
             ->in(__DIR__ . '/Examples')
         ;
 
-        $buffer = [];
         foreach ($finder as $file) {
-            $buffer[$file->getFilename()] = [$file];
+            yield $file->getFilename() => [$file];
         }
-
-        return $buffer;
     }
 }
