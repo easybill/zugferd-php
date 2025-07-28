@@ -30,7 +30,6 @@
     "ext-libxml": "*",
     "friendsofphp/php-cs-fixer": "v3.75.0",
     "phpstan/phpstan": "^1.10",
-    "rector/rector": "^1.0",
     "symfony/finder": "^5.4",
     "phpstan/phpstan-strict-rules": "^1.5"
   },
