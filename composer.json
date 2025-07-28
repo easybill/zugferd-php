@@ -29,9 +29,9 @@
     "phpunit/phpunit": "^9.3",
     "ext-libxml": "*",
     "friendsofphp/php-cs-fixer": "v3.75.0",
-    "phpstan/phpstan": "^1.10",
+    "phpstan/phpstan": "2.1.20",
     "symfony/finder": "^5.4",
-    "phpstan/phpstan-strict-rules": "^1.5"
+    "phpstan/phpstan-strict-rules": "2.0.6"
   },
   "autoload": {
     "psr-4": {
