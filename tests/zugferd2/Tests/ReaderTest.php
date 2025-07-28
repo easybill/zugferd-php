@@ -29,8 +29,6 @@ class ReaderTest extends TestCase
             self::reformatXml($xml),
             self::reformatXml($str),
         );
-
-        self::assertTrue(true);
     }
 
     /**
