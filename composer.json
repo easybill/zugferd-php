@@ -19,7 +19,7 @@
   ],
   "require": {
     "php": "^8.2",
-    "jms/serializer": "^3.16",
+    "jms/serializer": "^3.30",
     "ext-dom": "*"
   },
   "suggest": {

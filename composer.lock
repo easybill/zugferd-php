@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6e7bc13652fb9d18e6ddf175dfa5c52c",
+    "content-hash": "67911d944327a7653894559bc6dfee44",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -219,16 +219,16 @@
         },
         {
             "name": "jms/serializer",
-            "version": "3.32.2",
+            "version": "3.32.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/serializer.git",
-                "reference": "fa7ab39504c24d76107ba16c00aafa5da3605971"
+                "reference": "7c88b1b02ff868eecc870eeddbb3b1250e4bd89c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/fa7ab39504c24d76107ba16c00aafa5da3605971",
-                "reference": "fa7ab39504c24d76107ba16c00aafa5da3605971",
+                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/7c88b1b02ff868eecc870eeddbb3b1250e4bd89c",
+                "reference": "7c88b1b02ff868eecc870eeddbb3b1250e4bd89c",
                 "shasum": ""
             },
             "require": {
@@ -305,15 +305,19 @@
             ],
             "support": {
                 "issues": "https://github.com/schmittjoh/serializer/issues",
-                "source": "https://github.com/schmittjoh/serializer/tree/3.32.2"
+                "source": "https://github.com/schmittjoh/serializer/tree/3.32.5"
             },
             "funding": [
                 {
                     "url": "https://github.com/goetas",
                     "type": "github"
+                },
+                {
+                    "url": "https://github.com/scyzoryck",
+                    "type": "github"
                 }
             ],
-            "time": "2025-01-03T22:43:29+00:00"
+            "time": "2025-05-26T15:55:41+00:00"
         },
         {
             "name": "phpstan/phpdoc-parser",
