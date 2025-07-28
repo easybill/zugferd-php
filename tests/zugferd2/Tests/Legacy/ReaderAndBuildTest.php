@@ -7,13 +7,14 @@ namespace Easybill\ZUGFeRD2\Tests\Legacy;
 use Easybill\ZUGFeRD2\Builder;
 use Easybill\ZUGFeRD2\Reader;
 use Easybill\ZUGFeRD2\Tests\Traits\ReformatXmlTrait;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class ReaderAndBuildTest extends TestCase
 {
     use ReformatXmlTrait;
 
-    /** @dataProvider dataProvider */
+    #[DataProvider('dataProvider')]
     public function testGetDocument(string $filename): void
     {
         $xml = (string)file_get_contents(__DIR__ . '/official_example_xml/' . $filename);
@@ -29,7 +30,7 @@ class ReaderAndBuildTest extends TestCase
     /**
      * @return string[][]
      */
-    public function dataProvider(): array
+    public static function dataProvider(): array
     {
         return [
             ['zugferd_2p1_BASIC-WL_Einfach.xml'],
