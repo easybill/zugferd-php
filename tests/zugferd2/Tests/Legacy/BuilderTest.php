@@ -246,8 +246,8 @@ Handelsregisternummer: H A 123
 
         $item1->delivery = new LineTradeDelivery();
         $item1->delivery->billedQuantity = Quantity::create('20.0000', 'H87');
-        $item1->delivery->chainEvent = new SupplyChainEvent();
-        $item1->delivery->chainEvent->date = DateTime::create(102, '20180305');
+        $item1->delivery->actualDeliverySupplyChainEvent = new SupplyChainEvent();
+        $item1->delivery->actualDeliverySupplyChainEvent->date = DateTime::create(102, '20180305');
 
         $item1->specifiedLineTradeSettlement = new LineTradeSettlement();
         $item1->specifiedLineTradeSettlement->tradeTax[] = $item1tax = new TradeTax();
