@@ -219,16 +219,16 @@
         },
         {
             "name": "jms/serializer",
-            "version": "3.32.2",
+            "version": "3.32.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/serializer.git",
-                "reference": "fa7ab39504c24d76107ba16c00aafa5da3605971"
+                "reference": "7c88b1b02ff868eecc870eeddbb3b1250e4bd89c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/fa7ab39504c24d76107ba16c00aafa5da3605971",
-                "reference": "fa7ab39504c24d76107ba16c00aafa5da3605971",
+                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/7c88b1b02ff868eecc870eeddbb3b1250e4bd89c",
+                "reference": "7c88b1b02ff868eecc870eeddbb3b1250e4bd89c",
                 "shasum": ""
             },
             "require": {
@@ -305,28 +305,32 @@
             ],
             "support": {
                 "issues": "https://github.com/schmittjoh/serializer/issues",
-                "source": "https://github.com/schmittjoh/serializer/tree/3.32.2"
+                "source": "https://github.com/schmittjoh/serializer/tree/3.32.5"
             },
             "funding": [
                 {
                     "url": "https://github.com/goetas",
                     "type": "github"
+                },
+                {
+                    "url": "https://github.com/scyzoryck",
+                    "type": "github"
                 }
             ],
-            "time": "2025-01-03T22:43:29+00:00"
+            "time": "2025-05-26T15:55:41+00:00"
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "2.0.0",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "c00d78fb6b29658347f9d37ebe104bffadf36299"
+                "reference": "1e0cd5370df5dd2e556a36b9c62f62e555870495"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/c00d78fb6b29658347f9d37ebe104bffadf36299",
-                "reference": "c00d78fb6b29658347f9d37ebe104bffadf36299",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/1e0cd5370df5dd2e556a36b9c62f62e555870495",
+                "reference": "1e0cd5370df5dd2e556a36b9c62f62e555870495",
                 "shasum": ""
             },
             "require": {
@@ -358,9 +362,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/2.0.0"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/2.3.0"
             },
-            "time": "2024-10-13T11:29:49+00:00"
+            "time": "2025-08-30T15:50:23+00:00"
         }
     ],
     "packages-dev": [
