@@ -10,7 +10,7 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
-#[AccessorOrder(order: 'custom', custom: ['id', 'globalID', 'name', 'description', 'specifiedLegalOrganization', 'definedTradeContact', 'postalTradeAddress', 'uriUniversalCommunication', 'taxRegistrations'])]
+#[AccessorOrder(order: 'custom', custom: ['id', 'globalID', 'name', 'roleCode', 'description', 'specifiedLegalOrganization', 'definedTradeContact', 'postalTradeAddress', 'uriUniversalCommunication', 'taxRegistrations'])]
 class TradeParty
 {
     #[Type(Id::class)]
