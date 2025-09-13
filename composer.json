@@ -18,7 +18,7 @@
     }
   ],
   "require": {
-    "php": "^8.2",
+    "php": "^8.3",
     "jms/serializer": "^3.30",
     "ext-dom": "*"
   },
@@ -50,9 +50,8 @@
   },
   "scripts": {
     "test": "vendor/bin/phpunit",
-    "test:php81": "docker run --rm -v $(pwd):/app -w /app php:8.1 vendor/bin/phpunit",
-    "test:php82": "docker run --rm -v $(pwd):/app -w /app php:8.2 vendor/bin/phpunit",
     "test:php83": "docker run --rm -v $(pwd):/app -w /app php:8.3 vendor/bin/phpunit",
+    "test:php84": "docker run --rm -v $(pwd):/app -w /app php:8.4 vendor/bin/phpunit",
     "cs-fix": "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix --config .php-cs-fixer.dist.php",
     "phpstan": "vendor/bin/phpstan analyse --memory-limit 1G",
     "rector": "vendor/bin/rector process",
