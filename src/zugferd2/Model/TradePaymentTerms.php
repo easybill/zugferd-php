@@ -4,21 +4,20 @@ declare(strict_types=1);
 
 namespace Easybill\ZUGFeRD2\Model;
 
-use JMS\Serializer\Annotation as JMS;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 
 class TradePaymentTerms
 {
-    #[JMS\Type('string')]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[JMS\SerializedName('Description')]
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('Description')]
     public ?string $description = null;
 
-    #[JMS\Type(DateTime::class)]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[JMS\SerializedName('DueDateDateTime')]
+    #[Type(DateTime::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('DueDateDateTime')]
     public ?DateTime $dueDate = null;
 
     #[Type(Id::class)]
@@ -31,14 +30,14 @@ class TradePaymentTerms
     #[SerializedName('PartialPaymentAmount')]
     public ?Amount $partialPaymentAmount = null;
 
-    #[JMS\Type(TradePaymentPenaltyTerms::class)]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[JMS\SerializedName('ApplicableTradePaymentPenaltyTerms')]
+    #[Type(TradePaymentPenaltyTerms::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('ApplicableTradePaymentPenaltyTerms')]
     public ?TradePaymentPenaltyTerms $applicableTradePaymentPenaltyTerms = null;
 
-    #[JMS\Type(TradePaymentDiscountTerms::class)]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[JMS\SerializedName('ApplicableTradePaymentDiscountTerms')]
+    #[Type(TradePaymentDiscountTerms::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('ApplicableTradePaymentDiscountTerms')]
     public ?TradePaymentDiscountTerms $applicableTradePaymentDiscountTerms = null;
 
     #[Type(TradeParty::class)]
