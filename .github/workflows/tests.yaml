@@ -13,9 +13,9 @@ jobs:
         strategy:
             matrix:
                 include:
-                    - { operating-system: 'ubuntu-latest', php-version: '8.1', dependencies: '' }
                     - { operating-system: 'ubuntu-latest', php-version: '8.2', dependencies: '' }
                     - { operating-system: 'ubuntu-latest', php-version: '8.3', dependencies: '' }
+                    - { operating-system: 'ubuntu-latest', php-version: '8.4', dependencies: '' }
 
 
         name: PHP ${{ matrix.php-version }}
