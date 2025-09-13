@@ -8,3 +8,4 @@
 /phpstan.neon export-ignore
 /phpunit.xml export-ignore
 /composer.phar export-ignore
+/.php-cs-fixer.dist.php export-ignore
