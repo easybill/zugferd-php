@@ -374,7 +374,7 @@ Handelsregisternummer: H A 123
         $headerTax2->rateApplicablePercent = '19.00';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradePaymentTerms[] = $paymentTerms = new TradePaymentTerms();
-        $paymentTerms->directDebitMandateID = 'Mandate Reference';
+        $paymentTerms->directDebitMandateID = Id::create('Mandate Reference');;
         $paymentTerms->description = 'Zahlbar innerhalb 30 Tagen netto bis 04.04.2018, 3% Skonto innerhalb 10 Tagen bis 15.03.2018';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = $summation = new TradeSettlementHeaderMonetarySummation();
