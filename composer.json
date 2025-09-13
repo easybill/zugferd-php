@@ -18,21 +18,20 @@
     }
   ],
   "require": {
-    "php": "^8.2",
-    "jms/serializer": "^3.16",
+    "php": "^8.3",
+    "jms/serializer": "^3.30",
     "ext-dom": "*"
   },
   "suggest": {
     "ext-libxml": "Needed for XSD validation"
   },
   "require-dev": {
-    "phpunit/phpunit": "^9.3",
+    "phpunit/phpunit": "^12.2",
     "ext-libxml": "*",
-    "friendsofphp/php-cs-fixer": "^3.16",
-    "phpstan/phpstan": "^1.10",
-    "rector/rector": "^1.0",
+    "friendsofphp/php-cs-fixer": "^v3.75",
+    "phpstan/phpstan": "^2.1",
     "symfony/finder": "^5.4",
-    "phpstan/phpstan-strict-rules": "^1.5"
+    "phpstan/phpstan-strict-rules": "^2.0"
   },
   "autoload": {
     "psr-4": {
@@ -48,5 +47,14 @@
   },
   "config": {
     "platform-check": false
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit",
+    "test:php83": "docker run --rm -v $(pwd):/app -w /app php:8.3 vendor/bin/phpunit",
+    "test:php84": "docker run --rm -v $(pwd):/app -w /app php:8.4 vendor/bin/phpunit",
+    "cs-fix": "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix --config .php-cs-fixer.dist.php",
+    "phpstan": "vendor/bin/phpstan analyse --memory-limit 1G",
+    "rector": "vendor/bin/rector process",
+    "rector:dry-run": "vendor/bin/rector process --dry-run"
   }
 }

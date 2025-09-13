@@ -8,7 +8,7 @@ use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 
-class TradePaymentDiscountTerms
+class TradePaymentPenaltyTerms
 {
     #[Type(DateTime::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
@@ -32,6 +32,6 @@ class TradePaymentDiscountTerms
 
     #[Type(Amount::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('ActualDiscountAmount')]
-    public ?Amount $actualDiscountAmount = null;
+    #[SerializedName('ActualPenaltyAmount')]
+    public ?Amount $actualPenaltyAmount = null;
 }

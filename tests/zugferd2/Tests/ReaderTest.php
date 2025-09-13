@@ -8,6 +8,7 @@ use Easybill\ZUGFeRD2\Builder;
 use Easybill\ZUGFeRD2\Reader;
 use Easybill\ZUGFeRD2\Tests\Traits\AssertXmlOutputTrait;
 use Easybill\ZUGFeRD2\Tests\Traits\ReformatXmlTrait;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
@@ -17,7 +18,7 @@ class ReaderTest extends TestCase
     use AssertXmlOutputTrait;
     use ReformatXmlTrait;
 
-    /** @dataProvider dataProvider */
+    #[DataProvider('dataProvider')]
     public function testReaderWithExamples(SplFileInfo $fileInfo): void
     {
         $xml = (string)file_get_contents($fileInfo->getRealPath());
@@ -29,14 +30,10 @@ class ReaderTest extends TestCase
             self::reformatXml($xml),
             self::reformatXml($str),
         );
-
-        self::assertTrue(true);
     }
 
-    /**
-     * @return \Generator<string, array<SplFileInfo>>
-     */
-    public function dataProvider(): \Generator
+    /** @return \Generator<string, array<SplFileInfo>> */
+    public static function dataProvider(): \Generator
     {
         $finder = (new Finder())
             ->files()

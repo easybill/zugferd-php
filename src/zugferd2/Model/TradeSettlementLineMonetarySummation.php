@@ -23,10 +23,13 @@ class TradeSettlementLineMonetarySummation
     public static function create(string $totalAmount, ?string $totalAllowanceChargeAmount = null): self
     {
         $self = new self();
+
         $self->totalAmount = Amount::create($totalAmount);
-        if ($totalAllowanceChargeAmount != null) {
+
+        if ($totalAllowanceChargeAmount !== null) {
             $self->totalAllowanceChargeAmount = Amount::create($totalAllowanceChargeAmount);
         }
+
         return $self;
     }
 }
