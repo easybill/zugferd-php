@@ -401,7 +401,7 @@ class ProfileBasicTest extends TestCase
         $item1tax->categoryCode = 'S';
         $item1tax->rateApplicablePercent = '7';
         $item1->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('3.90');
-        $item1->specifiedLineTradeSettlement->monetarySummation->totalAmount = Amount::create('3.90');
+        $item1->specifiedLineTradeSettlement->monetarySummation->lineTotalAmount = Amount::create('3.90');
 
         $invoice->supplyChainTradeTransaction->lineItems[] = $item1;
 
@@ -421,7 +421,7 @@ class ProfileBasicTest extends TestCase
         $item2tax->categoryCode = 'S';
         $item2tax->rateApplicablePercent = '7';
         $item2->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('3.90');
-        $item2->specifiedLineTradeSettlement->monetarySummation->totalAmount = Amount::create('13');
+        $item2->specifiedLineTradeSettlement->monetarySummation->lineTotalAmount = Amount::create('13');
 
         $invoice->supplyChainTradeTransaction->lineItems[] = $item2;
 
