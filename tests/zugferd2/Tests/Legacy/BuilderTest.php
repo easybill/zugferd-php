@@ -262,7 +262,7 @@ Handelsregisternummer: H A 123
         $allowanceCharge->actualAmount = Amount::create('8.00');
         $allowanceCharge->reason = 'Artikelrabatt';
 
-        $item1->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('190.00', '8.00');
+        $item1->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('190.00', totalAllowanceChargeAmount: '8.00');
 
         $invoice->supplyChainTradeTransaction->lineItems[] = $item2 = new SupplyChainTradeLineItem();
         $item2->associatedDocumentLineDocument = DocumentLineDocument::create('2');
