@@ -1,11 +1,10 @@
 *.php text eol=lf
 
-# Following lines control the content of the github release
-# This is important as we do not want to pollute our packagist release with dev related things
 * export-ignore
 
-!/src/** -export-ignore
-!composer.json -export-ignore
-!composer.lock -export-ignore
-!README.md -export-ignore
-!LICENSE -export-ignore
+# Include only the files we want in the release
+src/** -export-ignore
+composer.json -export-ignore
+composer.lock -export-ignore
+README.md -export-ignore
+LICENSE -export-ignore
