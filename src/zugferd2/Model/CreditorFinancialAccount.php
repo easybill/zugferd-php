@@ -18,5 +18,5 @@ class CreditorFinancialAccount
     #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('AccountName')]
-    public ?string $AccountName = null;
+    public ?string $accountName = null;
 }

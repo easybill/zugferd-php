@@ -155,10 +155,10 @@ class ProfileExtendedTest extends TestCase
         $sellerTradeParty->id[] = Id::create('12345676');
         $sellerTradeParty->name = 'Global Supplies Ltd.  ';
         $sellerTradeParty->postalTradeAddress = $sellerPostalAddress = new TradeAddress();
-        $sellerPostalAddress->postcode = 'SW1B 3BN';
+        $sellerPostalAddress->postcodeCode = 'SW1B 3BN';
         $sellerPostalAddress->lineOne = '153 Victoria Street';
-        $sellerPostalAddress->city = 'London';
-        $sellerPostalAddress->countryCode = 'GB';
+        $sellerPostalAddress->cityName = 'London';
+        $sellerPostalAddress->countryID = 'GB';
 
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('GB999999999', 'VA');
 
@@ -167,11 +167,11 @@ class ProfileExtendedTest extends TestCase
         $buyerTradeParty->name = 'Metallbau Leipzig GmbH & Co. KG';
 
         $buyerTradeParty->postalTradeAddress = new TradeAddress();
-        $buyerTradeParty->postalTradeAddress->postcode = '12345';
+        $buyerTradeParty->postalTradeAddress->postcodeCode = '12345';
         $buyerTradeParty->postalTradeAddress->lineOne = 'Pappelallee 15';
         $buyerTradeParty->postalTradeAddress->lineTwo = 'Hof 3';
-        $buyerTradeParty->postalTradeAddress->city = 'Leipzig';
-        $buyerTradeParty->postalTradeAddress->countryCode = 'DE';
+        $buyerTradeParty->postalTradeAddress->cityName = 'Leipzig';
+        $buyerTradeParty->postalTradeAddress->countryID = 'DE';
 
         $buyerTradeParty->uriUniversalCommunication = $universalCommunication = new UniversalCommunication();
         $universalCommunication->uriid = Id::create('04 0 11 000 - 12345 12345 - 35', '9958');
@@ -181,10 +181,10 @@ class ProfileExtendedTest extends TestCase
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTaxRepresentativeTradeParty = $sellerTaxTradeParty = new TradeParty();
         $sellerTaxTradeParty->name = 'Global Supplies Financial Services';
         $sellerTaxTradeParty->postalTradeAddress = $sellerTaxAddress = new TradeAddress();
-        $sellerTaxAddress->postcode = '12345';
+        $sellerTaxAddress->postcodeCode = '12345';
         $sellerTaxAddress->lineOne = 'Friedrichstraße 165';
-        $sellerTaxAddress->city = 'Berlin';
-        $sellerTaxAddress->countryCode = 'DE';
+        $sellerTaxAddress->cityName = 'Berlin';
+        $sellerTaxAddress->countryID = 'DE';
         $sellerTaxTradeParty->taxRegistrations[] = TaxRegistration::create('DE987654321', 'VA');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
@@ -194,28 +194,28 @@ class ProfileExtendedTest extends TestCase
         $shipToTradeParty->uriUniversalCommunication = $shipToUniversalCommunication = new UniversalCommunication();
         $shipToUniversalCommunication->uriid = Id::create('999999999', '0060');
         $shipToTradeParty->postalTradeAddress = new TradeAddress();
-        $shipToTradeParty->postalTradeAddress->postcode = '12347';
+        $shipToTradeParty->postalTradeAddress->postcodeCode = '12347';
         $shipToTradeParty->postalTradeAddress->lineOne = 'Eichenpromenade 37';
         $shipToTradeParty->postalTradeAddress->lineTwo = 'Tor 1';
-        $shipToTradeParty->postalTradeAddress->city = 'Metallstadt';
-        $shipToTradeParty->postalTradeAddress->countryCode = 'DE';
+        $shipToTradeParty->postalTradeAddress->cityName = 'Metallstadt';
+        $shipToTradeParty->postalTradeAddress->countryID = 'DE';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = new HeaderTradeSettlement();
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->currency = 'EUR';
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->invoiceCurrencyCode = 'EUR';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->payeeTradeParty = $payeeTradeParty = new TradeParty();
         $payeeTradeParty->globalID[] = Id::create('432156789', '0060');
         $payeeTradeParty->name = 'Global Supplies Financial Services';
         $payeeTradeParty->postalTradeAddress = new TradeAddress();
-        $payeeTradeParty->postalTradeAddress->postcode = '12345';
+        $payeeTradeParty->postalTradeAddress->postcodeCode = '12345';
         $payeeTradeParty->postalTradeAddress->lineOne = 'Friedrichstraße 165';
-        $payeeTradeParty->postalTradeAddress->city = 'Berlin';
-        $payeeTradeParty->postalTradeAddress->countryCode = 'DE';
+        $payeeTradeParty->postalTradeAddress->cityName = 'Berlin';
+        $payeeTradeParty->postalTradeAddress->countryID = 'DE';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementPaymentMeans[] = $paymentMeans1 = new TradeSettlementPaymentMeans();
         $paymentMeans1->typeCode = '58';
         $paymentMeans1->payeePartyCreditorFinancialAccount = new CreditorFinancialAccount();
         $paymentMeans1->payeePartyCreditorFinancialAccount->ibanId = Id::create('DE12 1234 4321 9876 00');
-        $paymentMeans1->payeePartyCreditorFinancialAccount->AccountName = 'Global Supplies Financial Services';
+        $paymentMeans1->payeePartyCreditorFinancialAccount->accountName = 'Global Supplies Financial Services';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->tradeTaxes[] = $headerTax1 = new TradeTax();
         $headerTax1->typeCode = 'VAT';
@@ -230,7 +230,7 @@ class ProfileExtendedTest extends TestCase
         $billingPeriod->endDateTime = DateTime::create(102, '20181031');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradePaymentTerms[] = $paymentTerms = new TradePaymentTerms();
-        $paymentTerms->dueDate = DateTime::create(102, '20181130');
+        $paymentTerms->dueDateDateTime = DateTime::create(102, '20181130');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = $summation = new TradeSettlementHeaderMonetarySummation();
         $summation->lineTotalAmount = Amount::create('2000.00');
@@ -284,10 +284,10 @@ class ProfileExtendedTest extends TestCase
         $seller->specifiedLegalOrganization->id = Id::create('HRB12345');
         $seller->specifiedLegalOrganization->tradingBusinessName = 'Comprehensive Seller Trading';
         $seller->specifiedLegalOrganization->postalTradeAddress = new TradeAddress();
-        $seller->specifiedLegalOrganization->postalTradeAddress->postcode = '10115';
+        $seller->specifiedLegalOrganization->postalTradeAddress->postcodeCode = '10115';
         $seller->specifiedLegalOrganization->postalTradeAddress->lineOne = 'Legal Address 1';
-        $seller->specifiedLegalOrganization->postalTradeAddress->city = 'Berlin';
-        $seller->specifiedLegalOrganization->postalTradeAddress->countryCode = 'DE';
+        $seller->specifiedLegalOrganization->postalTradeAddress->cityName = 'Berlin';
+        $seller->specifiedLegalOrganization->postalTradeAddress->countryID = 'DE';
 
         $seller->definedTradeContact = new TradeContact();
         $seller->definedTradeContact->personName = 'Max Mustermann';
@@ -300,12 +300,12 @@ class ProfileExtendedTest extends TestCase
         $seller->definedTradeContact->emailURIUniversalCommunication->uriid = Id::create('max.mustermann@seller.example', 'SMTP');
 
         $seller->postalTradeAddress = new TradeAddress();
-        $seller->postalTradeAddress->postcode = '10115';
+        $seller->postalTradeAddress->postcodeCode = '10115';
         $seller->postalTradeAddress->lineOne = 'Musterstraße 123';
         $seller->postalTradeAddress->lineTwo = 'Building A';
         $seller->postalTradeAddress->lineThree = 'Floor 3';
-        $seller->postalTradeAddress->city = 'Berlin';
-        $seller->postalTradeAddress->countryCode = 'DE';
+        $seller->postalTradeAddress->cityName = 'Berlin';
+        $seller->postalTradeAddress->countryID = 'DE';
         $seller->postalTradeAddress->countrySubDivisionName = 'Berlin';
 
         $seller->taxRegistrations[] = TaxRegistration::create('DE123456789', 'VA');
@@ -333,12 +333,12 @@ class ProfileExtendedTest extends TestCase
         $buyer->definedTradeContact->emailURIUniversalCommunication->uriid = Id::create('erika.mustermann@buyer.example', 'SMTP');
 
         $buyer->postalTradeAddress = new TradeAddress();
-        $buyer->postalTradeAddress->postcode = '20095';
+        $buyer->postalTradeAddress->postcodeCode = '20095';
         $buyer->postalTradeAddress->lineOne = 'Käuferweg 456';
         $buyer->postalTradeAddress->lineTwo = 'Eingang B';
         $buyer->postalTradeAddress->lineThree = '2. OG';
-        $buyer->postalTradeAddress->city = 'Hamburg';
-        $buyer->postalTradeAddress->countryCode = 'DE';
+        $buyer->postalTradeAddress->cityName = 'Hamburg';
+        $buyer->postalTradeAddress->countryID = 'DE';
         $buyer->postalTradeAddress->countrySubDivisionName = 'Hamburg';
 
         $buyer->taxRegistrations[] = TaxRegistration::create('DE987654321', 'VA');
@@ -350,10 +350,10 @@ class ProfileExtendedTest extends TestCase
         $sellerTaxRep = $agreement->sellerTaxRepresentativeTradeParty;
         $sellerTaxRep->name = 'Seller Tax Representative GmbH';
         $sellerTaxRep->postalTradeAddress = new TradeAddress();
-        $sellerTaxRep->postalTradeAddress->postcode = '60311';
+        $sellerTaxRep->postalTradeAddress->postcodeCode = '60311';
         $sellerTaxRep->postalTradeAddress->lineOne = 'Steuerstraße 789';
-        $sellerTaxRep->postalTradeAddress->city = 'Frankfurt';
-        $sellerTaxRep->postalTradeAddress->countryCode = 'DE';
+        $sellerTaxRep->postalTradeAddress->cityName = 'Frankfurt';
+        $sellerTaxRep->postalTradeAddress->countryID = 'DE';
         $sellerTaxRep->taxRegistrations[] = TaxRegistration::create('DE111222333', 'VA');
 
         $agreement->applicableTradeDeliveryTerms = new TradeDeliveryTerms();
@@ -394,15 +394,15 @@ class ProfileExtendedTest extends TestCase
         $shipTo->id[] = Id::create('SHIPTO-789');
         $shipTo->name = 'Shipping Destination Warehouse';
         $shipTo->postalTradeAddress = new TradeAddress();
-        $shipTo->postalTradeAddress->postcode = '50667';
+        $shipTo->postalTradeAddress->postcodeCode = '50667';
         $shipTo->postalTradeAddress->lineOne = 'Lagerstraße 999';
-        $shipTo->postalTradeAddress->city = 'Köln';
-        $shipTo->postalTradeAddress->countryCode = 'DE';
+        $shipTo->postalTradeAddress->cityName = 'Köln';
+        $shipTo->postalTradeAddress->countryID = 'DE';
         $shipTo->uriUniversalCommunication = new UniversalCommunication();
         $shipTo->uriUniversalCommunication->completeNumber = '+49 221 555666';
 
-        $delivery->chainEvent = new SupplyChainEvent();
-        $delivery->chainEvent->date = DateTime::create(102, '20250110');
+        $delivery->actualDeliverySupplyChainEvent = new SupplyChainEvent();
+        $delivery->actualDeliverySupplyChainEvent->occurrenceDateTime = DateTime::create(102, '20250110');
 
         $delivery->deliveryNoteReferencedDocument = ReferencedDocument::create('DN-2025-001');
         $delivery->deliveryNoteReferencedDocument->typeCode = '270';
@@ -413,7 +413,7 @@ class ProfileExtendedTest extends TestCase
 
         $settlement->creditorReferenceID = 'CREDITOR-REF-999';
         $settlement->paymentReference = 'PAYMENT-REF-888';
-        $settlement->currency = 'EUR';
+        $settlement->invoiceCurrencyCode = 'EUR';
         $settlement->taxCurrencyCode = 'EUR';
 
         $settlement->invoiceeTradeParty = new TradeParty();
@@ -421,20 +421,20 @@ class ProfileExtendedTest extends TestCase
         $invoicee->id[] = Id::create('INVOICEE-111');
         $invoicee->name = 'Invoicee Party GmbH';
         $invoicee->postalTradeAddress = new TradeAddress();
-        $invoicee->postalTradeAddress->postcode = '70173';
+        $invoicee->postalTradeAddress->postcodeCode = '70173';
         $invoicee->postalTradeAddress->lineOne = 'Rechnungsweg 123';
-        $invoicee->postalTradeAddress->city = 'Stuttgart';
-        $invoicee->postalTradeAddress->countryCode = 'DE';
+        $invoicee->postalTradeAddress->cityName = 'Stuttgart';
+        $invoicee->postalTradeAddress->countryID = 'DE';
 
         $settlement->payeeTradeParty = new TradeParty();
         $payee = $settlement->payeeTradeParty;
         $payee->globalID[] = Id::create('4000009999999', '0088');
         $payee->name = 'Payment Receiver Financial Services GmbH';
         $payee->postalTradeAddress = new TradeAddress();
-        $payee->postalTradeAddress->postcode = '60311';
+        $payee->postalTradeAddress->postcodeCode = '60311';
         $payee->postalTradeAddress->lineOne = 'Bankstraße 456';
-        $payee->postalTradeAddress->city = 'Frankfurt';
-        $payee->postalTradeAddress->countryCode = 'DE';
+        $payee->postalTradeAddress->cityName = 'Frankfurt';
+        $payee->postalTradeAddress->countryID = 'DE';
 
         $currencyExchange = new TradeCurrencyExchange();
         $currencyExchange->sourceCurrencyCode = 'EUR';
@@ -448,7 +448,7 @@ class ProfileExtendedTest extends TestCase
         $paymentMeans->information = 'Payment by bank transfer';
         $paymentMeans->payeePartyCreditorFinancialAccount = new CreditorFinancialAccount();
         $paymentMeans->payeePartyCreditorFinancialAccount->ibanId = Id::create('DE89370400440532013000');
-        $paymentMeans->payeePartyCreditorFinancialAccount->AccountName = 'Comprehensive Seller GmbH';
+        $paymentMeans->payeePartyCreditorFinancialAccount->accountName = 'Comprehensive Seller GmbH';
         $paymentMeans->payeeSpecifiedCreditorFinancialInstitution = new CreditorFinancialInstitution();
         $paymentMeans->payeeSpecifiedCreditorFinancialInstitution->bicId = Id::create('COBADEFFXXX');
         $settlement->specifiedTradeSettlementPaymentMeans[] = $paymentMeans;
@@ -508,7 +508,7 @@ class ProfileExtendedTest extends TestCase
 
         $paymentTerms = new TradePaymentTerms();
         $paymentTerms->description = 'Payment within 30 days with 2% discount within 10 days';
-        $paymentTerms->dueDate = DateTime::create(102, '20250213');
+        $paymentTerms->dueDateDateTime = DateTime::create(102, '20250213');
         $paymentTerms->directDebitMandateID = Id::create('MANDATE-2025-001');
         $settlement->specifiedTradePaymentTerms[] = $paymentTerms;
 
@@ -589,21 +589,21 @@ class ProfileExtendedTest extends TestCase
         $item1->delivery->shipToTradeParty = new TradeParty();
         $item1->delivery->shipToTradeParty->name = 'Item 1 Delivery Location';
         $item1->delivery->shipToTradeParty->postalTradeAddress = new TradeAddress();
-        $item1->delivery->shipToTradeParty->postalTradeAddress->postcode = '12345';
+        $item1->delivery->shipToTradeParty->postalTradeAddress->postcodeCode = '12345';
         $item1->delivery->shipToTradeParty->postalTradeAddress->lineOne = 'Warehouse A';
-        $item1->delivery->shipToTradeParty->postalTradeAddress->city = 'Berlin';
-        $item1->delivery->shipToTradeParty->postalTradeAddress->countryCode = 'DE';
+        $item1->delivery->shipToTradeParty->postalTradeAddress->cityName = 'Berlin';
+        $item1->delivery->shipToTradeParty->postalTradeAddress->countryID = 'DE';
 
         $item1->delivery->ultimateShipToTradeParty = new TradeParty();
         $item1->delivery->ultimateShipToTradeParty->name = 'Final Destination Party';
         $item1->delivery->ultimateShipToTradeParty->postalTradeAddress = new TradeAddress();
-        $item1->delivery->ultimateShipToTradeParty->postalTradeAddress->postcode = '67890';
+        $item1->delivery->ultimateShipToTradeParty->postalTradeAddress->postcodeCode = '67890';
         $item1->delivery->ultimateShipToTradeParty->postalTradeAddress->lineOne = 'End User Location';
-        $item1->delivery->ultimateShipToTradeParty->postalTradeAddress->city = 'München';
-        $item1->delivery->ultimateShipToTradeParty->postalTradeAddress->countryCode = 'DE';
+        $item1->delivery->ultimateShipToTradeParty->postalTradeAddress->cityName = 'München';
+        $item1->delivery->ultimateShipToTradeParty->postalTradeAddress->countryID = 'DE';
 
         $item1->delivery->actualDeliverySupplyChainEvent = new SupplyChainEvent();
-        $item1->delivery->actualDeliverySupplyChainEvent->date = DateTime::create(102, '20250108');
+        $item1->delivery->actualDeliverySupplyChainEvent->occurrenceDateTime = DateTime::create(102, '20250108');
         $item1->delivery->receivingAdviceReferencedDocument = ReferencedDocument::create('RA-LINE-001');
         $item1->delivery->deliveryNoteReferencedDocument = ReferencedDocument::create('DN-LINE-001');
         $item1->specifiedLineTradeSettlement = new LineTradeSettlement();

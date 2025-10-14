@@ -13,12 +13,12 @@ class TaxRegistration
     #[Type(Id::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('ID')]
-    public Id $registration;
+    public Id $id;
 
     public static function create(string $id, ?string $schemeID = null): self
     {
         $self = new self();
-        $self->registration = Id::create($id, $schemeID);
+        $self->id = Id::create($id, $schemeID);
         return $self;
     }
 }

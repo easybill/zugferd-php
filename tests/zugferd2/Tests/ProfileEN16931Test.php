@@ -115,10 +115,10 @@ class ProfileEN16931Test extends TestCase
         $sellerTradeParty->globalID[] = Id::create('4000001123452', '0088');
         $sellerTradeParty->name = 'Lieferant GmbH';
         $sellerTradeParty->postalTradeAddress = new TradeAddress();
-        $sellerTradeParty->postalTradeAddress->postcode = '80333';
+        $sellerTradeParty->postalTradeAddress->postcodeCode = '80333';
         $sellerTradeParty->postalTradeAddress->lineOne = 'Lieferantenstraße 20';
-        $sellerTradeParty->postalTradeAddress->city = 'München';
-        $sellerTradeParty->postalTradeAddress->countryCode = 'DE';
+        $sellerTradeParty->postalTradeAddress->cityName = 'München';
+        $sellerTradeParty->postalTradeAddress->countryID = 'DE';
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('201/113/40209', 'FC');
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('DE123456789', 'VA');
 
@@ -126,17 +126,17 @@ class ProfileEN16931Test extends TestCase
         $buyerTradeParty->id[] = Id::create('GE2020211');
         $buyerTradeParty->name = 'Kunden AG Mitte';
         $buyerTradeParty->postalTradeAddress = new TradeAddress();
-        $buyerTradeParty->postalTradeAddress->postcode = '69876';
+        $buyerTradeParty->postalTradeAddress->postcodeCode = '69876';
         $buyerTradeParty->postalTradeAddress->lineOne = 'Kundenstraße 15';
-        $buyerTradeParty->postalTradeAddress->city = 'Frankfurt';
-        $buyerTradeParty->postalTradeAddress->countryCode = 'DE';
+        $buyerTradeParty->postalTradeAddress->cityName = 'Frankfurt';
+        $buyerTradeParty->postalTradeAddress->countryID = 'DE';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->chainEvent = $supplyChainEvent = new SupplyChainEvent();
-        $supplyChainEvent->date = DateTime::create(102, '20180305');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->actualDeliverySupplyChainEvent = $supplyChainEvent = new SupplyChainEvent();
+        $supplyChainEvent->occurrenceDateTime = DateTime::create(102, '20180305');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = new HeaderTradeSettlement();
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->currency = 'EUR';
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->invoiceCurrencyCode = 'EUR';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->tradeTaxes[] = $headerTax1 = new TradeTax();
         $headerTax1->typeCode = 'VAT';

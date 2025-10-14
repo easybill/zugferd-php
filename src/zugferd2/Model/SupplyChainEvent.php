@@ -13,5 +13,5 @@ class SupplyChainEvent
     #[Type(DateTime::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('OccurrenceDateTime')]
-    public DateTime $date;
+    public DateTime $occurrenceDateTime;
 }

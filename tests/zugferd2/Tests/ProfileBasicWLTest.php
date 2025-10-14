@@ -62,28 +62,28 @@ class ProfileBasicWLTest extends TestCase
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
         $sellerTradeParty->name = 'Taxiunternehmen TX GmbH';
         $sellerTradeParty->postalTradeAddress = new TradeAddress();
-        $sellerTradeParty->postalTradeAddress->postcode = '10369';
+        $sellerTradeParty->postalTradeAddress->postcodeCode = '10369';
         $sellerTradeParty->postalTradeAddress->lineOne = 'Lieferantenstraße 20';
-        $sellerTradeParty->postalTradeAddress->city = 'Berlin';
-        $sellerTradeParty->postalTradeAddress->countryCode = 'DE';
+        $sellerTradeParty->postalTradeAddress->cityName = 'Berlin';
+        $sellerTradeParty->postalTradeAddress->countryID = 'DE';
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('DE123456789', 'VA');
 
         // Buyer Trade Party
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
         $buyerTradeParty->name = 'Taxi-Gast AG Mitte';
         $buyerTradeParty->postalTradeAddress = new TradeAddress();
-        $buyerTradeParty->postalTradeAddress->postcode = '13351';
+        $buyerTradeParty->postalTradeAddress->postcodeCode = '13351';
         $buyerTradeParty->postalTradeAddress->lineOne = 'Hans Mustermann';
         $buyerTradeParty->postalTradeAddress->lineTwo = 'Kundenstraße 15';
-        $buyerTradeParty->postalTradeAddress->city = 'Berlin';
-        $buyerTradeParty->postalTradeAddress->countryCode = 'DE';
+        $buyerTradeParty->postalTradeAddress->cityName = 'Berlin';
+        $buyerTradeParty->postalTradeAddress->countryID = 'DE';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->chainEvent = $chainEvent = new SupplyChainEvent();
-        $chainEvent->date = DateTime::create(102, '20191029');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->actualDeliverySupplyChainEvent = $chainEvent = new SupplyChainEvent();
+        $chainEvent->occurrenceDateTime = DateTime::create(102, '20191029');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = new HeaderTradeSettlement();
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->currency = 'EUR';
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->invoiceCurrencyCode = 'EUR';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->tradeTaxes[] = $headerTax1 = new TradeTax();
         $headerTax1->typeCode = 'VAT';
         $headerTax1->categoryCode = 'S';
@@ -92,7 +92,7 @@ class ProfileBasicWLTest extends TestCase
         $headerTax1->rateApplicablePercent = '7';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradePaymentTerms[] = $paymentTerms = new TradePaymentTerms();
-        $paymentTerms->dueDate = DateTime::create(102, '20191129');
+        $paymentTerms->dueDateDateTime = DateTime::create(102, '20191129');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = $monetarySummation = new TradeSettlementHeaderMonetarySummation();
         $monetarySummation->lineTotalAmount = Amount::create('16.90');

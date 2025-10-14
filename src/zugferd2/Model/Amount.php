@@ -18,13 +18,13 @@ class Amount
     #[Type('string')]
     #[XmlAttribute]
     #[SerializedName('currencyID')]
-    public ?string $currency = null;
+    public ?string $currencyID = null;
 
     public static function create(string $amount, ?string $currency = null): self
     {
         $self = new self();
         $self->value = $amount;
-        $self->currency = $currency;
+        $self->currencyID = $currency;
         return $self;
     }
 }

@@ -76,7 +76,7 @@ class ModelSerializationTest extends TestCase
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement = new HeaderTradeAgreement();
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = new HeaderTradeSettlement();
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->currency = 'EUR';
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->invoiceCurrencyCode = 'EUR';
 
         return $invoice;
     }
@@ -141,7 +141,7 @@ class ModelSerializationTest extends TestCase
         $resultModel = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeAllowanceCharge[0];
 
         self::assertEquals($actualAmount->value, $resultModel->actualAmount->value);
-        self::assertEquals($actualAmount->currency, $resultModel->actualAmount->currency);
+        self::assertEquals($actualAmount->currencyID, $resultModel->actualAmount->currencyID);
         self::assertNotNull($resultModel->indicator);
         self::assertEquals($indicator->indicator, $resultModel->indicator->indicator);
         self::assertEquals($calculationPercent, $resultModel->calculationPercent);
@@ -197,7 +197,7 @@ class ModelSerializationTest extends TestCase
         $sellerParty = new TradeParty();
         $sellerParty->name = 'Test Seller';
         $sellerParty->postalTradeAddress = new TradeAddress();
-        $sellerParty->postalTradeAddress->countryCode = 'DE';
+        $sellerParty->postalTradeAddress->countryID = 'DE';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerParty;
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = new TradeSettlementHeaderMonetarySummation();
@@ -233,12 +233,12 @@ class ModelSerializationTest extends TestCase
     public function testTradeAddressSerialization(): void
     {
         $model = new TradeAddress();
-        $model->postcode = '10115';
+        $model->postcodeCode = '10115';
         $model->lineOne = 'Musterstraße 123';
         $model->lineTwo = 'Gebäude A';
         $model->lineThree = '3. Etage';
-        $model->city = 'Berlin';
-        $model->countryCode = 'DE';
+        $model->cityName = 'Berlin';
+        $model->countryID = 'DE';
         $model->countrySubDivisionName = 'Berlin';
 
         $invoice = $this->createMinimalInvoice();
@@ -253,12 +253,12 @@ class ModelSerializationTest extends TestCase
         $resultModel = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty->postalTradeAddress;
 
         self::assertNotNull($resultModel);
-        self::assertEquals('10115', $resultModel->postcode);
+        self::assertEquals('10115', $resultModel->postcodeCode);
         self::assertEquals('Musterstraße 123', $resultModel->lineOne);
         self::assertEquals('Gebäude A', $resultModel->lineTwo);
         self::assertEquals('3. Etage', $resultModel->lineThree);
-        self::assertEquals('Berlin', $resultModel->city);
-        self::assertEquals('DE', $resultModel->countryCode);
+        self::assertEquals('Berlin', $resultModel->cityName);
+        self::assertEquals('DE', $resultModel->countryID);
         self::assertEquals('Berlin', $resultModel->countrySubDivisionName);
     }
 
@@ -340,20 +340,20 @@ class ModelSerializationTest extends TestCase
         $model->specifiedLegalOrganization->id = Id::create('HRB12345');
         $model->specifiedLegalOrganization->tradingBusinessName = 'Test Company Trading';
         $model->specifiedLegalOrganization->postalTradeAddress = new TradeAddress();
-        $model->specifiedLegalOrganization->postalTradeAddress->postcode = '10115';
+        $model->specifiedLegalOrganization->postalTradeAddress->postcodeCode = '10115';
         $model->specifiedLegalOrganization->postalTradeAddress->lineOne = 'Legal Street 1';
-        $model->specifiedLegalOrganization->postalTradeAddress->city = 'Berlin';
-        $model->specifiedLegalOrganization->postalTradeAddress->countryCode = 'DE';
+        $model->specifiedLegalOrganization->postalTradeAddress->cityName = 'Berlin';
+        $model->specifiedLegalOrganization->postalTradeAddress->countryID = 'DE';
 
         $model->definedTradeContact = new TradeContact();
         $model->definedTradeContact->personName = 'Erika Musterfrau';
         $model->definedTradeContact->departmentName = 'Procurement';
 
         $model->postalTradeAddress = new TradeAddress();
-        $model->postalTradeAddress->postcode = '20095';
+        $model->postalTradeAddress->postcodeCode = '20095';
         $model->postalTradeAddress->lineOne = 'Hauptstraße 456';
-        $model->postalTradeAddress->city = 'Hamburg';
-        $model->postalTradeAddress->countryCode = 'DE';
+        $model->postalTradeAddress->cityName = 'Hamburg';
+        $model->postalTradeAddress->countryID = 'DE';
 
         $model->uriUniversalCommunication = new UniversalCommunication();
         $model->uriUniversalCommunication->uriid = Id::create('info@testcompany.example', 'EM');
@@ -388,7 +388,7 @@ class ModelSerializationTest extends TestCase
         self::assertNotNull($resultModel->uriUniversalCommunication->uriid);
         self::assertEquals('info@testcompany.example', $resultModel->uriUniversalCommunication->uriid->value);
         self::assertCount(2, $resultModel->taxRegistrations);
-        self::assertEquals('DE123456789', $resultModel->taxRegistrations[0]->registration->value);
+        self::assertEquals('DE123456789', $resultModel->taxRegistrations[0]->id->value);
     }
 
     public function testLegalOrganizationSerialization(): void
@@ -397,10 +397,10 @@ class ModelSerializationTest extends TestCase
         $model->id = Id::create('HRB54321');
         $model->tradingBusinessName = 'Legal Test Trading GmbH';
         $model->postalTradeAddress = new TradeAddress();
-        $model->postalTradeAddress->postcode = '60311';
+        $model->postalTradeAddress->postcodeCode = '60311';
         $model->postalTradeAddress->lineOne = 'Rechtsstraße 789';
-        $model->postalTradeAddress->city = 'Frankfurt';
-        $model->postalTradeAddress->countryCode = 'DE';
+        $model->postalTradeAddress->cityName = 'Frankfurt';
+        $model->postalTradeAddress->countryID = 'DE';
 
         $invoice = $this->createMinimalInvoice();
         $sellerParty = new TradeParty();
@@ -418,7 +418,7 @@ class ModelSerializationTest extends TestCase
         self::assertEquals('Legal Test Trading GmbH', $resultModel->tradingBusinessName);
         self::assertNotNull($resultModel->postalTradeAddress);
         self::assertEquals('Rechtsstraße 789', $resultModel->postalTradeAddress->lineOne);
-        self::assertEquals('Frankfurt', $resultModel->postalTradeAddress->city);
+        self::assertEquals('Frankfurt', $resultModel->postalTradeAddress->cityName);
     }
 
     public function testSpecifiedPeriodSerialization(): void
@@ -451,7 +451,7 @@ class ModelSerializationTest extends TestCase
         $sellerParty = new TradeParty();
         $sellerParty->name = 'Test Seller';
         $sellerParty->postalTradeAddress = new TradeAddress();
-        $sellerParty->postalTradeAddress->countryCode = 'DE';
+        $sellerParty->postalTradeAddress->countryID = 'DE';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerParty;
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = new TradeSettlementHeaderMonetarySummation();
@@ -543,7 +543,7 @@ class ModelSerializationTest extends TestCase
         $sellerParty = new TradeParty();
         $sellerParty->name = 'Test Seller';
         $sellerParty->postalTradeAddress = new TradeAddress();
-        $sellerParty->postalTradeAddress->countryCode = 'DE';
+        $sellerParty->postalTradeAddress->countryID = 'DE';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerParty;
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = new TradeSettlementHeaderMonetarySummation();
@@ -615,7 +615,7 @@ class ModelSerializationTest extends TestCase
         $sellerParty = new TradeParty();
         $sellerParty->name = 'Test Seller';
         $sellerParty->postalTradeAddress = new TradeAddress();
-        $sellerParty->postalTradeAddress->countryCode = 'DE';
+        $sellerParty->postalTradeAddress->countryID = 'DE';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerParty;
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = new TradeSettlementHeaderMonetarySummation();
@@ -657,7 +657,7 @@ class ModelSerializationTest extends TestCase
         $model->information = 'Payment by bank transfer';
         $model->payeePartyCreditorFinancialAccount = new CreditorFinancialAccount();
         $model->payeePartyCreditorFinancialAccount->ibanId = Id::create('DE89370400440532013000');
-        $model->payeePartyCreditorFinancialAccount->AccountName = 'Test Company Account';
+        $model->payeePartyCreditorFinancialAccount->accountName = 'Test Company Account';
         $model->payeeSpecifiedCreditorFinancialInstitution = new CreditorFinancialInstitution();
         $model->payeeSpecifiedCreditorFinancialInstitution->bicId = Id::create('COBADEFFXXX');
         $model->payerPartyDebtorFinancialAccount = new DebtorFinancialAccount();
@@ -681,7 +681,7 @@ class ModelSerializationTest extends TestCase
         self::assertNotNull($resultModel->payeePartyCreditorFinancialAccount);
         self::assertNotNull($resultModel->payeePartyCreditorFinancialAccount->ibanId);
         self::assertEquals('DE89370400440532013000', $resultModel->payeePartyCreditorFinancialAccount->ibanId->value);
-        self::assertEquals('Test Company Account', $resultModel->payeePartyCreditorFinancialAccount->AccountName);
+        self::assertEquals('Test Company Account', $resultModel->payeePartyCreditorFinancialAccount->accountName);
         self::assertNotNull($resultModel->payeeSpecifiedCreditorFinancialInstitution);
         self::assertEquals('COBADEFFXXX', $resultModel->payeeSpecifiedCreditorFinancialInstitution->bicId->value);
         self::assertNotNull($resultModel->payerPartyDebtorFinancialAccount);
@@ -693,16 +693,16 @@ class ModelSerializationTest extends TestCase
     {
         $model = new TradePaymentTerms();
         $model->description = 'Payment within 14 days with 2% discount, otherwise 30 days net';
-        $model->dueDate = DateTime::create(102, '20250228');
+        $model->dueDateDateTime = DateTime::create(102, '20250228');
         $model->directDebitMandateID = Id::create('MANDATE-2025-001');
         $model->partialPaymentAmount = Amount::create('500.00');
 
         $model->payeeTradeParty = new TradeParty();
         $model->payeeTradeParty->name = 'Alternative Payee GmbH';
         $model->payeeTradeParty->postalTradeAddress = new TradeAddress();
-        $model->payeeTradeParty->postalTradeAddress->postcode = '10115';
-        $model->payeeTradeParty->postalTradeAddress->city = 'Berlin';
-        $model->payeeTradeParty->postalTradeAddress->countryCode = 'DE';
+        $model->payeeTradeParty->postalTradeAddress->postcodeCode = '10115';
+        $model->payeeTradeParty->postalTradeAddress->cityName = 'Berlin';
+        $model->payeeTradeParty->postalTradeAddress->countryID = 'DE';
 
         $invoice = $this->createMinimalInvoice();
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradePaymentTerms[] = $model;
@@ -719,8 +719,8 @@ class ModelSerializationTest extends TestCase
         $resultModel = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradePaymentTerms[0];
 
         self::assertEquals('Payment within 14 days with 2% discount, otherwise 30 days net', $resultModel->description);
-        self::assertNotNull($resultModel->dueDate);
-        self::assertEquals('20250228', $resultModel->dueDate->dateTimeString->value);
+        self::assertNotNull($resultModel->dueDateDateTime);
+        self::assertEquals('20250228', $resultModel->dueDateDateTime->dateTimeString->value);
         self::assertNotNull($resultModel->directDebitMandateID);
         self::assertEquals('MANDATE-2025-001', $resultModel->directDebitMandateID->value);
         self::assertNotNull($resultModel->partialPaymentAmount);
@@ -728,7 +728,7 @@ class ModelSerializationTest extends TestCase
         self::assertNotNull($resultModel->payeeTradeParty);
         self::assertEquals('Alternative Payee GmbH', $resultModel->payeeTradeParty->name);
         self::assertNotNull($resultModel->payeeTradeParty->postalTradeAddress);
-        self::assertEquals('Berlin', $resultModel->payeeTradeParty->postalTradeAddress->city);
+        self::assertEquals('Berlin', $resultModel->payeeTradeParty->postalTradeAddress->cityName);
     }
 
     public function testNoteSerialization(): void
@@ -789,7 +789,7 @@ class ModelSerializationTest extends TestCase
         $sellerParty = new TradeParty();
         $sellerParty->name = 'Test Seller';
         $sellerParty->postalTradeAddress = new TradeAddress();
-        $sellerParty->postalTradeAddress->countryCode = 'DE';
+        $sellerParty->postalTradeAddress->countryID = 'DE';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerParty;
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = new TradeSettlementHeaderMonetarySummation();
@@ -860,7 +860,7 @@ class ModelSerializationTest extends TestCase
         $sellerParty = new TradeParty();
         $sellerParty->name = 'Test Seller';
         $sellerParty->postalTradeAddress = new TradeAddress();
-        $sellerParty->postalTradeAddress->countryCode = 'DE';
+        $sellerParty->postalTradeAddress->countryID = 'DE';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerParty;
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = new TradeSettlementHeaderMonetarySummation();
@@ -885,17 +885,17 @@ class ModelSerializationTest extends TestCase
     public function testSupplyChainEventSerialization(): void
     {
         $model = new SupplyChainEvent();
-        $model->date = DateTime::create(102, '20250115');
+        $model->occurrenceDateTime = DateTime::create(102, '20250115');
 
         $invoice = $this->createMinimalInvoice();
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->chainEvent = $model;
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->actualDeliverySupplyChainEvent = $model;
 
         $xml = Builder::create()->transform($invoice);
         $deserialized = Reader::create()->transform($xml);
 
-        $resultModel = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeDelivery->chainEvent;
+        $resultModel = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeDelivery->actualDeliverySupplyChainEvent;
         self::assertNotNull($resultModel);
-        self::assertEquals('20250115', $resultModel->date->dateTimeString->value);
+        self::assertEquals('20250115', $resultModel->occurrenceDateTime->dateTimeString->value);
     }
 
     public function testFormattedDateTimeSerialization(): void
@@ -973,7 +973,7 @@ class ModelSerializationTest extends TestCase
         $sellerParty = new TradeParty();
         $sellerParty->name = 'Test Seller';
         $sellerParty->postalTradeAddress = new TradeAddress();
-        $sellerParty->postalTradeAddress->countryCode = 'DE';
+        $sellerParty->postalTradeAddress->countryID = 'DE';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerParty;
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = new TradeSettlementHeaderMonetarySummation();

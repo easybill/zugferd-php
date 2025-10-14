@@ -23,7 +23,7 @@ class HeaderTradeDelivery
     #[Type(SupplyChainEvent::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('ActualDeliverySupplyChainEvent')]
-    public ?SupplyChainEvent $chainEvent = null;
+    public ?SupplyChainEvent $actualDeliverySupplyChainEvent = null;
 
     #[Type(ReferencedDocument::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]

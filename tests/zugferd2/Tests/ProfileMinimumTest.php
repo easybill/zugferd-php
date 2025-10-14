@@ -46,7 +46,7 @@ class ProfileMinimumTest extends TestCase
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
         $sellerTradeParty->name = 'Lieferant GmbH';
         $sellerTradeParty->postalTradeAddress = new TradeAddress();
-        $sellerTradeParty->postalTradeAddress->countryCode = 'DE';
+        $sellerTradeParty->postalTradeAddress->countryID = 'DE';
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('201/113/40209', 'FC');
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('DE123456789', 'VA');
 
@@ -57,7 +57,7 @@ class ProfileMinimumTest extends TestCase
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = new HeaderTradeSettlement();
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->currency = 'EUR';
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->invoiceCurrencyCode = 'EUR';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = $monetarySummation = new TradeSettlementHeaderMonetarySummation();
         $monetarySummation->taxBasisTotalAmount[] = Amount::create('198.00');
         $monetarySummation->taxTotalAmount[] = Amount::create('37.62', 'EUR');
@@ -90,7 +90,7 @@ class ProfileMinimumTest extends TestCase
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
         $sellerTradeParty->name = 'Lieferant GmbH';
         $sellerTradeParty->postalTradeAddress = new TradeAddress();
-        $sellerTradeParty->postalTradeAddress->countryCode = 'DE';
+        $sellerTradeParty->postalTradeAddress->countryID = 'DE';
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('201/113/40209', 'FC');
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('DE123456789', 'VA');
 
@@ -101,7 +101,7 @@ class ProfileMinimumTest extends TestCase
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = new HeaderTradeSettlement();
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->currency = 'EUR';
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->invoiceCurrencyCode = 'EUR';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = $monetarySummation = new TradeSettlementHeaderMonetarySummation();
         $monetarySummation->taxBasisTotalAmount[] = Amount::create('198.00');
         $monetarySummation->taxTotalAmount[] = Amount::create('37.62', 'EUR');

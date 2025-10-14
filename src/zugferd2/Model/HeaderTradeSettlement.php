@@ -29,7 +29,7 @@ class HeaderTradeSettlement
     #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('InvoiceCurrencyCode')]
-    public string $currency;
+    public string $invoiceCurrencyCode;
 
     #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
