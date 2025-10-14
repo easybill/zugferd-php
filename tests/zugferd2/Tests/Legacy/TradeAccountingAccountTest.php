@@ -133,7 +133,7 @@ XML;
         $sellerTradeParty->name = 'Company GmbH';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
-        $buyerTradeParty->id = Id::create('12345');
+        $buyerTradeParty->id[] = Id::create('12345');
         $buyerTradeParty->name = 'Foo Bar';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();

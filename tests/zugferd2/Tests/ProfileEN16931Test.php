@@ -111,7 +111,7 @@ class ProfileEN16931Test extends TestCase
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement = new HeaderTradeAgreement();
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
-        $sellerTradeParty->id = Id::create('549910');
+        $sellerTradeParty->id[] = Id::create('549910');
         $sellerTradeParty->globalID[] = Id::create('4000001123452', '0088');
         $sellerTradeParty->name = 'Lieferant GmbH';
         $sellerTradeParty->postalTradeAddress = new TradeAddress();
@@ -123,7 +123,7 @@ class ProfileEN16931Test extends TestCase
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('DE123456789', 'VA');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
-        $buyerTradeParty->id = Id::create('GE2020211');
+        $buyerTradeParty->id[] = Id::create('GE2020211');
         $buyerTradeParty->name = 'Kunden AG Mitte';
         $buyerTradeParty->postalTradeAddress = new TradeAddress();
         $buyerTradeParty->postalTradeAddress->postcode = '69876';

@@ -121,7 +121,7 @@ Handelsregisternummer: H A 123
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerReference = '04011000-12345-34';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
-        $buyerTradeParty->id = Id::create('1034567');
+        $buyerTradeParty->id[] = Id::create('1034567');
         $buyerTradeParty->name = 'Max Mustermann';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
@@ -145,7 +145,7 @@ Handelsregisternummer: H A 123
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('DE123456789', 'VA');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
-        $buyerTradeParty->id = Id::create('GE2020211');
+        $buyerTradeParty->id[] = Id::create('GE2020211');
         $buyerTradeParty->name = 'Kunden AG Mitte';
 
         $buyerTradeParty->postalTradeAddress = new TradeAddress();
@@ -291,7 +291,7 @@ Handelsregisternummer: H A 123
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerReference = '04011000-12345-34';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
-        $buyerTradeParty->id = Id::create('1034567');
+        $buyerTradeParty->id[] = Id::create('1034567');
         $buyerTradeParty->name = 'Max Mustermann';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
@@ -315,7 +315,7 @@ Handelsregisternummer: H A 123
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('DE123456789', 'VA');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
-        $buyerTradeParty->id = Id::create('GE2020211');
+        $buyerTradeParty->id[] = Id::create('GE2020211');
         $buyerTradeParty->name = 'Kunden AG Mitte';
 
         $buyerTradeParty->postalTradeAddress = new TradeAddress();
