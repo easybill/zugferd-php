@@ -21,9 +21,9 @@ use Easybill\ZUGFeRD2\Model\LineTradeAgreement;
 use Easybill\ZUGFeRD2\Model\LineTradeDelivery;
 use Easybill\ZUGFeRD2\Model\LineTradeSettlement;
 use Easybill\ZUGFeRD2\Model\Note;
-use Easybill\ZUGFeRD2\Model\Period;
 use Easybill\ZUGFeRD2\Model\Quantity;
 use Easybill\ZUGFeRD2\Model\ReferencedDocument;
+use Easybill\ZUGFeRD2\Model\SpecifiedPeriod;
 use Easybill\ZUGFeRD2\Model\SupplyChainTradeLineItem;
 use Easybill\ZUGFeRD2\Model\SupplyChainTradeTransaction;
 use Easybill\ZUGFeRD2\Model\TaxRegistration;
@@ -93,9 +93,9 @@ class ProfileExtendedTest extends TestCase
         $item1Tax->exemptionReason = 'Kein Ausweis der Umsatzsteuer bei innergemeinschaftlichen Lieferungen';
         $item1Tax->categoryCode = 'K';
         $item1Tax->rateApplicablePercent = '0';
-        $item1->specifiedLineTradeSettlement->billingSpecifiedPeriod = $item1Period = new Period();
-        $item1Period->startDatetime = DateTime::create(102, '20181001');
-        $item1Period->endDatetime = DateTime::create(102, '20181031');
+        $item1->specifiedLineTradeSettlement->billingSpecifiedPeriod = $item1Period = new SpecifiedPeriod();
+        $item1Period->startDateTime = DateTime::create(102, '20181001');
+        $item1Period->endDateTime = DateTime::create(102, '20181031');
 
         $item1->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('1000');
 
@@ -124,16 +124,16 @@ class ProfileExtendedTest extends TestCase
         $item2Tax->categoryCode = 'K';
         $item2Tax->rateApplicablePercent = '0';
 
-        $item2->specifiedLineTradeSettlement->billingSpecifiedPeriod = $item2Period = new Period();
-        $item2Period->startDatetime = DateTime::create(102, '20181001');
-        $item2Period->endDatetime = DateTime::create(102, '20181031');
+        $item2->specifiedLineTradeSettlement->billingSpecifiedPeriod = $item2Period = new SpecifiedPeriod();
+        $item2Period->startDateTime = DateTime::create(102, '20181001');
+        $item2Period->endDateTime = DateTime::create(102, '20181031');
 
         $item2->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('1000');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement = new HeaderTradeAgreement();
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
-        $sellerTradeParty->id = Id::create('12345676');
+        $sellerTradeParty->id[] = Id::create('12345676');
         $sellerTradeParty->name = 'Global Supplies Ltd.  ';
         $sellerTradeParty->postalTradeAddress = $sellerPostalAddress = new TradeAddress();
         $sellerPostalAddress->postcode = 'SW1B 3BN';
@@ -144,7 +144,7 @@ class ProfileExtendedTest extends TestCase
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('GB999999999', 'VA');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
-        $buyerTradeParty->id = Id::create('75969813');
+        $buyerTradeParty->id[] = Id::create('75969813');
         $buyerTradeParty->name = 'Metallbau Leipzig GmbH & Co. KG';
 
         $buyerTradeParty->postalTradeAddress = new TradeAddress();
@@ -170,7 +170,7 @@ class ProfileExtendedTest extends TestCase
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->shipToTradeParty = $shipToTradeParty = new TradeParty();
-        $shipToTradeParty->id = Id::create('75969815');
+        $shipToTradeParty->id[] = Id::create('75969815');
         $shipToTradeParty->name = 'Metallbau Leipzig GmbH & Co. KG';
         $shipToTradeParty->uriUniversalCommunication = $shipToUniversalCommunication = new UniversalCommunication();
         $shipToUniversalCommunication->uriid = Id::create('999999999', '0060');
@@ -206,9 +206,9 @@ class ProfileExtendedTest extends TestCase
         $headerTax1->calculatedAmount = Amount::create('0');
         $headerTax1->rateApplicablePercent = '0';
 
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->billingSpecifiedPeriod = $billingPeriod = new Period();
-        $billingPeriod->startDatetime = DateTime::create(102, '20181001');
-        $billingPeriod->endDatetime = DateTime::create(102, '20181031');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->billingSpecifiedPeriod = $billingPeriod = new SpecifiedPeriod();
+        $billingPeriod->startDateTime = DateTime::create(102, '20181001');
+        $billingPeriod->endDateTime = DateTime::create(102, '20181031');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradePaymentTerms[] = $paymentTerms = new TradePaymentTerms();
         $paymentTerms->dueDate = DateTime::create(102, '20181130');

@@ -23,9 +23,9 @@ use Easybill\ZUGFeRD2\Model\LineTradeAgreement;
 use Easybill\ZUGFeRD2\Model\LineTradeDelivery;
 use Easybill\ZUGFeRD2\Model\LineTradeSettlement;
 use Easybill\ZUGFeRD2\Model\Note;
-use Easybill\ZUGFeRD2\Model\Period;
 use Easybill\ZUGFeRD2\Model\Quantity;
 use Easybill\ZUGFeRD2\Model\ReferencedDocument;
+use Easybill\ZUGFeRD2\Model\SpecifiedPeriod;
 use Easybill\ZUGFeRD2\Model\SupplyChainEvent;
 use Easybill\ZUGFeRD2\Model\SupplyChainTradeLineItem;
 use Easybill\ZUGFeRD2\Model\SupplyChainTradeTransaction;
@@ -120,7 +120,7 @@ class ProfileXRechnungTest extends TestCase
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerReference = '04011000-12345-34';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
-        $buyerTradeParty->id = Id::create('1034567');
+        $buyerTradeParty->id[] = Id::create('1034567');
         $buyerTradeParty->name = 'Max Mustermann';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
@@ -144,7 +144,7 @@ class ProfileXRechnungTest extends TestCase
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('DE123456789', 'VA');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
-        $buyerTradeParty->id = Id::create('GE2020211');
+        $buyerTradeParty->id[] = Id::create('GE2020211');
         $buyerTradeParty->name = 'Kunden AG Mitte';
 
         $buyerTradeParty->postalTradeAddress = new TradeAddress();
@@ -313,7 +313,7 @@ class ProfileXRechnungTest extends TestCase
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerReference = '04011000-12345-34';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
-        $buyerTradeParty->id = Id::create('1034567');
+        $buyerTradeParty->id[] = Id::create('1034567');
         $buyerTradeParty->name = 'Max Mustermann';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
@@ -337,7 +337,7 @@ class ProfileXRechnungTest extends TestCase
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('DE123456789', 'VA');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
-        $buyerTradeParty->id = Id::create('GE2020211');
+        $buyerTradeParty->id[] = Id::create('GE2020211');
         $buyerTradeParty->name = 'Kunden AG Mitte';
 
         $buyerTradeParty->postalTradeAddress = new TradeAddress();
@@ -389,9 +389,9 @@ class ProfileXRechnungTest extends TestCase
         $headerTax2->calculatedAmount = Amount::create('2.23');
         $headerTax2->rateApplicablePercent = '19.00';
 
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->billingSpecifiedPeriod = $billingPeriod = new Period();
-        $billingPeriod->startDatetime = DateTime::create(102, '20180709');
-        $billingPeriod->endDatetime = DateTime::create(102, '20180711');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->billingSpecifiedPeriod = $billingPeriod = new SpecifiedPeriod();
+        $billingPeriod->startDateTime = DateTime::create(102, '20180709');
+        $billingPeriod->endDateTime = DateTime::create(102, '20180711');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradePaymentTerms[] = $paymentTerms = new TradePaymentTerms();
         $paymentTerms->description = 'Zahlbar innerhalb 30 Tagen netto bis 12.08.2018, 3% Skonto innerhalb 10 Tagen bis 15.03.2018';
@@ -460,7 +460,7 @@ class ProfileXRechnungTest extends TestCase
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerReference = '04011000-12345-34';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
-        $buyerTradeParty->id = Id::create('1034567');
+        $buyerTradeParty->id[] = Id::create('1034567');
         $buyerTradeParty->name = 'Max Mustermann';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
@@ -527,9 +527,9 @@ class ProfileXRechnungTest extends TestCase
         $headerTax1->calculatedAmount = Amount::create('2923.55');
         $headerTax1->rateApplicablePercent = '19.00';
 
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->billingSpecifiedPeriod = $billingPeriod = new Period();
-        $billingPeriod->startDatetime = DateTime::create(102, '20100101');
-        $billingPeriod->endDatetime = DateTime::create(102, '20101231');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->billingSpecifiedPeriod = $billingPeriod = new SpecifiedPeriod();
+        $billingPeriod->startDateTime = DateTime::create(102, '20100101');
+        $billingPeriod->endDateTime = DateTime::create(102, '20101231');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradePaymentTerms[] = $paymentTerms = new TradePaymentTerms();
         $paymentTerms->dueDate = DateTime::create(102, '20180404');

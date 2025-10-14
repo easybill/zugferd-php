@@ -25,10 +25,10 @@ class LineTradeSettlement
     #[XmlList(entry: 'SpecifiedTradeAllowanceCharge', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $specifiedTradeAllowanceCharge = [];
 
-    #[Type(Period::class)]
+    #[Type(SpecifiedPeriod::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('BillingSpecifiedPeriod')]
-    public ?Period $billingSpecifiedPeriod = null;
+    public ?SpecifiedPeriod $billingSpecifiedPeriod = null;
 
     #[Type(TradeSettlementLineMonetarySummation::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]

@@ -10,6 +10,11 @@ use JMS\Serializer\Annotation\XmlElement;
 
 class HeaderTradeDelivery
 {
+    #[Type(SupplyChainConsignment::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('RelatedSupplyChainConsignment')]
+    public ?SupplyChainConsignment $relatedSupplyChainConsignment = null;
+
     #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('ShipToTradeParty')]
