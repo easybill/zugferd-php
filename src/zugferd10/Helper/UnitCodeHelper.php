@@ -6,6 +6,9 @@ namespace Easybill\ZUGFeRD\Helper;
 
 use Easybill\ZUGFeRD\Model\UnitCode;
 
+/**
+ * @deprecated ZUGFeRD 1.0 is deprecated and will be removed in a future release. Please migrate to ZUGFeRD 2.0 (Easybill\ZUGFeRD2).
+ */
 class UnitCodeHelper
 {
     public static function getUnitCode(string $rawString = ''): string

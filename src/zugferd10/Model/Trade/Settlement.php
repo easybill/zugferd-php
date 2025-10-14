@@ -13,6 +13,9 @@ use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
 #[AccessorOrder(order: 'custom', custom: ['paymentReference', 'currency', 'invoiceeTradeParty', 'payeeTradeParty', 'paymentMeans', 'tradeTaxes', 'billingPeriod', 'allowanceCharges', 'logisticsServiceCharge', 'paymentTerms', 'monetarySummation'])]
+/**
+ * @deprecated ZUGFeRD 1.0 is deprecated and will be removed in a future release. Please migrate to ZUGFeRD 2.0 (Easybill\ZUGFeRD2).
+ */
 class Settlement
 {
     #[Type(TradeParty::class)]
