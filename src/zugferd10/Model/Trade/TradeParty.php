@@ -14,6 +14,9 @@ use JMS\Serializer\Annotation\XmlList;
 use Easybill\ZUGFeRD\Model\Schema;
 
 #[AccessorOrder(order: 'custom', custom: ['id', 'globalId', 'name', 'definedTradeContact', 'postalTradeAddress', 'specifiedTaxRegistration'])]
+/**
+ * @deprecated ZUGFeRD 1.0 is deprecated and will be removed in a future release. Please migrate to ZUGFeRD 2.0 (Easybill\ZUGFeRD2).
+ */
 class TradeParty
 {
     /**

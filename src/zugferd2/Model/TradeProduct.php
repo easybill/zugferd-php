@@ -10,7 +10,7 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
-#[AccessorOrder(order: 'custom', custom: ['globalID', 'sellerAssignedID', 'buyerAssignedID', 'name', 'description', 'tradeCountry'])]
+#[AccessorOrder(order: 'custom', custom: ['globalID', 'sellerAssignedID', 'buyerAssignedID', 'name', 'description', 'applicableProductCharacteristic', 'designatedProductClassification', 'tradeCountry', 'includedReferencedProduct'])]
 class TradeProduct
 {
     #[Type(Id::class)]
@@ -53,8 +53,8 @@ class TradeProduct
     #[SerializedName('DesignatedProductClassification')]
     public ?ProductClassification $designatedProductClassification = null;
 
-    /** @var ProductType[] */
-    #[Type('array<Easybill\ZUGFeRD2\Model\ProductType>')]
+    /** @var ReferencedProduct[] */
+    #[Type('array<Easybill\ZUGFeRD2\Model\ReferencedProduct>')]
     #[XmlList(entry: 'IncludedReferencedProduct', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $includedReferencedProduct = [];
 }

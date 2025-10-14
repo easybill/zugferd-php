@@ -121,7 +121,7 @@ Handelsregisternummer: H A 123
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerReference = '04011000-12345-34';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
-        $buyerTradeParty->id = Id::create('1034567');
+        $buyerTradeParty->id[] = Id::create('1034567');
         $buyerTradeParty->name = 'Max Mustermann';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
@@ -136,36 +136,36 @@ Handelsregisternummer: H A 123
         $sellerTradeParty->definedTradeContact->emailURIUniversalCommunication->uriid = Id::create('Max@Mustermann.de');
 
         $sellerTradeParty->postalTradeAddress = new TradeAddress();
-        $sellerTradeParty->postalTradeAddress->postcode = '80333';
+        $sellerTradeParty->postalTradeAddress->postcodeCode = '80333';
         $sellerTradeParty->postalTradeAddress->lineOne = 'Lieferantenstraße 20';
-        $sellerTradeParty->postalTradeAddress->city = 'München';
-        $sellerTradeParty->postalTradeAddress->countryCode = 'DE';
+        $sellerTradeParty->postalTradeAddress->cityName = 'München';
+        $sellerTradeParty->postalTradeAddress->countryID = 'DE';
 
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('201/113/40209', 'FC');
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('DE123456789', 'VA');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
-        $buyerTradeParty->id = Id::create('GE2020211');
+        $buyerTradeParty->id[] = Id::create('GE2020211');
         $buyerTradeParty->name = 'Kunden AG Mitte';
 
         $buyerTradeParty->postalTradeAddress = new TradeAddress();
-        $buyerTradeParty->postalTradeAddress->postcode = '69876';
+        $buyerTradeParty->postalTradeAddress->postcodeCode = '69876';
         $buyerTradeParty->postalTradeAddress->lineOne = 'Kundenstraße 15';
-        $buyerTradeParty->postalTradeAddress->city = 'Frankfurt';
-        $buyerTradeParty->postalTradeAddress->countryCode = 'DE';
+        $buyerTradeParty->postalTradeAddress->cityName = 'Frankfurt';
+        $buyerTradeParty->postalTradeAddress->countryID = 'DE';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->chainEvent = new SupplyChainEvent();
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->chainEvent->date = DateTime::create(102, '20180305');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->actualDeliverySupplyChainEvent = new SupplyChainEvent();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->actualDeliverySupplyChainEvent->occurrenceDateTime = DateTime::create(102, '20180305');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = new HeaderTradeSettlement();
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->currency = 'EUR';
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->invoiceCurrencyCode = 'EUR';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementPaymentMeans[] = $paymentMeans1 = new TradeSettlementPaymentMeans();
         $paymentMeans1->typeCode = '58';
         $paymentMeans1->information = 'Zahlung per SEPA Überweisung.';
         $paymentMeans1->payeePartyCreditorFinancialAccount = new CreditorFinancialAccount();
         $paymentMeans1->payeePartyCreditorFinancialAccount->ibanId = Id::create('DE02120300000000202051');
-        $paymentMeans1->payeePartyCreditorFinancialAccount->AccountName = 'Kunden AG';
+        $paymentMeans1->payeePartyCreditorFinancialAccount->accountName = 'Kunden AG';
         $paymentMeans1->payeeSpecifiedCreditorFinancialInstitution = new CreditorFinancialInstitution();
         $paymentMeans1->payeeSpecifiedCreditorFinancialInstitution->bicId = Id::create('BYLADEM1001');
 
@@ -247,7 +247,7 @@ Handelsregisternummer: H A 123
         $item1->delivery = new LineTradeDelivery();
         $item1->delivery->billedQuantity = Quantity::create('20.0000', 'H87');
         $item1->delivery->actualDeliverySupplyChainEvent = new SupplyChainEvent();
-        $item1->delivery->actualDeliverySupplyChainEvent->date = DateTime::create(102, '20180305');
+        $item1->delivery->actualDeliverySupplyChainEvent->occurrenceDateTime = DateTime::create(102, '20180305');
 
         $item1->specifiedLineTradeSettlement = new LineTradeSettlement();
         $item1->specifiedLineTradeSettlement->tradeTax[] = $item1tax = new TradeTax();
@@ -291,7 +291,7 @@ Handelsregisternummer: H A 123
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerReference = '04011000-12345-34';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
-        $buyerTradeParty->id = Id::create('1034567');
+        $buyerTradeParty->id[] = Id::create('1034567');
         $buyerTradeParty->name = 'Max Mustermann';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
@@ -306,30 +306,30 @@ Handelsregisternummer: H A 123
         $sellerTradeParty->definedTradeContact->emailURIUniversalCommunication->uriid = Id::create('Max@Mustermann.de');
 
         $sellerTradeParty->postalTradeAddress = new TradeAddress();
-        $sellerTradeParty->postalTradeAddress->postcode = '80333';
+        $sellerTradeParty->postalTradeAddress->postcodeCode = '80333';
         $sellerTradeParty->postalTradeAddress->lineOne = 'Lieferantenstraße 20';
-        $sellerTradeParty->postalTradeAddress->city = 'München';
-        $sellerTradeParty->postalTradeAddress->countryCode = 'DE';
+        $sellerTradeParty->postalTradeAddress->cityName = 'München';
+        $sellerTradeParty->postalTradeAddress->countryID = 'DE';
 
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('201/113/40209', 'FC');
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('DE123456789', 'VA');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
-        $buyerTradeParty->id = Id::create('GE2020211');
+        $buyerTradeParty->id[] = Id::create('GE2020211');
         $buyerTradeParty->name = 'Kunden AG Mitte';
 
         $buyerTradeParty->postalTradeAddress = new TradeAddress();
-        $buyerTradeParty->postalTradeAddress->postcode = '69876';
+        $buyerTradeParty->postalTradeAddress->postcodeCode = '69876';
         $buyerTradeParty->postalTradeAddress->lineOne = 'Kundenstraße 15';
-        $buyerTradeParty->postalTradeAddress->city = 'Frankfurt';
-        $buyerTradeParty->postalTradeAddress->countryCode = 'DE';
+        $buyerTradeParty->postalTradeAddress->cityName = 'Frankfurt';
+        $buyerTradeParty->postalTradeAddress->countryID = 'DE';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->specifiedProcuringProject = ProcuringProject::create('1234', 'Projekt');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->shipToTradeParty = $buyerTradeParty;
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->chainEvent = new SupplyChainEvent();
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->chainEvent->date = DateTime::create(102, '20180305');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->actualDeliverySupplyChainEvent = new SupplyChainEvent();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->actualDeliverySupplyChainEvent->occurrenceDateTime = DateTime::create(102, '20180305');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->deliveryNoteReferencedDocument = ReferencedDocument::create('123456');
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->deliveryNoteReferencedDocument->formattedIssueDateTime = FormattedDateTime::create(102, '20180305');
@@ -337,7 +337,7 @@ Handelsregisternummer: H A 123
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = new HeaderTradeSettlement();
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->creditorReferenceID = 'TEST1234';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->paymentReference = '421102';
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->currency = 'EUR';
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->invoiceCurrencyCode = 'EUR';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->payeeTradeParty = $sellerTradeParty;
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedLogisticsServiceCharge[] = $logisticsServiceCharge = new LogisticsServiceCharge();
 
@@ -355,7 +355,7 @@ Handelsregisternummer: H A 123
         $paymentMeans1->information = 'Zahlung per SEPA Überweisung.';
         $paymentMeans1->payeePartyCreditorFinancialAccount = new CreditorFinancialAccount();
         $paymentMeans1->payeePartyCreditorFinancialAccount->ibanId = Id::create('DE02120300000000202051');
-        $paymentMeans1->payeePartyCreditorFinancialAccount->AccountName = 'Kunden AG';
+        $paymentMeans1->payeePartyCreditorFinancialAccount->accountName = 'Kunden AG';
         $paymentMeans1->payeeSpecifiedCreditorFinancialInstitution = new CreditorFinancialInstitution();
         $paymentMeans1->payeeSpecifiedCreditorFinancialInstitution->bicId = Id::create('BYLADEM1001');
 

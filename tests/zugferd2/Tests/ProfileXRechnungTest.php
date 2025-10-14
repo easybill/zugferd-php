@@ -23,9 +23,9 @@ use Easybill\ZUGFeRD2\Model\LineTradeAgreement;
 use Easybill\ZUGFeRD2\Model\LineTradeDelivery;
 use Easybill\ZUGFeRD2\Model\LineTradeSettlement;
 use Easybill\ZUGFeRD2\Model\Note;
-use Easybill\ZUGFeRD2\Model\Period;
 use Easybill\ZUGFeRD2\Model\Quantity;
 use Easybill\ZUGFeRD2\Model\ReferencedDocument;
+use Easybill\ZUGFeRD2\Model\SpecifiedPeriod;
 use Easybill\ZUGFeRD2\Model\SupplyChainEvent;
 use Easybill\ZUGFeRD2\Model\SupplyChainTradeLineItem;
 use Easybill\ZUGFeRD2\Model\SupplyChainTradeTransaction;
@@ -120,7 +120,7 @@ class ProfileXRechnungTest extends TestCase
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerReference = '04011000-12345-34';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
-        $buyerTradeParty->id = Id::create('1034567');
+        $buyerTradeParty->id[] = Id::create('1034567');
         $buyerTradeParty->name = 'Max Mustermann';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
@@ -135,36 +135,36 @@ class ProfileXRechnungTest extends TestCase
         $sellerTradeParty->definedTradeContact->emailURIUniversalCommunication->uriid = Id::create('Max@Mustermann.de');
 
         $sellerTradeParty->postalTradeAddress = new TradeAddress();
-        $sellerTradeParty->postalTradeAddress->postcode = '80333';
+        $sellerTradeParty->postalTradeAddress->postcodeCode = '80333';
         $sellerTradeParty->postalTradeAddress->lineOne = 'Lieferantenstraße 20';
-        $sellerTradeParty->postalTradeAddress->city = 'München';
-        $sellerTradeParty->postalTradeAddress->countryCode = 'DE';
+        $sellerTradeParty->postalTradeAddress->cityName = 'München';
+        $sellerTradeParty->postalTradeAddress->countryID = 'DE';
 
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('201/113/40209', 'FC');
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('DE123456789', 'VA');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
-        $buyerTradeParty->id = Id::create('GE2020211');
+        $buyerTradeParty->id[] = Id::create('GE2020211');
         $buyerTradeParty->name = 'Kunden AG Mitte';
 
         $buyerTradeParty->postalTradeAddress = new TradeAddress();
-        $buyerTradeParty->postalTradeAddress->postcode = '69876';
+        $buyerTradeParty->postalTradeAddress->postcodeCode = '69876';
         $buyerTradeParty->postalTradeAddress->lineOne = 'Kundenstraße 15';
-        $buyerTradeParty->postalTradeAddress->city = 'Frankfurt';
-        $buyerTradeParty->postalTradeAddress->countryCode = 'DE';
+        $buyerTradeParty->postalTradeAddress->cityName = 'Frankfurt';
+        $buyerTradeParty->postalTradeAddress->countryID = 'DE';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->chainEvent = new SupplyChainEvent();
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->chainEvent->date = DateTime::create(102, '20180305');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->actualDeliverySupplyChainEvent = new SupplyChainEvent();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->actualDeliverySupplyChainEvent->occurrenceDateTime = DateTime::create(102, '20180305');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = new HeaderTradeSettlement();
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->currency = 'EUR';
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->invoiceCurrencyCode = 'EUR';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementPaymentMeans[] = $paymentMeans1 = new TradeSettlementPaymentMeans();
         $paymentMeans1->typeCode = '58';
         $paymentMeans1->information = 'Zahlung per SEPA Überweisung.';
         $paymentMeans1->payeePartyCreditorFinancialAccount = new CreditorFinancialAccount();
         $paymentMeans1->payeePartyCreditorFinancialAccount->ibanId = Id::create('DE02120300000000202051');
-        $paymentMeans1->payeePartyCreditorFinancialAccount->AccountName = 'Kunden AG';
+        $paymentMeans1->payeePartyCreditorFinancialAccount->accountName = 'Kunden AG';
         $paymentMeans1->payeeSpecifiedCreditorFinancialInstitution = new CreditorFinancialInstitution();
         $paymentMeans1->payeeSpecifiedCreditorFinancialInstitution->bicId = Id::create('BYLADEM1001');
 
@@ -313,7 +313,7 @@ class ProfileXRechnungTest extends TestCase
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerReference = '04011000-12345-34';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
-        $buyerTradeParty->id = Id::create('1034567');
+        $buyerTradeParty->id[] = Id::create('1034567');
         $buyerTradeParty->name = 'Max Mustermann';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
@@ -328,32 +328,32 @@ class ProfileXRechnungTest extends TestCase
         $sellerTradeParty->definedTradeContact->emailURIUniversalCommunication->uriid = Id::create('Max@Mustermann.de');
 
         $sellerTradeParty->postalTradeAddress = new TradeAddress();
-        $sellerTradeParty->postalTradeAddress->postcode = '80333';
+        $sellerTradeParty->postalTradeAddress->postcodeCode = '80333';
         $sellerTradeParty->postalTradeAddress->lineOne = 'Lieferantenstraße 20';
-        $sellerTradeParty->postalTradeAddress->city = 'München';
-        $sellerTradeParty->postalTradeAddress->countryCode = 'DE';
+        $sellerTradeParty->postalTradeAddress->cityName = 'München';
+        $sellerTradeParty->postalTradeAddress->countryID = 'DE';
 
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('201/113/40209', 'FC');
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('DE123456789', 'VA');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
-        $buyerTradeParty->id = Id::create('GE2020211');
+        $buyerTradeParty->id[] = Id::create('GE2020211');
         $buyerTradeParty->name = 'Kunden AG Mitte';
 
         $buyerTradeParty->postalTradeAddress = new TradeAddress();
-        $buyerTradeParty->postalTradeAddress->postcode = '69876';
+        $buyerTradeParty->postalTradeAddress->postcodeCode = '69876';
         $buyerTradeParty->postalTradeAddress->lineOne = 'Kundenstraße 15';
-        $buyerTradeParty->postalTradeAddress->city = 'Frankfurt';
-        $buyerTradeParty->postalTradeAddress->countryCode = 'DE';
+        $buyerTradeParty->postalTradeAddress->cityName = 'Frankfurt';
+        $buyerTradeParty->postalTradeAddress->countryID = 'DE';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->shipToTradeParty = $shipToTradeParty = new TradeParty();
         $shipToTradeParty->name = 'Musterfirma Nürnberg';
         $shipToTradeParty->postalTradeAddress = new TradeAddress();
-        $shipToTradeParty->postalTradeAddress->postcode = '75319';
+        $shipToTradeParty->postalTradeAddress->postcodeCode = '75319';
         $shipToTradeParty->postalTradeAddress->lineOne = 'Am Bahnhof 42';
-        $shipToTradeParty->postalTradeAddress->city = 'Nürnberg';
-        $shipToTradeParty->postalTradeAddress->countryCode = 'DE';
+        $shipToTradeParty->postalTradeAddress->cityName = 'Nürnberg';
+        $shipToTradeParty->postalTradeAddress->countryID = 'DE';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->additionalReferencedDocuments[] = $additionalReferencedDocument = new ReferencedDocument();
         $additionalReferencedDocument->name = 'Hotelrechnung';
@@ -365,13 +365,13 @@ class ProfileXRechnungTest extends TestCase
         $additionalReferencedDocumentBinaryObject->value = base64_encode((string)file_get_contents(__DIR__ . '/Examples/XRECHNUNG/Attachments/EN16931_Betriebskostenabrechnung_Abrechnung 2010.pdf'));
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = new HeaderTradeSettlement();
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->currency = 'EUR';
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->invoiceCurrencyCode = 'EUR';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementPaymentMeans[] = $paymentMeans1 = new TradeSettlementPaymentMeans();
         $paymentMeans1->typeCode = '58';
         $paymentMeans1->information = 'Zahlung per SEPA Überweisung.';
         $paymentMeans1->payeePartyCreditorFinancialAccount = new CreditorFinancialAccount();
         $paymentMeans1->payeePartyCreditorFinancialAccount->ibanId = Id::create('DE02120300000000202051');
-        $paymentMeans1->payeePartyCreditorFinancialAccount->AccountName = 'Kunden AG';
+        $paymentMeans1->payeePartyCreditorFinancialAccount->accountName = 'Kunden AG';
         $paymentMeans1->payeeSpecifiedCreditorFinancialInstitution = new CreditorFinancialInstitution();
         $paymentMeans1->payeeSpecifiedCreditorFinancialInstitution->bicId = Id::create('BYLADEM1001');
 
@@ -389,9 +389,9 @@ class ProfileXRechnungTest extends TestCase
         $headerTax2->calculatedAmount = Amount::create('2.23');
         $headerTax2->rateApplicablePercent = '19.00';
 
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->billingSpecifiedPeriod = $billingPeriod = new Period();
-        $billingPeriod->startDatetime = DateTime::create(102, '20180709');
-        $billingPeriod->endDatetime = DateTime::create(102, '20180711');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->billingSpecifiedPeriod = $billingPeriod = new SpecifiedPeriod();
+        $billingPeriod->startDateTime = DateTime::create(102, '20180709');
+        $billingPeriod->endDateTime = DateTime::create(102, '20180711');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradePaymentTerms[] = $paymentTerms = new TradePaymentTerms();
         $paymentTerms->description = 'Zahlbar innerhalb 30 Tagen netto bis 12.08.2018, 3% Skonto innerhalb 10 Tagen bis 15.03.2018';
@@ -460,7 +460,7 @@ class ProfileXRechnungTest extends TestCase
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerReference = '04011000-12345-34';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
-        $buyerTradeParty->id = Id::create('1034567');
+        $buyerTradeParty->id[] = Id::create('1034567');
         $buyerTradeParty->name = 'Max Mustermann';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
@@ -475,10 +475,10 @@ class ProfileXRechnungTest extends TestCase
         $sellerTradeParty->definedTradeContact->emailURIUniversalCommunication->uriid = Id::create('Max@Mustermann.de');
 
         $sellerTradeParty->postalTradeAddress = new TradeAddress();
-        $sellerTradeParty->postalTradeAddress->postcode = '75645';
+        $sellerTradeParty->postalTradeAddress->postcodeCode = '75645';
         $sellerTradeParty->postalTradeAddress->lineOne = 'Musterstraße 42';
-        $sellerTradeParty->postalTradeAddress->city = 'Frankfurt';
-        $sellerTradeParty->postalTradeAddress->countryCode = 'DE';
+        $sellerTradeParty->postalTradeAddress->cityName = 'Frankfurt';
+        $sellerTradeParty->postalTradeAddress->countryID = 'DE';
 
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('201/113/40209', 'FC');
         $sellerTradeParty->taxRegistrations[] = TaxRegistration::create('DE136695976', 'VA');
@@ -486,19 +486,19 @@ class ProfileXRechnungTest extends TestCase
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->buyerTradeParty = $buyerTradeParty = new TradeParty();
         $buyerTradeParty->name = 'Beispielmieter GmbH';
         $buyerTradeParty->postalTradeAddress = new TradeAddress();
-        $buyerTradeParty->postalTradeAddress->postcode = '12345';
+        $buyerTradeParty->postalTradeAddress->postcodeCode = '12345';
         $buyerTradeParty->postalTradeAddress->lineOne = 'Verwaltung Straße 40';
-        $buyerTradeParty->postalTradeAddress->city = 'Musterstadt';
-        $buyerTradeParty->postalTradeAddress->countryCode = 'DE';
+        $buyerTradeParty->postalTradeAddress->cityName = 'Musterstadt';
+        $buyerTradeParty->postalTradeAddress->countryID = 'DE';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery->shipToTradeParty = $shipToTradeParty = new TradeParty();
         $shipToTradeParty->postalTradeAddress = new TradeAddress();
-        $shipToTradeParty->postalTradeAddress->postcode = '12345';
+        $shipToTradeParty->postalTradeAddress->postcodeCode = '12345';
         $shipToTradeParty->postalTradeAddress->lineOne = 'Verwaltung Straße 40';
         $shipToTradeParty->postalTradeAddress->lineTwo = 'Einheit: 5.OG rechts';
-        $shipToTradeParty->postalTradeAddress->city = 'Musterstadt';
-        $shipToTradeParty->postalTradeAddress->countryCode = 'DE';
+        $shipToTradeParty->postalTradeAddress->cityName = 'Musterstadt';
+        $shipToTradeParty->postalTradeAddress->countryID = 'DE';
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->additionalReferencedDocuments[] = $additionalReferencedDocument = new ReferencedDocument();
         $additionalReferencedDocument->name = 'Betriebskostenabrechnung';
@@ -510,13 +510,13 @@ class ProfileXRechnungTest extends TestCase
         $additionalReferencedDocumentBinaryObject->value = base64_encode((string)file_get_contents(__DIR__ . '/Examples/XRECHNUNG/Attachments/EN16931_Betriebskostenabrechnung_Abrechnung 2010.pdf'));
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = new HeaderTradeSettlement();
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->currency = 'EUR';
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->invoiceCurrencyCode = 'EUR';
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementPaymentMeans[] = $paymentMeans1 = new TradeSettlementPaymentMeans();
         $paymentMeans1->typeCode = '58';
         $paymentMeans1->information = 'Zahlung per SEPA Überweisung.';
         $paymentMeans1->payeePartyCreditorFinancialAccount = new CreditorFinancialAccount();
         $paymentMeans1->payeePartyCreditorFinancialAccount->ibanId = Id::create('DE02120300000000202051');
-        $paymentMeans1->payeePartyCreditorFinancialAccount->AccountName = 'Kunden AG';
+        $paymentMeans1->payeePartyCreditorFinancialAccount->accountName = 'Kunden AG';
         $paymentMeans1->payeeSpecifiedCreditorFinancialInstitution = new CreditorFinancialInstitution();
         $paymentMeans1->payeeSpecifiedCreditorFinancialInstitution->bicId = Id::create('BYLADEM1001');
 
@@ -527,12 +527,12 @@ class ProfileXRechnungTest extends TestCase
         $headerTax1->calculatedAmount = Amount::create('2923.55');
         $headerTax1->rateApplicablePercent = '19.00';
 
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->billingSpecifiedPeriod = $billingPeriod = new Period();
-        $billingPeriod->startDatetime = DateTime::create(102, '20100101');
-        $billingPeriod->endDatetime = DateTime::create(102, '20101231');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->billingSpecifiedPeriod = $billingPeriod = new SpecifiedPeriod();
+        $billingPeriod->startDateTime = DateTime::create(102, '20100101');
+        $billingPeriod->endDateTime = DateTime::create(102, '20101231');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradePaymentTerms[] = $paymentTerms = new TradePaymentTerms();
-        $paymentTerms->dueDate = DateTime::create(102, '20180404');
+        $paymentTerms->dueDateDateTime = DateTime::create(102, '20180404');
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = $summation = new TradeSettlementHeaderMonetarySummation();
         $summation->lineTotalAmount = Amount::create('15387.08');

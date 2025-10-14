@@ -10,6 +10,9 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 
 #[AccessorOrder(order: 'custom', custom: ['personName', 'departmentName', 'telephoneUniversalCommunication', 'faxUniversalCommunication', 'emailURIUniversalCommunication'])]
+/**
+ * @deprecated ZUGFeRD 1.0 is deprecated and will be removed in a future release. Please migrate to ZUGFeRD 2.0 (Easybill\ZUGFeRD2).
+ */
 class TradeContact
 {
     #[Type(UniversalCommunication::class)]

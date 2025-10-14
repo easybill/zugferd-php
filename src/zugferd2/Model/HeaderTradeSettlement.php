@@ -29,7 +29,7 @@ class HeaderTradeSettlement
     #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('InvoiceCurrencyCode')]
-    public string $currency;
+    public string $invoiceCurrencyCode;
 
     #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
@@ -62,10 +62,10 @@ class HeaderTradeSettlement
     #[XmlList(entry: 'ApplicableTradeTax', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $tradeTaxes = [];
 
-    #[Type(Period::class)]
+    #[Type(SpecifiedPeriod::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('BillingSpecifiedPeriod')]
-    public ?Period $billingSpecifiedPeriod = null;
+    public ?SpecifiedPeriod $billingSpecifiedPeriod = null;
 
     /**
      * @var TradeAllowanceCharge[]
@@ -102,4 +102,9 @@ class HeaderTradeSettlement
     #[Type('array<Easybill\ZUGFeRD2\Model\TradeAccountingAccount>')]
     #[XmlList(entry: 'ReceivableSpecifiedTradeAccountingAccount', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $receivableSpecifiedTradeAccountingAccount = [];
+
+    /** @var AdvancePayment[] */
+    #[Type('array<Easybill\ZUGFeRD2\Model\AdvancePayment>')]
+    #[XmlList(entry: 'SpecifiedAdvancePayment', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    public array $specifiedAdvancePayment = [];
 }

@@ -19,6 +19,9 @@ use JMS\Serializer\Annotation\XmlRoot;
 #[XmlNamespace(uri: 'urn:ferd:CrossIndustryDocument:invoice:1p0', prefix: 'rsm')]
 #[XmlNamespace(uri: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12', prefix: 'ram')]
 #[XmlNamespace(uri: 'urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15', prefix: 'udt')]
+/**
+ * @deprecated ZUGFeRD 1.0 is deprecated and will be removed in a future release. Please migrate to ZUGFeRD 2.0 (Easybill\ZUGFeRD2).
+ */
 class Document
 {
     public const TYPE_BASIC = 'BASIC';

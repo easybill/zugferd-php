@@ -18,7 +18,7 @@ class TradePaymentTerms
     #[Type(DateTime::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('DueDateDateTime')]
-    public ?DateTime $dueDate = null;
+    public ?DateTime $dueDateDateTime = null;
 
     #[Type(Id::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]

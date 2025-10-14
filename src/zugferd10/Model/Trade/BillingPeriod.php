@@ -7,6 +7,9 @@ namespace Easybill\ZUGFeRD\Model\Trade;
 use Easybill\ZUGFeRD\Model\Date;
 use JMS\Serializer\Annotation as JMS;
 
+/**
+ * @deprecated ZUGFeRD 1.0 is deprecated and will be removed in a future release. Please migrate to ZUGFeRD 2.0 (Easybill\ZUGFeRD2).
+ */
 class BillingPeriod
 {
     public function __construct(#[JMS\Type(Date::class)]
