@@ -140,11 +140,12 @@ class ModelSerializationTest extends TestCase
 
         $resultModel = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeAllowanceCharge[0];
 
-        self::assertNotNull($resultModel);
         self::assertEquals($actualAmount->value, $resultModel->actualAmount->value);
         self::assertEquals($actualAmount->currency, $resultModel->actualAmount->currency);
+        self::assertNotNull($resultModel->indicator);
         self::assertEquals($indicator->indicator, $resultModel->indicator->indicator);
         self::assertEquals($calculationPercent, $resultModel->calculationPercent);
+        self::assertNotNull($resultModel->basisAmount);
         self::assertEquals($basisAmount->value, $resultModel->basisAmount->value);
         self::assertEquals($reason, $resultModel->reason);
         self::assertEquals('95', $resultModel->reasonCode);
@@ -211,7 +212,6 @@ class ModelSerializationTest extends TestCase
 
         $resultModel = $deserialized->supplyChainTradeTransaction->lineItems[0]->specifiedLineTradeSettlement->monetarySummation;
 
-        self::assertNotNull($resultModel);
         self::assertEquals($lineTotalAmount, $resultModel->lineTotalAmount->value);
 
         self::assertNotNull($resultModel->chargeTotalAmount);
@@ -283,6 +283,7 @@ class ModelSerializationTest extends TestCase
 
         $contact = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty->definedTradeContact;
 
+        self::assertNotNull($contact);
         self::assertNotNull($contact->telephoneUniversalCommunication);
         self::assertEquals('+49 30 12345678', $contact->telephoneUniversalCommunication->completeNumber);
 
@@ -322,6 +323,7 @@ class ModelSerializationTest extends TestCase
         self::assertNotNull($resultModel->faxUniversalCommunication);
         self::assertEquals('+49 30 12345679', $resultModel->faxUniversalCommunication->completeNumber);
         self::assertNotNull($resultModel->emailURIUniversalCommunication);
+        self::assertNotNull($resultModel->emailURIUniversalCommunication->uriid);
         self::assertEquals('max.mustermann@example.com', $resultModel->emailURIUniversalCommunication->uriid->value);
     }
 
@@ -366,7 +368,6 @@ class ModelSerializationTest extends TestCase
         $deserialized = Reader::create()->transform($xml);
 
         $resultModel = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty;
-        self::assertNotNull($resultModel);
         self::assertCount(1, $resultModel->id);
         self::assertEquals('PARTY-123', $resultModel->id[0]->value);
         self::assertCount(1, $resultModel->globalID);
@@ -377,12 +378,14 @@ class ModelSerializationTest extends TestCase
         self::assertNotNull($resultModel->specifiedLegalOrganization);
         self::assertEquals('HRB12345', $resultModel->specifiedLegalOrganization->id->value);
         self::assertEquals('Test Company Trading', $resultModel->specifiedLegalOrganization->tradingBusinessName);
+        self::assertNotNull($resultModel->specifiedLegalOrganization->postalTradeAddress);
         self::assertEquals('Legal Street 1', $resultModel->specifiedLegalOrganization->postalTradeAddress->lineOne);
         self::assertNotNull($resultModel->definedTradeContact);
         self::assertEquals('Erika Musterfrau', $resultModel->definedTradeContact->personName);
         self::assertNotNull($resultModel->postalTradeAddress);
         self::assertEquals('Hauptstraße 456', $resultModel->postalTradeAddress->lineOne);
         self::assertNotNull($resultModel->uriUniversalCommunication);
+        self::assertNotNull($resultModel->uriUniversalCommunication->uriid);
         self::assertEquals('info@testcompany.example', $resultModel->uriUniversalCommunication->uriid->value);
         self::assertCount(2, $resultModel->taxRegistrations);
         self::assertEquals('DE123456789', $resultModel->taxRegistrations[0]->registration->value);
@@ -554,7 +557,6 @@ class ModelSerializationTest extends TestCase
         $deserialized = Reader::create()->transform($xml);
 
         $resultModel = $deserialized->supplyChainTradeTransaction->lineItems[0]->specifiedTradeProduct;
-        self::assertNotNull($resultModel);
         self::assertNotNull($resultModel->globalID);
         self::assertEquals('4012345678901', $resultModel->globalID->value);
         self::assertEquals('0160', $resultModel->globalID->schemeID);
@@ -564,6 +566,7 @@ class ModelSerializationTest extends TestCase
         self::assertEquals('High-quality widget for comprehensive testing', $resultModel->description);
         self::assertNotNull($resultModel->tradeCountry);
         self::assertEquals('DE', $resultModel->tradeCountry->id);
+        self::assertNotNull($resultModel->applicableProductCharacteristic);
         self::assertCount(2, $resultModel->applicableProductCharacteristic);
         self::assertEquals('Color', $resultModel->applicableProductCharacteristic[0]->description);
         self::assertEquals('Blue', $resultModel->applicableProductCharacteristic[0]->value);
@@ -626,7 +629,6 @@ class ModelSerializationTest extends TestCase
         $deserialized = Reader::create()->transform($xml);
 
         $resultModel = $deserialized->supplyChainTradeTransaction->lineItems[0]->specifiedTradeProduct->includedReferencedProduct[0];
-        self::assertNotNull($resultModel);
         self::assertCount(2, $resultModel->globalID);
         self::assertEquals('4000001234567', $resultModel->globalID[0]->value);
         self::assertEquals('0088', $resultModel->globalID[0]->schemeID);
@@ -674,7 +676,6 @@ class ModelSerializationTest extends TestCase
         $deserialized = Reader::create()->transform($xml);
 
         $resultModel = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementPaymentMeans[0];
-        self::assertNotNull($resultModel);
         self::assertEquals('58', $resultModel->typeCode);
         self::assertEquals('Payment by bank transfer', $resultModel->information);
         self::assertNotNull($resultModel->payeePartyCreditorFinancialAccount);
@@ -682,7 +683,6 @@ class ModelSerializationTest extends TestCase
         self::assertEquals('DE89370400440532013000', $resultModel->payeePartyCreditorFinancialAccount->ibanId->value);
         self::assertEquals('Test Company Account', $resultModel->payeePartyCreditorFinancialAccount->AccountName);
         self::assertNotNull($resultModel->payeeSpecifiedCreditorFinancialInstitution);
-        self::assertNotNull($resultModel->payeeSpecifiedCreditorFinancialInstitution->bicId);
         self::assertEquals('COBADEFFXXX', $resultModel->payeeSpecifiedCreditorFinancialInstitution->bicId->value);
         self::assertNotNull($resultModel->payerPartyDebtorFinancialAccount);
         self::assertNotNull($resultModel->payerPartyDebtorFinancialAccount->ibanId);
@@ -718,7 +718,6 @@ class ModelSerializationTest extends TestCase
 
         $resultModel = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradePaymentTerms[0];
 
-        self::assertNotNull($resultModel);
         self::assertEquals('Payment within 14 days with 2% discount, otherwise 30 days net', $resultModel->description);
         self::assertNotNull($resultModel->dueDate);
         self::assertEquals('20250228', $resultModel->dueDate->dateTimeString->value);
@@ -728,6 +727,7 @@ class ModelSerializationTest extends TestCase
         self::assertEquals('500.00', $resultModel->partialPaymentAmount->value);
         self::assertNotNull($resultModel->payeeTradeParty);
         self::assertEquals('Alternative Payee GmbH', $resultModel->payeeTradeParty->name);
+        self::assertNotNull($resultModel->payeeTradeParty->postalTradeAddress);
         self::assertEquals('Berlin', $resultModel->payeeTradeParty->postalTradeAddress->city);
     }
 
@@ -746,7 +746,6 @@ class ModelSerializationTest extends TestCase
         $deserialized = Reader::create()->transform($xml);
 
         $resultModel = $deserialized->exchangedDocument->notes[0];
-        self::assertNotNull($resultModel);
         self::assertEquals('This is a test note with detailed information', $resultModel->content);
         self::assertEquals('REG', $resultModel->subjectCode);
         self::assertEquals('AAI', $resultModel->contentCode);
@@ -875,7 +874,6 @@ class ModelSerializationTest extends TestCase
         $deserialized = Reader::create()->transform($xml);
 
         $resultModel = $deserialized->supplyChainTradeTransaction->lineItems[0]->tradeAgreement->netPrice;
-        self::assertNotNull($resultModel);
         self::assertEquals('95.00', $resultModel->chargeAmount->value);
         self::assertNotNull($resultModel->basisQuantity);
         self::assertEquals('1', $resultModel->basisQuantity->value);
@@ -897,7 +895,6 @@ class ModelSerializationTest extends TestCase
 
         $resultModel = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeDelivery->chainEvent;
         self::assertNotNull($resultModel);
-        self::assertNotNull($resultModel->date);
         self::assertEquals('20250115', $resultModel->date->dateTimeString->value);
     }
 
@@ -915,9 +912,10 @@ class ModelSerializationTest extends TestCase
         $xml = Builder::create()->transform($invoice);
         $deserialized = Reader::create()->transform($xml);
 
-        $resultModel = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeAgreement->contractReferencedDocument->formattedIssueDateTime;
+        $contractDoc = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeAgreement->contractReferencedDocument;
+        self::assertNotNull($contractDoc);
+        $resultModel = $contractDoc->formattedIssueDateTime;
         self::assertNotNull($resultModel);
-        self::assertNotNull($resultModel->dateTimeString);
         self::assertEquals('20250115', $resultModel->dateTimeString->value);
         self::assertEquals(102, $resultModel->dateTimeString->format);
     }
@@ -989,8 +987,6 @@ class ModelSerializationTest extends TestCase
         $deserialized = Reader::create()->transform($xml);
 
         $resultModel = $deserialized->supplyChainTradeTransaction->lineItems[0]->specifiedLineTradeSettlement->tradeAccountingAccount[0];
-        self::assertNotNull($resultModel);
-        self::assertNotNull($resultModel->id);
         self::assertEquals('4000', $resultModel->id->value);
         self::assertEquals('Buyer', $resultModel->typeCode);
     }
