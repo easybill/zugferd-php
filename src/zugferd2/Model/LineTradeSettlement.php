@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Easybill\ZUGFeRD2\Model;
 
+use JMS\Serializer\Annotation\AccessorOrder;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
+#[AccessorOrder(order: 'custom', custom: ['tradeTax', 'billingSpecifiedPeriod', 'specifiedTradeAllowanceCharge', 'monetarySummation', 'tradeAccountingAccount'])]
 class LineTradeSettlement
 {
     /**
