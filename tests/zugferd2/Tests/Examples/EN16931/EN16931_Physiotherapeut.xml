@@ -94,113 +94,107 @@ costs, losses or damages could normally have been foreseen.
     </ram:GuidelineSpecifiedDocumentContextParameter>
   </rsm:ExchangedDocumentContext>
   <rsm:ExchangedDocument>
-    <ram:ID>471102</ram:ID>
+    <ram:ID>R25-31</ram:ID>
     <ram:TypeCode>380</ram:TypeCode>
     <ram:IssueDateTime>
-      <udt:DateTimeString format="102">20180305</udt:DateTimeString>
+      <udt:DateTimeString format="102">20251003</udt:DateTimeString>
     </ram:IssueDateTime>
     <ram:IncludedNote>
-      <ram:Content>Rechnung gemäß Bestellung vom 01.03.2018.</ram:Content>
+      <ram:Content>Inhaber(in): Herr/Frau I(in) etc. </ram:Content>
+      <ram:SubjectCode>REG</ram:SubjectCode>
     </ram:IncludedNote>
     <ram:IncludedNote>
-      <ram:Content>Lieferant GmbH				
-Lieferantenstraße 20				
-80333 München				
-Deutschland				
-Geschäftsführer: Hans Muster
-Handelsregisternummer: H A 123
-      </ram:Content>
-      <ram:SubjectCode>REG</ram:SubjectCode>
+      <ram:Content>ZUGFeRD vers 2.4.0 EN16931 (Comfort)</ram:Content>
+      <ram:SubjectCode>ACB</ram:SubjectCode>
     </ram:IncludedNote>
   </rsm:ExchangedDocument>
   <rsm:SupplyChainTradeTransaction>
     <ram:IncludedSupplyChainTradeLineItem>
       <ram:AssociatedDocumentLineDocument>
-        <ram:LineID>1</ram:LineID>
+        <ram:LineID>0</ram:LineID>
       </ram:AssociatedDocumentLineDocument>
       <ram:SpecifiedTradeProduct>
-        <ram:GlobalID schemeID="0160">4012345001235</ram:GlobalID>
-        <ram:SellerAssignedID>TB100A4</ram:SellerAssignedID>
-        <ram:Name>Trennblätter A4</ram:Name>
+        <ram:SellerAssignedID>SE0815</ram:SellerAssignedID>
+        <ram:Name>Physiotherapie</ram:Name>
+        <ram:Description>Behandlungen aufgrund der Verordnung von Frau Dr. Heilerin vom 05.09.2025 an folgenden Terminen: 11.09.2025; 14.09.2025; 19.09.2025; 24.09.2025; 27.09.2025; 11.10.2025; 15.10.2025; 17.10.2025; 22.10.2025; 30.10.2025</ram:Description>
       </ram:SpecifiedTradeProduct>
       <ram:SpecifiedLineTradeAgreement>
-        <ram:GrossPriceProductTradePrice>
-          <ram:ChargeAmount>9.9000</ram:ChargeAmount>
-        </ram:GrossPriceProductTradePrice>
         <ram:NetPriceProductTradePrice>
-          <ram:ChargeAmount>9.9000</ram:ChargeAmount>
+          <ram:ChargeAmount>26.00</ram:ChargeAmount>
         </ram:NetPriceProductTradePrice>
       </ram:SpecifiedLineTradeAgreement>
       <ram:SpecifiedLineTradeDelivery>
-        <ram:BilledQuantity unitCode="H87">20.0000</ram:BilledQuantity>
+        <ram:BilledQuantity unitCode="H87">10</ram:BilledQuantity>
       </ram:SpecifiedLineTradeDelivery>
       <ram:SpecifiedLineTradeSettlement>
         <ram:ApplicableTradeTax>
           <ram:TypeCode>VAT</ram:TypeCode>
-          <ram:CategoryCode>S</ram:CategoryCode>
-          <ram:RateApplicablePercent>19.00</ram:RateApplicablePercent>
+          <ram:CategoryCode>E</ram:CategoryCode>
+          <ram:RateApplicablePercent>0</ram:RateApplicablePercent>
         </ram:ApplicableTradeTax>
         <ram:SpecifiedTradeSettlementLineMonetarySummation>
-          <ram:LineTotalAmount>198.00</ram:LineTotalAmount>
+          <ram:LineTotalAmount>260.00</ram:LineTotalAmount>
         </ram:SpecifiedTradeSettlementLineMonetarySummation>
       </ram:SpecifiedLineTradeSettlement>
     </ram:IncludedSupplyChainTradeLineItem>
     <ram:IncludedSupplyChainTradeLineItem>
       <ram:AssociatedDocumentLineDocument>
-        <ram:LineID>2</ram:LineID>
+        <ram:LineID>1</ram:LineID>
       </ram:AssociatedDocumentLineDocument>
       <ram:SpecifiedTradeProduct>
-        <ram:GlobalID schemeID="0160">4000050986428</ram:GlobalID>
-        <ram:SellerAssignedID>ARNR2</ram:SellerAssignedID>
-        <ram:Name>Joghurt Banane</ram:Name>
+        <ram:SellerAssignedID>SE0816</ram:SellerAssignedID>
+        <ram:Name>Hausbesuch</ram:Name>
+        <ram:Description>An folgenden Terminen: 11.09.2025; 14.09.2025; 19.09.2025; 24.09.2025; 27.09.2025; 11.10.2025; 15.10.2025; 17.10.2025; 22.10.2025; 30.10.2025</ram:Description>
       </ram:SpecifiedTradeProduct>
       <ram:SpecifiedLineTradeAgreement>
-        <ram:GrossPriceProductTradePrice>
-          <ram:ChargeAmount>5.5000</ram:ChargeAmount>
-        </ram:GrossPriceProductTradePrice>
         <ram:NetPriceProductTradePrice>
-          <ram:ChargeAmount>5.5000</ram:ChargeAmount>
+          <ram:ChargeAmount>12.00</ram:ChargeAmount>
         </ram:NetPriceProductTradePrice>
       </ram:SpecifiedLineTradeAgreement>
       <ram:SpecifiedLineTradeDelivery>
-        <ram:BilledQuantity unitCode="H87">50.0000</ram:BilledQuantity>
+        <ram:BilledQuantity unitCode="H87">10</ram:BilledQuantity>
       </ram:SpecifiedLineTradeDelivery>
       <ram:SpecifiedLineTradeSettlement>
         <ram:ApplicableTradeTax>
           <ram:TypeCode>VAT</ram:TypeCode>
-          <ram:CategoryCode>S</ram:CategoryCode>
-          <ram:RateApplicablePercent>7.00</ram:RateApplicablePercent>
+          <ram:CategoryCode>E</ram:CategoryCode>
+          <ram:RateApplicablePercent>0</ram:RateApplicablePercent>
         </ram:ApplicableTradeTax>
         <ram:SpecifiedTradeSettlementLineMonetarySummation>
-          <ram:LineTotalAmount>275.00</ram:LineTotalAmount>
+          <ram:LineTotalAmount>120.00</ram:LineTotalAmount>
         </ram:SpecifiedTradeSettlementLineMonetarySummation>
       </ram:SpecifiedLineTradeSettlement>
     </ram:IncludedSupplyChainTradeLineItem>
     <ram:ApplicableHeaderTradeAgreement>
       <ram:SellerTradeParty>
-        <ram:ID>549910</ram:ID>
-        <ram:GlobalID schemeID="0088">4000001123452</ram:GlobalID>
-        <ram:Name>Lieferant GmbH</ram:Name>
+        <ram:Name>Physiotherapeutin</ram:Name>
+        <ram:DefinedTradeContact>
+          <ram:PersonName>Tanja Tinder</ram:PersonName>
+          <ram:TelephoneUniversalCommunication>
+            <ram:CompleteNumber>015119630027</ram:CompleteNumber>
+          </ram:TelephoneUniversalCommunication>
+          <ram:EmailURIUniversalCommunication>
+            <ram:URIID>tanja.tinder@beispiel-provider.de</ram:URIID>
+          </ram:EmailURIUniversalCommunication>
+        </ram:DefinedTradeContact>
         <ram:PostalTradeAddress>
-          <ram:PostcodeCode>80333</ram:PostcodeCode>
-          <ram:LineOne>Lieferantenstraße 20</ram:LineOne>
-          <ram:CityName>München</ram:CityName>
+          <ram:PostcodeCode>12345</ram:PostcodeCode>
+          <ram:LineOne>Musterstraße 12</ram:LineOne>
+          <ram:LineTwo>2. Etage</ram:LineTwo>
+          <ram:CityName>Beispielstadt</ram:CityName>
           <ram:CountryID>DE</ram:CountryID>
         </ram:PostalTradeAddress>
         <ram:SpecifiedTaxRegistration>
-          <ram:ID schemeID="FC">201/113/40209</ram:ID>
-        </ram:SpecifiedTaxRegistration>
-        <ram:SpecifiedTaxRegistration>
-          <ram:ID schemeID="VA">DE123456789</ram:ID>
+          <ram:ID schemeID="VA">DE136695976</ram:ID>
         </ram:SpecifiedTaxRegistration>
       </ram:SellerTradeParty>
       <ram:BuyerTradeParty>
-        <ram:ID>GE2020211</ram:ID>
-        <ram:Name>Kunden AG Mitte</ram:Name>
+        <ram:Name>Liselotte Müller</ram:Name>
         <ram:PostalTradeAddress>
-          <ram:PostcodeCode>69876</ram:PostcodeCode>
-          <ram:LineOne>Kundenstraße 15</ram:LineOne>
-          <ram:CityName>Frankfurt</ram:CityName>
+          <ram:PostcodeCode>12345</ram:PostcodeCode>
+          <ram:LineOne>Rechnungsstraße 12</ram:LineOne>
+          <ram:LineTwo>Haupteingang</ram:LineTwo>
+          <ram:CityName>Beispielstadt</ram:CityName>
           <ram:CountryID>DE</ram:CountryID>
         </ram:PostalTradeAddress>
       </ram:BuyerTradeParty>
@@ -208,48 +202,47 @@ Handelsregisternummer: H A 123
     <ram:ApplicableHeaderTradeDelivery>
       <ram:ActualDeliverySupplyChainEvent>
         <ram:OccurrenceDateTime>
-          <udt:DateTimeString format="102">20180305</udt:DateTimeString>
+          <udt:DateTimeString format="102">20251025</udt:DateTimeString>
         </ram:OccurrenceDateTime>
       </ram:ActualDeliverySupplyChainEvent>
     </ram:ApplicableHeaderTradeDelivery>
     <ram:ApplicableHeaderTradeSettlement>
       <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
-      <ram:PayeeTradeParty>
-        <ram:ID>4711</ram:ID>
-        <ram:Name>Factoring GmbH</ram:Name>
-      </ram:PayeeTradeParty>
       <ram:SpecifiedTradeSettlementPaymentMeans>
-        <ram:TypeCode>58</ram:TypeCode>
+        <ram:TypeCode>30</ram:TypeCode>
         <ram:PayeePartyCreditorFinancialAccount>
-          <ram:IBANID>DE12123456781234567890</ram:IBANID>
+          <ram:IBANID>DE02120300000000202051</ram:IBANID>
+          <ram:AccountName>Tanja Tinder</ram:AccountName>
         </ram:PayeePartyCreditorFinancialAccount>
       </ram:SpecifiedTradeSettlementPaymentMeans>
       <ram:ApplicableTradeTax>
-        <ram:CalculatedAmount>19.25</ram:CalculatedAmount>
+        <ram:CalculatedAmount>0</ram:CalculatedAmount>
         <ram:TypeCode>VAT</ram:TypeCode>
-        <ram:BasisAmount>275.00</ram:BasisAmount>
-        <ram:CategoryCode>S</ram:CategoryCode>
-        <ram:RateApplicablePercent>7.00</ram:RateApplicablePercent>
+        <ram:ExemptionReason>Steuerfreie Leistungen nach §4 Nr. 14 UStG</ram:ExemptionReason>
+        <ram:BasisAmount>380.00</ram:BasisAmount>
+        <ram:CategoryCode>E</ram:CategoryCode>
+        <ram:RateApplicablePercent>0</ram:RateApplicablePercent>
       </ram:ApplicableTradeTax>
-      <ram:ApplicableTradeTax>
-        <ram:CalculatedAmount>37.62</ram:CalculatedAmount>
-        <ram:TypeCode>VAT</ram:TypeCode>
-        <ram:BasisAmount>198.00</ram:BasisAmount>
-        <ram:CategoryCode>S</ram:CategoryCode>
-        <ram:RateApplicablePercent>19.00</ram:RateApplicablePercent>
-      </ram:ApplicableTradeTax>
+      <ram:BillingSpecifiedPeriod>
+        <ram:StartDateTime>
+          <udt:DateTimeString format="102">20250911</udt:DateTimeString>
+        </ram:StartDateTime>
+        <ram:EndDateTime>
+          <udt:DateTimeString format="102">20251030</udt:DateTimeString>
+        </ram:EndDateTime>
+      </ram:BillingSpecifiedPeriod>
       <ram:SpecifiedTradePaymentTerms>
-        <ram:Description>Zahlbar innerhalb 30 Tagen netto bis 04.04.2018, 3% Skonto innerhalb 10 Tagen bis 15.03.2018</ram:Description>
+        <ram:Description>Den Rechnungsbetrag überweisen Sie bitte bis zum 21.11.2025 auf das unten angegebene Konto.</ram:Description>
+        <ram:DueDateDateTime>
+          <udt:DateTimeString format="102">20251121</udt:DateTimeString>
+        </ram:DueDateDateTime>
       </ram:SpecifiedTradePaymentTerms>
       <ram:SpecifiedTradeSettlementHeaderMonetarySummation>
-        <ram:LineTotalAmount>473.00</ram:LineTotalAmount>
-        <ram:ChargeTotalAmount>0.00</ram:ChargeTotalAmount>
-        <ram:AllowanceTotalAmount>0.00</ram:AllowanceTotalAmount>
-        <ram:TaxBasisTotalAmount>473.00</ram:TaxBasisTotalAmount>
-        <ram:TaxTotalAmount currencyID="EUR">56.87</ram:TaxTotalAmount>
-        <ram:GrandTotalAmount>529.87</ram:GrandTotalAmount>
-        <ram:TotalPrepaidAmount>0.00</ram:TotalPrepaidAmount>
-        <ram:DuePayableAmount>529.87</ram:DuePayableAmount>
+        <ram:LineTotalAmount>380.00</ram:LineTotalAmount>
+        <ram:TaxBasisTotalAmount>380.00</ram:TaxBasisTotalAmount>
+        <ram:TaxTotalAmount currencyID="EUR">0</ram:TaxTotalAmount>
+        <ram:GrandTotalAmount>380.00</ram:GrandTotalAmount>
+        <ram:DuePayableAmount>380.00</ram:DuePayableAmount>
       </ram:SpecifiedTradeSettlementHeaderMonetarySummation>
     </ram:ApplicableHeaderTradeSettlement>
   </rsm:SupplyChainTradeTransaction>

@@ -87,52 +87,70 @@ damages, losses or liabilities in connection with an interruption of business, n
 incidental, indirect, punitive or consequential damages, even if the possibility of 
 costs, losses or damages could normally have been foreseen.
 -->
-<rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+<rsm:CrossIndustryInvoice xmlns:a="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
   <rsm:ExchangedDocumentContext>
     <ram:GuidelineSpecifiedDocumentContextParameter>
-      <ram:ID>urn:cen.eu:en16931:2017</ram:ID>
+      <ram:ID>urn:cen.eu:en16931:2017#conformant#urn:factur-x.eu:1p0:extended</ram:ID>
     </ram:GuidelineSpecifiedDocumentContextParameter>
   </rsm:ExchangedDocumentContext>
   <rsm:ExchangedDocument>
-    <ram:ID>471102</ram:ID>
-    <ram:TypeCode>380</ram:TypeCode>
+    <ram:ID>210111</ram:ID>
+    <ram:TypeCode>875</ram:TypeCode>
     <ram:IssueDateTime>
-      <udt:DateTimeString format="102">20180305</udt:DateTimeString>
+      <udt:DateTimeString format="102">20250530</udt:DateTimeString>
     </ram:IssueDateTime>
     <ram:IncludedNote>
-      <ram:Content>Rechnung gemäß Bestellung vom 01.03.2018.</ram:Content>
+      <ram:Content>1. Abschlagsrechnung</ram:Content>
+      <ram:SubjectCode>ACB</ram:SubjectCode>
     </ram:IncludedNote>
     <ram:IncludedNote>
-      <ram:Content>Lieferant GmbH				
-Lieferantenstraße 20				
-80333 München				
-Deutschland				
-Geschäftsführer: Hans Muster
-Handelsregisternummer: H A 123
-      </ram:Content>
+      <ram:Content>Geschäftsführer: Herr Geschäftsführer , Muster Bau GmbH etc.</ram:Content>
       <ram:SubjectCode>REG</ram:SubjectCode>
+    </ram:IncludedNote>
+    <ram:IncludedNote>
+      <ram:Content>Es bestehen Vereinbarungen, aus denen sich Minderungen des Entgelts ergeben können.</ram:Content>
+      <ram:SubjectCode>AAI</ram:SubjectCode>
+    </ram:IncludedNote>
+    <ram:IncludedNote>
+      <ram:Content>ZUGFeRD vers 2.4.0 Extended</ram:Content>
+      <ram:SubjectCode>ACB</ram:SubjectCode>
+    </ram:IncludedNote>
+    <ram:IncludedNote>
+      <ram:Content>Dies ist eine Beispiel-Rechnung zur empfohlenen Darstellung einer einfachen Bau-Abschlags-Rechnung</ram:Content>
+      <ram:SubjectCode>ACB</ram:SubjectCode>
+    </ram:IncludedNote>
+    <ram:IncludedNote>
+      <ram:Content>Betreff zum LV für eine Kurzinformation zum Bauvorhaben BT-22</ram:Content>
+      <ram:SubjectCode>ACB</ram:SubjectCode>
+    </ram:IncludedNote>
+    <ram:IncludedNote>
+      <ram:Content>Kopftext für zusätzliche Beschreibungen zur Rechnung. Z.B. als Anschreiben für die Rechnung BT-22</ram:Content>
+      <ram:SubjectCode>ACB</ram:SubjectCode>
+    </ram:IncludedNote>
+    <ram:IncludedNote>
+      <ram:Content>ergänzneder Fußtext für die Rechnung mit zusätzlichen Angaben. Z.B: Ist kein gesondertes Lieferdatum angegeben, entspricht das Rechnungsdatum dem Datum der Lieferung und Leistung</ram:Content>
+      <ram:SubjectCode>ACB</ram:SubjectCode>
+    </ram:IncludedNote>
+    <ram:IncludedNote>
+      <ram:Content>freier Text zur Rechnung BT-22</ram:Content>
+      <ram:SubjectCode>ACB</ram:SubjectCode>
     </ram:IncludedNote>
   </rsm:ExchangedDocument>
   <rsm:SupplyChainTradeTransaction>
     <ram:IncludedSupplyChainTradeLineItem>
       <ram:AssociatedDocumentLineDocument>
-        <ram:LineID>1</ram:LineID>
+        <ram:LineID>01.01</ram:LineID>
       </ram:AssociatedDocumentLineDocument>
       <ram:SpecifiedTradeProduct>
-        <ram:GlobalID schemeID="0160">4012345001235</ram:GlobalID>
-        <ram:SellerAssignedID>TB100A4</ram:SellerAssignedID>
-        <ram:Name>Trennblätter A4</ram:Name>
+        <ram:Name>Baugelände abräumen Anfallender Schutt, Pflanzenreste und Müll entsorgen</ram:Name>
       </ram:SpecifiedTradeProduct>
       <ram:SpecifiedLineTradeAgreement>
-        <ram:GrossPriceProductTradePrice>
-          <ram:ChargeAmount>9.9000</ram:ChargeAmount>
-        </ram:GrossPriceProductTradePrice>
         <ram:NetPriceProductTradePrice>
-          <ram:ChargeAmount>9.9000</ram:ChargeAmount>
+          <ram:ChargeAmount>7.00</ram:ChargeAmount>
         </ram:NetPriceProductTradePrice>
       </ram:SpecifiedLineTradeAgreement>
       <ram:SpecifiedLineTradeDelivery>
-        <ram:BilledQuantity unitCode="H87">20.0000</ram:BilledQuantity>
+        <ram:BilledQuantity unitCode="H87">300.00</ram:BilledQuantity>
       </ram:SpecifiedLineTradeDelivery>
       <ram:SpecifiedLineTradeSettlement>
         <ram:ApplicableTradeTax>
@@ -141,116 +159,175 @@ Handelsregisternummer: H A 123
           <ram:RateApplicablePercent>19.00</ram:RateApplicablePercent>
         </ram:ApplicableTradeTax>
         <ram:SpecifiedTradeSettlementLineMonetarySummation>
-          <ram:LineTotalAmount>198.00</ram:LineTotalAmount>
+          <ram:LineTotalAmount>2100.00</ram:LineTotalAmount>
         </ram:SpecifiedTradeSettlementLineMonetarySummation>
       </ram:SpecifiedLineTradeSettlement>
     </ram:IncludedSupplyChainTradeLineItem>
     <ram:IncludedSupplyChainTradeLineItem>
       <ram:AssociatedDocumentLineDocument>
-        <ram:LineID>2</ram:LineID>
+        <ram:LineID>01.02</ram:LineID>
       </ram:AssociatedDocumentLineDocument>
       <ram:SpecifiedTradeProduct>
-        <ram:GlobalID schemeID="0160">4000050986428</ram:GlobalID>
-        <ram:SellerAssignedID>ARNR2</ram:SellerAssignedID>
-        <ram:Name>Joghurt Banane</ram:Name>
+        <ram:Name>Pflasterfläche vorbereiten, Planum herstellen und verdichten</ram:Name>
       </ram:SpecifiedTradeProduct>
       <ram:SpecifiedLineTradeAgreement>
-        <ram:GrossPriceProductTradePrice>
-          <ram:ChargeAmount>5.5000</ram:ChargeAmount>
-        </ram:GrossPriceProductTradePrice>
         <ram:NetPriceProductTradePrice>
-          <ram:ChargeAmount>5.5000</ram:ChargeAmount>
+          <ram:ChargeAmount>6.00</ram:ChargeAmount>
         </ram:NetPriceProductTradePrice>
       </ram:SpecifiedLineTradeAgreement>
       <ram:SpecifiedLineTradeDelivery>
-        <ram:BilledQuantity unitCode="H87">50.0000</ram:BilledQuantity>
+        <ram:BilledQuantity unitCode="MTK">250.00</ram:BilledQuantity>
       </ram:SpecifiedLineTradeDelivery>
       <ram:SpecifiedLineTradeSettlement>
         <ram:ApplicableTradeTax>
           <ram:TypeCode>VAT</ram:TypeCode>
           <ram:CategoryCode>S</ram:CategoryCode>
-          <ram:RateApplicablePercent>7.00</ram:RateApplicablePercent>
+          <ram:RateApplicablePercent>19.00</ram:RateApplicablePercent>
         </ram:ApplicableTradeTax>
         <ram:SpecifiedTradeSettlementLineMonetarySummation>
-          <ram:LineTotalAmount>275.00</ram:LineTotalAmount>
+          <ram:LineTotalAmount>1500.00</ram:LineTotalAmount>
         </ram:SpecifiedTradeSettlementLineMonetarySummation>
       </ram:SpecifiedLineTradeSettlement>
     </ram:IncludedSupplyChainTradeLineItem>
     <ram:ApplicableHeaderTradeAgreement>
+      <ram:BuyerReference>Kundenref. BT-10</ram:BuyerReference>
       <ram:SellerTradeParty>
-        <ram:ID>549910</ram:ID>
-        <ram:GlobalID schemeID="0088">4000001123452</ram:GlobalID>
-        <ram:Name>Lieferant GmbH</ram:Name>
+        <ram:ID>998877</ram:ID>
+        <ram:Name>Musterbetrieb AG Demodaten</ram:Name>
+        <ram:SpecifiedLegalOrganization>
+          <ram:ID>HRA 45678</ram:ID>
+        </ram:SpecifiedLegalOrganization>
+        <ram:DefinedTradeContact>
+          <ram:PersonName>Kontaktperson</ram:PersonName>
+          <ram:TelephoneUniversalCommunication>
+            <ram:CompleteNumber>5578</ram:CompleteNumber>
+          </ram:TelephoneUniversalCommunication>
+          <ram:EmailURIUniversalCommunication>
+            <ram:URIID>absender@musterberieb.de</ram:URIID>
+          </ram:EmailURIUniversalCommunication>
+        </ram:DefinedTradeContact>
         <ram:PostalTradeAddress>
-          <ram:PostcodeCode>80333</ram:PostcodeCode>
-          <ram:LineOne>Lieferantenstraße 20</ram:LineOne>
-          <ram:CityName>München</ram:CityName>
+          <ram:PostcodeCode>37079</ram:PostcodeCode>
+          <ram:LineOne>August-Spindler-Strasse 20 </ram:LineOne>
+          <ram:CityName>Göttingen</ram:CityName>
           <ram:CountryID>DE</ram:CountryID>
         </ram:PostalTradeAddress>
         <ram:SpecifiedTaxRegistration>
-          <ram:ID schemeID="FC">201/113/40209</ram:ID>
-        </ram:SpecifiedTaxRegistration>
-        <ram:SpecifiedTaxRegistration>
-          <ram:ID schemeID="VA">DE123456789</ram:ID>
+          <ram:ID schemeID="VA">DE09687654321</ram:ID>
         </ram:SpecifiedTaxRegistration>
       </ram:SellerTradeParty>
       <ram:BuyerTradeParty>
-        <ram:ID>GE2020211</ram:ID>
-        <ram:Name>Kunden AG Mitte</ram:Name>
+        <ram:ID>330145</ram:ID>
+        <ram:Name>Auftraggeber Firmenkunde GmbH</ram:Name>
+        <ram:DefinedTradeContact>
+          <ram:PersonName>Herr Thomas Auftraggeber</ram:PersonName>
+          <ram:TelephoneUniversalCommunication>
+            <ram:CompleteNumber>03332 218915</ram:CompleteNumber>
+          </ram:TelephoneUniversalCommunication>
+          <ram:EmailURIUniversalCommunication>
+            <ram:URIID>thomas.auftraggeber@Firmenkunde.de</ram:URIID>
+          </ram:EmailURIUniversalCommunication>
+        </ram:DefinedTradeContact>
         <ram:PostalTradeAddress>
-          <ram:PostcodeCode>69876</ram:PostcodeCode>
-          <ram:LineOne>Kundenstraße 15</ram:LineOne>
-          <ram:CityName>Frankfurt</ram:CityName>
+          <ram:PostcodeCode>37073</ram:PostcodeCode>
+          <ram:LineOne>Gartenstraße 1112</ram:LineOne>
+          <ram:CityName>Göttingen</ram:CityName>
           <ram:CountryID>DE</ram:CountryID>
         </ram:PostalTradeAddress>
+        <ram:SpecifiedTaxRegistration>
+          <ram:ID schemeID="VA">DE1234567890</ram:ID>
+        </ram:SpecifiedTaxRegistration>
       </ram:BuyerTradeParty>
+      <ram:SellerOrderReferencedDocument>
+        <ram:IssuerAssignedID>G12042-1-01</ram:IssuerAssignedID>
+      </ram:SellerOrderReferencedDocument>
+      <ram:BuyerOrderReferencedDocument>
+        <ram:IssuerAssignedID>BT-13</ram:IssuerAssignedID>
+      </ram:BuyerOrderReferencedDocument>
+      <ram:ContractReferencedDocument>
+        <ram:IssuerAssignedID>Vertragsnr. BT-12</ram:IssuerAssignedID>
+      </ram:ContractReferencedDocument>
+      <ram:AdditionalReferencedDocument>
+        <ram:IssuerAssignedID>Vergabenr. BT-17</ram:IssuerAssignedID>
+        <ram:TypeCode>50</ram:TypeCode>
+      </ram:AdditionalReferencedDocument>
+      <ram:SpecifiedProcuringProject>
+        <ram:ID>Projektnr. BT-11</ram:ID>
+        <ram:Name>Project reference</ram:Name>
+      </ram:SpecifiedProcuringProject>
     </ram:ApplicableHeaderTradeAgreement>
     <ram:ApplicableHeaderTradeDelivery>
+      <ram:ShipToTradeParty>
+        <ram:Name>Auftraggeber Firmenkunde GmbH</ram:Name>
+        <ram:PostalTradeAddress>
+          <ram:PostcodeCode>37073</ram:PostcodeCode>
+          <ram:LineOne>Gartenstraße 1112</ram:LineOne>
+          <ram:CityName>Göttingen</ram:CityName>
+          <ram:CountryID>DE</ram:CountryID>
+        </ram:PostalTradeAddress>
+      </ram:ShipToTradeParty>
       <ram:ActualDeliverySupplyChainEvent>
         <ram:OccurrenceDateTime>
-          <udt:DateTimeString format="102">20180305</udt:DateTimeString>
+          <udt:DateTimeString format="102">20250530</udt:DateTimeString>
         </ram:OccurrenceDateTime>
       </ram:ActualDeliverySupplyChainEvent>
     </ram:ApplicableHeaderTradeDelivery>
     <ram:ApplicableHeaderTradeSettlement>
       <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
-      <ram:PayeeTradeParty>
-        <ram:ID>4711</ram:ID>
-        <ram:Name>Factoring GmbH</ram:Name>
-      </ram:PayeeTradeParty>
       <ram:SpecifiedTradeSettlementPaymentMeans>
         <ram:TypeCode>58</ram:TypeCode>
         <ram:PayeePartyCreditorFinancialAccount>
-          <ram:IBANID>DE12123456781234567890</ram:IBANID>
+          <ram:IBANID>DE75512108001245126199</ram:IBANID>
+          <ram:AccountName>Rechnungsempfänger AG</ram:AccountName>
         </ram:PayeePartyCreditorFinancialAccount>
+        <ram:PayeeSpecifiedCreditorFinancialInstitution>
+          <ram:BICID>PBNKDEFF</ram:BICID>
+        </ram:PayeeSpecifiedCreditorFinancialInstitution>
       </ram:SpecifiedTradeSettlementPaymentMeans>
       <ram:ApplicableTradeTax>
-        <ram:CalculatedAmount>19.25</ram:CalculatedAmount>
+        <ram:CalculatedAmount>684.00</ram:CalculatedAmount>
         <ram:TypeCode>VAT</ram:TypeCode>
-        <ram:BasisAmount>275.00</ram:BasisAmount>
-        <ram:CategoryCode>S</ram:CategoryCode>
-        <ram:RateApplicablePercent>7.00</ram:RateApplicablePercent>
-      </ram:ApplicableTradeTax>
-      <ram:ApplicableTradeTax>
-        <ram:CalculatedAmount>37.62</ram:CalculatedAmount>
-        <ram:TypeCode>VAT</ram:TypeCode>
-        <ram:BasisAmount>198.00</ram:BasisAmount>
+        <ram:BasisAmount>3600.00</ram:BasisAmount>
         <ram:CategoryCode>S</ram:CategoryCode>
         <ram:RateApplicablePercent>19.00</ram:RateApplicablePercent>
       </ram:ApplicableTradeTax>
+      <ram:BillingSpecifiedPeriod>
+        <ram:StartDateTime>
+          <udt:DateTimeString format="102">20250513</udt:DateTimeString>
+        </ram:StartDateTime>
+        <ram:EndDateTime>
+          <udt:DateTimeString format="102">20250530</udt:DateTimeString>
+        </ram:EndDateTime>
+      </ram:BillingSpecifiedPeriod>
       <ram:SpecifiedTradePaymentTerms>
-        <ram:Description>Zahlbar innerhalb 30 Tagen netto bis 04.04.2018, 3% Skonto innerhalb 10 Tagen bis 15.03.2018</ram:Description>
+        <ram:Description>Bei Zahlung bis zum 06.06.2025 zahlen Sie mit 2,50 % Skonto € 4.176,90</ram:Description>
+        <ram:DueDateDateTime>
+          <udt:DateTimeString format="102">20250606</udt:DateTimeString>
+        </ram:DueDateDateTime>
+        <ram:ApplicableTradePaymentDiscountTerms>
+          <ram:BasisAmount>4284.00</ram:BasisAmount>
+          <ram:CalculationPercent>2.5</ram:CalculationPercent>
+        </ram:ApplicableTradePaymentDiscountTerms>
+      </ram:SpecifiedTradePaymentTerms>
+      <ram:SpecifiedTradePaymentTerms>
+        <ram:Description>Bis zum zum 13.06.2025 ohne Abzug</ram:Description>
+        <ram:DueDateDateTime>
+          <udt:DateTimeString format="102">20250613</udt:DateTimeString>
+        </ram:DueDateDateTime>
       </ram:SpecifiedTradePaymentTerms>
       <ram:SpecifiedTradeSettlementHeaderMonetarySummation>
-        <ram:LineTotalAmount>473.00</ram:LineTotalAmount>
+        <ram:LineTotalAmount>3600.00</ram:LineTotalAmount>
         <ram:ChargeTotalAmount>0.00</ram:ChargeTotalAmount>
         <ram:AllowanceTotalAmount>0.00</ram:AllowanceTotalAmount>
-        <ram:TaxBasisTotalAmount>473.00</ram:TaxBasisTotalAmount>
-        <ram:TaxTotalAmount currencyID="EUR">56.87</ram:TaxTotalAmount>
-        <ram:GrandTotalAmount>529.87</ram:GrandTotalAmount>
+        <ram:TaxBasisTotalAmount>3600.00</ram:TaxBasisTotalAmount>
+        <ram:TaxTotalAmount currencyID="EUR">684.00</ram:TaxTotalAmount>
+        <ram:GrandTotalAmount>4284.00</ram:GrandTotalAmount>
         <ram:TotalPrepaidAmount>0.00</ram:TotalPrepaidAmount>
-        <ram:DuePayableAmount>529.87</ram:DuePayableAmount>
+        <ram:DuePayableAmount>4284.00</ram:DuePayableAmount>
       </ram:SpecifiedTradeSettlementHeaderMonetarySummation>
+      <ram:ReceivableSpecifiedTradeAccountingAccount>
+        <ram:ID>Kostenstelle BT-19</ram:ID>
+      </ram:ReceivableSpecifiedTradeAccountingAccount>
     </ram:ApplicableHeaderTradeSettlement>
   </rsm:SupplyChainTradeTransaction>
 </rsm:CrossIndustryInvoice>

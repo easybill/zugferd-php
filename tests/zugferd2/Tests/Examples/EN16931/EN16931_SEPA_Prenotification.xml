@@ -100,7 +100,11 @@ costs, losses or damages could normally have been foreseen.
       <udt:DateTimeString format="102">20180305</udt:DateTimeString>
     </ram:IssueDateTime>
     <ram:IncludedNote>
-      <ram:Content>Rechnung gemäß Bestellung vom 01.03.2018.</ram:Content>
+      <ram:Content>Rechnung gemäß Bestellung Nr. 2018-471331 vom 01.03.2018.</ram:Content>
+    </ram:IncludedNote>
+    <ram:IncludedNote>
+      <ram:Content>Es bestehen Rabatt- und Bonusvereinbarungen.</ram:Content>
+      <ram:SubjectCode>AAK</ram:SubjectCode>
     </ram:IncludedNote>
     <ram:IncludedNote>
       <ram:Content>Lieferant GmbH				
@@ -109,6 +113,7 @@ Lieferantenstraße 20
 Deutschland				
 Geschäftsführer: Hans Muster
 Handelsregisternummer: H A 123
+
       </ram:Content>
       <ram:SubjectCode>REG</ram:SubjectCode>
     </ram:IncludedNote>
@@ -213,16 +218,13 @@ Handelsregisternummer: H A 123
       </ram:ActualDeliverySupplyChainEvent>
     </ram:ApplicableHeaderTradeDelivery>
     <ram:ApplicableHeaderTradeSettlement>
+      <ram:CreditorReferenceID>DE98ZZZ09999999999</ram:CreditorReferenceID>
       <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
-      <ram:PayeeTradeParty>
-        <ram:ID>4711</ram:ID>
-        <ram:Name>Factoring GmbH</ram:Name>
-      </ram:PayeeTradeParty>
       <ram:SpecifiedTradeSettlementPaymentMeans>
-        <ram:TypeCode>58</ram:TypeCode>
-        <ram:PayeePartyCreditorFinancialAccount>
-          <ram:IBANID>DE12123456781234567890</ram:IBANID>
-        </ram:PayeePartyCreditorFinancialAccount>
+        <ram:TypeCode>59</ram:TypeCode>
+        <ram:PayerPartyDebtorFinancialAccount>
+          <ram:IBANID>DE21860000000086001055</ram:IBANID>
+        </ram:PayerPartyDebtorFinancialAccount>
       </ram:SpecifiedTradeSettlementPaymentMeans>
       <ram:ApplicableTradeTax>
         <ram:CalculatedAmount>19.25</ram:CalculatedAmount>
@@ -239,7 +241,9 @@ Handelsregisternummer: H A 123
         <ram:RateApplicablePercent>19.00</ram:RateApplicablePercent>
       </ram:ApplicableTradeTax>
       <ram:SpecifiedTradePaymentTerms>
-        <ram:Description>Zahlbar innerhalb 30 Tagen netto bis 04.04.2018, 3% Skonto innerhalb 10 Tagen bis 15.03.2018</ram:Description>
+        <ram:Description>Der Betrag in Höhe von EUR 529,87 wird am 20.03.2018 von Ihrem Konto per SEPA-Lastschrift eingezogen.
+        </ram:Description>
+        <ram:DirectDebitMandateID>REF A-123</ram:DirectDebitMandateID>
       </ram:SpecifiedTradePaymentTerms>
       <ram:SpecifiedTradeSettlementHeaderMonetarySummation>
         <ram:LineTotalAmount>473.00</ram:LineTotalAmount>
