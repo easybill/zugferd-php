@@ -17,6 +17,16 @@ class DocumentLineDocument
     #[SerializedName('LineID')]
     public string $lineId;
 
+    #[Type(Id::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('ParentLineID')]
+    public ?Id $parentLineID = null;
+
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('LineStatusCode')]
+    public ?string $lineStatusCode;
+
     #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('LineStatusReasonCode')]
