@@ -10,19 +10,6 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
-#[AccessorOrder(order: 'custom', custom: [
-    'buyerReference',
-    'sellerTradeParty',
-    'buyerTradeParty',
-    'sellerTaxRepresentativeTradeParty',
-    'buyerTaxRepresentativeTradeParty',
-    'applicableTradeDeliveryTerms',
-    'buyerOrderReferencedDocument',
-    'contractReferencedDocument',
-    'sellerOrderReferencedDocument',
-    'additionalReferencedDocuments',
-    'specifiedProcuringProject',
-])]
 class HeaderTradeAgreement
 {
     #[Type('string')]
@@ -37,13 +24,13 @@ class HeaderTradeAgreement
 
     #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('SellerTaxRepresentativeTradeParty')]
-    public ?TradeParty $sellerTaxRepresentativeTradeParty = null;
+    #[SerializedName('BuyerTradeParty')]
+    public TradeParty $buyerTradeParty;
 
     #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('BuyerTradeParty')]
-    public TradeParty $buyerTradeParty;
+    #[SerializedName('SellerTaxRepresentativeTradeParty')]
+    public ?TradeParty $sellerTaxRepresentativeTradeParty = null;
 
     #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
@@ -65,15 +52,15 @@ class HeaderTradeAgreement
     #[SerializedName('ContractReferencedDocument')]
     public ?ReferencedDocument $contractReferencedDocument = null;
 
-    /** @var ReferencedDocument[] */
-    #[Type('array<Easybill\ZUGFeRD2\Model\ReferencedDocument>')]
-    #[XmlList(entry: 'AdditionalReferencedDocument', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    public array $additionalReferencedDocuments = [];
-
     #[Type(ReferencedDocument::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('SellerOrderReferencedDocument')]
     public ?ReferencedDocument $sellerOrderReferencedDocument;
+
+    /** @var ReferencedDocument[] */
+    #[Type('array<Easybill\ZUGFeRD2\Model\ReferencedDocument>')]
+    #[XmlList(entry: 'AdditionalReferencedDocument', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    public array $additionalReferencedDocuments = [];
 
     #[Type(ProcuringProject::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
