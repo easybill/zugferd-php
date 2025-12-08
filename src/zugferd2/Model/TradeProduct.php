@@ -10,9 +10,13 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
-#[AccessorOrder(order: 'custom', custom: ['globalID', 'sellerAssignedID', 'buyerAssignedID', 'name', 'description', 'applicableProductCharacteristic', 'designatedProductClassification', 'tradeCountry', 'includedReferencedProduct'])]
 class TradeProduct
 {
+    #[Type(Id::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('ID')]
+    public ?Id $id = null;
+
     #[Type(Id::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('GlobalID')]
@@ -28,6 +32,11 @@ class TradeProduct
     #[SerializedName('BuyerAssignedID')]
     public ?string $buyerAssignedID = null;
 
+    #[Type(Id::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('ModelID')]
+    public ?Id $modelID = null;
+
     #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('Name')]
@@ -38,10 +47,20 @@ class TradeProduct
     #[SerializedName('Description')]
     public ?string $description = null;
 
-    #[Type(TradeCountry::class)]
+    #[Type(Id::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('OriginTradeCountry')]
-    public ?TradeCountry $tradeCountry = null;
+    #[SerializedName('BatchID')]
+    public ?Id $batchID = null;
+
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('BrandName')]
+    public ?string $brandName = null;
+
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('ModelName')]
+    public ?string $modelName = null;
 
     /** @var ProductCharacteristic[] */
     #[Type('array<Easybill\ZUGFeRD2\Model\ProductCharacteristic>')]
@@ -52,6 +71,16 @@ class TradeProduct
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('DesignatedProductClassification')]
     public ?ProductClassification $designatedProductClassification = null;
+
+    #[Type(TradeCountry::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('OriginTradeCountry')]
+    public ?TradeCountry $tradeCountry = null;
+
+    /** @var TradeProductInstance[] */
+    #[Type('array<Easybill\ZUGFeRD2\Model\TradeProductInstance>')]
+    #[XmlList(entry: 'IndividualTradeProductInstance', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    public ?array $individualTradeProductInstance = [];
 
     /** @var ReferencedProduct[] */
     #[Type('array<Easybill\ZUGFeRD2\Model\ReferencedProduct>')]
