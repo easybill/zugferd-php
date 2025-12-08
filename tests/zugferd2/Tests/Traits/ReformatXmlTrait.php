@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Easybill\ZUGFeRD2\Tests\Traits;
 
+use Composer\Pcre\Preg;
+
 trait ReformatXmlTrait
 {
     public static function reformatXml(string $xml): string
@@ -23,7 +25,7 @@ trait ReformatXmlTrait
     // to avoid any conflicts we just sort them.
     private static function sortRootXmlnsAttributes(string $xml): string
     {
-        if (!preg_match('/^(<\?xml[^?]*\?>\s*)?(<[a-zA-Z0-9:]+)\s+([^>]+)>/s', $xml, $matches)) {
+        if (!Preg::isMatch('/^(<\?xml[^?]*\?>\s*)?(<[a-zA-Z0-9:]+)\s+([^>]+)>/s', $xml, $matches)) {
             return $xml;
         }
 
@@ -31,7 +33,7 @@ trait ReformatXmlTrait
         $rootTag = $matches[2];
         $attributesStr = $matches[3];
 
-        preg_match_all('/([a-zA-Z0-9:_-]+)="([^"]*)"/', $attributesStr, $attrMatches, PREG_SET_ORDER);
+        preg_match_all('/([a-zA-Z0-9:_-]+)="([^"]*)"/', (string)$attributesStr, $attrMatches, PREG_SET_ORDER);
 
         $attributes = [];
         foreach ($attrMatches as $attr) {
@@ -41,7 +43,7 @@ trait ReformatXmlTrait
             if (str_starts_with($name, 'xmlns:')) {
                 $prefix = substr($name, 6);
 
-                if (!preg_match('/<' . preg_quote($prefix, '/') . ':/', $xml)) {
+                if (!Preg::isMatch('/<' . preg_quote($prefix, '/') . ':/', $xml)) {
                     continue;
                 }
             }
@@ -58,6 +60,6 @@ trait ReformatXmlTrait
 
         $newRootElement = $rootTag . ' ' . implode(' ', $newAttributes) . '>';
 
-        return preg_replace('/^(<\?xml[^?]*\?>\s*)?<[a-zA-Z0-9:]+\s+[^>]+>/s', $xmlDecl . $newRootElement, $xml, 1);
+        return Preg::replace('/^(<\?xml[^?]*\?>\s*)?<[a-zA-Z0-9:]+\s+[^>]+>/s', $xmlDecl . $newRootElement, $xml, 1);
     }
 }
