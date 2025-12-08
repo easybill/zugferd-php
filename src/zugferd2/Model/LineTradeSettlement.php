@@ -10,7 +10,6 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
-#[AccessorOrder(order: 'custom', custom: ['tradeTax', 'billingSpecifiedPeriod', 'specifiedTradeAllowanceCharge', 'monetarySummation', 'tradeAccountingAccount'])]
 class LineTradeSettlement
 {
     /**
@@ -20,6 +19,11 @@ class LineTradeSettlement
     #[XmlList(entry: 'ApplicableTradeTax', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $tradeTax = [];
 
+    #[Type(SpecifiedPeriod::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('BillingSpecifiedPeriod')]
+    public ?SpecifiedPeriod $billingSpecifiedPeriod = null;
+
     /**
      * @var TradeAllowanceCharge[]
      */
@@ -27,15 +31,20 @@ class LineTradeSettlement
     #[XmlList(entry: 'SpecifiedTradeAllowanceCharge', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $specifiedTradeAllowanceCharge = [];
 
-    #[Type(SpecifiedPeriod::class)]
-    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('BillingSpecifiedPeriod')]
-    public ?SpecifiedPeriod $billingSpecifiedPeriod = null;
-
     #[Type(TradeSettlementLineMonetarySummation::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('SpecifiedTradeSettlementLineMonetarySummation')]
     public TradeSettlementLineMonetarySummation $monetarySummation;
+
+    /** @var ReferencedDocument[] */
+    #[Type('array<Easybill\ZUGFeRD2\Model\ReferencedDocument>')]
+    #[XmlList(entry: 'InvoiceReferencedDocument', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    public array $invoiceReferencedDocument = [];
+
+    /** @var ReferencedDocument[] */
+    #[Type('array<Easybill\ZUGFeRD2\Model\ReferencedDocument>')]
+    #[XmlList(entry: 'AdditionalReferencedDocument', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    public array $additionalReferencedDocuments = [];
 
     /**
      * @var TradeAccountingAccount[]
