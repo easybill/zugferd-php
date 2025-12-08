@@ -50,7 +50,6 @@ class ReferencedDocument
     #[SerializedName('FormattedIssueDateTime')]
     public ?FormattedDateTime $formattedIssueDateTime = null;
 
-
     public static function create(string $issuerAssignedID): self
     {
         $self = new self();

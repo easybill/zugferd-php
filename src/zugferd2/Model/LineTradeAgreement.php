@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Easybill\ZUGFeRD2\Model;
 
-use JMS\Serializer\Annotation\AccessorOrder;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
@@ -61,5 +60,4 @@ class LineTradeAgreement
     #[Type('array<Easybill\ZUGFeRD2\Model\ReferencedDocument>')]
     #[XmlList(entry: 'UltimateCustomerOrderReferencedDocument', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $ultimateCustomerOrderReferencedDocument = [];
-
 }
