@@ -44,6 +44,11 @@ class HeaderTradeAgreement
 
     #[Type(ReferencedDocument::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('SellerOrderReferencedDocument')]
+    public ?ReferencedDocument $sellerOrderReferencedDocument;
+
+    #[Type(ReferencedDocument::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('BuyerOrderReferencedDocument')]
     public ?ReferencedDocument $buyerOrderReferencedDocument = null;
 
@@ -51,11 +56,6 @@ class HeaderTradeAgreement
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('ContractReferencedDocument')]
     public ?ReferencedDocument $contractReferencedDocument = null;
-
-    #[Type(ReferencedDocument::class)]
-    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('SellerOrderReferencedDocument')]
-    public ?ReferencedDocument $sellerOrderReferencedDocument;
 
     /** @var ReferencedDocument[] */
     #[Type('array<Easybill\ZUGFeRD2\Model\ReferencedDocument>')]
