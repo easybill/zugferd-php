@@ -10,13 +10,17 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
-#[AccessorOrder(order: 'custom', custom: ['lineId', 'notes'])]
 class DocumentLineDocument
 {
     #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('LineID')]
     public string $lineId;
+
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('LineStatusReasonCode')]
+    public ?string $lineStatusReasonCode;
 
     /** @var Note[] */
     #[Type('array<Easybill\ZUGFeRD2\Model\Note>')]

@@ -6,11 +6,11 @@ namespace Easybill\ZUGFeRD2;
 
 class Validator
 {
-    public const SCHEMA_BASIC = __DIR__ . '/Schema/BASIC/Factur-X_1.07.3_BASIC.xsd';
-    public const SCHEMA_BASIC_WL = __DIR__ . '/Schema/BASIC-WL/Factur-X_1.07.3_BASICWL.xsd';
-    public const SCHEMA_EN16931 = __DIR__ . '/Schema/EN16931/Factur-X_1.07.3_EN16931.xsd';
-    public const SCHEMA_EXTENDED = __DIR__ . '/Schema/EXTENDED/Factur-X_1.07.3_EXTENDED.xsd';
-    public const SCHEMA_MINIMUM = __DIR__ . '/Schema/MINIMUM/Factur-X_1.07.3_MINIMUM.xsd';
+    public const SCHEMA_BASIC = __DIR__ . '/Schema/BASIC/FACTUR-X_1.08.0_BASIC.xsd';
+    public const SCHEMA_BASIC_WL = __DIR__ . '/Schema/BASIC-WL/FACTUR-X_1.08.0_BASICWL.xsd';
+    public const SCHEMA_EN16931 = __DIR__ . '/Schema/EN16931/FACTUR-X_1.08.0_EN16931.xsd';
+    public const SCHEMA_EXTENDED = __DIR__ . '/Schema/EXTENDED/FACTUR-X_1.08.0_EXTENDED.xsd';
+    public const SCHEMA_MINIMUM = __DIR__ . '/Schema/MINIMUM/FACTUR-X_1.08.0_MINIMUM.xsd';
 
     public function validateAgainstXsd(string $xml, string $schemaFile): ?string
     {
