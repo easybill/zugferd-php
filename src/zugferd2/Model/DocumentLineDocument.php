@@ -4,19 +4,32 @@ declare(strict_types=1);
 
 namespace Easybill\ZUGFeRD2\Model;
 
-use JMS\Serializer\Annotation\AccessorOrder;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 
-#[AccessorOrder(order: 'custom', custom: ['lineId', 'notes'])]
 class DocumentLineDocument
 {
     #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('LineID')]
     public string $lineId;
+
+    #[Type(Id::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('ParentLineID')]
+    public ?Id $parentLineID = null;
+
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('LineStatusCode')]
+    public ?string $lineStatusCode;
+
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('LineStatusReasonCode')]
+    public ?string $lineStatusReasonCode;
 
     /** @var Note[] */
     #[Type('array<Easybill\ZUGFeRD2\Model\Note>')]

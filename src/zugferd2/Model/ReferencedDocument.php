@@ -22,6 +22,11 @@ class ReferencedDocument
 
     #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('LineID')]
+    public ?string $lineId = null;
+
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('TypeCode')]
     public ?string $typeCode = null;
 
@@ -35,15 +40,15 @@ class ReferencedDocument
     #[SerializedName('AttachmentBinaryObject')]
     public ?BinaryObject $attachmentBinaryObject = null;
 
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('ReferenceTypeCode')]
+    public ?string $referenceTypeCode = null;
+
     #[Type(FormattedDateTime::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('FormattedIssueDateTime')]
     public ?FormattedDateTime $formattedIssueDateTime = null;
-
-    #[Type('string')]
-    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('LineID')]
-    public ?string $lineId = null;
 
     public static function create(string $issuerAssignedID): self
     {

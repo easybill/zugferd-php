@@ -17,10 +17,15 @@ class ClassCode
     public ?string $listID = null;
 
     #[Type('string')]
+    #[XmlAttribute]
+    #[SerializedName('listVersionID')]
+    public ?string $listVersionID = null;
+
+    #[Type('string')]
     #[XmlValue(cdata: false)]
     public string $value;
 
-    public static function create(string $id, ?string $listID = null): self
+    public static function create(string $id, ?string $listID = null, ?string $listVersionID = null): self
     {
         $self = new self();
         $self->value = $id;
