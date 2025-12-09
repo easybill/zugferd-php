@@ -27,7 +27,7 @@ use Easybill\ZUGFeRD2\Tests\Traits\AssertXmlOutputTrait;
 use Easybill\ZUGFeRD2\Validator;
 use PHPUnit\Framework\TestCase;
 
-class ProfileBasicWLTest extends TestCase
+final class ProfileBasicWLTest extends TestCase
 {
     use AssertXmlOutputTrait;
 

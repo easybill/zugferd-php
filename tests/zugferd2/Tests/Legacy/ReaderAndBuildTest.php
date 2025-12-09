@@ -10,7 +10,7 @@ use Easybill\ZUGFeRD2\Tests\Traits\ReformatXmlTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-class ReaderAndBuildTest extends TestCase
+final class ReaderAndBuildTest extends TestCase
 {
     use ReformatXmlTrait;
 
@@ -28,14 +28,12 @@ class ReaderAndBuildTest extends TestCase
     }
 
     /**
-     * @return string[][]
+     * @return \Iterator<(int | string), array<string>>
      */
-    public static function dataProvider(): array
+    public static function dataProvider(): \Iterator
     {
-        return [
-            ['zugferd_2p1_BASIC-WL_Einfach.xml'],
-            ['zugferd_2p1_EN16931_Einfach.xml'],
-            ['zugferd_2p1_XRECHNUNG_Einfach.xml'],
-        ];
+        yield ['zugferd_2p1_BASIC-WL_Einfach.xml'];
+        yield ['zugferd_2p1_EN16931_Einfach.xml'];
+        yield ['zugferd_2p1_XRECHNUNG_Einfach.xml'];
     }
 }

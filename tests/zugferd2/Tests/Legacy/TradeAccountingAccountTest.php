@@ -28,7 +28,7 @@ use Easybill\ZUGFeRD2\Model\TradeSettlementHeaderMonetarySummation;
 use Easybill\ZUGFeRD2\Model\TradeSettlementLineMonetarySummation;
 use PHPUnit\Framework\TestCase;
 
-class TradeAccountingAccountTest extends TestCase
+final class TradeAccountingAccountTest extends TestCase
 {
     public function testTradeAccountingAccount(): void
     {
@@ -50,64 +50,64 @@ class TradeAccountingAccountTest extends TestCase
 
         $invoice->supplyChainTradeTransaction->lineItems[] = $item1;
 
-        $xml = <<<'XML'
-<?xml version="1.0" encoding="UTF-8"?>
-<rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
-  <rsm:ExchangedDocumentContext>
-    <ram:GuidelineSpecifiedDocumentContextParameter>
-      <ram:ID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_1.2</ram:ID>
-    </ram:GuidelineSpecifiedDocumentContextParameter>
-  </rsm:ExchangedDocumentContext>
-  <rsm:ExchangedDocument>
-    <ram:ID>12345</ram:ID>
-    <ram:TypeCode>380</ram:TypeCode>
-    <ram:IssueDateTime>
-      <udt:DateTimeString format="102">20180305</udt:DateTimeString>
-    </ram:IssueDateTime>
-  </rsm:ExchangedDocument>
-  <rsm:SupplyChainTradeTransaction>
-    <ram:IncludedSupplyChainTradeLineItem>
-      <ram:AssociatedDocumentLineDocument>
-        <ram:LineID>1</ram:LineID>
-      </ram:AssociatedDocumentLineDocument>
-      <ram:SpecifiedTradeProduct>
-        <ram:Name>Paper A4</ram:Name>
-      </ram:SpecifiedTradeProduct>
-      <ram:SpecifiedLineTradeAgreement>
-        <ram:NetPriceProductTradePrice>
-          <ram:ChargeAmount>10.00</ram:ChargeAmount>
-        </ram:NetPriceProductTradePrice>
-      </ram:SpecifiedLineTradeAgreement>
-      <ram:SpecifiedLineTradeSettlement>
-        <ram:SpecifiedTradeSettlementLineMonetarySummation>
-          <ram:LineTotalAmount>10.00</ram:LineTotalAmount>
-        </ram:SpecifiedTradeSettlementLineMonetarySummation>
-        <ram:ReceivableSpecifiedTradeAccountingAccount>
-          <ram:ID>123</ram:ID>
-          <ram:TypeCode>moo</ram:TypeCode>
-        </ram:ReceivableSpecifiedTradeAccountingAccount>
-      </ram:SpecifiedLineTradeSettlement>
-    </ram:IncludedSupplyChainTradeLineItem>
-    <ram:ApplicableHeaderTradeAgreement>
-      <ram:SellerTradeParty>
-        <ram:GlobalID schemeID="0088">00000123</ram:GlobalID>
-        <ram:Name>Company GmbH</ram:Name>
-      </ram:SellerTradeParty>
-      <ram:BuyerTradeParty>
-        <ram:ID>12345</ram:ID>
-        <ram:Name>Foo Bar</ram:Name>
-      </ram:BuyerTradeParty>
-    </ram:ApplicableHeaderTradeAgreement>
-    <ram:ApplicableHeaderTradeDelivery/>
-    <ram:ApplicableHeaderTradeSettlement>
-      <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
-      <ram:SpecifiedTradeSettlementHeaderMonetarySummation>
-        <ram:DuePayableAmount>100.00</ram:DuePayableAmount>
-      </ram:SpecifiedTradeSettlementHeaderMonetarySummation>
-    </ram:ApplicableHeaderTradeSettlement>
-  </rsm:SupplyChainTradeTransaction>
-</rsm:CrossIndustryInvoice>
-XML;
+        $xml = <<<'XML_WRAP'
+        <?xml version="1.0" encoding="UTF-8"?>
+        <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+          <rsm:ExchangedDocumentContext>
+            <ram:GuidelineSpecifiedDocumentContextParameter>
+              <ram:ID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_1.2</ram:ID>
+            </ram:GuidelineSpecifiedDocumentContextParameter>
+          </rsm:ExchangedDocumentContext>
+          <rsm:ExchangedDocument>
+            <ram:ID>12345</ram:ID>
+            <ram:TypeCode>380</ram:TypeCode>
+            <ram:IssueDateTime>
+              <udt:DateTimeString format="102">20180305</udt:DateTimeString>
+            </ram:IssueDateTime>
+          </rsm:ExchangedDocument>
+          <rsm:SupplyChainTradeTransaction>
+            <ram:IncludedSupplyChainTradeLineItem>
+              <ram:AssociatedDocumentLineDocument>
+                <ram:LineID>1</ram:LineID>
+              </ram:AssociatedDocumentLineDocument>
+              <ram:SpecifiedTradeProduct>
+                <ram:Name>Paper A4</ram:Name>
+              </ram:SpecifiedTradeProduct>
+              <ram:SpecifiedLineTradeAgreement>
+                <ram:NetPriceProductTradePrice>
+                  <ram:ChargeAmount>10.00</ram:ChargeAmount>
+                </ram:NetPriceProductTradePrice>
+              </ram:SpecifiedLineTradeAgreement>
+              <ram:SpecifiedLineTradeSettlement>
+                <ram:SpecifiedTradeSettlementLineMonetarySummation>
+                  <ram:LineTotalAmount>10.00</ram:LineTotalAmount>
+                </ram:SpecifiedTradeSettlementLineMonetarySummation>
+                <ram:ReceivableSpecifiedTradeAccountingAccount>
+                  <ram:ID>123</ram:ID>
+                  <ram:TypeCode>moo</ram:TypeCode>
+                </ram:ReceivableSpecifiedTradeAccountingAccount>
+              </ram:SpecifiedLineTradeSettlement>
+            </ram:IncludedSupplyChainTradeLineItem>
+            <ram:ApplicableHeaderTradeAgreement>
+              <ram:SellerTradeParty>
+                <ram:GlobalID schemeID="0088">00000123</ram:GlobalID>
+                <ram:Name>Company GmbH</ram:Name>
+              </ram:SellerTradeParty>
+              <ram:BuyerTradeParty>
+                <ram:ID>12345</ram:ID>
+                <ram:Name>Foo Bar</ram:Name>
+              </ram:BuyerTradeParty>
+            </ram:ApplicableHeaderTradeAgreement>
+            <ram:ApplicableHeaderTradeDelivery/>
+            <ram:ApplicableHeaderTradeSettlement>
+              <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
+              <ram:SpecifiedTradeSettlementHeaderMonetarySummation>
+                <ram:DuePayableAmount>100.00</ram:DuePayableAmount>
+              </ram:SpecifiedTradeSettlementHeaderMonetarySummation>
+            </ram:ApplicableHeaderTradeSettlement>
+          </rsm:SupplyChainTradeTransaction>
+        </rsm:CrossIndustryInvoice>
+        XML_WRAP;
         self::assertEquals(
             // Removes white-space
             preg_replace('/\s/', '', $xml),
