@@ -42,7 +42,7 @@ use Easybill\ZUGFeRD\Model\Trade\UniversalCommunication;
 use Easybill\ZUGFeRD\SchemaValidator;
 use PHPUnit\Framework\TestCase;
 
-class BuilderTest extends TestCase
+final class BuilderTest extends TestCase
 {
     /**
      * @before

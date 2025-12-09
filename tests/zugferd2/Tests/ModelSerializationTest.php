@@ -56,7 +56,7 @@ use Easybill\ZUGFeRD2\Model\TradeDeliveryTerms;
 use Easybill\ZUGFeRD2\Model\TradePaymentTerms;
 use Easybill\ZUGFeRD2\Model\TradeSettlementPaymentMeans;
 
-class ModelSerializationTest extends TestCase
+final class ModelSerializationTest extends TestCase
 {
     private function createMinimalInvoice(): CrossIndustryInvoice
     {
@@ -95,7 +95,7 @@ class ModelSerializationTest extends TestCase
         $resultModel = $deserialized->exchangedDocumentContext->businessProcessSpecifiedDocumentContextParameter;
 
         self::assertNotNull($resultModel);
-        self::assertEquals($testId, $resultModel->id);
+        self::assertSame($testId, $resultModel->id);
     }
 
     public function testTradeAllowanceChargeSerialization(): void
@@ -254,12 +254,12 @@ class ModelSerializationTest extends TestCase
 
         self::assertNotNull($resultModel);
         self::assertEquals('10115', $resultModel->postcodeCode);
-        self::assertEquals('Musterstraße 123', $resultModel->lineOne);
-        self::assertEquals('Gebäude A', $resultModel->lineTwo);
-        self::assertEquals('3. Etage', $resultModel->lineThree);
-        self::assertEquals('Berlin', $resultModel->cityName);
-        self::assertEquals('DE', $resultModel->countryID);
-        self::assertEquals('Berlin', $resultModel->countrySubDivisionName);
+        self::assertSame('Musterstraße 123', $resultModel->lineOne);
+        self::assertSame('Gebäude A', $resultModel->lineTwo);
+        self::assertSame('3. Etage', $resultModel->lineThree);
+        self::assertSame('Berlin', $resultModel->cityName);
+        self::assertSame('DE', $resultModel->countryID);
+        self::assertSame('Berlin', $resultModel->countrySubDivisionName);
     }
 
     public function testUniversalCommunicationSerialization(): void
@@ -285,12 +285,12 @@ class ModelSerializationTest extends TestCase
 
         self::assertNotNull($contact);
         self::assertNotNull($contact->telephoneUniversalCommunication);
-        self::assertEquals('+49 30 12345678', $contact->telephoneUniversalCommunication->completeNumber);
+        self::assertSame('+49 30 12345678', $contact->telephoneUniversalCommunication->completeNumber);
 
         self::assertNotNull($contact->emailURIUniversalCommunication);
         self::assertNotNull($contact->emailURIUniversalCommunication->uriid);
-        self::assertEquals('test@example.com', $contact->emailURIUniversalCommunication->uriid->value);
-        self::assertEquals('SMTP', $contact->emailURIUniversalCommunication->uriid->schemeID);
+        self::assertSame('test@example.com', $contact->emailURIUniversalCommunication->uriid->value);
+        self::assertSame('SMTP', $contact->emailURIUniversalCommunication->uriid->schemeID);
     }
 
     public function testTradeContactSerialization(): void
@@ -316,15 +316,15 @@ class ModelSerializationTest extends TestCase
 
         $resultModel = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty->definedTradeContact;
         self::assertNotNull($resultModel);
-        self::assertEquals('Max Mustermann', $resultModel->personName);
-        self::assertEquals('Sales Department', $resultModel->departmentName);
+        self::assertSame('Max Mustermann', $resultModel->personName);
+        self::assertSame('Sales Department', $resultModel->departmentName);
         self::assertNotNull($resultModel->telephoneUniversalCommunication);
-        self::assertEquals('+49 30 12345678', $resultModel->telephoneUniversalCommunication->completeNumber);
+        self::assertSame('+49 30 12345678', $resultModel->telephoneUniversalCommunication->completeNumber);
         self::assertNotNull($resultModel->faxUniversalCommunication);
-        self::assertEquals('+49 30 12345679', $resultModel->faxUniversalCommunication->completeNumber);
+        self::assertSame('+49 30 12345679', $resultModel->faxUniversalCommunication->completeNumber);
         self::assertNotNull($resultModel->emailURIUniversalCommunication);
         self::assertNotNull($resultModel->emailURIUniversalCommunication->uriid);
-        self::assertEquals('max.mustermann@example.com', $resultModel->emailURIUniversalCommunication->uriid->value);
+        self::assertSame('max.mustermann@example.com', $resultModel->emailURIUniversalCommunication->uriid->value);
     }
 
     public function testTradePartySerialization(): void
@@ -372,21 +372,21 @@ class ModelSerializationTest extends TestCase
         self::assertEquals('PARTY-123', $resultModel->id[0]->value);
         self::assertCount(1, $resultModel->globalID);
         self::assertEquals('4000001234567', $resultModel->globalID[0]->value);
-        self::assertEquals('Comprehensive Test Company GmbH', $resultModel->name);
-        self::assertEquals('AG', $resultModel->roleCode);
-        self::assertEquals('Leading provider of test data', $resultModel->description);
+        self::assertSame('Comprehensive Test Company GmbH', $resultModel->name);
+        self::assertSame('AG', $resultModel->roleCode);
+        self::assertSame('Leading provider of test data', $resultModel->description);
         self::assertNotNull($resultModel->specifiedLegalOrganization);
-        self::assertEquals('HRB12345', $resultModel->specifiedLegalOrganization->id->value);
-        self::assertEquals('Test Company Trading', $resultModel->specifiedLegalOrganization->tradingBusinessName);
+        self::assertSame('HRB12345', $resultModel->specifiedLegalOrganization->id->value);
+        self::assertSame('Test Company Trading', $resultModel->specifiedLegalOrganization->tradingBusinessName);
         self::assertNotNull($resultModel->specifiedLegalOrganization->postalTradeAddress);
-        self::assertEquals('Legal Street 1', $resultModel->specifiedLegalOrganization->postalTradeAddress->lineOne);
+        self::assertSame('Legal Street 1', $resultModel->specifiedLegalOrganization->postalTradeAddress->lineOne);
         self::assertNotNull($resultModel->definedTradeContact);
-        self::assertEquals('Erika Musterfrau', $resultModel->definedTradeContact->personName);
+        self::assertSame('Erika Musterfrau', $resultModel->definedTradeContact->personName);
         self::assertNotNull($resultModel->postalTradeAddress);
-        self::assertEquals('Hauptstraße 456', $resultModel->postalTradeAddress->lineOne);
+        self::assertSame('Hauptstraße 456', $resultModel->postalTradeAddress->lineOne);
         self::assertNotNull($resultModel->uriUniversalCommunication);
         self::assertNotNull($resultModel->uriUniversalCommunication->uriid);
-        self::assertEquals('info@testcompany.example', $resultModel->uriUniversalCommunication->uriid->value);
+        self::assertSame('info@testcompany.example', $resultModel->uriUniversalCommunication->uriid->value);
         self::assertCount(2, $resultModel->taxRegistrations);
         self::assertEquals('DE123456789', $resultModel->taxRegistrations[0]->id->value);
     }
@@ -414,11 +414,11 @@ class ModelSerializationTest extends TestCase
         $resultModel = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty->specifiedLegalOrganization;
 
         self::assertNotNull($resultModel);
-        self::assertEquals('HRB54321', $resultModel->id->value);
-        self::assertEquals('Legal Test Trading GmbH', $resultModel->tradingBusinessName);
+        self::assertSame('HRB54321', $resultModel->id->value);
+        self::assertSame('Legal Test Trading GmbH', $resultModel->tradingBusinessName);
         self::assertNotNull($resultModel->postalTradeAddress);
-        self::assertEquals('Rechtsstraße 789', $resultModel->postalTradeAddress->lineOne);
-        self::assertEquals('Frankfurt', $resultModel->postalTradeAddress->cityName);
+        self::assertSame('Rechtsstraße 789', $resultModel->postalTradeAddress->lineOne);
+        self::assertSame('Frankfurt', $resultModel->postalTradeAddress->cityName);
     }
 
     public function testSpecifiedPeriodSerialization(): void
@@ -917,7 +917,7 @@ class ModelSerializationTest extends TestCase
         $resultModel = $contractDoc->formattedIssueDateTime;
         self::assertNotNull($resultModel);
         self::assertEquals('20250115', $resultModel->dateTimeString->value);
-        self::assertEquals(102, $resultModel->dateTimeString->format);
+        self::assertSame(102, $resultModel->dateTimeString->format);
     }
 
     public function testBinaryObjectSerialization(): void
@@ -1006,7 +1006,7 @@ class ModelSerializationTest extends TestCase
         $resultModel = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeAgreement->applicableTradeDeliveryTerms;
 
         self::assertNotNull($resultModel);
-        self::assertEquals('FOB', $resultModel->deliveryTypeCode);
-        self::assertEquals('Free on board, port of Hamburg', $resultModel->description);
+        self::assertSame('FOB', $resultModel->deliveryTypeCode);
+        self::assertSame('Free on board, port of Hamburg', $resultModel->description);
     }
 }

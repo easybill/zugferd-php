@@ -48,7 +48,7 @@ use Easybill\ZUGFeRD2\Model\UniversalCommunication;
 use Easybill\ZUGFeRD2\Validator;
 use PHPUnit\Framework\TestCase;
 
-class BuilderTest extends TestCase
+final class BuilderTest extends TestCase
 {
     public function testBuildXRechnungExample(): void
     {
@@ -201,7 +201,7 @@ Handelsregisternummer: H A 123
         $referenceFile = (string)file_get_contents(__DIR__ . '/official_example_xml/zugferd_2p1_XRECHNUNG_Einfach.xml');
         $referenceFile = ReaderAndBuildTest::reformatXml($referenceFile);
         $xml = ReaderAndBuildTest::reformatXml($xml);
-        self::assertEquals($referenceFile, $xml);
+        self::assertSame($referenceFile, $xml);
 
         $result = (new Validator())->validateAgainstXsd($xml, Validator::SCHEMA_EN16931);
         self::assertNull($result, $result ?? '');
@@ -392,7 +392,7 @@ Handelsregisternummer: H A 123
         $referenceFile = (string)file_get_contents(__DIR__ . '/official_example_xml/zugferd_2p1_XRECHNUNG_Extended.xml');
         $referenceFile = ReaderAndBuildTest::reformatXml($referenceFile);
         $xml = ReaderAndBuildTest::reformatXml($xml);
-        self::assertEquals($referenceFile, $xml);
+        self::assertSame($referenceFile, $xml);
 
         $result = (new Validator())->validateAgainstXsd($xml, Validator::SCHEMA_EXTENDED);
         self::assertNull($result, $result ?? '');

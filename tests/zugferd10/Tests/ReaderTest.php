@@ -17,7 +17,7 @@ use Easybill\ZUGFeRD\Model\Trade\TradeParty;
 use Easybill\ZUGFeRD\Reader;
 use PHPUnit\Framework\TestCase;
 
-class ReaderTest extends TestCase
+final class ReaderTest extends TestCase
 {
     /**
      * @before
