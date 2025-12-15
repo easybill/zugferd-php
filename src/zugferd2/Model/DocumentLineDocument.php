@@ -24,12 +24,12 @@ class DocumentLineDocument
     #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('LineStatusCode')]
-    public ?string $lineStatusCode;
+    public ?string $lineStatusCode = null;
 
     #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('LineStatusReasonCode')]
-    public ?string $lineStatusReasonCode;
+    public ?string $lineStatusReasonCode = null;
 
     /** @var Note[] */
     #[Type('array<Easybill\ZUGFeRD2\Model\Note>')]
