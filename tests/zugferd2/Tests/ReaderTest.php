@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
-class ReaderTest extends TestCase
+final class ReaderTest extends TestCase
 {
     use AssertXmlOutputTrait;
     use ReformatXmlTrait;

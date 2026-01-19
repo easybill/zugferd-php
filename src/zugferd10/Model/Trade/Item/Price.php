@@ -33,7 +33,7 @@ class Price
      * @var AllowanceCharge[]
      */
     #[JMS\Type('array<Easybill\ZUGFeRD\Model\AllowanceCharge>')]
-    #[JMS\XmlList(inline: true, entry: 'AppliedTradeAllowanceCharge', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[JMS\XmlList(entry: 'AppliedTradeAllowanceCharge', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     private $allowanceCharges = [];
 
     /**

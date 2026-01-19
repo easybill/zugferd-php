@@ -85,7 +85,7 @@ class AllowanceCharge
      * @var TradeTax[]
      */
     #[JMS\Type('array<Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax>')]
-    #[JMS\XmlList(inline: true, entry: 'CategoryTradeTax', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[JMS\XmlList(entry: 'CategoryTradeTax', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     private $categoryTradeTaxes;
 
     /**
