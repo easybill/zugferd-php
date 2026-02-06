@@ -53,6 +53,11 @@ class HeaderTradeAgreement
 
     #[Type(ReferencedDocument::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('QuotationReferencedDocument')]
+    public ?ReferencedDocument $quotationReferencedDocument = null;
+
+    #[Type(ReferencedDocument::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('ContractReferencedDocument')]
     public ?ReferencedDocument $contractReferencedDocument = null;
 
