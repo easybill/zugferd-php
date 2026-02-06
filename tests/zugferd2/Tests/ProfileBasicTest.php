@@ -39,7 +39,7 @@ use Easybill\ZUGFeRD2\Tests\Traits\AssertXmlOutputTrait;
 use Easybill\ZUGFeRD2\Validator;
 use PHPUnit\Framework\TestCase;
 
-class ProfileBasicTest extends TestCase
+final class ProfileBasicTest extends TestCase
 {
     use AssertXmlOutputTrait;
 

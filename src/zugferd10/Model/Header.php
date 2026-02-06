@@ -50,7 +50,7 @@ class Header
      * @var Note[]
      */
     #[Type('array<Easybill\ZUGFeRD\Model\Note>')]
-    #[XmlList(inline: true, entry: 'IncludedNote', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[XmlList(entry: 'IncludedNote', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     private $notes = [];
 
     /**

@@ -26,12 +26,13 @@
     "ext-libxml": "Needed for XSD validation"
   },
   "require-dev": {
-    "phpunit/phpunit": "^12.2",
     "ext-libxml": "*",
     "friendsofphp/php-cs-fixer": "^v3.75",
     "phpstan/phpstan": "^2.1",
-    "symfony/finder": "^5.4 || ^7.0",
-    "phpstan/phpstan-strict-rules": "^2.0"
+    "phpstan/phpstan-strict-rules": "^2.0",
+    "phpunit/phpunit": "^12.2",
+    "rector/rector": "^2.2",
+    "symfony/finder": "^5.4 || ^7.0"
   },
   "autoload": {
     "psr-4": {

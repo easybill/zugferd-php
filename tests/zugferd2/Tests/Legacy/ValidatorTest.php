@@ -7,7 +7,7 @@ namespace Easybill\ZUGFeRD2\Tests\Legacy;
 use Easybill\ZUGFeRD2\Validator;
 use PHPUnit\Framework\TestCase;
 
-class ValidatorTest extends TestCase
+final class ValidatorTest extends TestCase
 {
     public function testXsdSuccess(): void
     {
