@@ -20,6 +20,16 @@ class HeaderTradeDelivery
     #[SerializedName('ShipToTradeParty')]
     public ?TradeParty $shipToTradeParty = null;
 
+    #[Type(TradeParty::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('UltimateShipToTradeParty')]
+    public ?TradeParty $ultimateShipToTradeParty = null;
+
+    #[Type(TradeParty::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('ShipFromTradeParty')]
+    public ?TradeParty $shipFromTradeParty = null;
+
     #[Type(SupplyChainEvent::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('ActualDeliverySupplyChainEvent')]
@@ -27,11 +37,16 @@ class HeaderTradeDelivery
 
     #[Type(ReferencedDocument::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('DeliveryNoteReferencedDocument')]
-    public ?ReferencedDocument $deliveryNoteReferencedDocument = null;
+    #[SerializedName('DespatchAdviceReferencedDocument')]
+    public ?ReferencedDocument $despatchAdviceReferencedDocument = null;
 
     #[Type(ReferencedDocument::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('DespatchAdviceReferencedDocument')]
-    public ?ReferencedDocument $despatchAdviceReferencedDocument = null;
+    #[SerializedName('ReceivingAdviceReferencedDocument')]
+    public ?ReferencedDocument $receivingAdviceReferencedDocument = null;
+
+    #[Type(ReferencedDocument::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('DeliveryNoteReferencedDocument')]
+    public ?ReferencedDocument $deliveryNoteReferencedDocument = null;
 }
