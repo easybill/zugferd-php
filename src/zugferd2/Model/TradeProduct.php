@@ -31,6 +31,11 @@ class TradeProduct
     #[SerializedName('BuyerAssignedID')]
     public ?string $buyerAssignedID = null;
 
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('IndustryAssignedID')]
+    public ?string $industryAssignedID = null;
+
     #[Type(Id::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('ModelID')]

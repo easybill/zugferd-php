@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Easybill\ZUGFeRD2\Tests;
 
 use Easybill\ZUGFeRD2\Builder;
+use Easybill\ZUGFeRD2\Reader;
 use Easybill\ZUGFeRD2\Model\AdvancePayment;
 use Easybill\ZUGFeRD2\Model\Amount;
 use Easybill\ZUGFeRD2\Model\ClassCode;
@@ -690,6 +691,132 @@ class ProfileExtendedTest extends TestCase
 
         $xml = Builder::create()->transform($invoice);
         self::assertNotEmpty($xml, 'Generated XML should not be empty');
+
+        $validator = new Validator();
+        $errors = $validator->validateAgainstXsd($xml, Validator::SCHEMA_EXTENDED);
+        self::assertNull($errors, $errors ?? 'XML should validate against EXTENDED schema');
+    }
+
+    public function testExtendedContactAndProductDetails(): void
+    {
+        $invoice = new CrossIndustryInvoice();
+
+        $invoice->exchangedDocumentContext = new ExchangedDocumentContext();
+        $invoice->exchangedDocumentContext->documentContextParameter = DocumentContextParameter::create(
+            Builder::GUIDELINE_SPECIFIED_DOCUMENT_CONTEXT_ID_EXTENDED
+        );
+
+        $invoice->exchangedDocument = new ExchangedDocument();
+        $invoice->exchangedDocument->id = 'DETAILS-TEST-001';
+        $invoice->exchangedDocument->typeCode = '380';
+        $invoice->exchangedDocument->issueDateTime = DateTime::create(102, '20250219');
+
+        $invoice->supplyChainTradeTransaction = new SupplyChainTradeTransaction();
+
+        $agreement = new HeaderTradeAgreement();
+
+        $agreement->sellerTradeParty = new TradeParty();
+        $agreement->sellerTradeParty->name = 'Seller with Contact Details';
+        $agreement->sellerTradeParty->postalTradeAddress = new TradeAddress();
+        $agreement->sellerTradeParty->postalTradeAddress->countryID = 'DE';
+
+        $agreement->sellerTradeParty->definedTradeContact = new TradeContact();
+        $agreement->sellerTradeParty->definedTradeContact->personName = 'Max Mustermann';
+        $agreement->sellerTradeParty->definedTradeContact->departmentName = 'Sales Department';
+        $agreement->sellerTradeParty->definedTradeContact->typeCode = 'SR';
+
+        $agreement->buyerTradeParty = new TradeParty();
+        $agreement->buyerTradeParty->name = 'Buyer Company';
+        $agreement->buyerTradeParty->postalTradeAddress = new TradeAddress();
+        $agreement->buyerTradeParty->postalTradeAddress->countryID = 'DE';
+
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement = $agreement;
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
+
+        $settlement = new HeaderTradeSettlement();
+        $settlement->invoiceCurrencyCode = 'EUR';
+
+        $settlement->tradeTaxes[] = TradeTax::create(
+            typeCode: 'VAT',
+            categoryCode: 'S',
+            rateApplicablePercent: '19.00'
+        );
+        $settlement->tradeTaxes[0]->basisAmount = Amount::create('500.00');
+        $settlement->tradeTaxes[0]->calculatedAmount = Amount::create('95.00');
+
+        $settlement->specifiedTradeSettlementHeaderMonetarySummation = new TradeSettlementHeaderMonetarySummation();
+        $settlement->specifiedTradeSettlementHeaderMonetarySummation->lineTotalAmount = Amount::create('500.00');
+        $settlement->specifiedTradeSettlementHeaderMonetarySummation->taxBasisTotalAmount[] = Amount::create('500.00');
+        $settlement->specifiedTradeSettlementHeaderMonetarySummation->taxTotalAmount[] = Amount::create('95.00', 'EUR');
+        $settlement->specifiedTradeSettlementHeaderMonetarySummation->grandTotalAmount[] = Amount::create('595.00');
+        $settlement->specifiedTradeSettlementHeaderMonetarySummation->duePayableAmount = Amount::create('595.00');
+
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = $settlement;
+
+        $lineItem = new SupplyChainTradeLineItem();
+        $lineItem->associatedDocumentLineDocument = DocumentLineDocument::create('1');
+
+        $product = new TradeProduct();
+        $product->name = 'Industrial Product with Details';
+        $product->industryAssignedID = 'IND-STD-2025-42';
+
+        $characteristic1 = new ProductCharacteristic();
+        $characteristic1->typeCode = 'SIZE';
+        $characteristic1->description = 'Dimensions';
+        $characteristic1->valueMeasure = Quantity::create('150', 'CMT');
+        $characteristic1->value = '150cm x 100cm x 50cm';
+        $product->applicableProductCharacteristic[] = $characteristic1;
+
+        $characteristic2 = new ProductCharacteristic();
+        $characteristic2->typeCode = 'MATERIAL';
+        $characteristic2->description = 'Base Material';
+        $characteristic2->value = 'Stainless Steel 316L';
+        $product->applicableProductCharacteristic[] = $characteristic2;
+
+        $lineItem->specifiedTradeProduct = $product;
+        $lineItem->tradeAgreement = new LineTradeAgreement();
+        $lineItem->tradeAgreement->netPrice = TradePrice::create('100.00', Quantity::create('1', 'C62'));
+        $lineItem->delivery = new LineTradeDelivery();
+        $lineItem->delivery->billedQuantity = Quantity::create('5', 'C62');
+        $lineItem->specifiedLineTradeSettlement = new LineTradeSettlement();
+        $lineItem->specifiedLineTradeSettlement->tradeTax[] = TradeTax::create(
+            typeCode: 'VAT',
+            categoryCode: 'S',
+            rateApplicablePercent: '19.00'
+        );
+        $lineItem->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('500.00');
+
+        $invoice->supplyChainTradeTransaction->lineItems[] = $lineItem;
+
+        $xml = Builder::create()->transform($invoice);
+        self::assertNotEmpty($xml, 'Generated XML should not be empty');
+
+        $deserialized = Reader::create()->transform($xml);
+
+        $resultContact = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty->definedTradeContact;
+        self::assertNotNull($resultContact);
+        self::assertEquals('Max Mustermann', $resultContact->personName);
+        self::assertEquals('SR', $resultContact->typeCode);
+
+        $resultProduct = $deserialized->supplyChainTradeTransaction->lineItems[0]->specifiedTradeProduct;
+        self::assertEquals('IND-STD-2025-42', $resultProduct->industryAssignedID);
+
+        self::assertNotNull($resultProduct->applicableProductCharacteristic);
+        self::assertCount(2, $resultProduct->applicableProductCharacteristic);
+
+        $resultChar1 = $resultProduct->applicableProductCharacteristic[0];
+        self::assertEquals('SIZE', $resultChar1->typeCode);
+        self::assertEquals('Dimensions', $resultChar1->description);
+        self::assertNotNull($resultChar1->valueMeasure);
+        self::assertEquals('150', $resultChar1->valueMeasure->value);
+        self::assertEquals('CMT', $resultChar1->valueMeasure->unitCode);
+        self::assertEquals('150cm x 100cm x 50cm', $resultChar1->value);
+
+        $resultChar2 = $resultProduct->applicableProductCharacteristic[1];
+        self::assertEquals('MATERIAL', $resultChar2->typeCode);
+        self::assertEquals('Base Material', $resultChar2->description);
+        self::assertNull($resultChar2->valueMeasure);
+        self::assertEquals('Stainless Steel 316L', $resultChar2->value);
 
         $validator = new Validator();
         $errors = $validator->validateAgainstXsd($xml, Validator::SCHEMA_EXTENDED);
