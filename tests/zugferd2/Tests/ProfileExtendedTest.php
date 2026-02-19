@@ -265,6 +265,11 @@ class ProfileExtendedTest extends TestCase
         $invoice->exchangedDocument->name = 'Comprehensive Test Invoice';
         $invoice->exchangedDocument->typeCode = '380';
         $invoice->exchangedDocument->issueDateTime = DateTime::create(102, '20250114');
+        $invoice->exchangedDocument->copyIndicator = new Indicator();
+        $invoice->exchangedDocument->copyIndicator->indicator = true;
+        $invoice->exchangedDocument->effectiveSpecifiedPeriod = new SpecifiedPeriod();
+        $invoice->exchangedDocument->effectiveSpecifiedPeriod->startDateTime = DateTime::create(102, '20250101');
+        $invoice->exchangedDocument->effectiveSpecifiedPeriod->endDateTime = DateTime::create(102, '20250131');
         $invoice->exchangedDocument->notes[] = Note::create('This is a comprehensive test invoice covering all fields', 'AAI');
         $invoice->exchangedDocument->notes[] = Note::create('Legal note: This is for testing purposes only', 'REG');
         $invoice->exchangedDocument->notes[] = Note::create('Payment terms: Net 30 days', 'PMT');
