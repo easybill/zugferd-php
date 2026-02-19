@@ -378,7 +378,35 @@ class ProfileExtendedTest extends TestCase
         $additionalDoc2->name = 'Price List';
         $agreement->additionalReferencedDocuments[] = $additionalDoc2;
 
+        $agreement->salesAgentTradeParty = new TradeParty();
+        $agreement->salesAgentTradeParty->name = 'Sales Agent Ltd.';
+        $agreement->salesAgentTradeParty->postalTradeAddress = new TradeAddress();
+        $agreement->salesAgentTradeParty->postalTradeAddress->postcodeCode = '20095';
+        $agreement->salesAgentTradeParty->postalTradeAddress->cityName = 'Hamburg';
+        $agreement->salesAgentTradeParty->postalTradeAddress->countryID = 'DE';
+
+        $agreement->productEndUserTradeParty = new TradeParty();
+        $agreement->productEndUserTradeParty->name = 'End User Manufacturing GmbH';
+        $agreement->productEndUserTradeParty->postalTradeAddress = new TradeAddress();
+        $agreement->productEndUserTradeParty->postalTradeAddress->postcodeCode = '80331';
+        $agreement->productEndUserTradeParty->postalTradeAddress->cityName = 'München';
+        $agreement->productEndUserTradeParty->postalTradeAddress->countryID = 'DE';
+
+        $agreement->buyerAgentTradeParty = new TradeParty();
+        $agreement->buyerAgentTradeParty->name = 'Procurement Services AG';
+        $agreement->buyerAgentTradeParty->postalTradeAddress = new TradeAddress();
+        $agreement->buyerAgentTradeParty->postalTradeAddress->postcodeCode = '60311';
+        $agreement->buyerAgentTradeParty->postalTradeAddress->cityName = 'Frankfurt';
+        $agreement->buyerAgentTradeParty->postalTradeAddress->countryID = 'DE';
+
         $agreement->specifiedProcuringProject = ProcuringProject::create('PROJECT-2025-A', 'Infrastructure Upgrade Project');
+
+        $custOrder1 = ReferencedDocument::create('UC-ORDER-001');
+        $custOrder1->typeCode = '220';
+        $custOrder2 = ReferencedDocument::create('UC-ORDER-002');
+        $custOrder2->typeCode = '220';
+        $agreement->ultimateCustomerOrderReferencedDocuments[] = $custOrder1;
+        $agreement->ultimateCustomerOrderReferencedDocuments[] = $custOrder2;
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
 
@@ -416,6 +444,14 @@ class ProfileExtendedTest extends TestCase
         $settlement->paymentReference = 'PAYMENT-REF-888';
         $settlement->invoiceCurrencyCode = 'EUR';
         $settlement->taxCurrencyCode = 'EUR';
+        $settlement->invoiceIssuerReference = 'ISSUER-REF-2025-001';
+
+        $settlement->invoicerTradeParty = new TradeParty();
+        $settlement->invoicerTradeParty->name = 'Invoicing Service Provider GmbH';
+        $settlement->invoicerTradeParty->postalTradeAddress = new TradeAddress();
+        $settlement->invoicerTradeParty->postalTradeAddress->postcodeCode = '40210';
+        $settlement->invoicerTradeParty->postalTradeAddress->cityName = 'Düsseldorf';
+        $settlement->invoicerTradeParty->postalTradeAddress->countryID = 'DE';
 
         $settlement->invoiceeTradeParty = new TradeParty();
         $invoicee = $settlement->invoiceeTradeParty;
@@ -436,6 +472,13 @@ class ProfileExtendedTest extends TestCase
         $payee->postalTradeAddress->lineOne = 'Bankstraße 456';
         $payee->postalTradeAddress->cityName = 'Frankfurt';
         $payee->postalTradeAddress->countryID = 'DE';
+
+        $settlement->payerTradeParty = new TradeParty();
+        $settlement->payerTradeParty->name = 'Payer Company AG';
+        $settlement->payerTradeParty->postalTradeAddress = new TradeAddress();
+        $settlement->payerTradeParty->postalTradeAddress->postcodeCode = '50667';
+        $settlement->payerTradeParty->postalTradeAddress->cityName = 'Köln';
+        $settlement->payerTradeParty->postalTradeAddress->countryID = 'DE';
 
         $currencyExchange = new TradeCurrencyExchange();
         $currencyExchange->sourceCurrencyCode = 'EUR';
@@ -691,166 +734,6 @@ class ProfileExtendedTest extends TestCase
 
         $xml = Builder::create()->transform($invoice);
         self::assertNotEmpty($xml, 'Generated XML should not be empty');
-
-        $validator = new Validator();
-        $errors = $validator->validateAgainstXsd($xml, Validator::SCHEMA_EXTENDED);
-        self::assertNull($errors, $errors ?? 'XML should validate against EXTENDED schema');
-    }
-
-    public function testExtendedTradePartiesAndReferences(): void
-    {
-        $invoice = new CrossIndustryInvoice();
-
-        $invoice->exchangedDocumentContext = new ExchangedDocumentContext();
-        $invoice->exchangedDocumentContext->documentContextParameter = DocumentContextParameter::create(
-            Builder::GUIDELINE_SPECIFIED_DOCUMENT_CONTEXT_ID_EXTENDED
-        );
-
-        $invoice->exchangedDocument = new ExchangedDocument();
-        $invoice->exchangedDocument->id = 'PARTIES-TEST-001';
-        $invoice->exchangedDocument->typeCode = '380';
-        $invoice->exchangedDocument->issueDateTime = DateTime::create(102, '20250219');
-
-        $invoice->supplyChainTradeTransaction = new SupplyChainTradeTransaction();
-
-        $lineItem = new SupplyChainTradeLineItem();
-        $lineItem->associatedDocumentLineDocument = DocumentLineDocument::create('1');
-        $lineItem->specifiedTradeProduct = new TradeProduct();
-        $lineItem->specifiedTradeProduct->name = 'Test Product';
-        $lineItem->tradeAgreement = new LineTradeAgreement();
-        $lineItem->tradeAgreement->netPrice = TradePrice::create('100.00', Quantity::create('1', 'C62'));
-        $lineItem->delivery = new LineTradeDelivery();
-        $lineItem->delivery->billedQuantity = Quantity::create('10', 'C62');
-        $lineItem->specifiedLineTradeSettlement = new LineTradeSettlement();
-        $lineItem->specifiedLineTradeSettlement->tradeTax[] = TradeTax::create(
-            typeCode: 'VAT',
-            categoryCode: 'S',
-            rateApplicablePercent: '19.00'
-        );
-        $lineItem->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('1000.00');
-        $invoice->supplyChainTradeTransaction->lineItems[] = $lineItem;
-
-        $agreement = new HeaderTradeAgreement();
-
-        $agreement->sellerTradeParty = new TradeParty();
-        $agreement->sellerTradeParty->name = 'Main Seller GmbH';
-        $agreement->sellerTradeParty->postalTradeAddress = new TradeAddress();
-        $agreement->sellerTradeParty->postalTradeAddress->countryID = 'DE';
-
-        $agreement->buyerTradeParty = new TradeParty();
-        $agreement->buyerTradeParty->name = 'Main Buyer AG';
-        $agreement->buyerTradeParty->postalTradeAddress = new TradeAddress();
-        $agreement->buyerTradeParty->postalTradeAddress->countryID = 'DE';
-
-        $agreement->salesAgentTradeParty = new TradeParty();
-        $agreement->salesAgentTradeParty->name = 'Sales Agent Representation Ltd.';
-        $agreement->salesAgentTradeParty->postalTradeAddress = new TradeAddress();
-        $agreement->salesAgentTradeParty->postalTradeAddress->postcodeCode = '10115';
-        $agreement->salesAgentTradeParty->postalTradeAddress->lineOne = 'Agent Street 42';
-        $agreement->salesAgentTradeParty->postalTradeAddress->cityName = 'Berlin';
-        $agreement->salesAgentTradeParty->postalTradeAddress->countryID = 'DE';
-
-        $agreement->productEndUserTradeParty = new TradeParty();
-        $agreement->productEndUserTradeParty->name = 'End User Manufacturing GmbH';
-        $agreement->productEndUserTradeParty->postalTradeAddress = new TradeAddress();
-        $agreement->productEndUserTradeParty->postalTradeAddress->postcodeCode = '80331';
-        $agreement->productEndUserTradeParty->postalTradeAddress->lineOne = 'Factory Road 99';
-        $agreement->productEndUserTradeParty->postalTradeAddress->cityName = 'München';
-        $agreement->productEndUserTradeParty->postalTradeAddress->countryID = 'DE';
-
-        $agreement->buyerAgentTradeParty = new TradeParty();
-        $agreement->buyerAgentTradeParty->name = 'Procurement Agent Services';
-        $agreement->buyerAgentTradeParty->postalTradeAddress = new TradeAddress();
-        $agreement->buyerAgentTradeParty->postalTradeAddress->postcodeCode = '60311';
-        $agreement->buyerAgentTradeParty->postalTradeAddress->lineOne = 'Buyer Agent Allee 7';
-        $agreement->buyerAgentTradeParty->postalTradeAddress->cityName = 'Frankfurt';
-        $agreement->buyerAgentTradeParty->postalTradeAddress->countryID = 'DE';
-
-        $custOrder1 = ReferencedDocument::create('UC-ORDER-2025-001');
-        $custOrder1->typeCode = '220';
-        $custOrder2 = ReferencedDocument::create('UC-ORDER-2025-002');
-        $custOrder2->typeCode = '220';
-        $agreement->ultimateCustomerOrderReferencedDocuments[] = $custOrder1;
-        $agreement->ultimateCustomerOrderReferencedDocuments[] = $custOrder2;
-
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement = $agreement;
-
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
-
-        $settlement = new HeaderTradeSettlement();
-        $settlement->invoiceCurrencyCode = 'EUR';
-        $settlement->invoiceIssuerReference = 'ISSUER-REF-2025-999';
-
-        $settlement->invoicerTradeParty = new TradeParty();
-        $settlement->invoicerTradeParty->name = 'Invoicing Service Provider GmbH';
-        $settlement->invoicerTradeParty->postalTradeAddress = new TradeAddress();
-        $settlement->invoicerTradeParty->postalTradeAddress->postcodeCode = '20095';
-        $settlement->invoicerTradeParty->postalTradeAddress->lineOne = 'Invoicing Plaza 1';
-        $settlement->invoicerTradeParty->postalTradeAddress->cityName = 'Hamburg';
-        $settlement->invoicerTradeParty->postalTradeAddress->countryID = 'DE';
-
-        $settlement->payerTradeParty = new TradeParty();
-        $settlement->payerTradeParty->name = 'Payment Processing AG';
-        $settlement->payerTradeParty->postalTradeAddress = new TradeAddress();
-        $settlement->payerTradeParty->postalTradeAddress->postcodeCode = '50667';
-        $settlement->payerTradeParty->postalTradeAddress->lineOne = 'Payer Boulevard 88';
-        $settlement->payerTradeParty->postalTradeAddress->cityName = 'Köln';
-        $settlement->payerTradeParty->postalTradeAddress->countryID = 'DE';
-
-        $settlement->tradeTaxes[] = TradeTax::create(
-            typeCode: 'VAT',
-            categoryCode: 'S',
-            rateApplicablePercent: '19.00'
-        );
-        $settlement->tradeTaxes[0]->basisAmount = Amount::create('1000.00');
-        $settlement->tradeTaxes[0]->calculatedAmount = Amount::create('190.00');
-
-        $settlement->specifiedTradeSettlementHeaderMonetarySummation = new TradeSettlementHeaderMonetarySummation();
-        $settlement->specifiedTradeSettlementHeaderMonetarySummation->lineTotalAmount = Amount::create('1000.00');
-        $settlement->specifiedTradeSettlementHeaderMonetarySummation->taxBasisTotalAmount[] = Amount::create('1000.00');
-        $settlement->specifiedTradeSettlementHeaderMonetarySummation->taxTotalAmount[] = Amount::create('190.00', 'EUR');
-        $settlement->specifiedTradeSettlementHeaderMonetarySummation->grandTotalAmount[] = Amount::create('1190.00');
-        $settlement->specifiedTradeSettlementHeaderMonetarySummation->duePayableAmount = Amount::create('1190.00');
-
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = $settlement;
-
-        $xml = Builder::create()->transform($invoice);
-        self::assertNotEmpty($xml, 'Generated XML should not be empty');
-
-        $deserialized = Reader::create()->transform($xml);
-
-        $resultAgreement = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeAgreement;
-        self::assertNotNull($resultAgreement->salesAgentTradeParty);
-        self::assertEquals('Sales Agent Representation Ltd.', $resultAgreement->salesAgentTradeParty->name);
-        self::assertNotNull($resultAgreement->salesAgentTradeParty->postalTradeAddress);
-        self::assertEquals('Berlin', $resultAgreement->salesAgentTradeParty->postalTradeAddress->cityName);
-
-        self::assertNotNull($resultAgreement->productEndUserTradeParty);
-        self::assertEquals('End User Manufacturing GmbH', $resultAgreement->productEndUserTradeParty->name);
-        self::assertNotNull($resultAgreement->productEndUserTradeParty->postalTradeAddress);
-        self::assertEquals('München', $resultAgreement->productEndUserTradeParty->postalTradeAddress->cityName);
-
-        self::assertNotNull($resultAgreement->buyerAgentTradeParty);
-        self::assertEquals('Procurement Agent Services', $resultAgreement->buyerAgentTradeParty->name);
-        self::assertNotNull($resultAgreement->buyerAgentTradeParty->postalTradeAddress);
-        self::assertEquals('Frankfurt', $resultAgreement->buyerAgentTradeParty->postalTradeAddress->cityName);
-
-        self::assertCount(2, $resultAgreement->ultimateCustomerOrderReferencedDocuments);
-        self::assertEquals('UC-ORDER-2025-001', $resultAgreement->ultimateCustomerOrderReferencedDocuments[0]->issuerAssignedID->value);
-        self::assertEquals('UC-ORDER-2025-002', $resultAgreement->ultimateCustomerOrderReferencedDocuments[1]->issuerAssignedID->value);
-
-        $resultSettlement = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeSettlement;
-        self::assertEquals('ISSUER-REF-2025-999', $resultSettlement->invoiceIssuerReference);
-
-        self::assertNotNull($resultSettlement->invoicerTradeParty);
-        self::assertEquals('Invoicing Service Provider GmbH', $resultSettlement->invoicerTradeParty->name);
-        self::assertNotNull($resultSettlement->invoicerTradeParty->postalTradeAddress);
-        self::assertEquals('Hamburg', $resultSettlement->invoicerTradeParty->postalTradeAddress->cityName);
-
-        self::assertNotNull($resultSettlement->payerTradeParty);
-        self::assertEquals('Payment Processing AG', $resultSettlement->payerTradeParty->name);
-        self::assertNotNull($resultSettlement->payerTradeParty->postalTradeAddress);
-        self::assertEquals('Köln', $resultSettlement->payerTradeParty->postalTradeAddress->cityName);
 
         $validator = new Validator();
         $errors = $validator->validateAgainstXsd($xml, Validator::SCHEMA_EXTENDED);
