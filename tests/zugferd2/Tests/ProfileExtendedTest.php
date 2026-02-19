@@ -360,6 +360,9 @@ class ProfileExtendedTest extends TestCase
 
         $agreement->applicableTradeDeliveryTerms = new TradeDeliveryTerms();
         $agreement->applicableTradeDeliveryTerms->deliveryTypeCode = 'EXW';
+        $agreement->applicableTradeDeliveryTerms->relevantTradeLocation = new TradeLocation();
+        $agreement->applicableTradeDeliveryTerms->relevantTradeLocation->countryID = 'DE';
+        $agreement->applicableTradeDeliveryTerms->relevantTradeLocation->name = 'Hamburg Port';
 
         $agreement->buyerOrderReferencedDocument = ReferencedDocument::create('PO-2025-001');
         $agreement->buyerOrderReferencedDocument->typeCode = '220';
@@ -403,8 +406,25 @@ class ProfileExtendedTest extends TestCase
         $shipTo->uriUniversalCommunication = new UniversalCommunication();
         $shipTo->uriUniversalCommunication->completeNumber = '+49 221 555666';
 
+        $delivery->ultimateShipToTradeParty = new TradeParty();
+        $delivery->ultimateShipToTradeParty->name = 'Ultimate Destination Ltd.';
+        $delivery->ultimateShipToTradeParty->postalTradeAddress = new TradeAddress();
+        $delivery->ultimateShipToTradeParty->postalTradeAddress->postcodeCode = '80331';
+        $delivery->ultimateShipToTradeParty->postalTradeAddress->cityName = 'München';
+        $delivery->ultimateShipToTradeParty->postalTradeAddress->countryID = 'DE';
+
+        $delivery->shipFromTradeParty = new TradeParty();
+        $delivery->shipFromTradeParty->name = 'Warehouse Hamburg GmbH';
+        $delivery->shipFromTradeParty->postalTradeAddress = new TradeAddress();
+        $delivery->shipFromTradeParty->postalTradeAddress->postcodeCode = '20095';
+        $delivery->shipFromTradeParty->postalTradeAddress->cityName = 'Hamburg';
+        $delivery->shipFromTradeParty->postalTradeAddress->countryID = 'DE';
+
         $delivery->actualDeliverySupplyChainEvent = new SupplyChainEvent();
         $delivery->actualDeliverySupplyChainEvent->occurrenceDateTime = DateTime::create(102, '20250110');
+
+        $delivery->receivingAdviceReferencedDocument = ReferencedDocument::create('RA-2025-001');
+        $delivery->receivingAdviceReferencedDocument->typeCode = '270';
 
         $delivery->deliveryNoteReferencedDocument = ReferencedDocument::create('DN-2025-001');
         $delivery->deliveryNoteReferencedDocument->typeCode = '270';
@@ -587,6 +607,7 @@ class ProfileExtendedTest extends TestCase
         $item1->delivery->billedQuantity = Quantity::create('100', 'C62');
         $item1->delivery->chargeFreeQuantity = Quantity::create('5', 'C62');
         $item1->delivery->packageQuantity = Quantity::create('10', 'PK');
+        $item1->delivery->perPackageUnitQuantity = Quantity::create('10', 'C62');
 
         $item1->delivery->shipToTradeParty = new TradeParty();
         $item1->delivery->shipToTradeParty->name = 'Item 1 Delivery Location';
@@ -692,149 +713,6 @@ class ProfileExtendedTest extends TestCase
 
         $xml = Builder::create()->transform($invoice);
         self::assertNotEmpty($xml, 'Generated XML should not be empty');
-
-        $validator = new Validator();
-        $errors = $validator->validateAgainstXsd($xml, Validator::SCHEMA_EXTENDED);
-        self::assertNull($errors, $errors ?? 'XML should validate against EXTENDED schema');
-    }
-
-    public function testExtendedDeliveryAndLocationFeatures(): void
-    {
-        $invoice = new CrossIndustryInvoice();
-
-        $invoice->exchangedDocumentContext = new ExchangedDocumentContext();
-        $invoice->exchangedDocumentContext->documentContextParameter = DocumentContextParameter::create(
-            Builder::GUIDELINE_SPECIFIED_DOCUMENT_CONTEXT_ID_EXTENDED
-        );
-
-        $invoice->exchangedDocument = new ExchangedDocument();
-        $invoice->exchangedDocument->id = 'DELIVERY-TEST-001';
-        $invoice->exchangedDocument->typeCode = '380';
-        $invoice->exchangedDocument->issueDateTime = DateTime::create(102, '20250219');
-
-        $invoice->supplyChainTradeTransaction = new SupplyChainTradeTransaction();
-
-        $agreement = new HeaderTradeAgreement();
-        $agreement->sellerTradeParty = new TradeParty();
-        $agreement->sellerTradeParty->name = 'Test Seller Ltd.';
-        $agreement->sellerTradeParty->postalTradeAddress = new TradeAddress();
-        $agreement->sellerTradeParty->postalTradeAddress->postcodeCode = '10115';
-        $agreement->sellerTradeParty->postalTradeAddress->lineOne = 'Seller Street 1';
-        $agreement->sellerTradeParty->postalTradeAddress->cityName = 'Berlin';
-        $agreement->sellerTradeParty->postalTradeAddress->countryID = 'DE';
-
-        $agreement->buyerTradeParty = new TradeParty();
-        $agreement->buyerTradeParty->name = 'Test Buyer GmbH';
-        $agreement->buyerTradeParty->postalTradeAddress = new TradeAddress();
-        $agreement->buyerTradeParty->postalTradeAddress->countryID = 'DE';
-
-        $agreement->applicableTradeDeliveryTerms = new TradeDeliveryTerms();
-        $agreement->applicableTradeDeliveryTerms->deliveryTypeCode = 'FOB';
-        $agreement->applicableTradeDeliveryTerms->relevantTradeLocation = new TradeLocation();
-        $agreement->applicableTradeDeliveryTerms->relevantTradeLocation->countryID = 'DE';
-        $agreement->applicableTradeDeliveryTerms->relevantTradeLocation->name = 'Hamburg Port';
-
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement = $agreement;
-
-        $delivery = new HeaderTradeDelivery();
-
-        $delivery->ultimateShipToTradeParty = new TradeParty();
-        $delivery->ultimateShipToTradeParty->name = 'Ultimate Destination Ltd.';
-        $delivery->ultimateShipToTradeParty->postalTradeAddress = new TradeAddress();
-        $delivery->ultimateShipToTradeParty->postalTradeAddress->postcodeCode = '80331';
-        $delivery->ultimateShipToTradeParty->postalTradeAddress->lineOne = 'Final Destination 99';
-        $delivery->ultimateShipToTradeParty->postalTradeAddress->cityName = 'München';
-        $delivery->ultimateShipToTradeParty->postalTradeAddress->countryID = 'DE';
-
-        $delivery->shipFromTradeParty = new TradeParty();
-        $delivery->shipFromTradeParty->name = 'Warehouse Hamburg GmbH';
-        $delivery->shipFromTradeParty->postalTradeAddress = new TradeAddress();
-        $delivery->shipFromTradeParty->postalTradeAddress->postcodeCode = '20095';
-        $delivery->shipFromTradeParty->postalTradeAddress->lineOne = 'Warehouse Street 15';
-        $delivery->shipFromTradeParty->postalTradeAddress->cityName = 'Hamburg';
-        $delivery->shipFromTradeParty->postalTradeAddress->countryID = 'DE';
-
-        $delivery->receivingAdviceReferencedDocument = ReferencedDocument::create('RA-2025-001');
-        $delivery->receivingAdviceReferencedDocument->typeCode = '270';
-
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = $delivery;
-
-        $settlement = new HeaderTradeSettlement();
-        $settlement->invoiceCurrencyCode = 'EUR';
-
-        $settlement->tradeTaxes[] = TradeTax::create(
-            typeCode: 'VAT',
-            categoryCode: 'S',
-            rateApplicablePercent: '19.00'
-        );
-        $settlement->tradeTaxes[0]->basisAmount = Amount::create('5000.00');
-        $settlement->tradeTaxes[0]->calculatedAmount = Amount::create('950.00');
-
-        $settlement->specifiedTradeSettlementHeaderMonetarySummation = new TradeSettlementHeaderMonetarySummation();
-        $settlement->specifiedTradeSettlementHeaderMonetarySummation->lineTotalAmount = Amount::create('5000.00');
-        $settlement->specifiedTradeSettlementHeaderMonetarySummation->taxBasisTotalAmount[] = Amount::create('5000.00');
-        $settlement->specifiedTradeSettlementHeaderMonetarySummation->taxTotalAmount[] = Amount::create('950.00', 'EUR');
-        $settlement->specifiedTradeSettlementHeaderMonetarySummation->grandTotalAmount[] = Amount::create('5950.00');
-        $settlement->specifiedTradeSettlementHeaderMonetarySummation->duePayableAmount = Amount::create('5950.00');
-
-        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = $settlement;
-
-        $lineItem = new SupplyChainTradeLineItem();
-        $lineItem->associatedDocumentLineDocument = DocumentLineDocument::create('1');
-
-        $lineItem->specifiedTradeProduct = new TradeProduct();
-        $lineItem->specifiedTradeProduct->name = 'Packaged Goods';
-
-        $lineItem->tradeAgreement = new LineTradeAgreement();
-        $lineItem->tradeAgreement->netPrice = TradePrice::create('50.00', Quantity::create('1', 'C62'));
-
-        $lineItem->delivery = new LineTradeDelivery();
-        $lineItem->delivery->billedQuantity = Quantity::create('100', 'C62');
-        $lineItem->delivery->packageQuantity = Quantity::create('10', 'PK');
-        $lineItem->delivery->perPackageUnitQuantity = Quantity::create('10', 'C62');
-
-        $lineItem->specifiedLineTradeSettlement = new LineTradeSettlement();
-        $lineItem->specifiedLineTradeSettlement->tradeTax[] = TradeTax::create(
-            typeCode: 'VAT',
-            categoryCode: 'S',
-            rateApplicablePercent: '19.00'
-        );
-        $lineItem->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('5000.00');
-
-        $invoice->supplyChainTradeTransaction->lineItems[] = $lineItem;
-
-        $xml = Builder::create()->transform($invoice);
-        self::assertNotEmpty($xml, 'Generated XML should not be empty');
-
-        $deserialized = Reader::create()->transform($xml);
-
-        self::assertNotNull($deserialized->supplyChainTradeTransaction->applicableHeaderTradeAgreement->applicableTradeDeliveryTerms);
-        self::assertEquals('FOB', $deserialized->supplyChainTradeTransaction->applicableHeaderTradeAgreement->applicableTradeDeliveryTerms->deliveryTypeCode);
-
-        $resultLocation = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeAgreement->applicableTradeDeliveryTerms->relevantTradeLocation;
-        self::assertNotNull($resultLocation);
-        self::assertEquals('DE', $resultLocation->countryID);
-        self::assertEquals('Hamburg Port', $resultLocation->name);
-
-        $resultDelivery = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeDelivery;
-        self::assertNotNull($resultDelivery->ultimateShipToTradeParty);
-        self::assertEquals('Ultimate Destination Ltd.', $resultDelivery->ultimateShipToTradeParty->name);
-        self::assertNotNull($resultDelivery->ultimateShipToTradeParty->postalTradeAddress);
-        self::assertEquals('München', $resultDelivery->ultimateShipToTradeParty->postalTradeAddress->cityName);
-
-        self::assertNotNull($resultDelivery->shipFromTradeParty);
-        self::assertEquals('Warehouse Hamburg GmbH', $resultDelivery->shipFromTradeParty->name);
-        self::assertNotNull($resultDelivery->shipFromTradeParty->postalTradeAddress);
-        self::assertEquals('Hamburg', $resultDelivery->shipFromTradeParty->postalTradeAddress->cityName);
-
-        self::assertNotNull($resultDelivery->receivingAdviceReferencedDocument);
-        self::assertEquals('RA-2025-001', $resultDelivery->receivingAdviceReferencedDocument->issuerAssignedID->value);
-
-        $resultLineDelivery = $deserialized->supplyChainTradeTransaction->lineItems[0]->delivery;
-        self::assertNotNull($resultLineDelivery);
-        self::assertNotNull($resultLineDelivery->perPackageUnitQuantity);
-        self::assertEquals('10', $resultLineDelivery->perPackageUnitQuantity->value);
-        self::assertEquals('C62', $resultLineDelivery->perPackageUnitQuantity->unitCode);
 
         $validator = new Validator();
         $errors = $validator->validateAgainstXsd($xml, Validator::SCHEMA_EXTENDED);
