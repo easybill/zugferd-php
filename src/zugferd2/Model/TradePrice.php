@@ -23,6 +23,11 @@ class TradePrice
     #[JMS\XmlList(entry: 'AppliedTradeAllowanceCharge', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $appliedTradeAllowanceCharges = [];
 
+    #[JMS\Type(TradeTax::class)]
+    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[JMS\SerializedName('IncludedTradeTax')]
+    public ?TradeTax $includedTradeTax = null;
+
     /** @param array<TradeAllowanceCharge> $tradeAllowanceCharge */
     public static function create(string $amount, ?Quantity $quantity = null, array $tradeAllowanceCharge = []): self
     {
