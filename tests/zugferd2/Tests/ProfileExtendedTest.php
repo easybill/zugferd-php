@@ -295,16 +295,17 @@ class ProfileExtendedTest extends TestCase
         $seller->specifiedLegalOrganization->postalTradeAddress->cityName = 'Berlin';
         $seller->specifiedLegalOrganization->postalTradeAddress->countryID = 'DE';
 
-        $seller->definedTradeContact = new TradeContact();
-        $seller->definedTradeContact->personName = 'Max Mustermann';
-        $seller->definedTradeContact->departmentName = 'Sales Department';
-        $seller->definedTradeContact->typeCode = 'SR';
-        $seller->definedTradeContact->telephoneUniversalCommunication = new UniversalCommunication();
-        $seller->definedTradeContact->telephoneUniversalCommunication->completeNumber = '+49 30 12345678';
-        $seller->definedTradeContact->faxUniversalCommunication = new UniversalCommunication();
-        $seller->definedTradeContact->faxUniversalCommunication->completeNumber = '+49 30 12345679';
-        $seller->definedTradeContact->emailURIUniversalCommunication = new UniversalCommunication();
-        $seller->definedTradeContact->emailURIUniversalCommunication->uriid = Id::create('max.mustermann@seller.example', 'SMTP');
+        $sellerContact = new TradeContact();
+        $sellerContact->personName = 'Max Mustermann';
+        $sellerContact->departmentName = 'Sales Department';
+        $sellerContact->typeCode = 'SR';
+        $sellerContact->telephoneUniversalCommunication = new UniversalCommunication();
+        $sellerContact->telephoneUniversalCommunication->completeNumber = '+49 30 12345678';
+        $sellerContact->faxUniversalCommunication = new UniversalCommunication();
+        $sellerContact->faxUniversalCommunication->completeNumber = '+49 30 12345679';
+        $sellerContact->emailURIUniversalCommunication = new UniversalCommunication();
+        $sellerContact->emailURIUniversalCommunication->uriid = Id::create('max.mustermann@seller.example', 'SMTP');
+        $seller->definedTradeContact[] = $sellerContact;
 
         $seller->postalTradeAddress = new TradeAddress();
         $seller->postalTradeAddress->postcodeCode = '10115';
@@ -331,13 +332,14 @@ class ProfileExtendedTest extends TestCase
         $buyer->specifiedLegalOrganization->id = Id::create('HRB54321');
         $buyer->specifiedLegalOrganization->tradingBusinessName = 'Buyer Trading Division';
 
-        $buyer->definedTradeContact = new TradeContact();
-        $buyer->definedTradeContact->personName = 'Erika Mustermann';
-        $buyer->definedTradeContact->departmentName = 'Procurement Department';
-        $buyer->definedTradeContact->telephoneUniversalCommunication = new UniversalCommunication();
-        $buyer->definedTradeContact->telephoneUniversalCommunication->completeNumber = '+49 40 98765432';
-        $buyer->definedTradeContact->emailURIUniversalCommunication = new UniversalCommunication();
-        $buyer->definedTradeContact->emailURIUniversalCommunication->uriid = Id::create('erika.mustermann@buyer.example', 'SMTP');
+        $buyerContact = new TradeContact();
+        $buyerContact->personName = 'Erika Mustermann';
+        $buyerContact->departmentName = 'Procurement Department';
+        $buyerContact->telephoneUniversalCommunication = new UniversalCommunication();
+        $buyerContact->telephoneUniversalCommunication->completeNumber = '+49 40 98765432';
+        $buyerContact->emailURIUniversalCommunication = new UniversalCommunication();
+        $buyerContact->emailURIUniversalCommunication->uriid = Id::create('erika.mustermann@buyer.example', 'SMTP');
+        $buyer->definedTradeContact[] = $buyerContact;
 
         $buyer->postalTradeAddress = new TradeAddress();
         $buyer->postalTradeAddress->postcodeCode = '20095';
@@ -511,7 +513,7 @@ class ProfileExtendedTest extends TestCase
         $currencyExchange->targetCurrencyCode = 'USD';
         $currencyExchange->conversionRate = 1.0852;
         $currencyExchange->conversionRateDateTime = DateTime::create(102, '20250114');
-        $settlement->taxApplicableTradeCurrencyExchange[] = $currencyExchange;
+        $settlement->taxApplicableTradeCurrencyExchange = $currencyExchange;
 
         $paymentMeans = new TradeSettlementPaymentMeans();
         $paymentMeans->typeCode = '58';
@@ -582,9 +584,10 @@ class ProfileExtendedTest extends TestCase
         $paymentTerms->directDebitMandateID = Id::create('MANDATE-2025-001');
         $settlement->specifiedTradePaymentTerms[] = $paymentTerms;
 
-        $settlement->invoiceReferencedDocument = ReferencedDocument::create('PREV-INV-2024-999');
-        $settlement->invoiceReferencedDocument->typeCode = '381';
-        $settlement->invoiceReferencedDocument->name = 'Previous Invoice';
+        $invoiceRef = ReferencedDocument::create('PREV-INV-2024-999');
+        $invoiceRef->typeCode = '381';
+        $invoiceRef->name = 'Previous Invoice';
+        $settlement->invoiceReferencedDocument[] = $invoiceRef;
 
         $accountingAccount = new TradeAccountingAccount();
         $accountingAccount->id = Id::create('8400');
@@ -640,7 +643,7 @@ class ProfileExtendedTest extends TestCase
 
         $classification = new ProductClassification();
         $classification->classCode = ClassCode::create('12345678', '9');
-        $product1->designatedProductClassification = $classification;
+        $product1->designatedProductClassification[] = $classification;
 
         $referencedProduct1 = new ReferencedProduct();
         $referencedProduct1->globalID[] = Id::create('4012345000001', '0160');

@@ -51,10 +51,10 @@ class TradeProduct
     #[SerializedName('Description')]
     public ?string $description = null;
 
-    #[Type(Id::class)]
-    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('BatchID')]
-    public ?Id $batchID = null;
+    /** @var Id[] */
+    #[Type('array<Easybill\ZUGFeRD2\Model\Id>')]
+    #[XmlList(entry: 'BatchID', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    public array $batchID = [];
 
     #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
@@ -71,10 +71,10 @@ class TradeProduct
     #[XmlList(entry: 'ApplicableProductCharacteristic', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?array $applicableProductCharacteristic = [];
 
-    #[Type(ProductClassification::class)]
-    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('DesignatedProductClassification')]
-    public ?ProductClassification $designatedProductClassification = null;
+    /** @var ProductClassification[] */
+    #[Type('array<Easybill\ZUGFeRD2\Model\ProductClassification>')]
+    #[XmlList(entry: 'DesignatedProductClassification', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    public array $designatedProductClassification = [];
 
     #[Type(TradeCountry::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]

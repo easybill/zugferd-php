@@ -273,24 +273,26 @@ class ModelSerializationTest extends TestCase
         $invoice = $this->createMinimalInvoice();
         $sellerParty = new TradeParty();
         $sellerParty->name = 'Test Company';
-        $sellerParty->definedTradeContact = new TradeContact();
-        $sellerParty->definedTradeContact->telephoneUniversalCommunication = $phoneComm;
-        $sellerParty->definedTradeContact->emailURIUniversalCommunication = $emailComm;
+        $contact = new TradeContact();
+        $contact->telephoneUniversalCommunication = $phoneComm;
+        $contact->emailURIUniversalCommunication = $emailComm;
+        $sellerParty->definedTradeContact[] = $contact;
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerParty;
 
         $xml = Builder::create()->transform($invoice);
         $deserialized = Reader::create()->transform($xml);
 
-        $contact = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty->definedTradeContact;
+        $contacts = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty->definedTradeContact;
 
-        self::assertNotNull($contact);
-        self::assertNotNull($contact->telephoneUniversalCommunication);
-        self::assertEquals('+49 30 12345678', $contact->telephoneUniversalCommunication->completeNumber);
+        self::assertCount(1, $contacts);
+        $resultContact = $contacts[0];
+        self::assertNotNull($resultContact->telephoneUniversalCommunication);
+        self::assertEquals('+49 30 12345678', $resultContact->telephoneUniversalCommunication->completeNumber);
 
-        self::assertNotNull($contact->emailURIUniversalCommunication);
-        self::assertNotNull($contact->emailURIUniversalCommunication->uriid);
-        self::assertEquals('test@example.com', $contact->emailURIUniversalCommunication->uriid->value);
-        self::assertEquals('SMTP', $contact->emailURIUniversalCommunication->uriid->schemeID);
+        self::assertNotNull($resultContact->emailURIUniversalCommunication);
+        self::assertNotNull($resultContact->emailURIUniversalCommunication->uriid);
+        self::assertEquals('test@example.com', $resultContact->emailURIUniversalCommunication->uriid->value);
+        self::assertEquals('SMTP', $resultContact->emailURIUniversalCommunication->uriid->schemeID);
     }
 
     public function testTradeContactSerialization(): void
@@ -308,14 +310,15 @@ class ModelSerializationTest extends TestCase
         $invoice = $this->createMinimalInvoice();
         $sellerParty = new TradeParty();
         $sellerParty->name = 'Test Company';
-        $sellerParty->definedTradeContact = $model;
+        $sellerParty->definedTradeContact[] = $model;
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerParty;
 
         $xml = Builder::create()->transform($invoice);
         $deserialized = Reader::create()->transform($xml);
 
-        $resultModel = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty->definedTradeContact;
-        self::assertNotNull($resultModel);
+        $contacts = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty->definedTradeContact;
+        self::assertCount(1, $contacts);
+        $resultModel = $contacts[0];
         self::assertEquals('Max Mustermann', $resultModel->personName);
         self::assertEquals('Sales Department', $resultModel->departmentName);
         self::assertNotNull($resultModel->telephoneUniversalCommunication);
@@ -345,9 +348,10 @@ class ModelSerializationTest extends TestCase
         $model->specifiedLegalOrganization->postalTradeAddress->cityName = 'Berlin';
         $model->specifiedLegalOrganization->postalTradeAddress->countryID = 'DE';
 
-        $model->definedTradeContact = new TradeContact();
-        $model->definedTradeContact->personName = 'Erika Musterfrau';
-        $model->definedTradeContact->departmentName = 'Procurement';
+        $contact = new TradeContact();
+        $contact->personName = 'Erika Musterfrau';
+        $contact->departmentName = 'Procurement';
+        $model->definedTradeContact[] = $contact;
 
         $model->postalTradeAddress = new TradeAddress();
         $model->postalTradeAddress->postcodeCode = '20095';
@@ -380,8 +384,8 @@ class ModelSerializationTest extends TestCase
         self::assertEquals('Test Company Trading', $resultModel->specifiedLegalOrganization->tradingBusinessName);
         self::assertNotNull($resultModel->specifiedLegalOrganization->postalTradeAddress);
         self::assertEquals('Legal Street 1', $resultModel->specifiedLegalOrganization->postalTradeAddress->lineOne);
-        self::assertNotNull($resultModel->definedTradeContact);
-        self::assertEquals('Erika Musterfrau', $resultModel->definedTradeContact->personName);
+        self::assertCount(1, $resultModel->definedTradeContact);
+        self::assertEquals('Erika Musterfrau', $resultModel->definedTradeContact[0]->personName);
         self::assertNotNull($resultModel->postalTradeAddress);
         self::assertEquals('Hauptstraße 456', $resultModel->postalTradeAddress->lineOne);
         self::assertNotNull($resultModel->uriUniversalCommunication);
@@ -519,8 +523,9 @@ class ModelSerializationTest extends TestCase
         $char2->value = 'Steel';
         $model->applicableProductCharacteristic[] = $char2;
 
-        $model->designatedProductClassification = new ProductClassification();
-        $model->designatedProductClassification->classCode = ClassCode::create('12345678', '9');
+        $classification = new ProductClassification();
+        $classification->classCode = ClassCode::create('12345678', '9');
+        $model->designatedProductClassification[] = $classification;
 
         $invoice = $this->createMinimalInvoice();
 
@@ -572,10 +577,10 @@ class ModelSerializationTest extends TestCase
         self::assertEquals('Blue', $resultModel->applicableProductCharacteristic[0]->value);
         self::assertEquals('Material', $resultModel->applicableProductCharacteristic[1]->description);
         self::assertEquals('Steel', $resultModel->applicableProductCharacteristic[1]->value);
-        self::assertNotNull($resultModel->designatedProductClassification);
-        self::assertNotNull($resultModel->designatedProductClassification->classCode);
-        self::assertEquals('12345678', $resultModel->designatedProductClassification->classCode->value);
-        self::assertEquals('9', $resultModel->designatedProductClassification->classCode->listID);
+        self::assertCount(1, $resultModel->designatedProductClassification);
+        self::assertNotNull($resultModel->designatedProductClassification[0]->classCode);
+        self::assertEquals('12345678', $resultModel->designatedProductClassification[0]->classCode->value);
+        self::assertEquals('9', $resultModel->designatedProductClassification[0]->classCode->listID);
     }
 
     public function testReferencedProductSerialization(): void
