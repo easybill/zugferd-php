@@ -31,6 +31,11 @@ class ExchangedDocument
     #[SerializedName('IssueDateTime')]
     public DateTime $issueDateTime;
 
+    #[Type(Indicator::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('CopyIndicator')]
+    public ?Indicator $copyIndicator = null;
+
     /**
      * @var string[]
      */
@@ -45,4 +50,9 @@ class ExchangedDocument
     #[Type('array<Easybill\ZUGFeRD2\Model\Note>')]
     #[XmlList(entry: 'IncludedNote', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $notes = [];
+
+    #[Type(SpecifiedPeriod::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('EffectiveSpecifiedPeriod')]
+    public ?SpecifiedPeriod $effectiveSpecifiedPeriod = null;
 }
