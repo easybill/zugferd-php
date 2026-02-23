@@ -126,13 +126,14 @@ class ProfileXRechnungTest extends TestCase
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
         $sellerTradeParty->globalID[] = Id::create('4000001123452', '0088');
         $sellerTradeParty->name = 'Lieferant GmbH';
-        $sellerTradeParty->definedTradeContact = new TradeContact();
-        $sellerTradeParty->definedTradeContact->personName = 'Max Mustermann';
-        $sellerTradeParty->definedTradeContact->departmentName = 'Muster-Einkauf';
-        $sellerTradeParty->definedTradeContact->telephoneUniversalCommunication = new UniversalCommunication();
-        $sellerTradeParty->definedTradeContact->telephoneUniversalCommunication->completeNumber = '+49891234567';
-        $sellerTradeParty->definedTradeContact->emailURIUniversalCommunication = new UniversalCommunication();
-        $sellerTradeParty->definedTradeContact->emailURIUniversalCommunication->uriid = Id::create('Max@Mustermann.de');
+        $contact = new TradeContact();
+        $contact->personName = 'Max Mustermann';
+        $contact->departmentName = 'Muster-Einkauf';
+        $contact->telephoneUniversalCommunication = new UniversalCommunication();
+        $contact->telephoneUniversalCommunication->completeNumber = '+49891234567';
+        $contact->emailURIUniversalCommunication = new UniversalCommunication();
+        $contact->emailURIUniversalCommunication->uriid = Id::create('Max@Mustermann.de');
+        $sellerTradeParty->definedTradeContact[] = $contact;
 
         $sellerTradeParty->postalTradeAddress = new TradeAddress();
         $sellerTradeParty->postalTradeAddress->postcodeCode = '80333';
@@ -319,13 +320,14 @@ class ProfileXRechnungTest extends TestCase
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
         $sellerTradeParty->globalID[] = Id::create('4000001123452', '0088');
         $sellerTradeParty->name = 'Lieferant GmbH';
-        $sellerTradeParty->definedTradeContact = new TradeContact();
-        $sellerTradeParty->definedTradeContact->personName = 'Max Mustermann';
-        $sellerTradeParty->definedTradeContact->departmentName = 'Muster-Einkauf';
-        $sellerTradeParty->definedTradeContact->telephoneUniversalCommunication = new UniversalCommunication();
-        $sellerTradeParty->definedTradeContact->telephoneUniversalCommunication->completeNumber = '+49891234567';
-        $sellerTradeParty->definedTradeContact->emailURIUniversalCommunication = new UniversalCommunication();
-        $sellerTradeParty->definedTradeContact->emailURIUniversalCommunication->uriid = Id::create('Max@Mustermann.de');
+        $contact = new TradeContact();
+        $contact->personName = 'Max Mustermann';
+        $contact->departmentName = 'Muster-Einkauf';
+        $contact->telephoneUniversalCommunication = new UniversalCommunication();
+        $contact->telephoneUniversalCommunication->completeNumber = '+49891234567';
+        $contact->emailURIUniversalCommunication = new UniversalCommunication();
+        $contact->emailURIUniversalCommunication->uriid = Id::create('Max@Mustermann.de');
+        $sellerTradeParty->definedTradeContact[] = $contact;
 
         $sellerTradeParty->postalTradeAddress = new TradeAddress();
         $sellerTradeParty->postalTradeAddress->postcodeCode = '80333';
@@ -466,13 +468,14 @@ class ProfileXRechnungTest extends TestCase
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerTradeParty = new TradeParty();
         $sellerTradeParty->globalID[] = Id::create('4000001123452', '0088');
         $sellerTradeParty->name = 'Grundbesitz GmbH & Co.';
-        $sellerTradeParty->definedTradeContact = new TradeContact();
-        $sellerTradeParty->definedTradeContact->personName = 'Max Mustermann';
-        $sellerTradeParty->definedTradeContact->departmentName = 'Muster-Einkauf';
-        $sellerTradeParty->definedTradeContact->telephoneUniversalCommunication = new UniversalCommunication();
-        $sellerTradeParty->definedTradeContact->telephoneUniversalCommunication->completeNumber = '+49891234567';
-        $sellerTradeParty->definedTradeContact->emailURIUniversalCommunication = new UniversalCommunication();
-        $sellerTradeParty->definedTradeContact->emailURIUniversalCommunication->uriid = Id::create('Max@Mustermann.de');
+        $contact = new TradeContact();
+        $contact->personName = 'Max Mustermann';
+        $contact->departmentName = 'Muster-Einkauf';
+        $contact->telephoneUniversalCommunication = new UniversalCommunication();
+        $contact->telephoneUniversalCommunication->completeNumber = '+49891234567';
+        $contact->emailURIUniversalCommunication = new UniversalCommunication();
+        $contact->emailURIUniversalCommunication->uriid = Id::create('Max@Mustermann.de');
+        $sellerTradeParty->definedTradeContact[] = $contact;
 
         $sellerTradeParty->postalTradeAddress = new TradeAddress();
         $sellerTradeParty->postalTradeAddress->postcodeCode = '75645';

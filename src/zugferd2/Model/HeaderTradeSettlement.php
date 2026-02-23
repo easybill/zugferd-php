@@ -56,12 +56,10 @@ class HeaderTradeSettlement
     #[SerializedName('PayerTradeParty')]
     public ?TradeParty $payerTradeParty = null;
 
-    /**
-     * @var TradeCurrencyExchange[]
-     */
-    #[Type('array<Easybill\ZUGFeRD2\Model\TradeCurrencyExchange>')]
-    #[XmlList(entry: 'TaxApplicableTradeCurrencyExchange', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    public array $taxApplicableTradeCurrencyExchange = [];
+    #[Type(TradeCurrencyExchange::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('TaxApplicableTradeCurrencyExchange')]
+    public ?TradeCurrencyExchange $taxApplicableTradeCurrencyExchange = null;
 
     /**
      * @var TradeSettlementPaymentMeans[]
@@ -108,10 +106,10 @@ class HeaderTradeSettlement
     #[SerializedName('SpecifiedTradeSettlementHeaderMonetarySummation')]
     public TradeSettlementHeaderMonetarySummation $specifiedTradeSettlementHeaderMonetarySummation;
 
-    #[Type(ReferencedDocument::class)]
-    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('InvoiceReferencedDocument')]
-    public ?ReferencedDocument $invoiceReferencedDocument = null;
+    /** @var ReferencedDocument[] */
+    #[Type('array<Easybill\ZUGFeRD2\Model\ReferencedDocument>')]
+    #[XmlList(entry: 'InvoiceReferencedDocument', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    public array $invoiceReferencedDocument = [];
 
     /** @var TradeAccountingAccount[] */
     #[Type('array<Easybill\ZUGFeRD2\Model\TradeAccountingAccount>')]

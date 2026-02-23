@@ -28,10 +28,10 @@ class TradeParty
     #[SerializedName('Name')]
     public ?string $name = null;
 
-    #[Type(TradeContact::class)]
-    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('DefinedTradeContact')]
-    public ?TradeContact $definedTradeContact = null;
+    /** @var TradeContact[] */
+    #[Type('array<Easybill\ZUGFeRD2\Model\TradeContact>')]
+    #[XmlList(entry: 'DefinedTradeContact', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    public array $definedTradeContact = [];
 
     #[Type(TradeAddress::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]

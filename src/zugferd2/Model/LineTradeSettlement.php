@@ -35,10 +35,10 @@ class LineTradeSettlement
     #[SerializedName('SpecifiedTradeSettlementLineMonetarySummation')]
     public TradeSettlementLineMonetarySummation $monetarySummation;
 
-    /** @var ReferencedDocument[] */
-    #[Type('array<Easybill\ZUGFeRD2\Model\ReferencedDocument>')]
-    #[XmlList(entry: 'InvoiceReferencedDocument', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    public array $invoiceReferencedDocument = [];
+    #[Type(ReferencedDocument::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('InvoiceReferencedDocument')]
+    public ?ReferencedDocument $invoiceReferencedDocument = null;
 
     /** @var ReferencedDocument[] */
     #[Type('array<Easybill\ZUGFeRD2\Model\ReferencedDocument>')]
