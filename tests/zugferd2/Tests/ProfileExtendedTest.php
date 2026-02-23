@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Easybill\ZUGFeRD2\Tests;
 
 use Easybill\ZUGFeRD2\Builder;
-use Easybill\ZUGFeRD2\Reader;
 use Easybill\ZUGFeRD2\Model\AdvancePayment;
 use Easybill\ZUGFeRD2\Model\Amount;
 use Easybill\ZUGFeRD2\Model\ClassCode;
