@@ -705,6 +705,9 @@ class ProfileExtendedTest extends TestCase
         $lineSettlement1->billingSpecifiedPeriod->startDateTime = DateTime::create(102, '20250101');
         $lineSettlement1->billingSpecifiedPeriod->endDateTime = DateTime::create(102, '20250110');
 
+        $lineSettlement1->invoiceReferencedDocument = ReferencedDocument::create('LINE-INV-REF-001');
+        $lineSettlement1->invoiceReferencedDocument->typeCode = '381';
+
         $lineSettlement1->monetarySummation = TradeSettlementLineMonetarySummation::create('5000.00');
 
         $lineAccount1 = new TradeAccountingAccount();
