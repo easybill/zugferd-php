@@ -293,6 +293,7 @@ class ProfileExtendedTest extends TestCase
         $seller->definedTradeContact = new TradeContact();
         $seller->definedTradeContact->personName = 'Max Mustermann';
         $seller->definedTradeContact->departmentName = 'Sales Department';
+        $seller->definedTradeContact->typeCode = 'SR';
         $seller->definedTradeContact->telephoneUniversalCommunication = new UniversalCommunication();
         $seller->definedTradeContact->telephoneUniversalCommunication->completeNumber = '+49 30 12345678';
         $seller->definedTradeContact->faxUniversalCommunication = new UniversalCommunication();
@@ -615,16 +616,20 @@ class ProfileExtendedTest extends TestCase
         $product1->globalID = Id::create('4012345678901', '0160');
         $product1->sellerAssignedID = 'PROD-001-SELLER';
         $product1->buyerAssignedID = 'PROD-001-BUYER';
+        $product1->industryAssignedID = 'IND-STD-2025-42';
         $product1->name = 'Premium Widget Type A';
         $product1->tradeCountry = TradeCountry::create('DE');
 
         $characteristic1 = new ProductCharacteristic();
+        $characteristic1->typeCode = 'COLOR';
         $characteristic1->description = 'Color: Blue';
         $characteristic1->value = 'RAL5010';
         $product1->applicableProductCharacteristic[] = $characteristic1;
 
         $characteristic2 = new ProductCharacteristic();
+        $characteristic2->typeCode = 'MATERIAL';
         $characteristic2->description = 'Material: Steel';
+        $characteristic2->valueMeasure = Quantity::create('7850', 'KGM');
         $characteristic2->value = 'ST37';
         $product1->applicableProductCharacteristic[] = $characteristic2;
 

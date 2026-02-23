@@ -20,6 +20,11 @@ class TradeContact
     #[SerializedName('DepartmentName')]
     public ?string $departmentName = null;
 
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('TypeCode')]
+    public ?string $typeCode = null;
+
     #[Type(UniversalCommunication::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('TelephoneUniversalCommunication')]
