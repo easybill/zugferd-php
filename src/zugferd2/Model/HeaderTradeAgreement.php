@@ -28,13 +28,23 @@ class HeaderTradeAgreement
 
     #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('SellerTaxRepresentativeTradeParty')]
-    public ?TradeParty $sellerTaxRepresentativeTradeParty = null;
+    #[SerializedName('SalesAgentTradeParty')]
+    public ?TradeParty $salesAgentTradeParty = null;
 
     #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('BuyerTaxRepresentativeTradeParty')]
     public ?TradeParty $buyerTaxRepresentativeTradeParty = null;
+
+    #[Type(TradeParty::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('SellerTaxRepresentativeTradeParty')]
+    public ?TradeParty $sellerTaxRepresentativeTradeParty = null;
+
+    #[Type(TradeParty::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('ProductEndUserTradeParty')]
+    public ?TradeParty $productEndUserTradeParty = null;
 
     #[Type(TradeDeliveryTerms::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
@@ -66,8 +76,18 @@ class HeaderTradeAgreement
     #[XmlList(entry: 'AdditionalReferencedDocument', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $additionalReferencedDocuments = [];
 
+    #[Type(TradeParty::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('BuyerAgentTradeParty')]
+    public ?TradeParty $buyerAgentTradeParty = null;
+
     #[Type(ProcuringProject::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('SpecifiedProcuringProject')]
     public ?ProcuringProject $specifiedProcuringProject = null;
+
+    /** @var ReferencedDocument[] */
+    #[Type('array<Easybill\ZUGFeRD2\Model\ReferencedDocument>')]
+    #[XmlList(entry: 'UltimateCustomerOrderReferencedDocument', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    public array $ultimateCustomerOrderReferencedDocuments = [];
 }

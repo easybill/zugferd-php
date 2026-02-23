@@ -8,20 +8,15 @@ use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 
-class TradeDeliveryTerms
+class TradeLocation
 {
     #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('DeliveryTypeCode')]
-    public ?string $deliveryTypeCode = null;
-
-    #[Type(TradeLocation::class)]
-    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('RelevantTradeLocation')]
-    public ?TradeLocation $relevantTradeLocation = null;
+    #[SerializedName('CountryID')]
+    public ?string $countryID = null;
 
     #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('Description')]
-    public ?string $description = null;
+    #[SerializedName('Name')]
+    public ?string $name = null;
 }
