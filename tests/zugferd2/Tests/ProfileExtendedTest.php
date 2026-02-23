@@ -653,6 +653,7 @@ class ProfileExtendedTest extends TestCase
         $item1->tradeAgreement->buyerOrderReferencedDocument = ReferencedDocument::create('PO-2025-001');
         $item1->tradeAgreement->buyerOrderReferencedDocument->lineId = '10';
         $item1->tradeAgreement->grossPrice = TradePrice::create('52.63', Quantity::create('1', 'C62'));
+        $item1->tradeAgreement->grossPrice->includedTradeTax = TradeTax::create(typeCode: 'VAT', categoryCode: 'S', rateApplicablePercent: '19.00');
         $item1->tradeAgreement->netPrice = TradePrice::create('50.00', Quantity::create('1', 'C62'));
 
         $item1->delivery = new LineTradeDelivery();
