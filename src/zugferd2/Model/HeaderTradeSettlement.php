@@ -31,6 +31,16 @@ class HeaderTradeSettlement
     #[SerializedName('InvoiceCurrencyCode')]
     public string $invoiceCurrencyCode;
 
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('InvoiceIssuerReference')]
+    public ?string $invoiceIssuerReference = null;
+
+    #[Type(TradeParty::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('InvoicerTradeParty')]
+    public ?TradeParty $invoicerTradeParty = null;
+
     #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('InvoiceeTradeParty')]
@@ -40,6 +50,11 @@ class HeaderTradeSettlement
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('PayeeTradeParty')]
     public ?TradeParty $payeeTradeParty = null;
+
+    #[Type(TradeParty::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('PayerTradeParty')]
+    public ?TradeParty $payerTradeParty = null;
 
     /**
      * @var TradeCurrencyExchange[]

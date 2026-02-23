@@ -48,6 +48,7 @@ use Easybill\ZUGFeRD2\Model\TradeContact;
 use Easybill\ZUGFeRD2\Model\TradeCountry;
 use Easybill\ZUGFeRD2\Model\TradeCurrencyExchange;
 use Easybill\ZUGFeRD2\Model\TradeDeliveryTerms;
+use Easybill\ZUGFeRD2\Model\TradeLocation;
 use Easybill\ZUGFeRD2\Model\TradeParty;
 use Easybill\ZUGFeRD2\Model\TradePaymentTerms;
 use Easybill\ZUGFeRD2\Model\TradePrice;
@@ -359,6 +360,9 @@ class ProfileExtendedTest extends TestCase
 
         $agreement->applicableTradeDeliveryTerms = new TradeDeliveryTerms();
         $agreement->applicableTradeDeliveryTerms->deliveryTypeCode = 'EXW';
+        $agreement->applicableTradeDeliveryTerms->relevantTradeLocation = new TradeLocation();
+        $agreement->applicableTradeDeliveryTerms->relevantTradeLocation->countryID = 'DE';
+        $agreement->applicableTradeDeliveryTerms->relevantTradeLocation->name = 'Hamburg Port';
 
         $agreement->buyerOrderReferencedDocument = ReferencedDocument::create('PO-2025-001');
         $agreement->buyerOrderReferencedDocument->typeCode = '220';
@@ -378,7 +382,35 @@ class ProfileExtendedTest extends TestCase
         $additionalDoc2->name = 'Price List';
         $agreement->additionalReferencedDocuments[] = $additionalDoc2;
 
+        $agreement->salesAgentTradeParty = new TradeParty();
+        $agreement->salesAgentTradeParty->name = 'Sales Agent Ltd.';
+        $agreement->salesAgentTradeParty->postalTradeAddress = new TradeAddress();
+        $agreement->salesAgentTradeParty->postalTradeAddress->postcodeCode = '20095';
+        $agreement->salesAgentTradeParty->postalTradeAddress->cityName = 'Hamburg';
+        $agreement->salesAgentTradeParty->postalTradeAddress->countryID = 'DE';
+
+        $agreement->productEndUserTradeParty = new TradeParty();
+        $agreement->productEndUserTradeParty->name = 'End User Manufacturing GmbH';
+        $agreement->productEndUserTradeParty->postalTradeAddress = new TradeAddress();
+        $agreement->productEndUserTradeParty->postalTradeAddress->postcodeCode = '80331';
+        $agreement->productEndUserTradeParty->postalTradeAddress->cityName = 'München';
+        $agreement->productEndUserTradeParty->postalTradeAddress->countryID = 'DE';
+
+        $agreement->buyerAgentTradeParty = new TradeParty();
+        $agreement->buyerAgentTradeParty->name = 'Procurement Services AG';
+        $agreement->buyerAgentTradeParty->postalTradeAddress = new TradeAddress();
+        $agreement->buyerAgentTradeParty->postalTradeAddress->postcodeCode = '60311';
+        $agreement->buyerAgentTradeParty->postalTradeAddress->cityName = 'Frankfurt';
+        $agreement->buyerAgentTradeParty->postalTradeAddress->countryID = 'DE';
+
         $agreement->specifiedProcuringProject = ProcuringProject::create('PROJECT-2025-A', 'Infrastructure Upgrade Project');
+
+        $custOrder1 = ReferencedDocument::create('UC-ORDER-001');
+        $custOrder1->typeCode = '220';
+        $custOrder2 = ReferencedDocument::create('UC-ORDER-002');
+        $custOrder2->typeCode = '220';
+        $agreement->ultimateCustomerOrderReferencedDocuments[] = $custOrder1;
+        $agreement->ultimateCustomerOrderReferencedDocuments[] = $custOrder2;
 
         $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
 
@@ -402,8 +434,25 @@ class ProfileExtendedTest extends TestCase
         $shipTo->uriUniversalCommunication = new UniversalCommunication();
         $shipTo->uriUniversalCommunication->completeNumber = '+49 221 555666';
 
+        $delivery->ultimateShipToTradeParty = new TradeParty();
+        $delivery->ultimateShipToTradeParty->name = 'Ultimate Destination Ltd.';
+        $delivery->ultimateShipToTradeParty->postalTradeAddress = new TradeAddress();
+        $delivery->ultimateShipToTradeParty->postalTradeAddress->postcodeCode = '80331';
+        $delivery->ultimateShipToTradeParty->postalTradeAddress->cityName = 'München';
+        $delivery->ultimateShipToTradeParty->postalTradeAddress->countryID = 'DE';
+
+        $delivery->shipFromTradeParty = new TradeParty();
+        $delivery->shipFromTradeParty->name = 'Warehouse Hamburg GmbH';
+        $delivery->shipFromTradeParty->postalTradeAddress = new TradeAddress();
+        $delivery->shipFromTradeParty->postalTradeAddress->postcodeCode = '20095';
+        $delivery->shipFromTradeParty->postalTradeAddress->cityName = 'Hamburg';
+        $delivery->shipFromTradeParty->postalTradeAddress->countryID = 'DE';
+
         $delivery->actualDeliverySupplyChainEvent = new SupplyChainEvent();
         $delivery->actualDeliverySupplyChainEvent->occurrenceDateTime = DateTime::create(102, '20250110');
+
+        $delivery->receivingAdviceReferencedDocument = ReferencedDocument::create('RA-2025-001');
+        $delivery->receivingAdviceReferencedDocument->typeCode = '270';
 
         $delivery->deliveryNoteReferencedDocument = ReferencedDocument::create('DN-2025-001');
         $delivery->deliveryNoteReferencedDocument->typeCode = '270';
@@ -416,6 +465,14 @@ class ProfileExtendedTest extends TestCase
         $settlement->paymentReference = 'PAYMENT-REF-888';
         $settlement->invoiceCurrencyCode = 'EUR';
         $settlement->taxCurrencyCode = 'EUR';
+        $settlement->invoiceIssuerReference = 'ISSUER-REF-2025-001';
+
+        $settlement->invoicerTradeParty = new TradeParty();
+        $settlement->invoicerTradeParty->name = 'Invoicing Service Provider GmbH';
+        $settlement->invoicerTradeParty->postalTradeAddress = new TradeAddress();
+        $settlement->invoicerTradeParty->postalTradeAddress->postcodeCode = '40210';
+        $settlement->invoicerTradeParty->postalTradeAddress->cityName = 'Düsseldorf';
+        $settlement->invoicerTradeParty->postalTradeAddress->countryID = 'DE';
 
         $settlement->invoiceeTradeParty = new TradeParty();
         $invoicee = $settlement->invoiceeTradeParty;
@@ -436,6 +493,13 @@ class ProfileExtendedTest extends TestCase
         $payee->postalTradeAddress->lineOne = 'Bankstraße 456';
         $payee->postalTradeAddress->cityName = 'Frankfurt';
         $payee->postalTradeAddress->countryID = 'DE';
+
+        $settlement->payerTradeParty = new TradeParty();
+        $settlement->payerTradeParty->name = 'Payer Company AG';
+        $settlement->payerTradeParty->postalTradeAddress = new TradeAddress();
+        $settlement->payerTradeParty->postalTradeAddress->postcodeCode = '50667';
+        $settlement->payerTradeParty->postalTradeAddress->cityName = 'Köln';
+        $settlement->payerTradeParty->postalTradeAddress->countryID = 'DE';
 
         $currencyExchange = new TradeCurrencyExchange();
         $currencyExchange->sourceCurrencyCode = 'EUR';
@@ -590,6 +654,7 @@ class ProfileExtendedTest extends TestCase
         $item1->delivery->billedQuantity = Quantity::create('100', 'C62');
         $item1->delivery->chargeFreeQuantity = Quantity::create('5', 'C62');
         $item1->delivery->packageQuantity = Quantity::create('10', 'PK');
+        $item1->delivery->perPackageUnitQuantity = Quantity::create('10', 'C62');
 
         $item1->delivery->shipToTradeParty = new TradeParty();
         $item1->delivery->shipToTradeParty->name = 'Item 1 Delivery Location';

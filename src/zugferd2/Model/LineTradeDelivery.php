@@ -25,6 +25,11 @@ class LineTradeDelivery
     #[SerializedName('PackageQuantity')]
     public ?Quantity $packageQuantity = null;
 
+    #[Type(Quantity::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('PerPackageUnitQuantity')]
+    public ?Quantity $perPackageUnitQuantity = null;
+
     #[Type(TradeParty::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('ShipToTradeParty')]
