@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Easybill\ZUGFeRD\Model;
 
-use JMS\Serializer\Annotation as JMS;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlAttribute;
+use JMS\Serializer\Annotation\XmlValue;
 
 /**
  * @deprecated ZUGFeRD 1.0 is deprecated and will be removed in a future release. Please migrate to ZUGFeRD 2.0 (Easybill\ZUGFeRD2).
@@ -14,14 +16,14 @@ class DateTime
     /**
      * @var int
      */
-    #[JMS\Type('integer')]
-    #[JMS\XmlAttribute]
+    #[Type('integer')]
+    #[XmlAttribute]
     private $format;
     /**
      * @var string
      */
-    #[JMS\Type('string')]
-    #[JMS\XmlValue(cdata: false)]
+    #[Type('string')]
+    #[XmlValue(cdata: false)]
     private $time;
 
     /**

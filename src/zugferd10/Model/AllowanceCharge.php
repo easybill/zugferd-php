@@ -7,7 +7,10 @@ namespace Easybill\ZUGFeRD\Model;
 use Easybill\ZUGFeRD\Model\Trade\Amount;
 use Easybill\ZUGFeRD\Model\Trade\Item\Quantity;
 use Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax;
-use JMS\Serializer\Annotation as JMS;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
+use JMS\Serializer\Annotation\XmlList;
 
 /**
  * Class AllowanceCharge.
@@ -20,72 +23,72 @@ class AllowanceCharge
     /**
      * @var Indicator
      */
-    #[JMS\Type(Indicator::class)]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
-    #[JMS\SerializedName('ChargeIndicator')]
+    #[Type(Indicator::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('ChargeIndicator')]
     private $indicator;
 
     /**
      * @var string
      */
-    #[JMS\Type('string')]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
-    #[JMS\SerializedName('SequenceNumeric')]
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('SequenceNumeric')]
     private $sequenceNumeric;
 
     /**
      * @var string
      */
-    #[JMS\Type('string')]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
-    #[JMS\SerializedName('CalculationPercent')]
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('CalculationPercent')]
     private $calculationPercent;
 
     /**
      * @var Quantity
      */
-    #[JMS\Type('Easybill\ZUGFeRD\Model\Trade\Quantity')]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
-    #[JMS\SerializedName('BasisQuantity')]
+    #[Type('Easybill\ZUGFeRD\Model\Trade\Quantity')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('BasisQuantity')]
     private $basisQuantity;
 
     /**
      * @var Amount
      */
-    #[JMS\Type(Amount::class)]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
-    #[JMS\SerializedName('BasisAmount')]
+    #[Type(Amount::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('BasisAmount')]
     private $basisAmount;
 
     /**
      * @var Amount
      */
-    #[JMS\Type(Amount::class)]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
-    #[JMS\SerializedName('ActualAmount')]
+    #[Type(Amount::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('ActualAmount')]
     private $actualAmount;
 
     /**
      * @var string
      */
-    #[JMS\Type('string')]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
-    #[JMS\SerializedName('ReasonCode')]
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('ReasonCode')]
     private $reasonCode;
 
     /**
      * @var string
      */
-    #[JMS\Type('string')]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
-    #[JMS\SerializedName('Reason')]
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('Reason')]
     private $reason;
 
     /**
      * @var TradeTax[]
      */
-    #[JMS\Type('array<Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax>')]
-    #[JMS\XmlList(inline: true, entry: 'CategoryTradeTax', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[Type('array<Easybill\ZUGFeRD\Model\Trade\Tax\TradeTax>')]
+    #[XmlList(inline: true, entry: 'CategoryTradeTax', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     private $categoryTradeTaxes;
 
     /**

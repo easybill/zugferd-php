@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Easybill\ZUGFeRD\Model\Trade\Tax;
 
 use Easybill\ZUGFeRD\Model\Trade\Amount;
-use JMS\Serializer\Annotation as JMS;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
 
 /**
  * @deprecated ZUGFeRD 1.0 is deprecated and will be removed in a future release. Please migrate to ZUGFeRD 2.0 (Easybill\ZUGFeRD2).
@@ -15,65 +17,65 @@ class TradeTax
     /**
      * @var Amount
      */
-    #[JMS\Type(Amount::class)]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
-    #[JMS\SerializedName('CalculatedAmount')]
+    #[Type(Amount::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('CalculatedAmount')]
     private $calculatedAmount;
 
     /**
      * @var string
      */
-    #[JMS\Type('string')]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
-    #[JMS\SerializedName('TypeCode')]
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('TypeCode')]
     private $code = '';
 
     /**
      * @var string
      */
-    #[JMS\Type('string')]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
-    #[JMS\SerializedName('ExemptionReason')]
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('ExemptionReason')]
     private $exemptionReason;
 
     /**
      * @var Amount
      */
-    #[JMS\Type(Amount::class)]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
-    #[JMS\SerializedName('BasisAmount')]
+    #[Type(Amount::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('BasisAmount')]
     private $basisAmount;
 
     /**
      * @var Amount
      */
-    #[JMS\Type(Amount::class)]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
-    #[JMS\SerializedName('LineTotalBasisAmount')]
+    #[Type(Amount::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('LineTotalBasisAmount')]
     private $lineTotalBasisAmount;
 
     /**
      * @var Amount
      */
-    #[JMS\Type(Amount::class)]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
-    #[JMS\SerializedName('AllowanceChargeBasisAmount')]
+    #[Type(Amount::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('AllowanceChargeBasisAmount')]
     private $allowanceChargeBasisAmount;
 
     /**
      * @var string
      */
-    #[JMS\Type('string')]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
-    #[JMS\SerializedName('CategoryCode')]
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('CategoryCode')]
     private $category;
 
     /**
      * @var string
      */
-    #[JMS\Type('string')]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
-    #[JMS\SerializedName('ApplicablePercent')]
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[SerializedName('ApplicablePercent')]
     private $percent;
 
     /**
