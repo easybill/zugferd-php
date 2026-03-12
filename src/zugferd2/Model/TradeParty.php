@@ -12,12 +12,12 @@ use JMS\Serializer\Annotation\XmlList;
 class TradeParty
 {
     /** @var Id[] */
-    #[Type('array<Easybill\ZUGFeRD2\Model\Id>')]
+    #[Type('array<' . Id::class . '>')]
     #[XmlList(entry: 'ID', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $id = [];
 
     /** @var Id[] */
-    #[Type('array<Easybill\ZUGFeRD2\Model\Id>')]
+    #[Type('array<' . Id::class . '>')]
     #[XmlList(entry: 'GlobalID', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $globalID = [];
 

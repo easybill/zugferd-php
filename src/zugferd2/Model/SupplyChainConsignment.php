@@ -17,7 +17,7 @@ class SupplyChainConsignment
     public ?Id $id = null;
 
     /** @var LogisticsTransportMovement[] */
-    #[Type('array<Easybill\ZUGFeRD2\Model\LogisticsTransportMovement>')]
+    #[Type('array<' . LogisticsTransportMovement::class . '>')]
     #[XmlList(entry: 'SpecifiedLogisticsTransportMovement', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $specifiedLogisticsTransportMovement = [];
 }

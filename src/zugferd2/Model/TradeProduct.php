@@ -52,7 +52,7 @@ class TradeProduct
     public ?string $description = null;
 
     /** @var Id[] */
-    #[Type('array<Easybill\ZUGFeRD2\Model\Id>')]
+    #[Type('array<' . Id::class . '>')]
     #[XmlList(entry: 'BatchID', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $batchID = [];
 
@@ -67,12 +67,12 @@ class TradeProduct
     public ?string $modelName = null;
 
     /** @var ProductCharacteristic[] */
-    #[Type('array<Easybill\ZUGFeRD2\Model\ProductCharacteristic>')]
+    #[Type('array<' . ProductCharacteristic::class . '>')]
     #[XmlList(entry: 'ApplicableProductCharacteristic', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?array $applicableProductCharacteristic = [];
 
     /** @var ProductClassification[] */
-    #[Type('array<Easybill\ZUGFeRD2\Model\ProductClassification>')]
+    #[Type('array<' . ProductClassification::class . '>')]
     #[XmlList(entry: 'DesignatedProductClassification', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $designatedProductClassification = [];
 
@@ -82,12 +82,12 @@ class TradeProduct
     public ?TradeCountry $tradeCountry = null;
 
     /** @var TradeProductInstance[] */
-    #[Type('array<Easybill\ZUGFeRD2\Model\TradeProductInstance>')]
+    #[Type('array<' . TradeProductInstance::class . '>')]
     #[XmlList(entry: 'IndividualTradeProductInstance', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public ?array $individualTradeProductInstance = [];
 
     /** @var ReferencedProduct[] */
-    #[Type('array<Easybill\ZUGFeRD2\Model\ReferencedProduct>')]
+    #[Type('array<' . ReferencedProduct::class . '>')]
     #[XmlList(entry: 'IncludedReferencedProduct', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $includedReferencedProduct = [];
 }

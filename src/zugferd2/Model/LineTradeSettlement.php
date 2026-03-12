@@ -14,7 +14,7 @@ class LineTradeSettlement
     /**
      * @var TradeTax[]
      */
-    #[Type('array<Easybill\ZUGFeRD2\Model\TradeTax>')]
+    #[Type('array<' . TradeTax::class . '>')]
     #[XmlList(entry: 'ApplicableTradeTax', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $tradeTax = [];
 
@@ -26,7 +26,7 @@ class LineTradeSettlement
     /**
      * @var TradeAllowanceCharge[]
      */
-    #[Type('array<Easybill\ZUGFeRD2\Model\TradeAllowanceCharge>')]
+    #[Type('array<' . TradeAllowanceCharge::class . '>')]
     #[XmlList(entry: 'SpecifiedTradeAllowanceCharge', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $specifiedTradeAllowanceCharge = [];
 
@@ -41,14 +41,14 @@ class LineTradeSettlement
     public ?ReferencedDocument $invoiceReferencedDocument = null;
 
     /** @var ReferencedDocument[] */
-    #[Type('array<Easybill\ZUGFeRD2\Model\ReferencedDocument>')]
+    #[Type('array<' . ReferencedDocument::class . '>')]
     #[XmlList(entry: 'AdditionalReferencedDocument', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $additionalReferencedDocuments = [];
 
     /**
      * @var TradeAccountingAccount[]
      */
-    #[Type('array<Easybill\ZUGFeRD2\Model\TradeAccountingAccount>')]
+    #[Type('array<' . TradeAccountingAccount::class . '>')]
     #[XmlList(entry: 'ReceivableSpecifiedTradeAccountingAccount', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $tradeAccountingAccount = [];
 }

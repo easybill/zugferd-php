@@ -24,7 +24,7 @@ class LogisticsServiceCharge
     /**
      * @var TradeTax[]
      */
-    #[Type('array<Easybill\ZUGFeRD2\Model\TradeTax>')]
+    #[Type('array<' . TradeTax::class . '>')]
     #[XmlList(entry: 'AppliedTradeTax', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $tradeTaxes = [];
 }
