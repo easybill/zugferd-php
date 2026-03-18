@@ -10,12 +10,12 @@ use JMS\Serializer\SerializerInterface;
 
 class Builder
 {
-    public const GUIDELINE_SPECIFIED_DOCUMENT_CONTEXT_ID_BASIC = 'urn:cen.eu:en16931:2017#compliant#urn:factur-x.eu:1p0:basic';
-    public const GUIDELINE_SPECIFIED_DOCUMENT_CONTEXT_ID_BASIC_WL = 'urn:factur-x.eu:1p0:basicwl';
-    public const GUIDELINE_SPECIFIED_DOCUMENT_CONTEXT_ID_MINIMUM = 'urn:factur-x.eu:1p0:minimum';
-    public const GUIDELINE_SPECIFIED_DOCUMENT_CONTEXT_ID_EN16931 = 'urn:cen.eu:en16931:2017';
-    public const GUIDELINE_SPECIFIED_DOCUMENT_CONTEXT_ID_XRECHNUNG = 'urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.1';
-    public const GUIDELINE_SPECIFIED_DOCUMENT_CONTEXT_ID_EXTENDED = 'urn:cen.eu:en16931:2017#conformant#urn:factur-x.eu:1p0:extended';
+    public const string GUIDELINE_SPECIFIED_DOCUMENT_CONTEXT_ID_BASIC = 'urn:cen.eu:en16931:2017#compliant#urn:factur-x.eu:1p0:basic';
+    public const string GUIDELINE_SPECIFIED_DOCUMENT_CONTEXT_ID_BASIC_WL = 'urn:factur-x.eu:1p0:basicwl';
+    public const string GUIDELINE_SPECIFIED_DOCUMENT_CONTEXT_ID_MINIMUM = 'urn:factur-x.eu:1p0:minimum';
+    public const string GUIDELINE_SPECIFIED_DOCUMENT_CONTEXT_ID_EN16931 = 'urn:cen.eu:en16931:2017';
+    public const string GUIDELINE_SPECIFIED_DOCUMENT_CONTEXT_ID_EXTENDED = 'urn:cen.eu:en16931:2017#conformant#urn:factur-x.eu:1p0:extended';
+    public const string GUIDELINE_SPECIFIED_DOCUMENT_CONTEXT_ID_XRECHNUNG = 'urn:cen.eu:en16931:2017#compliant#urn:xeinkauf.de:kosit:xrechnung_3.0';
 
     public function __construct(private readonly SerializerInterface $serializer) {}
 
