@@ -72,7 +72,7 @@ class HeaderTradeAgreement
     public ?ReferencedDocument $contractReferencedDocument = null;
 
     /** @var ReferencedDocument[] */
-    #[Type('array<Easybill\ZUGFeRD2\Model\ReferencedDocument>')]
+    #[Type('array<' . ReferencedDocument::class . '>')]
     #[XmlList(entry: 'AdditionalReferencedDocument', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $additionalReferencedDocuments = [];
 
@@ -87,7 +87,7 @@ class HeaderTradeAgreement
     public ?ProcuringProject $specifiedProcuringProject = null;
 
     /** @var ReferencedDocument[] */
-    #[Type('array<Easybill\ZUGFeRD2\Model\ReferencedDocument>')]
+    #[Type('array<' . ReferencedDocument::class . '>')]
     #[XmlList(entry: 'UltimateCustomerOrderReferencedDocument', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $ultimateCustomerOrderReferencedDocuments = [];
 }

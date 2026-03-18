@@ -4,28 +4,31 @@ declare(strict_types=1);
 
 namespace Easybill\ZUGFeRD2\Model;
 
-use JMS\Serializer\Annotation as JMS;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
+use JMS\Serializer\Annotation\XmlList;
 
 class TradePrice
 {
-    #[JMS\Type(Amount::class)]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[JMS\SerializedName('ChargeAmount')]
+    #[Type(Amount::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('ChargeAmount')]
     public Amount $chargeAmount;
 
-    #[JMS\Type(Quantity::class)]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[JMS\SerializedName('BasisQuantity')]
+    #[Type(Quantity::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('BasisQuantity')]
     public ?Quantity $basisQuantity = null;
 
     /** @var TradeAllowanceCharge[] */
-    #[JMS\Type('array<Easybill\ZUGFeRD2\Model\TradeAllowanceCharge>')]
-    #[JMS\XmlList(entry: 'AppliedTradeAllowanceCharge', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[Type('array<' . TradeAllowanceCharge::class . '>')]
+    #[XmlList(entry: 'AppliedTradeAllowanceCharge', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $appliedTradeAllowanceCharges = [];
 
-    #[JMS\Type(TradeTax::class)]
-    #[JMS\XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[JMS\SerializedName('IncludedTradeTax')]
+    #[Type(TradeTax::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('IncludedTradeTax')]
     public ?TradeTax $includedTradeTax = null;
 
     /** @param array<TradeAllowanceCharge> $tradeAllowanceCharge */
