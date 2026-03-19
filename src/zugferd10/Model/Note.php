@@ -76,7 +76,7 @@ class Note
     public function setSubjectCode($subjectCode)
     {
         if ($subjectCode !== null
-            && strlen($subjectCode) > 0
+            && (string)$subjectCode !== ''
             && $subjectCode !== 'REG'
             && $subjectCode !== 'AAK'
             && $subjectCode !== 'AAJ'

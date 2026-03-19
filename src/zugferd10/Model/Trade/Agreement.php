@@ -50,7 +50,7 @@ class Agreement
      * @var ReferencedDocument[]
      */
     #[Type('array<Easybill\ZUGFeRD\Model\Trade\ReferencedDocument>')]
-    #[XmlList(inline: true, entry: 'AdditionalReferencedDocument', namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
+    #[XmlList(entry: 'AdditionalReferencedDocument', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12')]
     private $additionalReferencedDocuments;
 
     /**
