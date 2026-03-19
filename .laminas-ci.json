@@ -1,7 +1,7 @@
 {
   "exclude": [
     {
-      "name": "README Linting [8.3, latest]"
+      "name": "README Linting"
     }
   ]
 }
