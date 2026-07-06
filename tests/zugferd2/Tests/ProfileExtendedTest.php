@@ -12,10 +12,12 @@ use Easybill\ZUGFeRD2\Model\CreditorFinancialAccount;
 use Easybill\ZUGFeRD2\Model\CreditorFinancialInstitution;
 use Easybill\ZUGFeRD2\Model\CrossIndustryInvoice;
 use Easybill\ZUGFeRD2\Model\DateTime;
+use Easybill\ZUGFeRD2\Model\DebtorFinancialInstitution;
 use Easybill\ZUGFeRD2\Model\DocumentContextParameter;
 use Easybill\ZUGFeRD2\Model\DocumentLineDocument;
 use Easybill\ZUGFeRD2\Model\ExchangedDocument;
 use Easybill\ZUGFeRD2\Model\ExchangedDocumentContext;
+use Easybill\ZUGFeRD2\Model\FinancialAdjustment;
 use Easybill\ZUGFeRD2\Model\FormattedDateTime;
 use Easybill\ZUGFeRD2\Model\HeaderTradeAgreement;
 use Easybill\ZUGFeRD2\Model\HeaderTradeDelivery;
@@ -776,5 +778,165 @@ final class ProfileExtendedTest extends TestCase
         $validator = new Validator();
         $errors = $validator->validateAgainstXsd($xml, Validator::SCHEMA_EXTENDED);
         self::assertNull($errors, $errors ?? 'XML should validate against EXTENDED schema');
+    }
+
+    /**
+     * Locks in the correct XSD xs:sequence ordering for the three new Factur-X 1.09
+     * EXTENDED fields:
+     *  - HeaderTradeSettlement::$specifiedFinancialAdjustment
+     *  - TradeProduct::$manufacturerTradeParty
+     *  - TradeSettlementPaymentMeans::$payerSpecifiedDebtorFinancialInstitution
+     *
+     * The round-trip tests cannot catch ordering because the Reader is order-tolerant,
+     * so this test asserts the serialized XML validates against the real 1.09 EXTENDED XSD.
+     */
+    public function testBuildExtendedWith109Fields(): void
+    {
+        $invoice = new CrossIndustryInvoice();
+        $invoice->exchangedDocumentContext = new ExchangedDocumentContext();
+
+        $invoice->exchangedDocumentContext->businessProcessSpecifiedDocumentContextParameter = new DocumentContextParameter();
+        $invoice->exchangedDocumentContext->businessProcessSpecifiedDocumentContextParameter->id = 'Beispielgeschäftsprozess';
+
+        $invoice->exchangedDocumentContext->documentContextParameter = new DocumentContextParameter();
+        $invoice->exchangedDocumentContext->documentContextParameter->id = Builder::GUIDELINE_SPECIFIED_DOCUMENT_CONTEXT_ID_EXTENDED;
+
+        $invoice->exchangedDocument = new ExchangedDocument();
+        $invoice->exchangedDocument->id = 'INVOICE-109-001';
+        $invoice->exchangedDocument->typeCode = '380';
+        $invoice->exchangedDocument->issueDateTime = DateTime::create(102, '20250114');
+
+        $invoice->supplyChainTradeTransaction = new SupplyChainTradeTransaction();
+
+        // --- Line item carrying the new TradeProduct::$manufacturerTradeParty field ---
+        $invoice->supplyChainTradeTransaction->lineItems[] = $item1 = new SupplyChainTradeLineItem();
+        $item1->associatedDocumentLineDocument = DocumentLineDocument::create('1');
+        $item1->specifiedTradeProduct = new TradeProduct();
+        $item1->specifiedTradeProduct->sellerAssignedID = 'PROD-001';
+        $item1->specifiedTradeProduct->name = 'Premium Widget Type A';
+        $item1->specifiedTradeProduct->tradeCountry = TradeCountry::create('DE');
+
+        // NEW FIELD: ManufacturerTradeParty (declared after OriginTradeCountry).
+        // Intentionally NOT setting individualTradeProductInstance here to avoid the
+        // pre-existing declaration-order hazard on that (unrelated) property.
+        $item1->specifiedTradeProduct->manufacturerTradeParty = $manufacturer = new TradeParty();
+        $manufacturer->name = 'Manufacturer Works GmbH';
+        $manufacturer->postalTradeAddress = new TradeAddress();
+        $manufacturer->postalTradeAddress->postcodeCode = '10115';
+        $manufacturer->postalTradeAddress->cityName = 'Berlin';
+        $manufacturer->postalTradeAddress->countryID = 'DE';
+
+        // XSD sibling FOLLOWING manufacturerTradeParty in TradeProductType: IncludedReferencedProduct.
+        // Combined with tradeCountry (OriginTradeCountry, preceding) set above, this brackets the new
+        // field so a misordered ManufacturerTradeParty fails XSD sequence validation.
+        $includedComponent = new ReferencedProduct();
+        $includedComponent->globalID[] = Id::create('4012345000001', '0160');
+        $includedComponent->name = 'Base Component A';
+        $includedComponent->unitQuantity = Quantity::create('1', 'C62');
+        $item1->specifiedTradeProduct->includedReferencedProduct[] = $includedComponent;
+
+        $item1->tradeAgreement = new LineTradeAgreement();
+        $item1->tradeAgreement->grossPrice = TradePrice::create('100', Quantity::create('1', 'C62'));
+        $item1->tradeAgreement->netPrice = TradePrice::create('100', Quantity::create('1', 'C62'));
+
+        $item1->delivery = new LineTradeDelivery();
+        $item1->delivery->billedQuantity = Quantity::create('10', 'C62');
+
+        $item1->specifiedLineTradeSettlement = new LineTradeSettlement();
+        $item1->specifiedLineTradeSettlement->tradeTax[] = $item1Tax = new TradeTax();
+        $item1Tax->typeCode = 'VAT';
+        $item1Tax->categoryCode = 'S';
+        $item1Tax->rateApplicablePercent = '19.00';
+        $item1->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('1000.00');
+
+        // --- Header trade agreement ---
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement = new HeaderTradeAgreement();
+        $agreement = $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement;
+
+        $agreement->sellerTradeParty = $seller = new TradeParty();
+        $seller->id[] = Id::create('SELLER-123');
+        $seller->name = 'Comprehensive Seller GmbH';
+        $seller->postalTradeAddress = new TradeAddress();
+        $seller->postalTradeAddress->postcodeCode = '10115';
+        $seller->postalTradeAddress->lineOne = 'Musterstraße 123';
+        $seller->postalTradeAddress->cityName = 'Berlin';
+        $seller->postalTradeAddress->countryID = 'DE';
+        $seller->taxRegistrations[] = TaxRegistration::create('DE123456789', 'VA');
+
+        $agreement->buyerTradeParty = $buyer = new TradeParty();
+        $buyer->id[] = Id::create('BUYER-456');
+        $buyer->name = 'Comprehensive Buyer AG';
+        $buyer->postalTradeAddress = new TradeAddress();
+        $buyer->postalTradeAddress->postcodeCode = '20095';
+        $buyer->postalTradeAddress->lineOne = 'Käuferweg 456';
+        $buyer->postalTradeAddress->cityName = 'Hamburg';
+        $buyer->postalTradeAddress->countryID = 'DE';
+        $buyer->taxRegistrations[] = TaxRegistration::create('DE987654321', 'VA');
+
+        // --- Header trade delivery ---
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeDelivery = new HeaderTradeDelivery();
+
+        // --- Header trade settlement ---
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement = new HeaderTradeSettlement();
+        $settlement = $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement;
+        $settlement->invoiceCurrencyCode = 'EUR';
+
+        // NEW FIELD: TradeSettlementPaymentMeans::$payerSpecifiedDebtorFinancialInstitution.
+        // Intentionally NOT setting payerPartyDebtorFinancialAccount on this payment means
+        // to avoid the pre-existing declaration-order hazard on that (unrelated) property.
+        $paymentMeans = new TradeSettlementPaymentMeans();
+        $paymentMeans->typeCode = '58';
+        $paymentMeans->payeePartyCreditorFinancialAccount = new CreditorFinancialAccount();
+        $paymentMeans->payeePartyCreditorFinancialAccount->ibanId = Id::create('DE89370400440532013000');
+        $paymentMeans->payeePartyCreditorFinancialAccount->accountName = 'Comprehensive Seller GmbH';
+        $paymentMeans->payerSpecifiedDebtorFinancialInstitution = new DebtorFinancialInstitution();
+        $paymentMeans->payerSpecifiedDebtorFinancialInstitution->bicId = Id::create('COBADEFFXXX');
+        // XSD sibling FOLLOWING payerSpecifiedDebtorFinancialInstitution: PayeeSpecifiedCreditorFinancialInstitution.
+        // Combined with payeePartyCreditorFinancialAccount (preceding) set above, this brackets the new field
+        // so a misordered PayerSpecifiedDebtorFinancialInstitution fails XSD sequence validation.
+        $paymentMeans->payeeSpecifiedCreditorFinancialInstitution = new CreditorFinancialInstitution();
+        $paymentMeans->payeeSpecifiedCreditorFinancialInstitution->bicId = Id::create('COBADEFFXXX');
+        $settlement->specifiedTradeSettlementPaymentMeans[] = $paymentMeans;
+
+        $tax1 = new TradeTax();
+        $tax1->typeCode = 'VAT';
+        $tax1->categoryCode = 'S';
+        $tax1->basisAmount = Amount::create('1000.00');
+        $tax1->calculatedAmount = Amount::create('190.00');
+        $tax1->rateApplicablePercent = '19.00';
+        $settlement->tradeTaxes[] = $tax1;
+
+        $paymentTerms = new TradePaymentTerms();
+        $paymentTerms->dueDateDateTime = DateTime::create(102, '20250213');
+        $settlement->specifiedTradePaymentTerms[] = $paymentTerms;
+
+        $summation = new TradeSettlementHeaderMonetarySummation();
+        $summation->lineTotalAmount = Amount::create('1000.00');
+        $summation->taxBasisTotalAmount[] = Amount::create('1000.00');
+        $summation->taxTotalAmount[] = Amount::create('190.00', 'EUR');
+        $summation->grandTotalAmount[] = Amount::create('1190.00');
+        $summation->duePayableAmount = Amount::create('1190.00');
+        $settlement->specifiedTradeSettlementHeaderMonetarySummation = $summation;
+
+        // NEW FIELD: HeaderTradeSettlement::$specifiedFinancialAdjustment
+        // (declared after SpecifiedTradeSettlementHeaderMonetarySummation).
+        $adjustment = new FinancialAdjustment();
+        $adjustment->reason = 'Rounding adjustment';
+        $adjustment->actualAmount = Amount::create('0.00');
+        $settlement->specifiedFinancialAdjustment[] = $adjustment;
+
+        // XSD sibling FOLLOWING specifiedFinancialAdjustment in HeaderTradeSettlementType:
+        // InvoiceReferencedDocument. Combined with specifiedTradeSettlementHeaderMonetarySummation
+        // (preceding) set above, this brackets the new field so a misordered SpecifiedFinancialAdjustment
+        // fails XSD sequence validation.
+        $invoiceRef = ReferencedDocument::create('PREV-INV-2024-999');
+        $invoiceRef->typeCode = '381';
+        $settlement->invoiceReferencedDocument[] = $invoiceRef;
+
+        $xml = Builder::create()->transform($invoice);
+        self::assertNotEmpty($xml, 'Generated XML should not be empty');
+
+        $result = (new Validator())->validateAgainstXsd($xml, Validator::SCHEMA_EXTENDED);
+        self::assertNull($result, $result ?? 'XML should validate against EXTENDED schema');
     }
 }
