@@ -14,4 +14,9 @@ class DebtorFinancialAccount
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('IBANID')]
     public ?Id $ibanId = null;
+
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('AccountName')]
+    public ?string $accountName = null;
 }
