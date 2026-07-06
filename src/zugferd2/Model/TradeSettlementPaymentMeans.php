@@ -25,6 +25,11 @@ class TradeSettlementPaymentMeans
     #[SerializedName('PayeePartyCreditorFinancialAccount')]
     public ?CreditorFinancialAccount $payeePartyCreditorFinancialAccount = null;
 
+    #[Type(DebtorFinancialInstitution::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('PayerSpecifiedDebtorFinancialInstitution')]
+    public ?DebtorFinancialInstitution $payerSpecifiedDebtorFinancialInstitution = null;
+
     #[Type(CreditorFinancialInstitution::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('PayeeSpecifiedCreditorFinancialInstitution')]
