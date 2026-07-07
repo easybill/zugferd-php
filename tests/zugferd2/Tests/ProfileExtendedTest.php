@@ -785,7 +785,7 @@ final class ProfileExtendedTest extends TestCase
      * EXTENDED fields:
      *  - HeaderTradeSettlement::$specifiedFinancialAdjustment
      *  - TradeProduct::$manufacturerTradeParty
-     *  - TradeSettlementPaymentMeans::$payerSpecifiedDebtorFinancialInstitution
+     *  - TradeSettlementPaymentMeans::$payerSpecifiedDebtorFinancialInstitution.
      *
      * The round-trip tests cannot catch ordering because the Reader is order-tolerant,
      * so this test asserts the serialized XML validates against the real 1.09 EXTENDED XSD.
