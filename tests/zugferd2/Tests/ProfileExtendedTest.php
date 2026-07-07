@@ -52,6 +52,7 @@ use Easybill\ZUGFeRD2\Model\TradeCurrencyExchange;
 use Easybill\ZUGFeRD2\Model\TradeDeliveryTerms;
 use Easybill\ZUGFeRD2\Model\TradeLocation;
 use Easybill\ZUGFeRD2\Model\TradeParty;
+use Easybill\ZUGFeRD2\Model\TradeProductInstance;
 use Easybill\ZUGFeRD2\Model\TradePaymentTerms;
 use Easybill\ZUGFeRD2\Model\TradePrice;
 use Easybill\ZUGFeRD2\Model\TradeProduct;
@@ -814,11 +815,18 @@ final class ProfileExtendedTest extends TestCase
         $item1->specifiedTradeProduct = new TradeProduct();
         $item1->specifiedTradeProduct->sellerAssignedID = 'PROD-001';
         $item1->specifiedTradeProduct->name = 'Premium Widget Type A';
+
+        // IndividualTradeProductInstance precedes OriginTradeCountry in TradeProductType.
+        // Setting it alongside the OriginTradeCountry/ManufacturerTradeParty/IncludedReferencedProduct
+        // siblings below asserts the corrected declaration order serializes as XSD-valid.
+        $productInstance = new TradeProductInstance();
+        $productInstance->batchID = Id::create('BATCH-2025-01');
+        $productInstance->supplierAssignedSerialID = Id::create('SN-0001');
+        $item1->specifiedTradeProduct->individualTradeProductInstance[] = $productInstance;
+
         $item1->specifiedTradeProduct->tradeCountry = TradeCountry::create('DE');
 
         // NEW FIELD: ManufacturerTradeParty (declared after OriginTradeCountry).
-        // Intentionally NOT setting individualTradeProductInstance here to avoid the
-        // pre-existing declaration-order hazard on that (unrelated) property.
         $item1->specifiedTradeProduct->manufacturerTradeParty = $manufacturer = new TradeParty();
         $manufacturer->name = 'Manufacturer Works GmbH';
         $manufacturer->postalTradeAddress = new TradeAddress();
