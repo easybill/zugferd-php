@@ -100,6 +100,37 @@ final class ModelSerializationTest extends TestCase
         self::assertSame($testId, $resultModel->id);
     }
 
+    /**
+     * Factur-X 1.09.2 (ZUGFeRD 2.5.2) made TradeTax TypeCode and CategoryCode optional in EXTENDED,
+     * so GROUP/INFORMATION sub-lines may carry only the DueDateTypeCode (BT-X-589).
+     */
+    public function testTradeTaxWithoutTypeCodeAndCategoryCodeSerialization(): void
+    {
+        $invoice = $this->createMinimalInvoice();
+
+        $invoice->supplyChainTradeTransaction->lineItems[] = $item = new SupplyChainTradeLineItem();
+        $item->associatedDocumentLineDocument = DocumentLineDocument::create('1');
+        $item->associatedDocumentLineDocument->lineStatusReasonCode = 'GROUP';
+        $item->specifiedTradeProduct = new TradeProduct();
+        $item->specifiedTradeProduct->name = 'Group';
+        $item->specifiedLineTradeSettlement = new LineTradeSettlement();
+        $item->specifiedLineTradeSettlement->tradeTax[] = TradeTax::create(dueDateTypeCode: '5');
+        $item->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('100.00');
+
+        $xml = Builder::create()->transform($invoice);
+        self::assertMatchesRegularExpression(
+            '#<ram:ApplicableTradeTax>\s*<ram:DueDateTypeCode>5</ram:DueDateTypeCode>\s*</ram:ApplicableTradeTax>#',
+            $xml,
+        );
+
+        $deserialized = Reader::create()->transform($xml);
+        $resultModel = $deserialized->supplyChainTradeTransaction->lineItems[0]->specifiedLineTradeSettlement->tradeTax[0];
+
+        self::assertNull($resultModel->typeCode);
+        self::assertNull($resultModel->categoryCode);
+        self::assertSame('5', $resultModel->dueDateTypeCode);
+    }
+
     public function testTradeAllowanceChargeSerialization(): void
     {
         $actualAmount = Amount::create('100.00');

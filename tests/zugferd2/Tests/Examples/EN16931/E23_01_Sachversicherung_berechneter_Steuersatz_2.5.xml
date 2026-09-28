@@ -138,6 +138,9 @@ Enthält 16,34 % Versicherungssteuer = 163,40 €
         </ram:Description>
       </ram:SpecifiedTradeProduct>
       <ram:SpecifiedLineTradeAgreement>
+        <ram:GrossPriceProductTradePrice>
+          <ram:ChargeAmount>1163.4000</ram:ChargeAmount>
+        </ram:GrossPriceProductTradePrice>
         <ram:NetPriceProductTradePrice>
           <ram:ChargeAmount>1000.0000</ram:ChargeAmount>
         </ram:NetPriceProductTradePrice>
@@ -152,7 +155,7 @@ Enthält 16,34 % Versicherungssteuer = 163,40 €
           <ram:RateApplicablePercent>0.00</ram:RateApplicablePercent>
         </ram:ApplicableTradeTax>
         <ram:SpecifiedTradeSettlementLineMonetarySummation>
-          <ram:LineTotalAmount>1000.00</ram:LineTotalAmount>
+          <ram:LineTotalAmount>1163.40</ram:LineTotalAmount>
         </ram:SpecifiedTradeSettlementLineMonetarySummation>
       </ram:SpecifiedLineTradeSettlement>
     </ram:IncludedSupplyChainTradeLineItem>
@@ -170,7 +173,7 @@ Versicherungsverein Musterstadt a.G.
           <ram:CountryID>DE</ram:CountryID>
         </ram:PostalTradeAddress>
         <ram:SpecifiedTaxRegistration>
-          <ram:ID schemeID="VA">DE106008386</ram:ID>
+          <ram:ID schemeID="VA">DE234567891</ram:ID>
         </ram:SpecifiedTaxRegistration>
       </ram:SellerTradeParty>
       <ram:BuyerTradeParty>
@@ -202,18 +205,6 @@ Max Mustermann
         <ram:CategoryCode>E</ram:CategoryCode>
         <ram:RateApplicablePercent>0.00</ram:RateApplicablePercent>
       </ram:ApplicableTradeTax>
-      <ram:SpecifiedTradeAllowanceCharge>
-        <ram:ChargeIndicator>
-          <udt:Indicator>true</udt:Indicator>
-        </ram:ChargeIndicator>
-        <ram:ActualAmount>163.40</ram:ActualAmount>
-        <ram:Reason>Versicherungssteuer 16,34%</ram:Reason>
-        <ram:CategoryTradeTax>
-          <ram:TypeCode>VAT</ram:TypeCode>
-          <ram:CategoryCode>E</ram:CategoryCode>
-          <ram:RateApplicablePercent>0.00</ram:RateApplicablePercent>
-        </ram:CategoryTradeTax>
-      </ram:SpecifiedTradeAllowanceCharge>
       <ram:SpecifiedTradePaymentTerms>
         <ram:Description>Einen zu zahlenden Beitrag überweisen Sie bitte auf folgende Bankverbindung: IBAN DE75123456780000001234, BIC WELADED1MST, Sparkasse Musterstadt Ost.
 Einfacher für Sie ist es, wenn Sie uns ein SEPA-Lastschriftmandat erteilen. Wir würden dann zu der Fälligkeit 21.05.2026 den Beitrag von dem uns bekannten Konto abbuchen. In diesem Fall würden Sie, sofern sich keine Beitragsänderung ergibt, zukünftig keine Zwischenrechnung erhalten.
@@ -222,8 +213,8 @@ Beitragsgutschriften aus Ihrem Vertrag erstatten wir per Scheck.
         </ram:Description>
       </ram:SpecifiedTradePaymentTerms>
       <ram:SpecifiedTradeSettlementHeaderMonetarySummation>
-        <ram:LineTotalAmount>1000.00</ram:LineTotalAmount>
-        <ram:ChargeTotalAmount>163.40</ram:ChargeTotalAmount>
+        <ram:LineTotalAmount>1163.40</ram:LineTotalAmount>
+        <ram:ChargeTotalAmount>0.00</ram:ChargeTotalAmount>
         <ram:AllowanceTotalAmount>0.00</ram:AllowanceTotalAmount>
         <ram:TaxBasisTotalAmount>1163.40</ram:TaxBasisTotalAmount>
         <ram:TaxTotalAmount currencyID="EUR">0.00</ram:TaxTotalAmount>

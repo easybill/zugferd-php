@@ -125,7 +125,7 @@ costs, losses or damages could normally have been foreseen.
       <ram:SubjectCode>REG</ram:SubjectCode>
     </ram:IncludedNote>
 	<ram:IncludedNote>
-	  <ram:Content>Handelsregisternummer: H A 123</ram:Content>
+	  <ram:Content>RegisterID: Frankfurt am Main, HRA, 123</ram:Content>
       <ram:SubjectCode>REG</ram:SubjectCode>
     </ram:IncludedNote>
     <ram:IncludedNote>
@@ -1302,7 +1302,7 @@ costs, losses or damages could normally have been foreseen.
 	
     <ram:ApplicableHeaderTradeAgreement>
       <ram:SellerTradeParty>
-        <ram:Name>Grundbesitz GmbH &amp; Co.</ram:Name>
+        <ram:Name>Grundbesitz GmbH &amp; Co. KG</ram:Name>
         <ram:PostalTradeAddress>
           <ram:PostcodeCode>75645</ram:PostcodeCode>
           <ram:LineOne>Musterstraße 42</ram:LineOne>

@@ -173,7 +173,7 @@ Es bestehen Rabatt- und Bonusvereinbarungen.
           <ram:ID schemeID="FC">201/113/40209</ram:ID>
         </ram:SpecifiedTaxRegistration>
         <ram:SpecifiedTaxRegistration>
-          <ram:ID schemeID="VA">DE106008386</ram:ID>
+          <ram:ID schemeID="VA">DE123456789</ram:ID>
         </ram:SpecifiedTaxRegistration>
       </ram:SellerTradeParty>
       <ram:BuyerTradeParty>

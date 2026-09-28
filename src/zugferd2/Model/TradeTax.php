@@ -18,7 +18,7 @@ class TradeTax
     #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('TypeCode')]
-    public string $typeCode;
+    public ?string $typeCode = null;
 
     #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
@@ -66,7 +66,7 @@ class TradeTax
     public ?string $rateApplicablePercent = null;
 
     public static function create(
-        string $typeCode,
+        ?string $typeCode = null,
         ?Amount $calculatedAmount = null,
         ?Amount $basisAmount = null,
         ?Amount $lineTotalBasisAmount = null,

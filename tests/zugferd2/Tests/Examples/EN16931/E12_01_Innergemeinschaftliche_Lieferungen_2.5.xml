@@ -129,12 +129,12 @@ HRB Berlin 13086</ram:Content>
           <ram:BasisQuantity unitCode="H87">1</ram:BasisQuantity>
         </ram:GrossPriceProductTradePrice>
         <ram:NetPriceProductTradePrice>
-          <ram:ChargeAmount>1000</ram:ChargeAmount>
+          <ram:ChargeAmount>100</ram:ChargeAmount>
           <ram:BasisQuantity unitCode="H87">1</ram:BasisQuantity>
         </ram:NetPriceProductTradePrice>
       </ram:SpecifiedLineTradeAgreement>
       <ram:SpecifiedLineTradeDelivery>
-        <ram:BilledQuantity unitCode="H87">1</ram:BilledQuantity>
+        <ram:BilledQuantity unitCode="H87">10</ram:BilledQuantity>
       </ram:SpecifiedLineTradeDelivery>
       <ram:SpecifiedLineTradeSettlement>
         <ram:ApplicableTradeTax>
@@ -173,12 +173,12 @@ HRB Berlin 13086</ram:Content>
           <ram:BasisQuantity unitCode="H87">1</ram:BasisQuantity>
         </ram:GrossPriceProductTradePrice>
         <ram:NetPriceProductTradePrice>
-          <ram:ChargeAmount>1000</ram:ChargeAmount>
+          <ram:ChargeAmount>100</ram:ChargeAmount>
           <ram:BasisQuantity unitCode="H87">1</ram:BasisQuantity>
         </ram:NetPriceProductTradePrice>
       </ram:SpecifiedLineTradeAgreement>
       <ram:SpecifiedLineTradeDelivery>
-        <ram:BilledQuantity unitCode="H87">1</ram:BilledQuantity>
+        <ram:BilledQuantity unitCode="H87">10</ram:BilledQuantity>
       </ram:SpecifiedLineTradeDelivery>
       <ram:SpecifiedLineTradeSettlement>
         <ram:ApplicableTradeTax>

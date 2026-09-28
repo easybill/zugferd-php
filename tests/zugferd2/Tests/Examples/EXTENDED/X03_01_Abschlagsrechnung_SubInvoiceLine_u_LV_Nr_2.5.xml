@@ -146,7 +146,20 @@ costs, losses or damages could normally have been foreseen.
       <ram:SpecifiedTradeProduct>
         <ram:Name>Baugelände abräumen Anfallender Schutt, Pflanzenreste und Müll entsorgen</ram:Name>
       </ram:SpecifiedTradeProduct>
+      <ram:SpecifiedLineTradeAgreement>
+        <ram:NetPriceProductTradePrice>
+          <ram:ChargeAmount>7.00</ram:ChargeAmount>
+        </ram:NetPriceProductTradePrice>
+      </ram:SpecifiedLineTradeAgreement>
+      <ram:SpecifiedLineTradeDelivery>
+        <ram:BilledQuantity unitCode="H87">300.00</ram:BilledQuantity>
+      </ram:SpecifiedLineTradeDelivery>
       <ram:SpecifiedLineTradeSettlement>
+        <ram:ApplicableTradeTax>
+          <ram:TypeCode>VAT</ram:TypeCode>
+          <ram:CategoryCode>S</ram:CategoryCode>
+          <ram:RateApplicablePercent>19.00</ram:RateApplicablePercent>
+        </ram:ApplicableTradeTax>
         <ram:SpecifiedTradeSettlementLineMonetarySummation>
           <ram:LineTotalAmount>2100.00</ram:LineTotalAmount>
         </ram:SpecifiedTradeSettlementLineMonetarySummation>
@@ -164,7 +177,7 @@ costs, losses or damages could normally have been foreseen.
       <ram:SpecifiedLineTradeAgreement>
         <ram:AdditionalReferencedDocument>
           <ram:IssuerAssignedID>LV 1.1.1.1.1.</ram:IssuerAssignedID>
-          <ram:LineID>LV_01.01.01</ram:LineID>
+          <ram:LineID>LV000001.1</ram:LineID>
           <ram:TypeCode>130</ram:TypeCode>
           <ram:Name>Leistungsverzeichnis</ram:Name>
           <ram:ReferenceTypeCode>BD</ram:ReferenceTypeCode>
@@ -199,7 +212,7 @@ costs, losses or damages could normally have been foreseen.
       <ram:SpecifiedLineTradeAgreement>
         <ram:AdditionalReferencedDocument>
           <ram:IssuerAssignedID>LV 1.1.1.1.1.</ram:IssuerAssignedID>
-          <ram:LineID>LV01.01.02</ram:LineID>
+          <ram:LineID>LV000001.2</ram:LineID>
           <ram:TypeCode>130</ram:TypeCode>
           <ram:Name>Leistungsverzeichnis</ram:Name>
           <ram:ReferenceTypeCode>BD</ram:ReferenceTypeCode>
@@ -234,7 +247,7 @@ costs, losses or damages could normally have been foreseen.
       <ram:SpecifiedLineTradeAgreement>
         <ram:AdditionalReferencedDocument>
           <ram:IssuerAssignedID>LV 1.1.1.1.1.</ram:IssuerAssignedID>
-          <ram:LineID>LV01.01.03</ram:LineID>
+          <ram:LineID>LV000001.3</ram:LineID>
           <ram:TypeCode>130</ram:TypeCode>
           <ram:Name>Leistungsverzeichnis</ram:Name>
           <ram:ReferenceTypeCode>BD</ram:ReferenceTypeCode>
@@ -261,21 +274,6 @@ costs, losses or damages could normally have been foreseen.
       <ram:AssociatedDocumentLineDocument>
         <ram:LineID>01.02</ram:LineID>
         <ram:ParentLineID>01</ram:ParentLineID>
-        <ram:LineStatusReasonCode>GROUP</ram:LineStatusReasonCode>
-      </ram:AssociatedDocumentLineDocument>
-      <ram:SpecifiedTradeProduct>
-        <ram:Name>Pflasterfläche vorbereiten</ram:Name>
-      </ram:SpecifiedTradeProduct>
-      <ram:SpecifiedLineTradeSettlement>
-        <ram:SpecifiedTradeSettlementLineMonetarySummation>
-          <ram:LineTotalAmount>1500.00</ram:LineTotalAmount>
-        </ram:SpecifiedTradeSettlementLineMonetarySummation>
-      </ram:SpecifiedLineTradeSettlement>
-    </ram:IncludedSupplyChainTradeLineItem>
-    <ram:IncludedSupplyChainTradeLineItem>
-      <ram:AssociatedDocumentLineDocument>
-        <ram:LineID>01.02.01</ram:LineID>
-        <ram:ParentLineID>01.02</ram:ParentLineID>
         <ram:LineStatusReasonCode>DETAIL</ram:LineStatusReasonCode>
       </ram:AssociatedDocumentLineDocument>
       <ram:SpecifiedTradeProduct>
@@ -312,8 +310,20 @@ costs, losses or damages could normally have been foreseen.
         <ram:BuyerOrderReferencedDocument>
           <ram:LineID>000001</ram:LineID>
         </ram:BuyerOrderReferencedDocument>
+        <ram:NetPriceProductTradePrice>
+          <ram:ChargeAmount>3600</ram:ChargeAmount>
+          <ram:BasisQuantity unitCode="H87">1.0000</ram:BasisQuantity>
+        </ram:NetPriceProductTradePrice>
       </ram:SpecifiedLineTradeAgreement>
+      <ram:SpecifiedLineTradeDelivery>
+        <ram:BilledQuantity unitCode="H87">1.00</ram:BilledQuantity>
+      </ram:SpecifiedLineTradeDelivery>
       <ram:SpecifiedLineTradeSettlement>
+        <ram:ApplicableTradeTax>
+          <ram:TypeCode>VAT</ram:TypeCode>
+          <ram:CategoryCode>S</ram:CategoryCode>
+          <ram:RateApplicablePercent>19.00</ram:RateApplicablePercent>
+        </ram:ApplicableTradeTax>
         <ram:SpecifiedTradeSettlementLineMonetarySummation>
           <ram:LineTotalAmount>3600.00</ram:LineTotalAmount>
         </ram:SpecifiedTradeSettlementLineMonetarySummation>

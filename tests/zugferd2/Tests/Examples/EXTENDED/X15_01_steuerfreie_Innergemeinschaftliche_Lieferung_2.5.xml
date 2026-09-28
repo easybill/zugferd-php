@@ -335,7 +335,7 @@ costs, losses or damages could normally have been foreseen.
           <ram:CountryID>AT</ram:CountryID>
         </ram:PostalTradeAddress>
         <ram:SpecifiedTaxRegistration>
-          <ram:ID schemeID="VA">ATU12345675</ram:ID>
+          <ram:ID schemeID="VA">ATU123456789</ram:ID>
         </ram:SpecifiedTaxRegistration>
       </ram:BuyerTradeParty>
       <ram:SellerOrderReferencedDocument>
@@ -361,7 +361,7 @@ costs, losses or damages could normally have been foreseen.
           <ram:CountryID>AT</ram:CountryID>
         </ram:PostalTradeAddress>
         <ram:SpecifiedTaxRegistration>
-          <ram:ID schemeID="VA">ATU12345675</ram:ID>
+          <ram:ID schemeID="VA">ATU123456789</ram:ID>
         </ram:SpecifiedTaxRegistration>
       </ram:ShipToTradeParty>
       <ram:ActualDeliverySupplyChainEvent>
