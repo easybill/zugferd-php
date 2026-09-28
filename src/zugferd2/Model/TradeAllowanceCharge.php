@@ -21,6 +21,11 @@ class TradeAllowanceCharge
 
     #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('SequenceNumeric')]
+    public ?string $sequenceNumeric = null;
+
+    #[Type('string')]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('CalculationPercent')]
     public ?string $calculationPercent = null;
 
@@ -28,6 +33,11 @@ class TradeAllowanceCharge
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('BasisAmount')]
     public ?Amount $basisAmount = null;
+
+    #[Type(Quantity::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('BasisQuantity')]
+    public ?Quantity $basisQuantity = null;
 
     #[Type(Amount::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]

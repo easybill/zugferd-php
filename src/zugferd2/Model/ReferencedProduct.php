@@ -11,6 +11,11 @@ use JMS\Serializer\Annotation\XmlList;
 
 class ReferencedProduct
 {
+    #[Type(Id::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('ID')]
+    public ?Id $id = null;
+
     /** @var Id[] */
     #[Type('array<' . Id::class . '>')]
     #[XmlList(entry: 'GlobalID', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]

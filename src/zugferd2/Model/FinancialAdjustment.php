@@ -8,20 +8,15 @@ use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 
-class CreditorFinancialAccount
+class FinancialAdjustment
 {
-    #[Type(Id::class)]
-    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('IBANID')]
-    public ?Id $ibanId = null;
-
     #[Type('string')]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('AccountName')]
-    public ?string $accountName = null;
+    #[SerializedName('Reason')]
+    public string $reason;
 
-    #[Type(Id::class)]
+    #[Type(Amount::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('ProprietaryID')]
-    public ?Id $proprietaryID = null;
+    #[SerializedName('ActualAmount')]
+    public Amount $actualAmount;
 }
