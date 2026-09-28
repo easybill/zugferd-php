@@ -45,6 +45,8 @@ use Easybill\ZUGFeRD2\Model\ClassCode;
 use Easybill\ZUGFeRD2\Model\CreditorFinancialAccount;
 use Easybill\ZUGFeRD2\Model\CreditorFinancialInstitution;
 use Easybill\ZUGFeRD2\Model\DebtorFinancialAccount;
+use Easybill\ZUGFeRD2\Model\DebtorFinancialInstitution;
+use Easybill\ZUGFeRD2\Model\FinancialAdjustment;
 use Easybill\ZUGFeRD2\Model\FormattedDateTime;
 use Easybill\ZUGFeRD2\Model\Note;
 use Easybill\ZUGFeRD2\Model\ReferencedDocument;
@@ -96,6 +98,37 @@ final class ModelSerializationTest extends TestCase
 
         self::assertNotNull($resultModel);
         self::assertSame($testId, $resultModel->id);
+    }
+
+    /**
+     * Factur-X 1.09.2 (ZUGFeRD 2.5.2) made TradeTax TypeCode and CategoryCode optional in EXTENDED,
+     * so GROUP/INFORMATION sub-lines may carry only the DueDateTypeCode (BT-X-589).
+     */
+    public function testTradeTaxWithoutTypeCodeAndCategoryCodeSerialization(): void
+    {
+        $invoice = $this->createMinimalInvoice();
+
+        $invoice->supplyChainTradeTransaction->lineItems[] = $item = new SupplyChainTradeLineItem();
+        $item->associatedDocumentLineDocument = DocumentLineDocument::create('1');
+        $item->associatedDocumentLineDocument->lineStatusReasonCode = 'GROUP';
+        $item->specifiedTradeProduct = new TradeProduct();
+        $item->specifiedTradeProduct->name = 'Group';
+        $item->specifiedLineTradeSettlement = new LineTradeSettlement();
+        $item->specifiedLineTradeSettlement->tradeTax[] = TradeTax::create(dueDateTypeCode: '5');
+        $item->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('100.00');
+
+        $xml = Builder::create()->transform($invoice);
+        self::assertMatchesRegularExpression(
+            '#<ram:ApplicableTradeTax>\s*<ram:DueDateTypeCode>5</ram:DueDateTypeCode>\s*</ram:ApplicableTradeTax>#',
+            $xml,
+        );
+
+        $deserialized = Reader::create()->transform($xml);
+        $resultModel = $deserialized->supplyChainTradeTransaction->lineItems[0]->specifiedLineTradeSettlement->tradeTax[0];
+
+        self::assertNull($resultModel->typeCode);
+        self::assertNull($resultModel->categoryCode);
+        self::assertSame('5', $resultModel->dueDateTypeCode);
     }
 
     public function testTradeAllowanceChargeSerialization(): void
@@ -694,6 +727,100 @@ final class ModelSerializationTest extends TestCase
         self::assertEquals('DE75512108001245126199', $resultModel->payerPartyDebtorFinancialAccount->ibanId->value);
     }
 
+    public function testDebtorFinancialInstitutionSerialization(): void
+    {
+        $model = new TradeSettlementPaymentMeans();
+        $model->typeCode = '58';
+        $model->payerSpecifiedDebtorFinancialInstitution = new DebtorFinancialInstitution();
+        $model->payerSpecifiedDebtorFinancialInstitution->bicId = Id::create('COBADEFFXXX');
+
+        $invoice = $this->createMinimalInvoice();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementPaymentMeans[] = $model;
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = new TradeSettlementHeaderMonetarySummation();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->lineTotalAmount = Amount::create('1000.00');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->taxBasisTotalAmount[] = Amount::create('1000.00');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->taxTotalAmount[] = Amount::create('190.00', 'EUR');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->grandTotalAmount[] = Amount::create('1190.00');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->duePayableAmount = Amount::create('1190.00');
+
+        $xml = Builder::create()->transform($invoice);
+        $deserialized = Reader::create()->transform($xml);
+
+        $resultModel = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementPaymentMeans[0];
+        self::assertNotNull($resultModel->payerSpecifiedDebtorFinancialInstitution);
+        self::assertNotNull($resultModel->payerSpecifiedDebtorFinancialInstitution->bicId);
+        self::assertEquals('COBADEFFXXX', $resultModel->payerSpecifiedDebtorFinancialInstitution->bicId->value);
+    }
+
+    public function testSpecifiedFinancialAdjustmentSerialization(): void
+    {
+        $model = new FinancialAdjustment();
+        $model->reason = 'Rounding adjustment';
+        $model->actualAmount = Amount::create('0.02');
+
+        $invoice = $this->createMinimalInvoice();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedFinancialAdjustment[] = $model;
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = new TradeSettlementHeaderMonetarySummation();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->lineTotalAmount = Amount::create('1000.00');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->taxBasisTotalAmount[] = Amount::create('1000.00');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->taxTotalAmount[] = Amount::create('190.00', 'EUR');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->grandTotalAmount[] = Amount::create('1190.00');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->duePayableAmount = Amount::create('1190.00');
+
+        $xml = Builder::create()->transform($invoice);
+        $deserialized = Reader::create()->transform($xml);
+
+        $resultModel = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedFinancialAdjustment[0];
+        self::assertEquals('Rounding adjustment', $resultModel->reason);
+        self::assertEquals('0.02', $resultModel->actualAmount->value);
+    }
+
+    public function testManufacturerTradePartySerialization(): void
+    {
+        $manufacturer = new TradeParty();
+        $manufacturer->name = 'ACME Manufacturing';
+
+        $invoice = $this->createMinimalInvoice();
+
+        $lineItem = new SupplyChainTradeLineItem();
+        $lineItem->associatedDocumentLineDocument = DocumentLineDocument::create('1');
+        $lineItem->specifiedTradeProduct = new TradeProduct();
+        $lineItem->specifiedTradeProduct->name = 'Test Product';
+        $lineItem->specifiedTradeProduct->manufacturerTradeParty = $manufacturer;
+        $lineItem->tradeAgreement = new LineTradeAgreement();
+        $lineItem->delivery = new LineTradeDelivery();
+        $lineItem->delivery->billedQuantity = Quantity::create('1', 'C62');
+        $lineItem->specifiedLineTradeSettlement = new LineTradeSettlement();
+        $lineItem->specifiedLineTradeSettlement->tradeTax[] = TradeTax::create(
+            typeCode: 'VAT',
+            categoryCode: 'S',
+            rateApplicablePercent: '19.00'
+        );
+        $lineItem->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('100.00');
+
+        $invoice->supplyChainTradeTransaction->lineItems[] = $lineItem;
+
+        $sellerParty = new TradeParty();
+        $sellerParty->name = 'Test Seller';
+        $sellerParty->postalTradeAddress = new TradeAddress();
+        $sellerParty->postalTradeAddress->countryID = 'DE';
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerParty;
+
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = new TradeSettlementHeaderMonetarySummation();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->lineTotalAmount = Amount::create('100.00');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->taxBasisTotalAmount[] = Amount::create('100.00');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->taxTotalAmount[] = Amount::create('19.00', 'EUR');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->grandTotalAmount[] = Amount::create('119.00');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->duePayableAmount = Amount::create('119.00');
+
+        $xml = Builder::create()->transform($invoice);
+        $deserialized = Reader::create()->transform($xml);
+
+        $resultModel = $deserialized->supplyChainTradeTransaction->lineItems[0]->specifiedTradeProduct->manufacturerTradeParty;
+        self::assertNotNull($resultModel);
+        self::assertEquals('ACME Manufacturing', $resultModel->name);
+    }
+
     public function testTradePaymentTermsSerialization(): void
     {
         $model = new TradePaymentTerms();
@@ -1013,5 +1140,145 @@ final class ModelSerializationTest extends TestCase
         self::assertNotNull($resultModel);
         self::assertSame('FOB', $resultModel->deliveryTypeCode);
         self::assertSame('Free on board, port of Hamburg', $resultModel->description);
+    }
+
+    public function testCreditorFinancialAccountProprietaryIdSerialization(): void
+    {
+        $model = new TradeSettlementPaymentMeans();
+        $model->typeCode = '58';
+        $model->payeePartyCreditorFinancialAccount = new CreditorFinancialAccount();
+        $model->payeePartyCreditorFinancialAccount->ibanId = Id::create('DE89370400440532013000');
+        $model->payeePartyCreditorFinancialAccount->accountName = 'Test Company Account';
+        $model->payeePartyCreditorFinancialAccount->proprietaryID = Id::create('PROP-ACCT-123');
+
+        $invoice = $this->createMinimalInvoice();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementPaymentMeans[] = $model;
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = new TradeSettlementHeaderMonetarySummation();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->lineTotalAmount = Amount::create('1000.00');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->taxBasisTotalAmount[] = Amount::create('1000.00');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->taxTotalAmount[] = Amount::create('190.00', 'EUR');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->grandTotalAmount[] = Amount::create('1190.00');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->duePayableAmount = Amount::create('1190.00');
+
+        $xml = Builder::create()->transform($invoice);
+        $deserialized = Reader::create()->transform($xml);
+
+        $resultModel = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementPaymentMeans[0];
+        self::assertNotNull($resultModel->payeePartyCreditorFinancialAccount);
+        self::assertNotNull($resultModel->payeePartyCreditorFinancialAccount->proprietaryID);
+        self::assertEquals('PROP-ACCT-123', $resultModel->payeePartyCreditorFinancialAccount->proprietaryID->value);
+    }
+
+    public function testDebtorFinancialAccountAccountNameSerialization(): void
+    {
+        $model = new TradeSettlementPaymentMeans();
+        $model->typeCode = '59';
+        $model->payerPartyDebtorFinancialAccount = new DebtorFinancialAccount();
+        $model->payerPartyDebtorFinancialAccount->ibanId = Id::create('DE75512108001245126199');
+        $model->payerPartyDebtorFinancialAccount->accountName = 'Debtor Account Holder';
+
+        $invoice = $this->createMinimalInvoice();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementPaymentMeans[] = $model;
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = new TradeSettlementHeaderMonetarySummation();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->lineTotalAmount = Amount::create('1000.00');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->taxBasisTotalAmount[] = Amount::create('1000.00');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->taxTotalAmount[] = Amount::create('190.00', 'EUR');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->grandTotalAmount[] = Amount::create('1190.00');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->duePayableAmount = Amount::create('1190.00');
+
+        $xml = Builder::create()->transform($invoice);
+        $deserialized = Reader::create()->transform($xml);
+
+        $resultModel = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementPaymentMeans[0];
+        self::assertNotNull($resultModel->payerPartyDebtorFinancialAccount);
+        self::assertNotNull($resultModel->payerPartyDebtorFinancialAccount->ibanId);
+        self::assertEquals('DE75512108001245126199', $resultModel->payerPartyDebtorFinancialAccount->ibanId->value);
+        self::assertEquals('Debtor Account Holder', $resultModel->payerPartyDebtorFinancialAccount->accountName);
+    }
+
+    public function testReferencedProductIdSerialization(): void
+    {
+        $model = new ReferencedProduct();
+        $model->id = Id::create('REF-PRODUCT-ID-001');
+        $model->globalID[] = Id::create('4000001234567', '0088');
+        $model->name = 'Referenced Test Product';
+
+        $invoice = $this->createMinimalInvoice();
+
+        $lineItem = new SupplyChainTradeLineItem();
+        $lineItem->associatedDocumentLineDocument = DocumentLineDocument::create('1');
+        $lineItem->specifiedTradeProduct = new TradeProduct();
+        $lineItem->specifiedTradeProduct->name = 'Main Product';
+        $lineItem->specifiedTradeProduct->includedReferencedProduct[] = $model;
+
+        $lineItem->tradeAgreement = new LineTradeAgreement();
+        $lineItem->delivery = new LineTradeDelivery();
+        $lineItem->delivery->billedQuantity = Quantity::create('1', 'C62');
+        $lineItem->specifiedLineTradeSettlement = new LineTradeSettlement();
+        $lineItem->specifiedLineTradeSettlement->tradeTax[] = TradeTax::create(
+            typeCode: 'VAT',
+            categoryCode: 'S',
+            rateApplicablePercent: '19.00'
+        );
+        $lineItem->specifiedLineTradeSettlement->monetarySummation = TradeSettlementLineMonetarySummation::create('100.00');
+
+        $invoice->supplyChainTradeTransaction->lineItems[] = $lineItem;
+
+        $sellerParty = new TradeParty();
+        $sellerParty->name = 'Test Seller';
+        $sellerParty->postalTradeAddress = new TradeAddress();
+        $sellerParty->postalTradeAddress->countryID = 'DE';
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeAgreement->sellerTradeParty = $sellerParty;
+
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = new TradeSettlementHeaderMonetarySummation();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->lineTotalAmount = Amount::create('100.00');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->taxBasisTotalAmount[] = Amount::create('100.00');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->taxTotalAmount[] = Amount::create('19.00', 'EUR');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->grandTotalAmount[] = Amount::create('119.00');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->duePayableAmount = Amount::create('119.00');
+
+        $xml = Builder::create()->transform($invoice);
+        $deserialized = Reader::create()->transform($xml);
+
+        $resultModel = $deserialized->supplyChainTradeTransaction->lineItems[0]->specifiedTradeProduct->includedReferencedProduct[0];
+        self::assertNotNull($resultModel->id);
+        self::assertEquals('REF-PRODUCT-ID-001', $resultModel->id->value);
+        self::assertCount(1, $resultModel->globalID);
+        self::assertEquals('4000001234567', $resultModel->globalID[0]->value);
+    }
+
+    public function testTradeAllowanceChargeSequenceNumericAndBasisQuantitySerialization(): void
+    {
+        $indicator = new Indicator();
+        $indicator->indicator = false;
+
+        $model = TradeAllowanceCharge::create(
+            actualAmount: Amount::create('100.00'),
+            indicator: $indicator,
+            calculationPercent: '10.00',
+            basisAmount: Amount::create('1000.00'),
+            reason: 'Volume discount'
+        );
+        $model->sequenceNumeric = '1';
+        $model->basisQuantity = Quantity::create('5', 'C62');
+
+        $invoice = $this->createMinimalInvoice();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeAllowanceCharge[] = $model;
+
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation = new TradeSettlementHeaderMonetarySummation();
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->lineTotalAmount = Amount::create('1000.00');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->taxBasisTotalAmount[] = Amount::create('900.00');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->taxTotalAmount[] = Amount::create('171.00', 'EUR');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->grandTotalAmount[] = Amount::create('1071.00');
+        $invoice->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeSettlementHeaderMonetarySummation->duePayableAmount = Amount::create('1071.00');
+
+        $xml = Builder::create()->transform($invoice);
+        $deserialized = Reader::create()->transform($xml);
+
+        $resultModel = $deserialized->supplyChainTradeTransaction->applicableHeaderTradeSettlement->specifiedTradeAllowanceCharge[0];
+        self::assertEquals('1', $resultModel->sequenceNumeric);
+        self::assertNotNull($resultModel->basisQuantity);
+        self::assertEquals('5', $resultModel->basisQuantity->value);
+        self::assertEquals('C62', $resultModel->basisQuantity->unitCode);
     }
 }

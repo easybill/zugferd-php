@@ -76,15 +76,20 @@ class TradeProduct
     #[XmlList(entry: 'DesignatedProductClassification', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     public array $designatedProductClassification = [];
 
+    /** @var TradeProductInstance[] */
+    #[Type('array<' . TradeProductInstance::class . '>')]
+    #[XmlList(entry: 'IndividualTradeProductInstance', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    public ?array $individualTradeProductInstance = [];
+
     #[Type(TradeCountry::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('OriginTradeCountry')]
     public ?TradeCountry $tradeCountry = null;
 
-    /** @var TradeProductInstance[] */
-    #[Type('array<' . TradeProductInstance::class . '>')]
-    #[XmlList(entry: 'IndividualTradeProductInstance', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    public ?array $individualTradeProductInstance = [];
+    #[Type(TradeParty::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('ManufacturerTradeParty')]
+    public ?TradeParty $manufacturerTradeParty = null;
 
     /** @var ReferencedProduct[] */
     #[Type('array<' . ReferencedProduct::class . '>')]
