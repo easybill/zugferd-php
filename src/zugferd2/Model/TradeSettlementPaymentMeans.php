@@ -20,23 +20,28 @@ class TradeSettlementPaymentMeans
     #[SerializedName('Information')]
     public ?string $information = null;
 
-    #[Type(CreditorFinancialAccount::class)]
+    #[Type(TradeSettlementFinancialCard::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('PayeePartyCreditorFinancialAccount')]
-    public ?CreditorFinancialAccount $payeePartyCreditorFinancialAccount = null;
-
-    #[Type(CreditorFinancialInstitution::class)]
-    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('PayeeSpecifiedCreditorFinancialInstitution')]
-    public ?CreditorFinancialInstitution $payeeSpecifiedCreditorFinancialInstitution = null;
+    #[SerializedName('ApplicableTradeSettlementFinancialCard')]
+    public ?TradeSettlementFinancialCard $applicableTradeSettlementFinancialCard = null;
 
     #[Type(DebtorFinancialAccount::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
     #[SerializedName('PayerPartyDebtorFinancialAccount')]
     public ?DebtorFinancialAccount $payerPartyDebtorFinancialAccount = null;
 
-    #[Type(TradeSettlementFinancialCard::class)]
+    #[Type(CreditorFinancialAccount::class)]
     #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
-    #[SerializedName('ApplicableTradeSettlementFinancialCard')]
-    public ?TradeSettlementFinancialCard $applicableTradeSettlementFinancialCard = null;
+    #[SerializedName('PayeePartyCreditorFinancialAccount')]
+    public ?CreditorFinancialAccount $payeePartyCreditorFinancialAccount = null;
+
+    #[Type(DebtorFinancialInstitution::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('PayerSpecifiedDebtorFinancialInstitution')]
+    public ?DebtorFinancialInstitution $payerSpecifiedDebtorFinancialInstitution = null;
+
+    #[Type(CreditorFinancialInstitution::class)]
+    #[XmlElement(cdata: false, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    #[SerializedName('PayeeSpecifiedCreditorFinancialInstitution')]
+    public ?CreditorFinancialInstitution $payeeSpecifiedCreditorFinancialInstitution = null;
 }

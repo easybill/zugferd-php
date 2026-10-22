@@ -106,6 +106,11 @@ class HeaderTradeSettlement
     #[SerializedName('SpecifiedTradeSettlementHeaderMonetarySummation')]
     public TradeSettlementHeaderMonetarySummation $specifiedTradeSettlementHeaderMonetarySummation;
 
+    /** @var FinancialAdjustment[] */
+    #[Type('array<' . FinancialAdjustment::class . '>')]
+    #[XmlList(entry: 'SpecifiedFinancialAdjustment', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]
+    public array $specifiedFinancialAdjustment = [];
+
     /** @var ReferencedDocument[] */
     #[Type('array<' . ReferencedDocument::class . '>')]
     #[XmlList(entry: 'InvoiceReferencedDocument', inline: true, namespace: 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100')]

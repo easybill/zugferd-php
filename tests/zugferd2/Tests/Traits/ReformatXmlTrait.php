@@ -16,9 +16,58 @@ trait ReformatXmlTrait
         $doc->preserveWhiteSpace = false;
         $doc->formatOutput = true;
         $doc->loadXML($xml);
+
+        if ($doc->documentElement instanceof \DOMElement) {
+            self::sortElementAttributes($doc->documentElement);
+        }
+
         $result = (string)$doc->saveXML();
 
         return self::sortRootXmlnsAttributes($result);
+    }
+
+    // Attribute order is not significant in XML, but the official examples and our serializer
+    // emit some attributes (e.g. mimeCode/filename on AttachmentBinaryObject) in different orders.
+    // Normalise by sorting each element's non-namespaced attributes so byte comparison ignores order.
+    // Elements carrying prefixed attributes (e.g. xsi:*) are left untouched to preserve bindings.
+    private static function sortElementAttributes(\DOMElement $element): void
+    {
+        if ($element->hasAttributes()) {
+            /** @var array<string, string> $attributes */
+            $attributes = [];
+            $prefixed = false;
+            foreach (iterator_to_array($element->attributes) as $attribute) {
+                // Intentionally skip the whole element if it carries any prefixed attribute
+                // (e.g. xsi:type, xml:lang) to avoid disturbing namespace bindings. xmlns:*
+                // declarations are namespace nodes and never appear here.
+                if (str_contains($attribute->nodeName, ':')) {
+                    $prefixed = true;
+                    break;
+                }
+                $attributes[$attribute->nodeName] = (string)$attribute->nodeValue;
+            }
+
+            if (!$prefixed) {
+                $names = array_keys($attributes);
+                $sorted = $names;
+                sort($sorted, SORT_STRING);
+
+                if ($names !== $sorted) {
+                    foreach ($names as $name) {
+                        $element->removeAttribute($name);
+                    }
+                    foreach ($sorted as $name) {
+                        $element->setAttribute($name, $attributes[$name]);
+                    }
+                }
+            }
+        }
+
+        foreach (iterator_to_array($element->childNodes) as $child) {
+            if ($child instanceof \DOMElement) {
+                self::sortElementAttributes($child);
+            }
+        }
     }
 
     // In the newer examples (2.4) the root xmlns attributes differ from the previous version
